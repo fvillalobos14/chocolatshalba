@@ -17,3 +17,28 @@ card{
   padding: 15px;
   margin: 0 auto;
 }
+
+nav {
+    height: 51px;
+    line-height: 51px;
+    background-color: rgba(50, 189, 158, 1);
+}
+
+nav .brand-logo { 
+    font-size: 1.6rem;
+    margin-left: 22px; 
+}
+
+.side-nav{
+  width:200px;
+  margin-top:52px;
+  background-color:#282F37;
+}
+
+.btn{
+  background-color:#69BC6C; 
+}
+
+.li-back{
+  background-color: #1C2226;
+}
