@@ -1,0 +1,44 @@
+@import "materialize";
+
+.btn{
+  text-align: center;
+}
+
+card{
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border-radius: 5px;
+  width: 50%;
+  float: none;
+}
+
+.form-login {
+  max-width: 400px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+nav {
+    height: 51px;
+    line-height: 51px;
+    background-color: rgba(50, 189, 158, 1);
+}
+
+nav .brand-logo { 
+    font-size: 1.6rem;
+    margin-left: 22px; 
+}
+
+.side-nav{
+  width:200px;
+  margin-top:52px;
+  background-color:#282F37;
+}
+
+.btn{
+  background-color:#69BC6C; 
+}
+
+.li-back{
+  background-color: #1C2226;
+}

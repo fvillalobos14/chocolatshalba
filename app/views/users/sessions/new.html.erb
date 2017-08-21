@@ -1,0 +1,29 @@
+<br>
+<center><%= image_tag("ch.jpg", height: '200', width: '374')%></center>
+
+<div class="form-login">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="row center-block">
+        <div class="col m12 center">
+          <div class="card white darken-1">
+            <div class="card-content black-text">
+              <div class="field">
+                <%= f.label :Usuario %><br />
+                <%= f.text_field :email, autofocus: true %>
+              </div>
+
+              <div class="field">
+                <%= f.label :Contraseña %><br />
+                <%= f.password_field :password, autocomplete: "off" %>
+              </div>
+
+              <br>
+              <div class="actions">
+                <%= f.submit "Iniciar sesión" ,class: "waves-effect waves-light btn" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>

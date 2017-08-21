@@ -7,8 +7,31 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <% if current_user %>
+    <header>
+        <nav class="navbar">
+          <div class="nav-wrapper">
+              <a href="#!" class="brand-logo">Chocolats Halba</a>
+              <ul class="right hide-on-med-and-down">
+                  <li><a rel="nofollow" data-method="delete" href="/users/sign_out">Salir</a></li>
+              </ul>
+          </div>
+        </nav>
+        <ul class="side-nav fixed">
+          <% if current_user.warehouse_role %>
+            <li><a class="white-text">Bodega</a></li>
+            <li><%= link_to 'Control de ingreso', '#', class:"white-text li-back"%></li>
+            <li><%= link_to 'Inventario', '#', class:"white-text li-back"%></li>
+            <li><%= link_to 'Movimiento de lotes', '#', class:"white-text li-back"%></li>
+          <% end %>
+        </ul>      
+    </header>
+  <% end %>
   <body>
-    <%= yield %>
+  	<div class="container">
+  		<p class="notice"><%= notice %></p>
+		  <p class="alert"><%= alert %></p>
+    	<%= yield %>
+	</div>
   </body>
 </html>
