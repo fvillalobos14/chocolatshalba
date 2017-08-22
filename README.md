@@ -8,5 +8,10 @@ Proyecto Ingeniería de software
 
 ## Built With
 
-* [Devise](https://github.com/plataformatec/devise) - Users authentication
+* [Devise](https://github.com/plataformatec/devise) - User authentication
 * [Materialize-Sass](https://github.com/mkhairi/materialize-sass)
+
+## For running
+
+* bundle install
+* rails db:migrate
