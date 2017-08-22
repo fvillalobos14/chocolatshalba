@@ -10,6 +10,7 @@ Proyecto Ingeniería de software
 
 * [Devise](https://github.com/plataformatec/devise) - User authentication
 * [Materialize-Sass](https://github.com/mkhairi/materialize-sass)
+* [Rails_Admin](https://github.com/sferik/rails_admin)
 
 ## For running
 
