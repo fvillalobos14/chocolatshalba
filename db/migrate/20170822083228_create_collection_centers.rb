@@ -1,6 +1,6 @@
-class CreateCollectioncenters < ActiveRecord::Migration[5.1]
+class CreateCollectionCenters < ActiveRecord::Migration[5.1]
   def change
-    create_table :collectioncenters do |t|
+    create_table :collection_centers do |t|
       t.string :code
       t.string :name
       t.references :organization, foreign_key: true

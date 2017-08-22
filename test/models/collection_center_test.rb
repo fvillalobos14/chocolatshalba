@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CollectioncenterTest < ActiveSupport::TestCase
+class CollectionCenterTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

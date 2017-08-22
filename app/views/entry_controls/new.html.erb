@@ -1,0 +1,22 @@
+<h1>Control de ingreso</h1>
+
+<%= form_for [@entryControl] do |f| %>
+	
+	<input type="hidden" name="entry_control[entryDate]" value=<%= Date.today %>>
+	<input type="hidden" name="entry_control[exchangeRate]" value=1>
+	<input type="hidden" name="entry_control[organization_id]" value=1>
+
+	<p>
+		<%= f.label :receivedBy, "Recibido por" %>
+		<%= f.text_field :receivedBy %>
+	</p>
+
+	<p>
+		<%= f.label :deliveredBy, "Entregado por" %>
+		<%= f.text_field :deliveredBy %>
+	</p>
+
+	<p>
+		<%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
+	</p>
+<% end %>

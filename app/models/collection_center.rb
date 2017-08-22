@@ -1,4 +1,4 @@
-class Collectioncenter < ApplicationRecord
+class CollectionCenter < ApplicationRecord
 	belongs_to :organization
 
 	validates :code, presence: true
