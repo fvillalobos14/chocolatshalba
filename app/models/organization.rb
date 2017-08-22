@@ -1,7 +1,4 @@
 class Organization < ApplicationRecord
-	has_many :collectionCenters
-	has_many :entryControls
-
-	validates :code, presence: true
-	validates :name, presence: true
+	has_many :collection_centers
+  has_many :entry_controls
 end

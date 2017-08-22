@@ -21,15 +21,6 @@ ActiveRecord::Schema.define(version: 20170822083228) do
     t.index ["organization_id"], name: "index_collection_centers_on_organization_id"
   end
 
-  create_table "collectioncenters", force: :cascade do |t|
-    t.string "code"
-    t.string "name"
-    t.integer "organization_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["organization_id"], name: "index_collectioncenters_on_organization_id"
-  end
-
   create_table "entry_controls", force: :cascade do |t|
     t.integer "organization_id"
     t.date "entryDate"
@@ -39,17 +30,6 @@ ActiveRecord::Schema.define(version: 20170822083228) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_entry_controls_on_organization_id"
-  end
-
-  create_table "entrycontrols", force: :cascade do |t|
-    t.integer "organization_id"
-    t.date "entryDate"
-    t.decimal "exchangeRate"
-    t.string "receivedBy"
-    t.string "deliveredBy"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["organization_id"], name: "index_entrycontrols_on_organization_id"
   end
 
   create_table "organizations", force: :cascade do |t|
