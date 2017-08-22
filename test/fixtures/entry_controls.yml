@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  organization: one
+  entryDate: 2017-08-22
+  exchangeRate: 9.99
+  receivedBy: MyString
+  deliveredBy: MyString
+
+two:
+  organization: two
+  entryDate: 2017-08-22
+  exchangeRate: 9.99
+  receivedBy: MyString
+  deliveredBy: MyString

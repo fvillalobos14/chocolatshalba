@@ -22,6 +22,7 @@ nav {
     height: 51px;
     line-height: 51px;
     background-color: rgba(50, 189, 158, 1);
+    position: fixed;
 }
 
 nav .brand-logo { 
@@ -41,4 +42,36 @@ nav .brand-logo {
 
 .li-back{
   background-color: #1C2226;
+}
+
+h1,h2,h3,h4,h5,h6,table,th,tr,tbody,thead{
+  line-height: 1;
+}
+
+h1{
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2{
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+}
+
+p{
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+.container{
+  text-align: left;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-right: 30px;
+  padding-left: 30px;
 }

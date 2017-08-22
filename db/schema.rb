@@ -10,7 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821004543) do
+ActiveRecord::Schema.define(version: 20170822083228) do
+
+  create_table "collection_centers", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.integer "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_collection_centers_on_organization_id"
+  end
+
+  create_table "entry_controls", force: :cascade do |t|
+    t.integer "organization_id"
+    t.date "entryDate"
+    t.decimal "exchangeRate"
+    t.string "receivedBy"
+    t.string "deliveredBy"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_entry_controls_on_organization_id"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

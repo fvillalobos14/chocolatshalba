@@ -20,7 +20,7 @@
         <ul class="side-nav fixed">
           <% if current_user.warehouse_role %>
             <li><a class="white-text">Bodega</a></li>
-            <li><%= link_to 'Control de ingreso', '#', class:"white-text li-back"%></li>
+            <li><%= link_to 'Control de ingreso', organizations_path, class:"white-text li-back"%></li>
             <li><%= link_to 'Inventario', '#', class:"white-text li-back"%></li>
             <li><%= link_to 'Movimiento de lotes', '#', class:"white-text li-back"%></li>
           <% end %>
@@ -29,8 +29,11 @@
   <% end %>
   <body>
   	<div class="container">
-  		<p class="notice"><%= notice %></p>
-		  <p class="alert"><%= alert %></p>
+      <% if current_user %>
+        <br>
+  		  <p class="notice"><%= notice %></p>
+		    <p class="alert"><%= alert %></p>
+      <% end %>
     	<%= yield %>
 	</div>
   </body>
