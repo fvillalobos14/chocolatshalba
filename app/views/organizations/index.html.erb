@@ -1,5 +1,4 @@
 <div class="dashboard">
-    <h1>Organizaciones</h1>
     <div class="row">
         <div class="col m12">
             <div class="card">
@@ -7,7 +6,6 @@
                     <table>
                         <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Codigo</th>
                             <th>Nombre</th>
                             <th></th>
@@ -16,10 +14,9 @@
                         <tbody>
                             <% @organizations.each do |organization| %>
                                 <tr>
-                                    <td><%= organization.id%></td>
                                     <td><%= organization.code %></td>
                                     <td><%= organization.name %></td>
-                                    <td><%= link_to "Ingresar Lotes", organization %></td>
+                                    <td><%= link_to "Control de ingreso", organization %></td>
                                 </tr>
                             <% end %>
                         </tbody>

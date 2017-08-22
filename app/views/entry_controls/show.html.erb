@@ -1,7 +1,11 @@
 <h1>Ingresos de Lotes</h1>
 
 <p>
-  <%=	@entry.receivedBy%>
+	<%= Organization.find(@entry.organization_id).name %>
+</p>
+
+<p>
+  <%= @entry.receivedBy %>
 </p>
 
 <p>
