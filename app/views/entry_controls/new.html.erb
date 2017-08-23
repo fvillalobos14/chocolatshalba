@@ -7,12 +7,12 @@
 
 	<p>
 		<%= f.label :entryDate, "Fecha de ingreso" %> 
-		<%= f.date_field :entryDate, value: Date.today %>
+		<%= f.date_field :entryDate, value: Date.today, :readonly => true %>
 	</p>
 
 	<p>
 		<%= f.label :exchangeRate, "Tasa de cambio(USD/LPS)" %>
-		<%= f.number_field :exchangeRate, value:23.80 %>
+		<%= f.number_field :exchangeRate, value:23.80, :readonly => true %>
 	</p>
 	
 	<p>
