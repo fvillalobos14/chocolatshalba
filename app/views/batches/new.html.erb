@@ -1,0 +1,32 @@
+<h1>Lote</h1>
+
+<%= form_for [@entryControl, @entryControl.batches.build] do |f| %>
+	<p>
+		<%= f.label :sackAmount, "Cant. sacos" %>
+		<%= f.number_field :sackAmount %>
+	</p>
+
+	<p>
+		<%= f.label :weight, "Peso libras" %>
+		<%= f.number_field :weight %>
+	</p>
+
+	<p>
+		<%= f.label :enterCode, "Código de indentificación" %>
+		<%= f.text_field :enterCode %>
+	</p>	
+
+	<p>
+		<%= f.label :cocoaType, "Tipo de cacao" %>
+		<%= f.number_field :cocoaType %>
+	</p>	
+
+	<p>
+		<%= f.label :geneticMaterial, "Material genético" %>
+		<%= f.number_field :geneticMaterial %>
+	</p>	
+
+	<p>
+		<%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
+	</p>
+<% end %>
