@@ -3,23 +3,22 @@
         <div class="col m12">
             <div class="card">
                 <div class="card-content">
-                    <table>
-                        <thead>
+                <table>
+                    <thead>
                         <tr>
                             <th>Codigo</th>
                             <th>Nombre</th>
-                            <th></th>
                         </tr>
-                        </thead>
-                        <tbody>
-                            <% @organizations.each do |organization| %>
-                                <tr>
-                                    <td><%= organization.code %></td>
-                                    <td><%= organization.name %></td>
-                                    <td><%= link_to "Control de ingreso", organization %></td>
-                                </tr>
-                            <% end %>
-                        </tbody>
+                    </thead>
+                    <tbody>
+                        <% @organizations.each do |organization| %>
+                            <tr>
+                                <td><%= organization.code %></td>
+                                <td><%= organization.name %></td>
+                                <td><%= link_to "Control de ingreso", organization %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
                     </table>
                 </div> 
             </div> 
