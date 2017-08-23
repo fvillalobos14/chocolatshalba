@@ -17,7 +17,7 @@ Install gems
 ```
 bundle install
 ```
-Create database
+Migrate database
 ```
 rails db:migrate
 ```
