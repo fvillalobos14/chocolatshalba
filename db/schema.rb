@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822083228) do
+ActiveRecord::Schema.define(version: 20170822231206) do
+
+  create_table "batches", force: :cascade do |t|
+    t.integer "sackAmount"
+    t.decimal "weight"
+    t.string "enterCode"
+    t.integer "cocoaType"
+    t.integer "geneticMaterial"
+    t.integer "entry_control_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["entry_control_id"], name: "index_batches_on_entry_control_id"
+  end
 
   create_table "collection_centers", force: :cascade do |t|
     t.string "code"
@@ -21,35 +33,15 @@ ActiveRecord::Schema.define(version: 20170822083228) do
     t.index ["organization_id"], name: "index_collection_centers_on_organization_id"
   end
 
-  create_table "collectioncenters", force: :cascade do |t|
-    t.string "code"
-    t.string "name"
-    t.integer "organization_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["organization_id"], name: "index_collectioncenters_on_organization_id"
-  end
-
   create_table "entry_controls", force: :cascade do |t|
-    t.integer "organization_id"
     t.date "entryDate"
     t.decimal "exchangeRate"
     t.string "receivedBy"
     t.string "deliveredBy"
+    t.integer "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_entry_controls_on_organization_id"
-  end
-
-  create_table "entrycontrols", force: :cascade do |t|
-    t.integer "organization_id"
-    t.date "entryDate"
-    t.decimal "exchangeRate"
-    t.string "receivedBy"
-    t.string "deliveredBy"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["organization_id"], name: "index_entrycontrols_on_organization_id"
   end
 
   create_table "organizations", force: :cascade do |t|

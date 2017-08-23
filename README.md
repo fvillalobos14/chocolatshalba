@@ -9,10 +9,15 @@ Proyecto Ingeniería de software
 ## Built With
 
 * [Devise](https://github.com/plataformatec/devise) - User authentication
-* [Materialize-Sass](https://github.com/mkhairi/materialize-sass)
-* [Rails_Admin](https://github.com/sferik/rails_admin)
+* [Materialize-Sass](https://github.com/mkhairi/materialize-sass) - Front-end framework
+* [Rails_Admin](https://github.com/sferik/rails_admin) - Admin page
 
-## For running
-
-* bundle install
-* rails db:migrate
+## Installation
+Install gems
+```
+bundle install
+```
+Create database
+```
+rails db:migrate
+```

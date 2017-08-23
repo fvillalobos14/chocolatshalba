@@ -1,12 +1,12 @@
 class EntryControlsController < ApplicationController
   def new
-    @organization = Organization.find(params[:organization_id])
-  	@entryControl= @organization.entry_controls.build
+    @organization=Organization.find(params[:organization_id])
+  	@entryControl=@organization.entry_controls.build
   end
 
   def create
-    @organization = Organization.find(params[:organization_id])
-    @entryControl= @organization.entry_controls.build(entryControl_params)
+    @organization=Organization.find(params[:organization_id])
+    @entryControl=@organization.entry_controls.build(entryControl_params)
     
     if @entryControl.save
         redirect_to @entryControl
@@ -16,7 +16,8 @@ class EntryControlsController < ApplicationController
   end    
 
   def show
-    @entry = EntryControl.find(params[:id])
+    @entry=EntryControl.find(params[:id])
+    @batches=@entry.batches
   end
 
   private

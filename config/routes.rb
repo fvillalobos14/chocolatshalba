@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-
-  resources :collection_centers
-  resources :entry_controls
+  resources :entry_controls do
+    resources :batches
+  end
 
   resources :organizations do
     resources :collection_centers
