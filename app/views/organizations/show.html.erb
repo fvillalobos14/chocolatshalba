@@ -4,23 +4,22 @@
             <div class="col m12">
                 <div class="card">
                     <div class="card-content">
-                    <h1>Controles de Ingreso</h1>
+                        <h1>Controles de Ingreso</h1>
                         <table>
                             <thead>
                                 <tr>
-                                    
                                     <th>Recibido por</th>
                                     <th>Entregado por</th>
                                     <th>Fecha de Ingreso</th>
                                 </tr>
-                                </thead>
+                            </thead>
                             <tbody>
                                 <% @entries.each do |entry| %>
                                     <tr>
-                                    
-                                        <td><%= entry.receivedBy%></td>
-                                        <td><%= entry.deliveredBy%></td>
-                                        <td><%= entry.entryDate%></td>
+                                        <td><%= entry.receivedBy %></td>
+                                        <td><%= entry.deliveredBy %></td>
+                                        <td><%= entry.entryDate %></td>
+                                        <td><%= link_to "Lotes", entry %></td>
                                     </tr>
                                 <% end %>
                             </tbody>
@@ -30,6 +29,5 @@
             </div>
         </div>
     </div>
-    <%= link_to 'Regresar', organizations_path, class:"waves-effect waves-light btn"%>
     <%= link_to 'Crear Control de Ingreso', new_organization_entry_control_path(@organization) , class:"waves-effect waves-light btn"%>
 </div>

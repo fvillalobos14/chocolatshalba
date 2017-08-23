@@ -1,17 +1,18 @@
 <h1>Control de ingreso</h1>
 
 <%= form_for [@organization, @organization.entry_controls.build] do |f| %>
-
 	<p>
 		Cooperativa: <%= @organization.name %>
 	</p>
 
 	<p>
-		Fecha de Ingreso: <%= f.text_field :entryDate, value: Date.today %>
+		<%= f.label :entryDate, "Fecha de ingreso" %> 
+		<%= f.date_field :entryDate, value: Date.today, :readonly => true %>
 	</p>
 
 	<p>
-		Tasa de Cambio(USD/LPS): <%= f.text_field :exchangeRate, value:23.80 %>
+		<%= f.label :exchangeRate, "Tasa de cambio(USD/LPS)" %>
+		<%= f.number_field :exchangeRate, value:23.80, :readonly => true %>
 	</p>
 	
 	<p>
