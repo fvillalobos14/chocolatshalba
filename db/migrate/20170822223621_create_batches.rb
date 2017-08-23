@@ -6,7 +6,7 @@ class CreateBatches < ActiveRecord::Migration[5.1]
       t.string :enterCode
       t.integer :type
       t.integer :geneticMaterial
-      t.references :entryControl, foreign_key: true
+      t.references :entry_control, foreign_key: true
 
       t.timestamps
     end
