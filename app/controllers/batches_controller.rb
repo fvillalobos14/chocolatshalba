@@ -1,4 +1,5 @@
 class BatchesController < ApplicationController
+  before_action :authenticate_user!
   def new
   	@entryControl=EntryControl.find(params[:entry_control_id])
   	@batch=@entryControl.batches.build
