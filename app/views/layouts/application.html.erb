@@ -18,7 +18,11 @@
           </div>
         </nav>
         <ul class="side-nav fixed">
-          <% if current_user.warehouse_role %>
+          <% if current_user.admin_role %>
+            <li><a class="white-text">Admin</a></li>
+            <li><%= link_to 'Administración', rails_admin.dashboard_path, class:"white-text li-back"%></li>
+          <% end %>
+          <% if current_user.warehouse_role || current_user.admin_role %>
             <li><a class="white-text">Bodega</a></li>
             <li><%= link_to 'Control de ingreso', organizations_path, class:"white-text li-back"%></li>
             <li><%= link_to 'Inventario', '#', class:"white-text li-back"%></li>
