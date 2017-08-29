@@ -28,6 +28,18 @@
             <li><%= link_to 'Inventario', '#', class:"white-text li-back"%></li>
             <li><%= link_to 'Movimiento de lotes', '#', class:"white-text li-back"%></li>
           <% end %>
+          <% if current_user.quality_manager_role || current_user.admin_role %>
+            <li><a class="white-text">Jefe de calidad</a></li>
+          <% end %>
+          <% if current_user.quality_role || current_user.admin_role %>
+            <li><a class="white-text">Calidad</a></li>
+          <% end %>
+          <% if current_user.certification_role || current_user.admin_role %>
+            <li><a class="white-text">Certificación</a></li>
+          <% end %>
+          <% if current_user.administration_role || current_user.admin_role %>
+            <li><a class="white-text">Administración</a></li>
+          <% end %>
         </ul>      
     </header>
   <% end %>
