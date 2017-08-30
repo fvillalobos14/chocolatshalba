@@ -1,0 +1,2 @@
+class CocoaType < ApplicationRecord
+end
