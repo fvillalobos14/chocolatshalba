@@ -1,0 +1,2 @@
+class GeneticMaterial < ApplicationRecord
+end
