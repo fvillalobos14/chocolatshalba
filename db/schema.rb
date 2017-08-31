@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170830232132) do
+ActiveRecord::Schema.define(version: 20170831222122) do
 
   create_table "batches", force: :cascade do |t|
     t.integer "sackAmount"
@@ -52,6 +52,12 @@ ActiveRecord::Schema.define(version: 20170830232132) do
 
   create_table "genetic_materials", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.boolean "read"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

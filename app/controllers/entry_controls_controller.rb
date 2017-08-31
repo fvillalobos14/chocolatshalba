@@ -10,6 +10,7 @@ class EntryControlsController < ApplicationController
     @entryControl=@organization.entry_controls.build(entryControl_params)
     
     if @entryControl.save
+        createNotification
         redirect_to @entryControl
     else
         redirect_to :new    
@@ -24,5 +25,10 @@ class EntryControlsController < ApplicationController
   private
   def entryControl_params
     params.require(:entry_control).permit(:entryDate, :exchangeRate, :receivedBy, :deliveredBy)
+  end
+  
+  def createNotification
+    @notification = Notification.create(read: false)
+    @notification.save
   end  
 end
