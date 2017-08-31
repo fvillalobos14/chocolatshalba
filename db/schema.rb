@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170829041708) do
+ActiveRecord::Schema.define(version: 20170829054259) do
 
   create_table "batches", force: :cascade do |t|
     t.integer "sackAmount"
@@ -66,6 +66,10 @@ ActiveRecord::Schema.define(version: 20170829041708) do
     t.datetime "updated_at", null: false
     t.boolean "warehouse_role", default: false
     t.boolean "admin_role", default: false
+    t.boolean "quality_manager_role", default: false
+    t.boolean "certification_role", default: false
+    t.boolean "quality_role", default: false
+    t.boolean "administration_role", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
