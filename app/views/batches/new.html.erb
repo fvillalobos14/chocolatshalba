@@ -18,13 +18,13 @@
 
 	<p>
 		<%= f.label :cocoaType, "Tipo de cacao" %>
-		<%= f.number_field :cocoaType %>
+		<%= f.collection_select :cocoaType, @cocoa, :id, :name, :prompt => "Seleccione el tipo de cacao", class:"dropdown-button btn" %>
 	</p>	
 
 	<p>
 		<%= f.label :geneticMaterial, "Material genético" %>
-		<%= f.number_field :geneticMaterial %>
-	</p>	
+    <%= select_tag "Material Genetico", options_from_collection_for_select(GeneticMaterial.all, "id", "name") %>
+  </p>
 
 	<p>
 		<%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
