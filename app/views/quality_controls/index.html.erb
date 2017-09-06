@@ -1,2 +1,35 @@
-<h1>QualityControls#index</h1>
-<p>Find me in app/views/quality_controls/index.html.erb</p>
+<div class="dashboard">
+    <div class="form-signup">
+        <div class="row">
+            <div class="col m12">
+                <div class="card">
+                    <div class="card-content">
+                        <h1>Controles de ingreso</h1>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Recibido por</th>
+                                    <th>Entregado por</th>
+                                    <th>Fecha de Ingreso</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @entries.each do |entry| %>
+                                    <tr>
+                                        <% if QualityControl.where(batch_id: entry.batches.ids).count(:id) < entry.batches.count(:id)%>
+                                            <td><%= entry.receivedBy %></td>
+                                            <td><%= entry.deliveredBy %></td>
+                                            <td><%= entry.entryDate %></td>
+                                            <td><%= link_to "Lotes", entry %></td>
+                                        <% end %>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
