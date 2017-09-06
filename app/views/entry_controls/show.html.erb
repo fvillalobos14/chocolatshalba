@@ -36,8 +36,8 @@
                                 <td><%= batch.sackAmount %></td>
                                 <td><%= batch.weight %></td>
                                 <td><%= batch.enterCode %></td>
-                                <td><%= batch.cocoaType %></td>
-                                <td><%= batch.geneticMaterial %></td>
+                                <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                             </tr>
                         <% end %>
                     </tbody>

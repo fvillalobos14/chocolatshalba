@@ -23,10 +23,16 @@
 
 	<p>
 		<%= f.label :geneticMaterial, "Material genético" %>
-    <%= select_tag "Material Genetico", options_from_collection_for_select(GeneticMaterial.all, "id", "name") %>
+		<%= f.collection_select :geneticMaterial, @genetic, :id, :name, :prompt => "Seleccione el tipo de material genético", class:"dropdown-button btn" %>
   </p>
 
 	<p>
 		<%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
 	</p>
 <% end %>
+
+<script>
+	$(document).on('turbolinks:load', function() {
+	  $('select').material_select();
+	}) 
+</script>
