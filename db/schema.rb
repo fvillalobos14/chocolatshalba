@@ -12,6 +12,11 @@
 
 ActiveRecord::Schema.define(version: 20170906073712) do
 
+  create_table "bar_codes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "batches", force: :cascade do |t|
     t.integer "sackAmount"
     t.decimal "weight"
@@ -69,6 +74,11 @@ ActiveRecord::Schema.define(version: 20170906073712) do
   create_table "organizations", force: :cascade do |t|
     t.string "code"
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "qr_codes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
