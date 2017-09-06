@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170906081945) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.decimal "place"
+    t.decimal "runs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -84,7 +85,6 @@ ActiveRecord::Schema.define(version: 20170906081945) do
     t.string "name"
     t.decimal "unit"
     t.decimal "place"
-    t.decimal "runs"
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -3,4 +3,5 @@ class Category < ApplicationRecord
 
   validates :name, presence: true
   validates :place, presence: true
+  validates :runs, presence: true
 end

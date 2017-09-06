@@ -1,6 +1,6 @@
 <h1>Analisis de calidad</h1>
 
-<%= form_for [@batch, @batch.build_quality_control] do |f| %>
+<%= form_for [@batch, @qualityControl] do |f| %>
 	<p>
 		Cooperativa/Proveedor:
 		<%= @batch.entry_control.organization.name %>
@@ -53,6 +53,25 @@
 		<%= f.label :made_by, "Persona responsable" %>
 		<%= f.text_field :made_by %>
 	</p>
+
+	<% Category.all.order(:place).each do |category| %>
+		<table class="highlight">
+			<tr>
+				<th><%= category.name %></th>
+				<% (1..category.runs).each do |i| %>
+					<th><%= i %></th>
+				<% end %>
+			</tr>
+			<% category.parameters.order(:place).each do |parameter| %>
+				<tr>
+					<td width="7%"><%= parameter.name %></td>
+					<% (1..category.runs).each do |i| %>
+						<td width="7%"><%= f.number_field :code %></td>
+					<% end %>
+				</tr>
+				<% end %>
+		</table>
+	<% end %>
 
 	<p>
 		<%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>

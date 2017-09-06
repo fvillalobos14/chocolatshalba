@@ -4,7 +4,6 @@ class CreateParameters < ActiveRecord::Migration[5.1]
       t.string :name
       t.decimal :unit
       t.decimal :place
-      t.decimal :runs
       t.references :category, foreign_key: true
 
       t.timestamps

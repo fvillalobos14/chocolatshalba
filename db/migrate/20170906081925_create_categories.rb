@@ -3,6 +3,7 @@ class CreateCategories < ActiveRecord::Migration[5.1]
     create_table :categories do |t|
       t.string :name
       t.decimal :place
+      t.decimal :runs
 
       t.timestamps
     end
