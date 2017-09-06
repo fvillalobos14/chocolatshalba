@@ -62,3 +62,4 @@ end
   gem 'materialize-sass'
   gem 'rails_admin', '~> 1.2'
   gem 'cancancan'
+  gem "paperclip"

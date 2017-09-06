@@ -24,7 +24,7 @@ class EntryControlsController < ApplicationController
 
   private
   def entryControl_params
-    params.require(:entry_control).permit(:entryDate, :exchangeRate, :receivedBy, :deliveredBy)
+    params.require(:entry_control).permit(:entryDate, :exchangeRate, :receivedBy, :deliveredBy, :ec_files)
   end
   
   def createNotification

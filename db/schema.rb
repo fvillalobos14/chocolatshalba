@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170831222122) do
+ActiveRecord::Schema.define(version: 20170906073712) do
 
   create_table "batches", force: :cascade do |t|
     t.integer "sackAmount"
@@ -47,6 +47,10 @@ ActiveRecord::Schema.define(version: 20170831222122) do
     t.integer "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ec_files_file_name"
+    t.string "ec_files_content_type"
+    t.integer "ec_files_file_size"
+    t.datetime "ec_files_updated_at"
     t.index ["organization_id"], name: "index_entry_controls_on_organization_id"
   end
 
