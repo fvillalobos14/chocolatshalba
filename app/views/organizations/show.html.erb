@@ -1,4 +1,5 @@
 <div class="dashboard">
+    <% if !current_user.warehouse_role %>
     <div class="form-signup">
         <div class="row">
             <div class="col m12">
@@ -29,5 +30,6 @@
             </div>
         </div>
     </div>
+    <% end %>
     <%= link_to 'Crear Control de Ingreso', new_organization_entry_control_path(@organization) , class:"waves-effect waves-light btn"%>
 </div>
