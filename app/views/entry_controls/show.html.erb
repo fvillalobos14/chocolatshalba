@@ -29,6 +29,9 @@
                             <th>Codigo de identificación</th>
                             <th>Tipo de cacao</th>
                             <th>Material genético</th>
+                            <% if !current_user.warehouse_role || current_user.admin_role %>
+                                <th></th>
+                            <% end %>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,6 +42,9 @@
                                 <td><%= batch.enterCode %></td>
                                 <td><%= CocoaType.find(batch.cocoaType).name %></td>
                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                <% if (!current_user.warehouse_role || current_user.admin_role) && QualityControl.where(batch_id: batch.id).blank? %>
+                                    <td><%= link_to "Analisis de calidad", new_batch_quality_control_path(batch)%></td>
+                                <% end %>
                             </tr>
                         <% end %>
                     </tbody>
@@ -47,4 +53,6 @@
         </div> 
     </div> 
 </div>
-<%= link_to 'Agregar lote', new_entry_control_batch_path(@entry), class:"waves-effect waves-light btn"%>
+<% if current_user.warehouse_role || current_user.admin_role %>
+    <%= link_to 'Agregar lote', new_entry_control_batch_path(@entry), class:"waves-effect waves-light btn"%>
+<% end %>
