@@ -1,6 +1,8 @@
 class BatchesController < ApplicationController
   before_action :authenticate_user!
   def new
+    @cocoa = CocoaType.all
+    @genetic = GeneticMaterial.all
   	@entryControl=EntryControl.find(params[:entry_control_id])
   	@batch=@entryControl.batches.build
   end

@@ -51,8 +51,8 @@ group :development do
 end
 
   group :production do
-    gem 'pg'
     gem 'rails_12factor'
+    gem 'pg'
   end
 
   # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -61,3 +61,5 @@ end
   gem 'jquery-rails'
   gem 'materialize-sass'
   gem 'rails_admin', '~> 1.2'
+  gem 'cancancan'
+  gem "paperclip"

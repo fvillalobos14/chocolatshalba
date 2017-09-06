@@ -1,44 +1,106 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Chocolatshalba</title>
+    <title>Chocolats Halba</title>
     <%= csrf_meta_tags %>
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <% if current_user %>
     <header>
-        <nav class="navbar">
+      <div class="navbar-fixed">
+        <nav>
           <div class="nav-wrapper">
-              <a href="#!" class="brand-logo">Chocolats Halba</a>
+              <a href="#!" class="brand-logo center">Chocolats Halba</a>
+              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
               <ul class="right hide-on-med-and-down">
                   <li><a rel="nofollow" data-method="delete" href="/users/sign_out">Salir</a></li>
               </ul>
           </div>
         </nav>
+      </div>
+        <ul class="side-nav" id="mobile-demo">
+          <% if current_user.admin_role %>
+              <li><a class="white-text">Admin</a></li>
+              <li><%= link_to 'Administración', rails_admin_path, class:"white-text li-back"%></li>
+          <% end %>
+          <% if current_user.warehouse_role || current_user.admin_role %>
+              <li><a class="white-text">Bodega</a></li>
+              <li><%= link_to 'Control de ingreso', organizations_path, class:"white-text li-back"%></li>
+              <li><%= link_to 'Inventario', '#', class:"white-text li-back"%></li>
+              <li><%= link_to 'Movimiento de lotes', '#', class:"white-text li-back"%></li>
+          <% end %>
+          <% if current_user.quality_manager_role || current_user.admin_role %>
+              <li><a class="white-text">Jefe de calidad</a></li>
+          <% end %>
+          <% if current_user.quality_role || current_user.admin_role %>
+              <li><a class="white-text">Calidad</a></li>
+          <% end %>
+          <% if current_user.certification_role || current_user.admin_role %>
+              <li><a class="white-text">Certificación</a></li>
+          <% end %>
+          <% if current_user.administration_role || current_user.admin_role %>
+              <li><a class="white-text">Administración</a></li>
+          <% end %>
+          <li><a class="white-text" rel="nofollow" data-method="delete" href="/users/sign_out">Salir</a></li>
+        </ul>
         <ul class="side-nav fixed">
           <% if current_user.admin_role %>
             <li><a class="white-text">Admin</a></li>
-            <li><%= link_to 'Administración', rails_admin.dashboard_path, class:"white-text li-back"%></li>
+            <li><%= link_to 'Administración', rails_admin_path, class:"white-text li-back"%></li>
           <% end %>
           <% if current_user.warehouse_role || current_user.admin_role %>
             <li><a class="white-text">Bodega</a></li>
             <li><%= link_to 'Control de ingreso', organizations_path, class:"white-text li-back"%></li>
-            <li><%= link_to 'Inventario', '#', class:"white-text li-back"%></li>
-            <li><%= link_to 'Movimiento de lotes', '#', class:"white-text li-back"%></li>
           <% end %>
-        </ul>      
+          <% if current_user.quality_manager_role || current_user.admin_role %>
+            <li><a class="white-text">Jefe de calidad</a></li>
+          <% end %>
+          <% if current_user.quality_role || current_user.admin_role %>
+            <li><a class="white-text">Calidad</a></li>
+            <% if Notification.count == 1%>
+              <span class="new badge" data-badge-caption="nuevo">1</span></li>
+            <% elsif  Notification.count > 1 %>
+              <span class="new badge" data-badge-caption="nuevos"><%=	Notification.count %></span></li>
+            <% end %>          
+            <li><%= link_to 'Análisis', quality_controls_path, class:"white-text li-back"%></li>
+          <% end %>
+          <% if current_user.certification_role || current_user.admin_role %>
+            <li><a class="white-text">Certificación</a></li>
+          <% end %>
+          <% if current_user.administration_role || current_user.admin_role %>
+            <li><a class="white-text">Administración</a></li>
+          <% end %>
+        </ul>
     </header>
   <% end %>
   <body>
   	<div class="container">
       <% if current_user %>
-        <br>
-  		  <p class="notice"><%= notice %></p>
-		    <p class="alert"><%= alert %></p>
+          <% if notice %>
+              <p class="alert alert-success">
+                <script>
+                    $(function() {
+                        Materialize.toast("<%= notice %>", 3000);
+                    });
+                </script>
+              </p>
+          <% end %>
+          <% if alert %>
+              <p class="alert alert-danger">
+                <script>
+                    $(function() {
+                        Materialize.toast("<%= alert %>", 3000);
+                    });
+                </script>
+              </p>
+          <% end %>
       <% end %>
     	<%= yield %>
 	</div>
   </body>
+  <script>
+      $(".button-collapse").sideNav();
+  </script>
 </html>
