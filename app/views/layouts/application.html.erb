@@ -53,19 +53,18 @@
           <% if current_user.warehouse_role || current_user.admin_role %>
             <li><a class="white-text">Bodega</a></li>
             <li><%= link_to 'Control de ingreso', organizations_path, class:"white-text li-back"%></li>
-            <li><%= link_to 'Inventario', '#', class:"white-text li-back"%></li>
-            <li><%= link_to 'Movimiento de lotes', '#', class:"white-text li-back"%></li>
           <% end %>
           <% if current_user.quality_manager_role || current_user.admin_role %>
             <li><a class="white-text">Jefe de calidad</a></li>
           <% end %>
           <% if current_user.quality_role || current_user.admin_role %>
-              <% if Notification.count == 1%>
-                <span class="new badge" data-badge-caption="nuevo">1</span></li>
-              <% elsif  Notification.count > 1 %>
-                <span class="new badge" data-badge-caption="nuevos"><%=	Notification.count %></span></li>
-              <% end %>          
-              <li><a class="white-text" href="quality_controls">Calidad</a></li>
+            <li><a class="white-text">Calidad</a></li>
+            <% if Notification.count == 1%>
+              <span class="new badge" data-badge-caption="nuevo">1</span></li>
+            <% elsif  Notification.count > 1 %>
+              <span class="new badge" data-badge-caption="nuevos"><%=	Notification.count %></span></li>
+            <% end %>          
+            <li><%= link_to 'Análisis', quality_controls_path, class:"white-text li-back"%></li>
           <% end %>
           <% if current_user.certification_role || current_user.admin_role %>
             <li><a class="white-text">Certificación</a></li>

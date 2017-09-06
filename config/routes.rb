@@ -6,6 +6,14 @@ Rails.application.routes.draw do
     resources :batches
   end
 
+  resources :batches do
+    resources :quality_controls
+  end
+
+  resources :quality_controls do
+    resources :results
+  end
+
   resources :organizations do
     resources :collection_centers
     resources :entry_controls
