@@ -9,7 +9,8 @@
   </head>
   <% if current_user %>
     <header>
-        <nav class="navbar">
+      <div class="navbar-fixed">
+        <nav>
           <div class="nav-wrapper">
               <a href="#!" class="brand-logo center">Chocolats Halba</a>
               <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -18,6 +19,7 @@
               </ul>
           </div>
         </nav>
+      </div>
         <ul class="side-nav" id="mobile-demo">
           <% if current_user.admin_role %>
               <li><a class="white-text">Admin</a></li>
