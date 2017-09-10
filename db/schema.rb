@@ -12,11 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170906081945) do
 
-  create_table "bar_codes", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "batches", force: :cascade do |t|
     t.integer "sackAmount"
     t.decimal "weight"
@@ -31,8 +26,8 @@ ActiveRecord::Schema.define(version: 20170906081945) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.decimal "place"
-    t.decimal "runs"
+    t.integer "place"
+    t.integer "runs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -86,14 +81,10 @@ ActiveRecord::Schema.define(version: 20170906081945) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "qr_codes", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-
   create_table "parameters", force: :cascade do |t|
     t.string "name"
-    t.decimal "unit"
-    t.decimal "place"
+    t.string "unit"
+    t.integer "place"
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -101,8 +92,8 @@ ActiveRecord::Schema.define(version: 20170906081945) do
   end
 
   create_table "quality_controls", force: :cascade do |t|
-    t.decimal "code"
-    t.decimal "final_code"
+    t.integer "code"
+    t.string "final_code"
     t.date "cut_at"
     t.boolean "f_harvest"
     t.boolean "s_harvest"
@@ -118,7 +109,7 @@ ActiveRecord::Schema.define(version: 20170906081945) do
 
   create_table "results", force: :cascade do |t|
     t.decimal "score"
-    t.decimal "run"
+    t.integer "run"
     t.integer "parameter_id"
     t.integer "quality_control_id"
     t.datetime "created_at", null: false

@@ -4,7 +4,7 @@ class CreateBatches < ActiveRecord::Migration[5.1]
       t.integer :sackAmount
       t.decimal :weight
       t.string :enterCode
-      t.integer :type
+      t.integer :cocoaType
       t.integer :geneticMaterial
       t.references :entry_control, foreign_key: true
 

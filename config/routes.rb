@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   resources :quality_controls
 
+  resources :results
+
   resources :entry_controls do
     resources :batches
   end

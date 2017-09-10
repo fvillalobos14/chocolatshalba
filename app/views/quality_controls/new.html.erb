@@ -46,7 +46,7 @@
 
 	<p>
 		<%= f.label :observation, "Observación" %>
-		<%= f.text_field :observation %>
+		<%= f.text_area :observation %>
 	</p>
 
 	<p>
@@ -59,17 +59,23 @@
 			<tr>
 				<th><%= category.name %></th>
 				<% (1..category.runs).each do |i| %>
-					<th><%= i %></th>
+					<th align="right"><%= i %></th>
 				<% end %>
+				<th></th>
 			</tr>
-			<% category.parameters.order(:place).each do |parameter| %>
-				<tr>
-					<td width="7%"><%= parameter.name %></td>
-					<% (1..category.runs).each do |i| %>
-						<td width="7%"><%= f.number_field :code %></td>
-					<% end %>
-				</tr>
-				<% end %>
+				<% category.parameters.order(:place).each do |parameter| %>
+					<tr>
+						<td width="7%"><%= parameter.name %></td>
+						<%= fields_for 'results[]', Result.new do |r| %>
+							<% (1..category.runs).each do |i| %>
+								<%= r.hidden_field :parameter_id, :value => parameter.id %>
+								<%= r.hidden_field :run, :value => i %>
+								<td width="7%"><%= r.number_field :score, step: :any %></td>
+							<% end %>
+						<% end %>
+						<td width="1%"><%= parameter.unit %></td>
+					</tr>
+			<% end %>
 		</table>
 	<% end %>
 
