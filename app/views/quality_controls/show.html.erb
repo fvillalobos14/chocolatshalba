@@ -72,14 +72,20 @@
 				<th align="right"><%= i %></th>
 			<% end %>
 			<th></th>
+			<% if category.runs > 1 %>
+				<th></th>
+			<% end %>
 		</tr>
 			<% category.parameters.order(:place).each do |parameter| %>
 				<tr>
 					<td width="7%"><%= parameter.name %></td>
 						<% (1..category.runs).each do |i| %>
-							<td width="7%"><%= Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id).first.score %></td>
+							<td width="7%"><%= Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id, run: i).first.score %></td>
 						<% end %>
 					<td width="1%"><%= parameter.unit %></td>
+					<% if category.runs > 1 %>
+						<td width="7%"><%= Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id).sum(:score)/3 %>%</td>
+					<% end %>
 				</tr>
 		<% end %>
 	</table>
