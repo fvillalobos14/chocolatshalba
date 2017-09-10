@@ -15,7 +15,6 @@ class QualityControlsController < ApplicationController
     @batch=Batch.find(params[:batch_id])
     @qualityControl=@batch.build_quality_control(quality_params)
     @entry=EntryControl.find(@batch.entry_control_id)
-
     
     if @qualityControl.save
         params["results"].each do |result|
@@ -25,6 +24,10 @@ class QualityControlsController < ApplicationController
     else
         redirect_to :new
     end    
+  end
+
+  def show
+    @qualityControl=QualityControl.find(params[:id])
   end
 
   private

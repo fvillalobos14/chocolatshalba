@@ -1,0 +1,86 @@
+<h1>Analisis de calidad</h1>
+
+<p>
+	Cooperativa/Proveedor:
+	<%= @qualityControl.batch.entry_control.organization.name %>
+</p>
+
+<p>
+	Fecha de Ingreso
+	<%= @qualityControl.batch.entry_control.entryDate %>
+</p>
+
+<p>
+	Codigo de Muestra
+	<%= @qualityControl.batch.enterCode %>
+</p>
+
+<p>
+	Peso final Libras
+	<%= @qualityControl.batch.weight %>
+</p>
+
+<p>
+	Fecha P. Corte
+	<%= @qualityControl.cut_at %>
+</p>
+
+<p>
+	No.
+	<%= @qualityControl.code %>
+</p>
+
+<p>
+	<% if @qualityControl.f_harvest %>
+		Primera cosecha
+	<% end %>
+</p>
+
+<p>
+	<% if @qualityControl.s_harvest %>
+		Segunda cosecha
+	<% end %>
+</p>
+
+<p>
+	<% if @qualityControl.trinitary %>
+		Trinitario
+	<% end %>
+</p>
+
+<p>
+	<% if @qualityControl.outsider %>
+		Forastero
+	<% end %>
+</p>
+
+<p>
+	Observación
+	<%= @qualityControl.observation %>
+</p>
+
+<p>
+	Persona responsable
+	<%= @qualityControl.made_by %>
+</p>
+
+<% Category.all.order(:place).each do |category| %>
+	<table class="highlight">
+		<tr>
+			<th><%= category.name %></th>
+			<% (1..category.runs).each do |i| %>
+				<th align="right"><%= i %></th>
+			<% end %>
+			<th></th>
+		</tr>
+			<% category.parameters.order(:place).each do |parameter| %>
+				<tr>
+					<td width="7%"><%= parameter.name %></td>
+						<% (1..category.runs).each do |i| %>
+							<td width="7%"><%= Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id).first.score %></td>
+						<% end %>
+					<td width="1%"><%= parameter.unit %></td>
+				</tr>
+		<% end %>
+	</table>
+<% end %>
