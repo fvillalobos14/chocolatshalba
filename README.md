@@ -21,3 +21,7 @@ Migrate database
 ```
 rails db:migrate
 ```
+Seed database (Optional)
+```
+rails db:seed
+```

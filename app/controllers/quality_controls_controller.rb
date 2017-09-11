@@ -17,10 +17,17 @@ class QualityControlsController < ApplicationController
     @entry=EntryControl.find(@batch.entry_control_id)
     
     if @qualityControl.save
+        params["results"].each do |result|
+          Result.create(:quality_control_id => @qualityControl.id, :parameter_id => result["parameter_id"], :run => result["run"], :score => result["score"])
+        end
         redirect_to @entry
     else
         redirect_to :new
     end    
+  end
+
+  def show
+    @qualityControl=QualityControl.find(params[:id])
   end
 
   private
