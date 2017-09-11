@@ -52,7 +52,17 @@ en:
         other: "Tipos de Cacao"
       batch:
         one: "Lote"
-        other: "Lotes"  
+        other: "Lotes"
+      category:
+        one: "Categoria"
+        other: "Categorias"
+      notification:
+        one: "Notificación"
+        other: "Notificaciones"
+      parameter:
+        one: "Parámetro"  
+        other: "Parámetros"
+      
   admin:
     js:
       true: Cierto

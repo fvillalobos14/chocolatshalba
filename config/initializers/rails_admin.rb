@@ -100,7 +100,7 @@ RailsAdmin.config do |config|
       field :name do
         label 'Nombre'
       end
-      field :organizations do
+      field :organization do
         label 'Organización'
       end
     end
@@ -113,6 +113,43 @@ RailsAdmin.config do |config|
       
       field :name do
         label 'Nombre'
+      end
+    end
+
+    exclude_fields :created_at, :updated_at
+  end
+
+  config.model 'Category' do
+    list do
+      
+      field :name do
+        label 'Nombre'
+      end
+      field :place do
+        label 'Lugar'
+      end
+      field :runs do
+        label 'Ejecución'
+      end
+    end
+
+    exclude_fields :created_at, :updated_at
+  end
+
+  config.model 'Parameter' do
+    list do
+      
+      field :name do
+        label 'Nombre'
+      end
+      field :unit do
+        label 'Unidad'
+      end
+      field :place do
+        label 'Lugar'
+      end
+      field :category do
+        label 'Categoria'
       end
     end
 
@@ -165,4 +202,9 @@ RailsAdmin.config do |config|
   end
   config.current_user_method(&:current_user)
   config.parent_controller = 'ApplicationController'
+  config.excluded_models << Batch
+  config.excluded_models << EntryControl
+  config.excluded_models << Notification
+  config.excluded_models << QualityControl
+  config.excluded_models << Result
 end
