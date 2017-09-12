@@ -32,6 +32,6 @@ class QualityControlsController < ApplicationController
 
   private
   def quality_params
-    params.require(:quality_control).permit!
+    params.require(:quality_control).permit(:code, :final_code, :cut_at, :f_harvest, :s_harvest, :trinitary, :outsider, :observation, :made_by)
   end  
 end
