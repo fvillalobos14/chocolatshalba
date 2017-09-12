@@ -9,6 +9,7 @@ class QualityControlsController < ApplicationController
   def new
   	@batch=Batch.find(params[:batch_id])
   	@qualityControl=@batch.build_quality_control
+    @Acceptances = Acceptance.all
   end
 
   def create
@@ -28,10 +29,70 @@ class QualityControlsController < ApplicationController
 
   def show
     @qualityControl=QualityControl.find(params[:id])
+    @new_quality = defineResult(@qualityControl.id)
   end
 
   private
   def quality_params
     params.require(:quality_control).permit!
-  end  
+  end
+
+  def defineResult(quality)
+    @qualityControl=QualityControl.find(quality)
+    current_quality = "A"
+    Category.all.order(:place).each do |category|
+      category.parameters.order(:place).each do |parameter|
+        value = -1
+        if parameter.acceptance != nil
+          if category.runs > 1
+            value = Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id).sum(:score)/3
+          else
+            value = Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id, run: 1).first.score
+          end
+          #------------------------
+          if current_quality == "A"
+              if parameter.acceptance.min_qualityA == -1
+                if parameter.acceptance.max_qualityA < value
+                  current_quality = "B"
+                end
+              elsif parameter.acceptance.max_qualityA == -1
+                if parameter.acceptance.min_qualityA > value
+                  current_quality = "B"
+                end
+              end
+          end
+          #-------------------------
+          if current_quality == "B"
+              if parameter.acceptance.min_qualityB == -1
+                if parameter.acceptance.max_qualityB < value
+                  current_quality = "C"
+                end
+              elsif parameter.acceptance.max_qualityB == -1
+                if parameter.acceptance.min_qualityB > value
+                  current_quality = "C"
+                end
+              end
+          end
+          #---------------------------
+          if current_quality == "C"
+              if parameter.acceptance.min_qualityC == -1
+                if parameter.acceptance.max_qualityC < value
+                  current_quality = "D"
+                  break
+                end
+              elsif parameter.acceptance.max_qualityC == -1
+                if parameter.acceptance.min_qualityC > value
+                  current_quality = "D"
+                  break
+                end
+              end
+          end
+        end
+      end
+      if current_quality == "D"
+        break
+      end
+    end
+    return current_quality
+  end
 end

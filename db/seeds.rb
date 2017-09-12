@@ -262,3 +262,113 @@ Parameter.create do |p|
 	p.place = 14
 	p.category_id = 4
 end
+
+Acceptance.create! do |p|
+  p.max_qualityA = 6.5
+	p.max_qualityB = 6.5
+	p.max_qualityC = 6.5
+	p.min_qualityA = -1
+	p.min_qualityB = -1
+	p.min_qualityC = -1
+  p.parameter_id = 1
+end
+
+Acceptance.create! do |p|
+	p.max_qualityA = -1
+	p.max_qualityB = -1
+	p.max_qualityC = -1
+	p.min_qualityA = 105
+	p.min_qualityB = 80
+	p.min_qualityC = 75
+	p.parameter_id = 2
+end
+
+Acceptance.create! do |p|
+	p.max_qualityA = -1
+	p.max_qualityB = -1
+	p.max_qualityC = -1
+	p.min_qualityA = 1.05
+	p.min_qualityB = 0.8
+	p.min_qualityC = 0.75
+	p.parameter_id = 3
+end
+
+Acceptance.create! do |p|
+	p.max_qualityA = -1
+	p.max_qualityB = -1
+	p.max_qualityC = -1
+	p.min_qualityA = 75
+	p.min_qualityB = 65
+	p.min_qualityC = -1
+	p.parameter_id = 4
+end
+
+Acceptance.create! do |p|
+	p.max_qualityA = 20
+	p.max_qualityB = 30
+	p.max_qualityC = -1
+	p.min_qualityA = -1
+	p.min_qualityB = -1
+	p.min_qualityC = -1
+	p.parameter_id = 5
+end
+
+Acceptance.create! do |p|
+	p.max_qualityA = 8
+	p.max_qualityB = 20
+	p.max_qualityC = -1
+	p.min_qualityA = -1
+	p.min_qualityB = -1
+	p.min_qualityC = -1
+	p.parameter_id = 6
+end
+
+Acceptance.create! do |p|
+	p.max_qualityA = 3
+	p.max_qualityB = 15
+	p.max_qualityC = -1
+	p.min_qualityA = -1
+	p.min_qualityB = -1
+	p.min_qualityC = -1
+	p.parameter_id = 7
+end
+
+Acceptance.create! do |p|
+	p.max_qualityA = 3
+	p.max_qualityB = 5
+	p.max_qualityC = 8
+	p.min_qualityA = -1
+	p.min_qualityB = -1
+	p.min_qualityC = -1
+	p.parameter_id = 8
+end
+
+Acceptance.create! do |p|
+	p.max_qualityA = 1
+	p.max_qualityB = 4
+	p.max_qualityC = 10
+	p.min_qualityA = -1
+	p.min_qualityB = -1
+	p.min_qualityC = -1
+	p.parameter_id = 9
+end
+
+Acceptance.create! do |p|
+	p.max_qualityA = 2.5
+	p.max_qualityB = 3.5
+	p.max_qualityC = 7
+	p.min_qualityA = -1
+	p.min_qualityB = -1
+	p.min_qualityC = -1
+	p.parameter_id = 10
+end
+
+Acceptance.create! do |p|
+	p.max_qualityA = 1
+	p.max_qualityB = 1.5
+	p.max_qualityC = 2
+	p.min_qualityA = -1
+	p.min_qualityB = -1
+	p.min_qualityC = -1
+	p.parameter_id = 11
+end
