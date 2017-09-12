@@ -70,7 +70,7 @@
 							<% (1..category.runs).each do |i| %>
 								<%= r.hidden_field :parameter_id, :value => parameter.id %>
 								<%= r.hidden_field :run, :value => i %>
-								<td width="7%"><%= r.number_field :score, step: :any %></td>
+								<td width="7%"><%= r.number_field :score, step: :any, :value => 0 %></td>
 							<% end %>
 						<% end %>
 						<td width="1%"><%= parameter.unit %></td>
