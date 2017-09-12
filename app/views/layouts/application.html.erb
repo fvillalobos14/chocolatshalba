@@ -56,13 +56,19 @@
           <% end %>
           <% if current_user.quality_manager_role || current_user.admin_role %>
             <li><a class="white-text">Jefe de calidad</a></li>
+            <% if  Notification.where(kind: 2).count == 1 %>
+              <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 2).count %></span></li>
+            <% elsif  Notification.where(kind: 2).count > 1 %>
+              <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 2).count %></span></li>
+            <% end %>          
+            <li><%= link_to 'Análisis', '#', class:"white-text li-back"%></li>
           <% end %>
           <% if current_user.quality_role || current_user.admin_role %>
             <li><a class="white-text">Calidad</a></li>
-            <% if Notification.count == 1%>
-              <span class="new badge" data-badge-caption="nuevo">1</span></li>
-            <% elsif  Notification.count > 1 %>
-              <span class="new badge" data-badge-caption="nuevos"><%=	Notification.count %></span></li>
+            <% if  Notification.where(kind: 1).count == 1 %>
+              <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 1).count %></span></li>
+            <% elsif  Notification.where(kind: 1).count > 0 %>
+              <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 1).count %></span></li>
             <% end %>          
             <li><%= link_to 'Análisis', quality_controls_path, class:"white-text li-back"%></li>
           <% end %>

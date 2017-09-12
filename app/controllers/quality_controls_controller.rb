@@ -1,6 +1,6 @@
 class QualityControlsController < ApplicationController
   def index
-    @notification = Notification.all
+    @notification = Notification.where(kind: 1)
     @notification.delete_all
 
     @entries=EntryControl.all
@@ -20,6 +20,7 @@ class QualityControlsController < ApplicationController
         params["results"].each do |result|
           Result.create(:quality_control_id => @qualityControl.id, :parameter_id => result["parameter_id"], :run => result["run"], :score => result["score"])
         end
+        createNotification
         redirect_to @entry
     else
         redirect_to :new
@@ -33,5 +34,10 @@ class QualityControlsController < ApplicationController
   private
   def quality_params
     params.require(:quality_control).permit!
+  end  
+
+  def createNotification
+    @notification = Notification.create(read: false, kind: 2)
+    @notification.save
   end  
 end
