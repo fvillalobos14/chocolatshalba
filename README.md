@@ -11,6 +11,7 @@ Proyecto Ingeniería de software
 * [Devise](https://github.com/plataformatec/devise) - User authentication
 * [Materialize-Sass](https://github.com/mkhairi/materialize-sass) - Front-end framework
 * [Rails_Admin](https://github.com/sferik/rails_admin) - Admin page
+* [Cancancan](https://github.com/CanCanCommunity/cancancan) - Restrictions for users
 
 ## Installation
 Install gems

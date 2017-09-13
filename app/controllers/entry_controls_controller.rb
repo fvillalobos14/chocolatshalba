@@ -28,7 +28,7 @@ class EntryControlsController < ApplicationController
   end
   
   def createNotification
-    @notification = Notification.create(read: false)
+    @notification = Notification.create(read: false, kind: 1)
     @notification.save
   end  
 end
