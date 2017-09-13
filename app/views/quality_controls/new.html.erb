@@ -61,7 +61,14 @@
 				<% (1..category.runs).each do |i| %>
 					<th align="right"><%= i %></th>
 				<% end %>
-				<th></th>
+        <th></th>
+        <!--
+        <% if category.parameters.first.acceptance != nil %>
+          <th align="right" width="3%">Calidad A</th>
+          <th align="right" width="3%">Calidad B</th>
+          <th align="right" width="3%">Calidad C</th>
+        <% end %>
+        -->
 			</tr>
 				<% category.parameters.order(:place).each do |parameter| %>
 					<tr>
@@ -70,10 +77,55 @@
 							<% (1..category.runs).each do |i| %>
 								<%= r.hidden_field :parameter_id, :value => parameter.id %>
 								<%= r.hidden_field :run, :value => i %>
-								<td width="7%"><%= r.number_field :score, step: :any, :value => 0 %></td>
+								<td width="3%"><%= r.number_field :score, step: :any, :value => 0 %></td>
 							<% end %>
 						<% end %>
 						<td width="1%"><%= parameter.unit %></td>
+            <!--
+            <% @Acceptances.each do |acep| %>
+              <% if acep.parameter.id == parameter.id %>
+                    <% if acep.min_qualityA == -1 %>
+                          <% if acep.max_qualityA == 0 %>
+                              <td width="3%">S/L</td>
+                          <% else %>
+                              <td width="3%">Max <%=	acep.max_qualityA.to_s + ' ' + parameter.unit %></td>
+                          <% end %>
+                    <% elsif acep.max_qualityA %>
+                          <% if acep.min_qualityA == 0 %>
+                              <td width="3%">S/L</td>
+                          <% else %>
+                              <td width="3%">Min <%=	acep.min_qualityA.to_s + ' ' + parameter.unit %></td>
+                          <% end %>
+                    <% end %>
+                    <% if acep.min_qualityB == -1 %>
+                        <% if acep.max_qualityB == 0 %>
+                            <td width="3%">S/L</td>
+                        <% else %>
+                            <td width="3%">Max <%=	acep.max_qualityB.to_s + ' ' + parameter.unit %></td>
+                        <% end %>
+                    <% elsif acep.max_qualityB %>
+                        <% if acep.min_qualityB == 0 %>
+                            <td width="3%">S/L</td>
+                        <% else %>
+                            <td width="3%">Min <%=	acep.min_qualityB.to_s + ' ' + parameter.unit %></td>
+                        <% end %>
+                    <% end %>
+                    <% if acep.min_qualityC == -1 %>
+                        <% if acep.max_qualityC == 0 %>
+                            <td width="3%">S/L</td>
+                        <% else %>
+                            <td width="3%">Max <%=	acep.max_qualityC.to_s + ' ' + parameter.unit %></td>
+                        <% end %>
+                    <% elsif acep.max_qualityC %>
+                        <% if acep.min_qualityC == 0 %>
+                            <td width="3%">S/L</td>
+                        <% else %>
+                            <td width="3%">Min <%=	acep.min_qualityC.to_s + ' ' + parameter.unit %></td>
+                        <% end %>
+                    <% end %>
+              <% end %>
+            <% end %>
+            -->
 					</tr>
 			<% end %>
 		</table>

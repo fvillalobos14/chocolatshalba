@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170906081945) do
+ActiveRecord::Schema.define(version: 20170911193416) do
+
+  create_table "acceptances", force: :cascade do |t|
+    t.decimal "max_qualityA"
+    t.decimal "max_qualityB"
+    t.decimal "max_qualityC"
+    t.decimal "min_qualityA"
+    t.decimal "min_qualityB"
+    t.decimal "min_qualityC"
+    t.integer "parameter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parameter_id"], name: "index_acceptances_on_parameter_id"
+  end
 
   create_table "batches", force: :cascade do |t|
     t.integer "sackAmount"
