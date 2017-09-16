@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
   resources :quality_controls
-
-  resources :results
+  resources :revisions
 
   resources :entry_controls do
     resources :batches
@@ -13,11 +12,10 @@ Rails.application.routes.draw do
   end
 
   resources :quality_controls do
-    resources :results
+    resources :revisions
   end
 
   resources :organizations do
-    resources :collection_centers
     resources :entry_controls
   end
 

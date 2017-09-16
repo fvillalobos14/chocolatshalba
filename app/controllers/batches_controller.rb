@@ -12,6 +12,7 @@ class BatchesController < ApplicationController
     @batch=@entryControl.batches.build(batches_params)
     
     if @batch.save
+        createNotification
         redirect_to @entryControl
     else
         redirect_to :new    
@@ -24,5 +25,10 @@ class BatchesController < ApplicationController
   private
   def batches_params
     params.require(:batch).permit(:sackAmount, :weight, :enterCode, :cocoaType, :geneticMaterial)
-  end  
+  end
+
+  def createNotification
+    @notification = Notification.create(read: false, kind: 1)
+    @notification.save
+  end
 end
