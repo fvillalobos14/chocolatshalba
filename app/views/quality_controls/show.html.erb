@@ -1,94 +1,144 @@
-<h1>Analisis de calidad</h1>
+<div class="dashboard">
+  <div class="row">
+    <div class="col m12">
+      <div class="card">
+        <div class="card-content">
+          <h1>Analisis de calidad</h1>
 
-<p>
-	Cooperativa/Proveedor:
-	<%= @qualityControl.batch.entry_control.organization.name %>
-</p>
+          <p>
+            Cooperativa/Proveedor:
+            <%= @qualityControl.batch.entry_control.organization.name %>
+          </p>
 
-<p>
-	Fecha de Ingreso
-	<%= @qualityControl.batch.entry_control.entryDate %>
-</p>
+          <p>
+            Fecha de Ingreso
+            <%= @qualityControl.batch.entry_control.entryDate %>
+          </p>
 
-<p>
-	Codigo de Muestra
-	<%= @qualityControl.batch.enterCode %>
-</p>
+          <p>
+            Codigo de Muestra
+            <%= @qualityControl.batch.enterCode %>
+          </p>
 
-<p>
-	Peso final Libras
-	<%= @qualityControl.batch.weight %>
-</p>
+          <p>
+            Peso final Libras
+            <%= @qualityControl.batch.weight %>
+          </p>
 
-<p>
-	Fecha P. Corte
-	<%= @qualityControl.cut_at %>
-</p>
+          <p>
+            Fecha P. Corte
+            <%= @qualityControl.cut_at %>
+          </p>
 
-<p>
-	No.
-	<%= @qualityControl.code %>
-</p>
+          <p>
+            No.
+            <%= @qualityControl.code %>
+          </p>
 
-<p>
-	<% if @qualityControl.f_harvest %>
-		Primera cosecha
-	<% end %>
-</p>
+          <p>
+            <% if @qualityControl.f_harvest %>
+              Primera cosecha
+            <% end %>
+          </p>
 
-<p>
-	<% if @qualityControl.s_harvest %>
-		Segunda cosecha
-	<% end %>
-</p>
+          <p>
+            <% if @qualityControl.s_harvest %>
+              Segunda cosecha
+            <% end %>
+          </p>
 
-<p>
-	<% if @qualityControl.trinitary %>
-		Trinitario
-	<% end %>
-</p>
+          <p>
+            <% if @qualityControl.trinitary %>
+              Trinitario
+            <% end %>
+          </p>
 
-<p>
-	<% if @qualityControl.outsider %>
-		Forastero
-	<% end %>
-</p>
+          <p>
+            <% if @qualityControl.outsider %>
+              Forastero
+            <% end %>
+          </p>
 
-<p>
-	Observación
-	<%= @qualityControl.observation %>
-</p>
+          <p>
+            Observación
+            <%= @qualityControl.observation %>
+          </p>
 
-<p>
-	Persona responsable
-	<%= @qualityControl.made_by %>
-</p>
+          <p>
+            Persona responsable
+            <%= @qualityControl.made_by %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col m12">
+      <div class="card">
+        <div class="card-content">
+          <% Category.all.order(:place).each do |category| %>
+            <table class="highlight">
+              <tr>
+                <th><%= category.name %></th>
+                <% (1..category.runs).each do |i| %>
+                  <th align="right"><%= i %></th>
+                <% end %>
+                <th></th>
+                <% if category.runs > 1 %>
+                  <th>Resultado Promedio</th>
+                <% end %>
+              </tr>
+                <% category.parameters.order(:place).each do |parameter| %>
+                  <tr>
+                    <td width="7%"><%= parameter.name %></td>
+                      <% (1..category.runs).each do |i| %>
+                        <td width="7%"><%= Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id, run: i).first.score %></td>
+                      <% end %>
+                    <td width="1%"><%= parameter.unit %></td>
+                    <% if category.runs > 1 %>
+                      <td width="7%"><%= number_with_precision(Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id).sum(:score)/3, :presicion => 2) %>%</td>
+                    <% end %>
+                  </tr>
+              <% end %>
+            </table>
+          <% end %>
 
-<% Category.all.order(:place).each do |category| %>
-	<table class="highlight">
-		<tr>
-			<th><%= category.name %></th>
-			<% (1..category.runs).each do |i| %>
-				<th align="right"><%= i %></th>
-			<% end %>
-			<th></th>
-			<% if category.runs > 1 %>
-				<th>Resultado Promedio</th>
-			<% end %>
-		</tr>
-			<% category.parameters.order(:place).each do |parameter| %>
-				<tr>
-					<td width="7%"><%= parameter.name %></td>
-						<% (1..category.runs).each do |i| %>
-							<td width="7%"><%= Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id, run: i).first.score %></td>
-						<% end %>
-					<td width="1%"><%= parameter.unit %></td>
-					<% if category.runs > 1 %>
-						<td width="7%"><%= number_with_precision(Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id).sum(:score)/3, :presicion => 2) %>%</td>
-					<% end %>
-				</tr>
-		<% end %>
-	</table>
-<% end %>
+          <h2>Calidad Juzgada: <%=	@new_quality %></h2>
+          <% if  @qualityControl.revisions.count == 0 %>
+          <a class="waves-effect waves-light btn" data-target="modal2">Determinar Desicion</a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h2>Calidad Juzgada: <%=	@new_quality %></h2>
+<div id="modal2" class="modal" style="width: 40% !important ; height: 30% !important ;">
+  <%= form_for ([@qualityControl, @qualityControl.revisions.build]) do |f| %>
+      <div class="modal-content">
+        <center>
+          <h5>Seleccione:</h5>
+          <div class="field">
+            <p style="width: 40%"><%= f.select :status, options_for_select([["Aceptar", 1], ["Rechazar", 0]]), class:"dropdown-button btn" %></p>
+          </div>
+          <%= f.submit 'Aceptar',class:"modal-action modal-close modal-action waves-effect waves-light btn" %>
+          <a class="modal-action modal-close waves-effect waves-light red darken-1 btn">Cancel</a>
+        </center>
+      </div>
+  <% end %>
+</div>
+
+<script>
+    $(document).ready(function(){
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+    });
+    $('#modal1').modal('open');
+    $('#modal1').modal('close');
+</script>
+
+<script>
+    $(document).on('turbolinks:load', function() {
+        $('select').material_select();
+    })
+</script>

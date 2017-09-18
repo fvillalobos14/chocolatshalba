@@ -7,8 +7,24 @@
         <div class="col m12 center">
           <div class="card white darken-1">
             <div class="card-content black-text">
-              <p class="notice"><%= notice %></p>
-              <p class="alert"><%= alert %></p>
+              <% if notice %>
+                  <p class="alert alert-success">
+                    <script>
+                        $(function() {
+                            Materialize.toast("<%= notice %>", 3000);
+                        });
+                    </script>
+                  </p>
+              <% end %>
+              <% if alert %>
+                  <p class="alert alert-danger">
+                    <script>
+                        $(function() {
+                            Materialize.toast("<%= alert %>", 3000);
+                        });
+                    </script>
+                  </p>
+              <% end %>
               
               <div class="field">
                 <%= f.label :Usuario %><br />

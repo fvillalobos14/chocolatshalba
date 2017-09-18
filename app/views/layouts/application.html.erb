@@ -28,14 +28,30 @@
           <% if current_user.warehouse_role || current_user.admin_role %>
               <li><a class="white-text">Bodega</a></li>
               <li><%= link_to 'Control de ingreso', organizations_path, class:"white-text li-back"%></li>
-              <li><%= link_to 'Inventario', '#', class:"white-text li-back"%></li>
-              <li><%= link_to 'Movimiento de lotes', '#', class:"white-text li-back"%></li>
+              <% if  Notification.where(kind: 3).count == 1 %>
+                  <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 3).count %></span>
+              <% elsif  Notification.where(kind: 3).count > 1 %>
+                  <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 3).count %></span>
+              <% end %>
+              <li><%= link_to 'Mover Lotes', '#',class:"white-text li-back"%></li>
           <% end %>
           <% if current_user.quality_manager_role || current_user.admin_role %>
               <li><a class="white-text">Jefe de calidad</a></li>
+              <% if  Notification.where(kind: 2).count == 1 %>
+                  <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 2).count %></span>
+              <% elsif  Notification.where(kind: 2).count > 1 %>
+                  <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 2).count %></span>
+              <% end %>
+              <li><%= link_to 'Revisiones', revisions_path, class:"white-text li-back"%></li>
           <% end %>
           <% if current_user.quality_role || current_user.admin_role %>
               <li><a class="white-text">Calidad</a></li>
+              <% if  Notification.where(kind: 1).count == 1 %>
+                  <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 1).count %></span>
+              <% elsif  Notification.where(kind: 1).count > 0 %>
+                  <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 1).count %></span>
+              <% end %>
+              <li><%= link_to 'Análisis', quality_controls_path, class:"white-text li-back"%></li>
           <% end %>
           <% if current_user.certification_role || current_user.admin_role %>
               <li><a class="white-text">Certificación</a></li>
@@ -45,6 +61,8 @@
           <% end %>
           <li><a class="white-text" rel="nofollow" data-method="delete" href="/users/sign_out">Salir</a></li>
         </ul>
+
+
         <ul class="side-nav fixed">
           <% if current_user.admin_role %>
             <li><a class="white-text">Admin</a></li>
@@ -53,6 +71,12 @@
           <% if current_user.warehouse_role || current_user.admin_role %>
             <li><a class="white-text">Bodega</a></li>
             <li><%= link_to 'Control de ingreso', organizations_path, class:"white-text li-back"%></li>
+            <% if  Notification.where(kind: 3).count == 1 %>
+               <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 3).count %></span></li>
+            <% elsif  Notification.where(kind: 3).count > 1 %>
+               <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 3).count %></span></li>
+            <% end %>
+            <li><%= link_to 'Mover Lotes', '#',class:"white-text li-back"%></li>
           <% end %>
           <% if current_user.quality_manager_role || current_user.admin_role %>
             <li><a class="white-text">Jefe de calidad</a></li>
@@ -61,7 +85,7 @@
             <% elsif  Notification.where(kind: 2).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 2).count %></span></li>
             <% end %>          
-            <li><%= link_to 'Análisis', '#', class:"white-text li-back"%></li>
+            <li><%= link_to 'Revisiones', revisions_path, class:"white-text li-back"%></li>
           <% end %>
           <% if current_user.quality_role || current_user.admin_role %>
             <li><a class="white-text">Calidad</a></li>

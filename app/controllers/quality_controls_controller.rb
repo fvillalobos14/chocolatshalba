@@ -1,8 +1,6 @@
 class QualityControlsController < ApplicationController
   def index
     @notification = Notification.where(kind: 1)
-    @notification.delete_all
-
     @entries=EntryControl.all
   end
 
@@ -21,6 +19,8 @@ class QualityControlsController < ApplicationController
         params["results"].each do |result|
           Result.create(:quality_control_id => @qualityControl.id, :parameter_id => result["parameter_id"], :run => result["run"], :score => result["score"])
         end
+        @notification = Notification.where("kind = 1").first
+        @notification.destroy
         createNotification
         redirect_to @entry
     else
