@@ -1,35 +1,35 @@
 <div class="dashboard">
-    <% if !current_user.warehouse_role %>
-        <div class="form-signup">
-            <div class="row">
-                <div class="col m12">
-                    <div class="card">
-                        <div class="card-content">
-                            <h1>Controles de ingreso</h1>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Recibido por</th>
-                                        <th>Entregado por</th>
-                                        <th>Fecha de Ingreso</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% @entries.each do |entry| %>
-                                        <tr>
-                                            <td><%= entry.receivedBy %></td>
-                                            <td><%= entry.deliveredBy %></td>
-                                            <td><%= entry.entryDate %></td>
-                                            <td><%= link_to "Lotes", entry %></td>
-                                        </tr>
-                                    <% end %>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+  <% if !current_user.warehouse_role %>
+    <div class="form-signup">
+      <div class="row">
+        <div class="col m12">
+          <div class="card">
+            <div class="card-content">
+              <h1>Controles de ingreso</h1>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Recibido por</th>
+                    <th>Entregado por</th>
+                    <th>Fecha de Ingreso</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @entries.each do |entry| %>
+                    <tr>
+                      <td><%= entry.receivedBy %></td>
+                      <td><%= entry.deliveredBy %></td>
+                      <td><%= entry.entryDate %></td>
+                      <td><%= link_to "Lotes", entry %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
             </div>
+          </div>
         </div>
-    <% end %>
-    <%= link_to 'Crear Control de Ingreso', new_organization_entry_control_path(@organization) , class:"waves-effect waves-light btn"%>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to 'Crear Control de Ingreso', new_organization_entry_control_path(@organization) , class:"waves-effect waves-light btn"%>
 </div>

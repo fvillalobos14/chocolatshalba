@@ -33,7 +33,7 @@
               <% elsif  Notification.where(kind: 3).count > 1 %>
                   <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 3).count %></span>
               <% end %>
-              <li><%= link_to 'Mover Lotes', '#',class:"white-text li-back"%></li>
+              <li><%= link_to 'Mover lotes', '#',class:"white-text li-back"%></li>
           <% end %>
           <% if current_user.quality_manager_role || current_user.admin_role %>
               <li><a class="white-text">Jefe de calidad</a></li>
@@ -76,7 +76,7 @@
             <% elsif  Notification.where(kind: 3).count > 1 %>
                <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 3).count %></span></li>
             <% end %>
-            <li><%= link_to 'Mover Lotes', '#',class:"white-text li-back"%></li>
+            <li><%= link_to 'Mover lotes', '#',class:"white-text li-back"%></li>
           <% end %>
           <% if current_user.quality_manager_role || current_user.admin_role %>
             <li><a class="white-text">Jefe de calidad</a></li>
@@ -84,7 +84,7 @@
               <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 2).count %></span></li>
             <% elsif  Notification.where(kind: 2).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 2).count %></span></li>
-            <% end %>          
+            <% end %>
             <li><%= link_to 'Revisiones', revisions_path, class:"white-text li-back"%></li>
           <% end %>
           <% if current_user.quality_role || current_user.admin_role %>
@@ -93,7 +93,7 @@
               <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 1).count %></span></li>
             <% elsif  Notification.where(kind: 1).count > 0 %>
               <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 1).count %></span></li>
-            <% end %>          
+            <% end %>
             <li><%= link_to 'Análisis', quality_controls_path, class:"white-text li-back"%></li>
           <% end %>
           <% if current_user.certification_role || current_user.admin_role %>

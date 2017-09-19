@@ -6,26 +6,26 @@
           <h1>Revision de Controles de Calidad</h1>
           <table>
             <thead>
-            <tr>
-              <th>Codigo</th>
-              <th>Tipo</th>
-              <th>Genetica</th>
-              <th></th>
-            </tr>
+              <tr>
+                <th>Cdigo</th>
+                <th>Tipo</th>
+                <th>Genética</th>
+                <th></th>
+              </tr>
             </thead>
             <tbody>
-            <% @batches.each do |batch|%>
-              <% if not batch.quality_control.nil? %>
-                <% if  batch.quality_control.revisions.count == 0 %>
-                  <tr>
-                    <td><%=	batch.enterCode %></td>
-                    <td><%= CocoaType.find(batch.cocoaType).name %></td>
-                    <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                    <td><%= link_to "Ver Analisis", batch.quality_control %></td>
-                  </tr>
+              <% @batches.each do |batch|%>
+                <% if not batch.quality_control.nil? %>
+                  <% if  batch.quality_control.revision.nil? %>
+                    <tr>
+                      <td><%=	batch.enterCode %></td>
+                      <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                      <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                      <td><%= link_to "Ver análisis", batch.quality_control %></td>
+                    </tr>
+                  <% end %>
                 <% end %>
               <% end %>
-            <% end %>
             </tbody>
           </table>
         </div>

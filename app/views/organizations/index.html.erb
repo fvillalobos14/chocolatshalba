@@ -1,55 +1,62 @@
 <div class="dashboard">
-    <div class="row">
-        <div class="col m12">
-            <div class="card">
-                <div class="card-content">
-                    <h1>Organizaciones</h1>
-                    <input type="text" id="oNameCode" onkeyup="filterTable()" placeholder="Busque organización...">
-                    <table id="oTable">
-                        <thead>
-                            <tr>
-                                <th>Codigo</th>
-                                <th>Nombre</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% @organizations.each do |organization| %>
-                                <tr>
-                                    <td><%= organization.code %></td>
-                                    <td><%= organization.name %></td>
-                                    <td><%= link_to "Control de ingreso", organization %></td>
-                                </tr>
-                            <% end %>
-                        </tbody>
-                    </table>
-                </div> 
-            </div> 
-        </div> 
-    </div> 
+  <div class="row">
+    <div class="col m12">
+      <div class="card">
+        <div class="card-content">
+          <h1>Organizaciones</h1>
+          <input type="text" id="oNameCode" onkeyup="filterTable()" placeholder="Busque organización...">
+          <table id="oTable">
+            <thead>
+              <tr>
+                <th>Codigo</th>
+                <th>Nombre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @organizations.each do |organization| %>
+                <tr>
+                  <td><%= organization.code %></td>
+                  <td><%= organization.name %></td>
+                  <td><%= link_to "Control de ingreso", organization %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-    function filterTable() {
-        var input, filter, table, tr, td, i, j, f;
-        input=document.getElementById("oNameCode");
-        filter=input.value.toUpperCase();
-        table=document.getElementById("oTable");
-        tr=table.getElementsByTagName("tr");
-        f=true;
-        for(j=0; j<2; j++){
-            if(f) {
-                for (i=0; i<tr.length; i++) {
-                    td=tr[i].getElementsByTagName("td")[j];
-                    if(td) {
-                        if(td.innerHTML.toUpperCase().indexOf(filter)>-1) {
-                            tr[i].style.display="";
-                            f=false;
-                        } else {
-                            tr[i].style.display="none";
-                        }
-                    }       
-                }
+  function filterTable() {
+    var input,
+      filter,
+      table,
+      tr,
+      td,
+      i,
+      j,
+      f;
+    input = document.getElementById("oNameCode");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("oTable");
+    tr = table.getElementsByTagName("tr");
+    f = true;
+    for (j = 0; j < 2; j++) {
+      if (f) {
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[j];
+          if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+              f = false;
+            } else {
+              tr[i].style.display = "none";
             }
+          }
         }
+      }
     }
+  }
 </script>
