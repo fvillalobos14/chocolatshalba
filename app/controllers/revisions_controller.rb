@@ -5,8 +5,8 @@ class RevisionsController < ApplicationController
 
   def create
     @qualityControl = QualityControl.find(params[:quality_control_id])
-    @revision = @qualityControl.revisions.create(revision_params)
-    if @qualityControl.revisions.first.status == 1
+    @revision = @qualityControl.build_revision(revision_params)
+    if @revision.save
       createNotification
     end
     @notification = Notification.where("kind = 2").first

@@ -31,12 +31,10 @@ ActiveRecord::Schema.define(version: 20170915234809) do
     t.string "enterCode"
     t.integer "cocoaType"
     t.integer "geneticMaterial"
+    t.boolean "moved", default: false
     t.integer "entry_control_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "finalCode"
-    t.string "final_quality"
-    t.integer "status"
     t.index ["entry_control_id"], name: "index_batches_on_entry_control_id"
   end
 
@@ -44,14 +42,6 @@ ActiveRecord::Schema.define(version: 20170915234809) do
     t.string "name"
     t.integer "place"
     t.integer "runs"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "change_requests", force: :cascade do |t|
-    t.string "quality_requested"
-    t.string "comment"
-    t.integer "num_quality"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

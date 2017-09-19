@@ -10,14 +10,27 @@ class BatchesController < ApplicationController
   def create
     @entryControl=EntryControl.find(params[:entry_control_id])
     @batch=@entryControl.batches.build(batches_params)
-    
+
     if @batch.save
         createNotification
         redirect_to @entryControl
     else
-        redirect_to :new    
-    end    
-  end  
+        redirect_to :new
+    end
+  end
+
+  def moveBatches
+    @batches=Batch.where(moved: false)
+  end
+
+  def update
+    @batch=Batch.find(params[:id])
+    if @batch.update(moved: true)
+      @notification = Notification.where("kind = 3").first
+      @notification.destroy
+      redirect_to batches_moveBatches_path
+    end
+  end
 
   def show
   end

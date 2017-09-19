@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col m12">
+    <div class="card">
+      <div class="card-content">
+        <h2>Lotes</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Cant. sacos</th>
+              <th>Peso libras</th>
+              <th>Codigo de identificación</th>
+              <th>Tipo de cacao</th>
+              <th>Material genético</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @batches.each do |batch| %>
+              <% if (!current_user.warehouse_role || current_user.admin_role) && !QualityControl.where(batch_id: batch.id).blank? && !Revision.where(quality_control_id: batch.quality_control.id).blank?%>
+                <tr>
+                  <td><%= batch.sackAmount %></td>
+                  <td><%= batch.weight %></td>
+                  <td><%= batch.enterCode %></td>
+                  <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                  <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                  <%= form_for [batch] do |f| %>
+                    <td><%= button_tag(type: 'submit', class: "btn") do %>
+                      <i class="icon-ok icon-white"></i>Marcar como movido
+                    <% end %></td>
+                  <% end %>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

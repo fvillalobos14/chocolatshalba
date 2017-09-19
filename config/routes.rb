@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  get 'batches/moveBatches', to: 'batches#moveBatches'
 
   resources :quality_controls
   resources :revisions
+  resources :batches
 
   resources :entry_controls do
     resources :batches

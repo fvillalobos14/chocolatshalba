@@ -1,58 +1,60 @@
-<h1>Analisis de calidad</h1>
-
 <%= form_for [@batch, @qualityControl] do |f| %>
+	<h1>Analisis de calidad</h1>
+
 	<p>
 		Cooperativa/Proveedor:
 		<%= @batch.entry_control.organization.name %>
 	</p>
 
 	<p>
-		Fecha de Ingreso
+		Fecha de ingreso:
 		<%= @batch.entry_control.entryDate %>
 	</p>
 
 	<p>
-		Codigo de Muestra
+		Codigo de Muestra:
 		<%= @batch.enterCode %>
 	</p>
 
 	<p>
-		Peso final Libras
+		Peso final en libras:
 		<%= @batch.weight %>
 	</p>
 
 	<p>
-		<%= f.label :cut_at, "Fecha P. Corte" %>
+		<%= f.label :cut_at, "Fecha de corte" %>
 		<%= f.date_field :cut_at, value: Date.today, :readonly => true %>
 	</p>
 
-	<p>
-		<%= f.label :code, "No." %>
+	<div class="input-field">
+		<%= f.label :code, "Número de hoja" %>
 		<%= f.text_field :code %>
-	</p>
+	</div>
 
+	<div class="input-field">
+		<%= f.check_box :f_harvest %>
+		<%= f.label 'f_harvest', "Primera cosecha" %><br>
+	</div>
 
-	<%= f.check_box :f_harvest %>
-	<%= f.label 'f_harvest', "Primera cosecha" %><br>
+	<div class="input-field">
+		<%= f.check_box :s_harvest %>
+		<%= f.label 's_harvest', "Segunda cosecha" %><br>
+	</div>
 
-	<%= f.check_box :s_harvest %>
-	<%= f.label 's_harvest', "Segunda cosecha" %><br>
+	<div class="input-field">
+		<%= f.check_box :trinitary %>
+		<%= f.label 'trinitary', "Trinitario" %><br>
+	</div>
 
-	<%= f.check_box :trinitary %>
-	<%= f.label 'trinitary', "Trinitario" %><br>
+	<div class="input-field">
+		<%= f.check_box :outsider %>
+		<%= f.label 'outsider', "Forastero" %>
+	</div><br>
 
-	<%= f.check_box :outsider %>
-	<%= f.label 'outsider', "Forastero" %>
-
-	<p>
-		<%= f.label :observation, "Observación" %>
-		<%= f.text_area :observation %>
-	</p>
-
-	<p>
+	<div class="input-field">
 		<%= f.label :made_by, "Persona responsable" %>
 		<%= f.text_field :made_by %>
-	</p>
+	</div>
 
 	<% Category.all.order(:place).each do |category| %>
 		<table class="highlight">
@@ -61,75 +63,28 @@
 				<% (1..category.runs).each do |i| %>
 					<th align="right"><%= i %></th>
 				<% end %>
-        <th></th>
-        <!--
-        <% if category.parameters.first.acceptance != nil %>
-          <th align="right" width="3%">Calidad A</th>
-          <th align="right" width="3%">Calidad B</th>
-          <th align="right" width="3%">Calidad C</th>
-        <% end %>
-        -->
+				<th></th>
 			</tr>
-				<% category.parameters.order(:place).each do |parameter| %>
-					<tr>
-						<td width="7%"><%= parameter.name %></td>
-						<%= fields_for 'results[]', Result.new do |r| %>
-							<% (1..category.runs).each do |i| %>
-								<%= r.hidden_field :parameter_id, :value => parameter.id %>
-								<%= r.hidden_field :run, :value => i %>
-								<td width="3%"><%= r.number_field :score, step: :any, :value => 0 %></td>
-							<% end %>
+			<% category.parameters.order(:place).each do |parameter| %>
+				<tr>
+					<td width="7%"><%= parameter.name %></td>
+					<%= fields_for 'results[]', Result.new do |r| %>
+						<% (1..category.runs).each do |i| %>
+							<%= r.hidden_field :parameter_id, :value => parameter.id %>
+							<%= r.hidden_field :run, :value => i %>
+							<td width="3%"><%= r.number_field :score, step: :any, :value => 0 %></td>
 						<% end %>
-						<td width="1%"><%= parameter.unit %></td>
-            <!--
-            <% @Acceptances.each do |acep| %>
-              <% if acep.parameter.id == parameter.id %>
-                    <% if acep.min_qualityA == -1 %>
-                          <% if acep.max_qualityA == 0 %>
-                              <td width="3%">S/L</td>
-                          <% else %>
-                              <td width="3%">Max <%=	acep.max_qualityA.to_s + ' ' + parameter.unit %></td>
-                          <% end %>
-                    <% elsif acep.max_qualityA %>
-                          <% if acep.min_qualityA == 0 %>
-                              <td width="3%">S/L</td>
-                          <% else %>
-                              <td width="3%">Min <%=	acep.min_qualityA.to_s + ' ' + parameter.unit %></td>
-                          <% end %>
-                    <% end %>
-                    <% if acep.min_qualityB == -1 %>
-                        <% if acep.max_qualityB == 0 %>
-                            <td width="3%">S/L</td>
-                        <% else %>
-                            <td width="3%">Max <%=	acep.max_qualityB.to_s + ' ' + parameter.unit %></td>
-                        <% end %>
-                    <% elsif acep.max_qualityB %>
-                        <% if acep.min_qualityB == 0 %>
-                            <td width="3%">S/L</td>
-                        <% else %>
-                            <td width="3%">Min <%=	acep.min_qualityB.to_s + ' ' + parameter.unit %></td>
-                        <% end %>
-                    <% end %>
-                    <% if acep.min_qualityC == -1 %>
-                        <% if acep.max_qualityC == 0 %>
-                            <td width="3%">S/L</td>
-                        <% else %>
-                            <td width="3%">Max <%=	acep.max_qualityC.to_s + ' ' + parameter.unit %></td>
-                        <% end %>
-                    <% elsif acep.max_qualityC %>
-                        <% if acep.min_qualityC == 0 %>
-                            <td width="3%">S/L</td>
-                        <% else %>
-                            <td width="3%">Min <%=	acep.min_qualityC.to_s + ' ' + parameter.unit %></td>
-                        <% end %>
-                    <% end %>
-              <% end %>
-            <% end %>
-            -->
-					</tr>
+					<% end %>
+					<td width="1%"><%= parameter.unit %></td>
+				</tr>
 			<% end %>
 		</table>
 	<% end %>
+
+	<p>
+		<%= f.label :observation, "Observación" %>
+		<%= f.text_area :observation %>
+	</p>
 
 	<p>
 		<%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>

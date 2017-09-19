@@ -12,125 +12,130 @@
       <div class="navbar-fixed">
         <nav>
           <div class="nav-wrapper">
-              <a href="#!" class="brand-logo center">Chocolats Halba</a>
-              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-              <ul class="right hide-on-med-and-down">
-                  <li><a rel="nofollow" data-method="delete" href="/users/sign_out">Salir</a></li>
-              </ul>
+            <a href="#!" class="brand-logo center">Chocolats Halba</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse">
+              <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+              <li>
+                <a rel="nofollow" data-method="delete" href="/users/sign_out">Salir</a>
+              </li>
+            </ul>
           </div>
         </nav>
       </div>
-        <ul class="side-nav" id="mobile-demo">
-          <% if current_user.admin_role %>
-              <li><a class="white-text">Admin</a></li>
-              <li><%= link_to 'Administración', rails_admin_path, class:"white-text li-back"%></li>
+      <ul class="side-nav" id="mobile-demo">
+        <% if current_user.admin_role %>
+          <li><a class="white-text">Admin</a><li>
+          <li><%= link_to 'Administración', rails_admin_path, class:"white-text li-back"%></li>
+        <% end %>
+        <% if current_user.warehouse_role || current_user.admin_role %>
+          <li><a class="white-text">Bodega</a><li>
+          <li><%= link_to 'Control de ingreso', organizations_path, class:"white-text li-back"%></li>
+          <% if  Notification.where(kind: 3).count == 1 %>
+            <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 3).count %></span>
+          <% elsif  Notification.where(kind: 3).count > 1 %>
+            <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 3).count %></span>
           <% end %>
-          <% if current_user.warehouse_role || current_user.admin_role %>
-              <li><a class="white-text">Bodega</a></li>
-              <li><%= link_to 'Control de ingreso', organizations_path, class:"white-text li-back"%></li>
-              <% if  Notification.where(kind: 3).count == 1 %>
-                  <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 3).count %></span>
-              <% elsif  Notification.where(kind: 3).count > 1 %>
-                  <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 3).count %></span>
-              <% end %>
-              <li><%= link_to 'Mover Lotes', '#',class:"white-text li-back"%></li>
+          <li><%= link_to 'Mover lotes', batches_moveBatches_path, class:"white-text li-back"%></li>
+        <% end %>
+        <% if current_user.quality_manager_role || current_user.admin_role %>
+          <li><a class="white-text">Jefe de calidad</a><li>
+          <% if  Notification.where(kind: 2).count == 1 %>
+            <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 2).count %></span>
+          <% elsif  Notification.where(kind: 2).count > 1 %>
+            <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 2).count %></span>
           <% end %>
-          <% if current_user.quality_manager_role || current_user.admin_role %>
-              <li><a class="white-text">Jefe de calidad</a></li>
-              <% if  Notification.where(kind: 2).count == 1 %>
-                  <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 2).count %></span>
-              <% elsif  Notification.where(kind: 2).count > 1 %>
-                  <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 2).count %></span>
-              <% end %>
-              <li><%= link_to 'Revisiones', revisions_path, class:"white-text li-back"%></li>
+          <li><%= link_to 'Revisiones', revisions_path, class:"white-text li-back"%></li>
+        <% end %>
+        <% if current_user.quality_role || current_user.admin_role %>
+          <li><a class="white-text">Calidad</a><li>
+          <% if  Notification.where(kind: 1).count == 1 %>
+            <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 1).count %></span>
+          <% elsif  Notification.where(kind: 1).count > 0 %>
+            <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 1).count %></span>
           <% end %>
-          <% if current_user.quality_role || current_user.admin_role %>
-              <li><a class="white-text">Calidad</a></li>
-              <% if  Notification.where(kind: 1).count == 1 %>
-                  <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 1).count %></span>
-              <% elsif  Notification.where(kind: 1).count > 0 %>
-                  <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 1).count %></span>
-              <% end %>
-              <li><%= link_to 'Análisis', quality_controls_path, class:"white-text li-back"%></li>
-          <% end %>
-          <% if current_user.certification_role || current_user.admin_role %>
-              <li><a class="white-text">Certificación</a></li>
-          <% end %>
-          <% if current_user.administration_role || current_user.admin_role %>
-              <li><a class="white-text">Administración</a></li>
-          <% end %>
-          <li><a class="white-text" rel="nofollow" data-method="delete" href="/users/sign_out">Salir</a></li>
-        </ul>
+          <li><%= link_to 'Análisis', quality_controls_path, class:"white-text li-back"%></li>
+        <% end %>
+        <% if current_user.certification_role || current_user.admin_role %>
+          <li><a class="white-text">Certificación</a><li>
+        <% end %>
+        <% if current_user.administration_role || current_user.admin_role %>
+          <li><a class="white-text">Administración</a></li>
+        <% end %>
+        <li>
+          <a class="white-text" rel="nofollow" data-method="delete" href="/users/sign_out">Salir</a>
+        </li>
+      </ul>
 
-
-        <ul class="side-nav fixed">
-          <% if current_user.admin_role %>
-            <li><a class="white-text">Admin</a></li>
-            <li><%= link_to 'Administración', rails_admin_path, class:"white-text li-back"%></li>
+      <ul class="side-nav fixed">
+        <% if current_user.admin_role %>
+          <li><a class="white-text">Admin</a><li>
+          <li><%= link_to 'Administración', rails_admin_path, class:"white-text li-back"%></li>
+        <% end %>
+        <% if current_user.warehouse_role || current_user.admin_role %>
+          <li><a class="white-text">Bodega</a><li>
+          <li><%= link_to 'Control de ingreso', organizations_path, class:"white-text li-back"%></li>
+          <% if  Notification.where(kind: 3).count == 1 %>
+            <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 3).count %></span>
+          <% elsif  Notification.where(kind: 3).count > 1 %>
+            <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 3).count %></span>
           <% end %>
-          <% if current_user.warehouse_role || current_user.admin_role %>
-            <li><a class="white-text">Bodega</a></li>
-            <li><%= link_to 'Control de ingreso', organizations_path, class:"white-text li-back"%></li>
-            <% if  Notification.where(kind: 3).count == 1 %>
-               <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 3).count %></span></li>
-            <% elsif  Notification.where(kind: 3).count > 1 %>
-               <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 3).count %></span></li>
-            <% end %>
-            <li><%= link_to 'Mover Lotes', '#',class:"white-text li-back"%></li>
+          <li><%= link_to 'Mover lotes', batches_moveBatches_path,class:"white-text li-back"%></li>
+        <% end %>
+        <% if current_user.quality_manager_role || current_user.admin_role %>
+          <li><a class="white-text">Jefe de calidad</a><li>
+          <% if  Notification.where(kind: 2).count == 1 %>
+            <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 2).count %></span>
+          <% elsif  Notification.where(kind: 2).count > 1 %>
+            <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 2).count %></span>
           <% end %>
-          <% if current_user.quality_manager_role || current_user.admin_role %>
-            <li><a class="white-text">Jefe de calidad</a></li>
-            <% if  Notification.where(kind: 2).count == 1 %>
-              <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 2).count %></span></li>
-            <% elsif  Notification.where(kind: 2).count > 1 %>
-              <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 2).count %></span></li>
-            <% end %>          
-            <li><%= link_to 'Revisiones', revisions_path, class:"white-text li-back"%></li>
+          <li><%= link_to 'Revisiones', revisions_path, class:"white-text li-back"%></li>
+        <% end %>
+        <% if current_user.quality_role || current_user.admin_role %>
+          <li><a class="white-text">Calidad</a><li>
+          <% if  Notification.where(kind: 1).count == 1 %>
+            <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 1).count %></span>
+          <% elsif  Notification.where(kind: 1).count > 0 %>
+            <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 1).count %></span>
           <% end %>
-          <% if current_user.quality_role || current_user.admin_role %>
-            <li><a class="white-text">Calidad</a></li>
-            <% if  Notification.where(kind: 1).count == 1 %>
-              <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 1).count %></span></li>
-            <% elsif  Notification.where(kind: 1).count > 0 %>
-              <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 1).count %></span></li>
-            <% end %>          
-            <li><%= link_to 'Análisis', quality_controls_path, class:"white-text li-back"%></li>
-          <% end %>
-          <% if current_user.certification_role || current_user.admin_role %>
-            <li><a class="white-text">Certificación</a></li>
-          <% end %>
-          <% if current_user.administration_role || current_user.admin_role %>
-            <li><a class="white-text">Administración</a></li>
-          <% end %>
-        </ul>
+          <li><%= link_to 'Análisis', quality_controls_path, class:"white-text li-back"%></li>
+        <% end %>
+        <% if current_user.certification_role || current_user.admin_role %>
+          <li><a class="white-text">Certificación</a><li>
+        <% end %>
+        <% if current_user.administration_role || current_user.admin_role %>
+          <li><a class="white-text">Administración</a></li>
+        <% end %>
+      </ul>
     </header>
   <% end %>
   <body>
-  	<div class="container">
+    <div class="container">
       <% if current_user %>
-          <% if notice %>
-              <p class="alert alert-success">
-                <script>
-                    $(function() {
-                        Materialize.toast("<%= notice %>", 3000);
-                    });
-                </script>
-              </p>
-          <% end %>
-          <% if alert %>
-              <p class="alert alert-danger">
-                <script>
-                    $(function() {
-                        Materialize.toast("<%= alert %>", 3000);
-                    });
-                </script>
-              </p>
-          <% end %>
+        <% if notice %>
+          <p class="alert alert-success">
+            <script>
+              $(function () {
+                Materialize.toast("<%= notice %>", 3000);
+              });
+            </script>
+          </p>
+        <% end %>
+        <% if alert %>
+          <p class="alert alert-danger">
+            <script>
+              $(function () {
+                Materialize.toast("<%= alert %>", 3000);
+              });
+            </script>
+          </p>
+        <% end %>
       <% end %>
-    	<%= yield %>
-	</div>
+      <%= yield %>
+    </div>
   </body>
   <script>
-      $(".button-collapse").sideNav();
+    $(".button-collapse").sideNav();
   </script>
 </html>
