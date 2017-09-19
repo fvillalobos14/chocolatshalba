@@ -31,6 +31,9 @@ class QualityControlsController < ApplicationController
   def show
     @qualityControl=QualityControl.find(params[:id])
     @new_quality = defineResult(@qualityControl.id)
+    @data =  dataChart(@qualityControl.id)
+    @option ={:width => 10, :height => 10}
+    @revisions = Revision.all
   end
 
   private
@@ -100,5 +103,47 @@ class QualityControlsController < ApplicationController
   def createNotification
     @notification = Notification.create(read: false, kind: 2)
     @notification.save
-  end  
+  end
+
+  def dataValues(quality)
+    @qualityControl=QualityControl.find(quality)
+    data = []
+    Category.all.order(:place).each do |category|
+      category.parameters.order(:place).each do |parameter|
+        if parameter.acceptance == nil
+          if parameter.category.place = 4
+            if category.runs = 1
+              value = Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id, run: 1).first.score
+              data.append(value)
+            end
+          end
+        end
+      end
+    end
+    return data
+  end
+
+  def dataChart(quality)
+    @qualityControl=QualityControl.find(quality)
+    dataname = []
+    paramaterPlace = Parameter.all
+    for parama in paramaterPlace
+      if parama.category.place == 4
+        dataname.append(parama.name)
+      end
+    end
+    datavalues = dataValues(quality)
+    data = {
+        labels: dataname,
+        datasets: [
+            {
+                label: "Sensorial",
+                borderColor: "rgba(50, 189, 158, 1)",
+                backgroundColor: "rgba(50, 189, 158, 0.5)",
+                data: datavalues
+            }
+        ]
+    }
+    return data
+  end
 end

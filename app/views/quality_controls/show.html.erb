@@ -104,16 +104,17 @@
           <% end %>
 
           <h2>Calidad juzgada:<%=	@new_quality %></h2>
-          <% if  @qualityControl.revision.nil? %>
-            <a class="waves-effect waves-light btn" data-target="modal2">Determinar Desicion</a>
+          <% if not Revision.where(quality_control_id: @qualityControl.id).nil? %>
+            <a class="waves-effect waves-light btn" data-target="modal1">Determinar Desicion</a>
           <% end %>
+          <a class="waves-effect waves-light btn" data-target="modal2">Ver Grafico</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div id="modal2" class="modal" style="width: 40% !important ; height: 30% !important ;">
+<div id="modal1" class="modal" style="width: 40% !important ; height: 30% !important ;">
   <%= form_for ([@qualityControl, @qualityControl.build_revision]) do |f| %>
     <div class="modal-content">
       <center>
@@ -126,6 +127,19 @@
       </center>
     </div>
   <% end %>
+</div>
+
+<div id="modal2" class="modal">
+      <div class="modal-content">
+        <div class="col m6">
+          <div class="card-panel">
+            <center>
+              <h5>Analisis Sensorial</h5>
+            </center>
+            <%= radar_chart  @data, @option %>
+          </div>
+        </div>
+      </div>
 </div>
 
 <script>
