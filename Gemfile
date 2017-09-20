@@ -64,3 +64,4 @@ end
   gem 'cancancan'
   gem "paperclip"
   gem 'rails_admin_rollincode', '~> 1.0'
+  gem 'chartjs-ror'
