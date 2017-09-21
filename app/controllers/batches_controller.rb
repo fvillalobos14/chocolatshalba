@@ -15,7 +15,7 @@ class BatchesController < ApplicationController
         createNotification
         redirect_to @entryControl
     else
-        redirect_to :new
+        redirect_to "/entry_controls/"+@entryControl.id.to_s+"/batches/new"
     end
   end
 

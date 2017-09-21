@@ -12,7 +12,7 @@ class EntryControlsController < ApplicationController
     if @entryControl.save
         redirect_to @entryControl
     else
-        redirect_to :new    
+        redirect_to '/organizations/'+@organization.id.to_s+'/entry_controls/new'
     end    
   end    
 
