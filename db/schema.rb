@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921175102) do
+ActiveRecord::Schema.define(version: 20170915234809) do
 
   create_table "acceptances", force: :cascade do |t|
     t.decimal "max_qualityA"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20170921175102) do
     t.decimal "exchangeRate"
     t.string "receivedBy"
     t.string "deliveredBy"
+    t.integer "entry_number"
     t.integer "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -73,7 +74,6 @@ ActiveRecord::Schema.define(version: 20170921175102) do
     t.string "ec_files_content_type"
     t.integer "ec_files_file_size"
     t.datetime "ec_files_updated_at"
-    t.integer "entry_number"
     t.index ["organization_id"], name: "index_entry_controls_on_organization_id"
   end
 
