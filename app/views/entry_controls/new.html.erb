@@ -23,8 +23,8 @@
             </p>
 
             <div class="input-field">
-              <%= f.label :entry_number, "Numero de Hoja de Ingreso" %>
-              <%= f.number_field :entry_number%>
+              <%= f.label :entry_number, "Número de hoja de ingreso" %>
+              <%= f.number_field :entry_number, min: 0 %>
             </div>
 
             <div class="input-field">

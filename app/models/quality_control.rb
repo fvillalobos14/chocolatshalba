@@ -6,6 +6,7 @@ class QualityControl < ApplicationRecord
   validates :code, presence: true
   validates :cut_at, presence: true
   validates :made_by, presence: true
+  validates :observation, presence: true
 
   before_destroy :remove_results_revision
 
