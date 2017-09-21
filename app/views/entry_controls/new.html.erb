@@ -1,10 +1,12 @@
-<div class="dashboard">
+<div class="container">
   <div class="row">
     <div class="col m12">
       <div class="card">
         <div class="card-content">
           <%= form_for [@organization, @organization.entry_controls.build] do |f| %>
-            <h1>Control de ingreso</h1>
+            <div class="page-header">
+              <h1>Control de ingreso</h1>
+            </div>
             <p>
               Cooperativa:
               <%= @organization.name %>
@@ -19,6 +21,11 @@
               <%= f.label :exchangeRate, "Tasa de cambio(USD/LPS)" %>
               <%= f.number_field :exchangeRate, value:23.80, :readonly => true %>
             </p>
+
+            <div class="input-field">
+              <%= f.label :entry_number, "Numero de Hoja de Ingreso" %>
+              <%= f.number_field :entry_number%>
+            </div>
 
             <div class="input-field">
               <%= f.label :receivedBy, "Recibido por" %>

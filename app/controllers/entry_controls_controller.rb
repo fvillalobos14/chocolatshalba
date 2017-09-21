@@ -12,7 +12,7 @@ class EntryControlsController < ApplicationController
     if @entryControl.save
         redirect_to @entryControl
     else
-        redirect_to :new    
+        redirect_to '/organizations/'+@organization.id.to_s+'/entry_controls/new'
     end    
   end    
 
@@ -23,6 +23,6 @@ class EntryControlsController < ApplicationController
 
   private
   def entryControl_params
-    params.require(:entry_control).permit(:entryDate, :exchangeRate, :receivedBy, :deliveredBy, :ec_files)
+    params.require(:entry_control).permit(:entryDate, :exchangeRate, :receivedBy, :deliveredBy, :ec_files, :entry_number)
   end
 end

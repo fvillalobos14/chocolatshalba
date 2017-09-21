@@ -1,10 +1,11 @@
-<div class="dashboard">
+<div class="container">
   <div class="row">
     <div class="col m12">
       <div class="card">
         <div class="card-content">
-          <h1>Analisis de calidad</h1>
-
+          <div class="page-header">
+            <h1>Analisis de calidad</h1>
+          </div>
           <p>
             Cooperativa/Proveedor:
             <%= @qualityControl.batch.entry_control.organization.name %>
@@ -113,7 +114,7 @@
     </div>
   </div>
 </div>
-
+<% if not Revision.where(quality_control_id: @qualityControl.id).nil? %>
 <div id="modal1" class="modal" style="width: 40% !important ; height: 30% !important ;">
   <%= form_for ([@qualityControl, @qualityControl.build_revision]) do |f| %>
     <div class="modal-content">
@@ -128,7 +129,7 @@
     </div>
   <% end %>
 </div>
-
+<% end %>
 <div id="modal2" class="modal">
       <div class="modal-content">
         <div class="col m6">
