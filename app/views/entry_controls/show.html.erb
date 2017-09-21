@@ -1,59 +1,59 @@
-<h1>Ingreso de lotes</h1>
-
-<p>
-    Organización:
-    <%= Organization.find(@entry.organization_id).name %>
-</p>
-
-<p>
-    Recibido por:
-    <%= @entry.receivedBy %>
-</p>
-
-<p>
-    Entregado por:
-    <%= @entry.deliveredBy %>
-</p>
-<%= link_to "Descargar archivos", @entry.ec_files.url(:original, false), class:"waves-effect waves-light btn" %><br><br>
-
-<div class="row">
+<div class="container">
+  <div class="row">
     <div class="col m12">
-        <div class="card">
-            <div class="card-content">
-                <h2>Lotes</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Cant. sacos</th>
-                            <th>Peso libras</th>
-                            <th>Codigo de identificación</th>
-                            <th>Tipo de cacao</th>
-                            <th>Material genético</th>
-                            <% if !current_user.warehouse_role || current_user.admin_role %>
-                                <th></th>
-                            <% end %>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% @batches.each do |batch| %>
-                            <tr>
-                                <td><%= batch.sackAmount %></td>
-                                <td><%= batch.weight %></td>
-                                <td><%= batch.enterCode %></td>
-                                <td><%= CocoaType.find(batch.cocoaType).name %></td>
-                                <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                                <% if (!current_user.warehouse_role || current_user.admin_role) && QualityControl.where(batch_id: batch.id).blank? %>
-                                    <td><%= link_to "Analisis de calidad", new_batch_quality_control_path(batch)%></td>
-                                <% end %>
-                            </tr>
-                        <% end %>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+      <div class="card">
+        <div class="card-content">
+          <div class="page-header">
+            <h1>Ingreso de lotes</h1>
+          </div>
+          <p>
+            Organización:
+            <%= Organization.find(@entry.organization_id).name %>
+          </p>
+          <p>
+            Recibido por:
+            <%= @entry.receivedBy %>
+          </p>
+          <p>
+            Entregado por:
+            <%= @entry.deliveredBy %>
+          </p>
+          <%= link_to "Descargar archivos", @entry.ec_files.url(:original, false), class:"waves-effect waves-light btn" %><br><br>
 
-<% if current_user.warehouse_role || current_user.admin_role %>
-    <%= link_to 'Agregar lote', new_entry_control_batch_path(@entry), class:"waves-effect waves-light btn"%>
-<% end %>
+          <h2>Lotes</h2>
+          <table>
+            <thead>
+            <tr>
+              <th>Cant. sacos</th>
+              <th>Peso libras</th>
+              <th>Codigo de identificación</th>
+              <th>Tipo de cacao</th>
+              <th>Material genético</th>
+              <% if !current_user.warehouse_role || current_user.admin_role %>
+                  <th></th>
+              <% end %>
+            </tr>
+            </thead>
+            <tbody>
+            <% @batches.each do |batch| %>
+              <tr>
+                <td><%= batch.sackAmount %></td>
+                <td><%= batch.weight %></td>
+                <td><%= batch.enterCode %></td>
+                <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                <% if (!current_user.warehouse_role || current_user.admin_role) && QualityControl.where(batch_id: batch.id).blank? %>
+                  <td><%= link_to "Analisis de calidad", new_batch_quality_control_path(batch)%></td>
+                <% end %>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if current_user.warehouse_role || current_user.admin_role %>
+      <%= link_to 'Agregar lote', new_entry_control_batch_path(@entry), class:"waves-effect waves-light btn"%>
+  <% end %>
+</div>

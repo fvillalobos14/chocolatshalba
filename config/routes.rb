@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :quality_controls
   resources :revisions
+  resources :entry_controls
   resources :batches
 
   resources :entry_controls do

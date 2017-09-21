@@ -24,7 +24,7 @@ class QualityControlsController < ApplicationController
         createNotification
         redirect_to @entry
     else
-        redirect_to :new
+        redirect_to "/batches/"+@batch.id.to_s+"/quality_controls/new"
     end    
   end
 
