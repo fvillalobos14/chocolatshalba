@@ -29,7 +29,7 @@ RailsAdmin.config do |config|
         label 'Usuario'
       end
       field :last_sign_in_at do
-        label 'Ultima Sesión'
+        label 'Última Sesión'
       end
     end
 
