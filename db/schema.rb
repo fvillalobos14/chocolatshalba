@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20170915234809) do
     t.decimal "exchangeRate"
     t.string "receivedBy"
     t.string "deliveredBy"
+    t.integer "entry_number"
     t.integer "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -23,6 +23,6 @@ class EntryControlsController < ApplicationController
 
   private
   def entryControl_params
-    params.require(:entry_control).permit(:entryDate, :exchangeRate, :receivedBy, :deliveredBy, :ec_files)
+    params.require(:entry_control).permit(:entryDate, :exchangeRate, :receivedBy, :deliveredBy, :ec_files, :entry_number)
   end
 end
