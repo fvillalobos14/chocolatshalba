@@ -62,7 +62,12 @@ en:
       parameter:
         one: "Parámetro"  
         other: "Parámetros"
-      
+      revision:
+        one: "Revisión"
+        other: "Revisiones"
+      acceptance:
+        one: "Aceptación"
+        other: "Aceptaciones"
   admin:
     js:
       true: Cierto
