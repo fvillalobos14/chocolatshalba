@@ -1,39 +1,41 @@
-<div class="dashboard">
+<div class="container">
   <div class="row">
     <div class="col m12">
       <div class="card">
         <div class="card-content">
-         <h1>Lote</h1>
+          <div class="page-header">
+            <h1>Lote</h1>
+          </div>
           <%= form_for [@entryControl, @entryControl.batches.build] do |f| %>
-          <p>
-            <%= f.label :sackAmount, "Cant. sacos" %>
-            <%= f.number_field :sackAmount %>
-          </p>
+            <div class="input-field">
+              <%= f.label :sackAmount, "Cantidad de sacos" %>
+              <%= f.number_field :sackAmount, min: 0 %>
+            </div>
 
-          <p>
-            <%= f.label :weight, "Peso libras" %>
-            <%= f.number_field :weight %>
-          </p>
+            <div class="input-field">
+              <%= f.label :weight, "Peso en libras" %>
+              <%= f.number_field :weight, step: :any, min: 0 %>
+            </div>
 
-          <p>
-            <%= f.label :enterCode, "Código de indentificación" %>
-            <%= f.text_field :enterCode %>
-          </p>
+            <div class="input-field">
+              <%= f.label :enterCode, "Código de indentificación" %>
+              <%= f.text_field :enterCode %>
+            </div>
 
-          <p>
-            <%= f.label :cocoaType, "Tipo de cacao" %>
-            <%= f.collection_select :cocoaType, @cocoa, :id, :name, :prompt => "Seleccione el tipo de cacao", class:"dropdown-button btn" %>
-          </p>
+            <p>
+              <%= f.label :cocoaType, "Tipo de cacao" %>
+              <%= f.collection_select :cocoaType, @cocoa, :id, :name, class:"dropdown-button btn" %>
+            </p>
 
-          <p>
-            <%= f.label :geneticMaterial, "Material genético" %>
-            <%= f.collection_select :geneticMaterial, @genetic, :id, :name, :prompt => "Seleccione el tipo de material genético", class:"dropdown-button btn" %>
-          </p>
+            <p>
+              <%= f.label :geneticMaterial, "Material genético" %>
+              <%= f.collection_select :geneticMaterial, @genetic, :id, :name, class:"dropdown-button btn" %>
+            </p>
 
-          <p>
-            <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
-          </p>
-        <% end %>
+            <p>
+              <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
+            </p>
+          <% end %>
         </div>
       </div>
     </div>
@@ -41,7 +43,7 @@
 </div>
 
 <script>
-	$(document).on('turbolinks:load', function() {
-	  $('select').material_select();
-	}) 
+  $(document).on('turbolinks:load', function () {
+    $('select').material_select();
+  })
 </script>

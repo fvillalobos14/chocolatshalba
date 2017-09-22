@@ -15,3 +15,4 @@
 //= require_tree .
 //= require jquery
 //= require materialize-sprockets
+//= require Chart.min

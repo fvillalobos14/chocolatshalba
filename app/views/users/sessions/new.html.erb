@@ -1,23 +1,39 @@
+<div class="container-login">
 <br>
-<center><%= image_tag("ch.jpg", height: '200', width: '374')%></center>
-
+  <center><%= image_tag("newCHlogo.png", height: '271', width: '475')%></center>
 <div class="form-login">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="row center-block">
         <div class="col m12 center">
           <div class="card white darken-1">
             <div class="card-content black-text">
-              <p class="notice"><%= notice %></p>
-              <p class="alert"><%= alert %></p>
-              
-              <div class="field">
-                <%= f.label :Usuario %><br />
+              <% if notice %>
+                  <p class="alert alert-success">
+                    <script>
+                        $(function() {
+                            Materialize.toast("<%= notice %>", 3000);
+                        });
+                    </script>
+                  </p>
+              <% end %>
+              <% if alert %>
+                  <p class="alert alert-danger">
+                    <script>
+                        $(function() {
+                            Materialize.toast("<%= alert %>", 3000);
+                        });
+                    </script>
+                  </p>
+              <% end %>
+
+              <div class="input-field">
                 <%= f.text_field :email, autofocus: true %>
+                <%= f.label :Usuario, "Usuario" %><br />
               </div>
 
-              <div class="field">
-                <%= f.label :Contraseña %><br />
+              <div class="input-field">
                 <%= f.password_field :password, autocomplete: "off" %>
+                <%= f.label :Contraseña, "Contraseña" %><br />
               </div>
 
               <br>
@@ -29,4 +45,5 @@
         </div>
       </div>
   <% end %>
+</div>
 </div>

@@ -10,11 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170906081945) do
+ActiveRecord::Schema.define(version: 20170915234809) do
 
-  create_table "bar_codes", force: :cascade do |t|
+  create_table "acceptances", force: :cascade do |t|
+    t.decimal "max_qualityA"
+    t.decimal "max_qualityB"
+    t.decimal "max_qualityC"
+    t.decimal "min_qualityA"
+    t.decimal "min_qualityB"
+    t.decimal "min_qualityC"
+    t.integer "parameter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["parameter_id"], name: "index_acceptances_on_parameter_id"
   end
 
   create_table "batches", force: :cascade do |t|
@@ -23,6 +31,7 @@ ActiveRecord::Schema.define(version: 20170906081945) do
     t.string "enterCode"
     t.integer "cocoaType"
     t.integer "geneticMaterial"
+    t.boolean "moved", default: false
     t.integer "entry_control_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -31,8 +40,8 @@ ActiveRecord::Schema.define(version: 20170906081945) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.decimal "place"
-    t.decimal "runs"
+    t.integer "place"
+    t.integer "runs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -57,6 +66,7 @@ ActiveRecord::Schema.define(version: 20170906081945) do
     t.decimal "exchangeRate"
     t.string "receivedBy"
     t.string "deliveredBy"
+    t.integer "entry_number"
     t.integer "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -75,6 +85,7 @@ ActiveRecord::Schema.define(version: 20170906081945) do
 
   create_table "notifications", force: :cascade do |t|
     t.boolean "read"
+    t.integer "kind"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -86,14 +97,10 @@ ActiveRecord::Schema.define(version: 20170906081945) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "qr_codes", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-
   create_table "parameters", force: :cascade do |t|
     t.string "name"
-    t.decimal "unit"
-    t.decimal "place"
+    t.string "unit"
+    t.integer "place"
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -101,8 +108,8 @@ ActiveRecord::Schema.define(version: 20170906081945) do
   end
 
   create_table "quality_controls", force: :cascade do |t|
-    t.decimal "code"
-    t.decimal "final_code"
+    t.integer "code"
+    t.string "final_code"
     t.date "cut_at"
     t.boolean "f_harvest"
     t.boolean "s_harvest"
@@ -118,13 +125,21 @@ ActiveRecord::Schema.define(version: 20170906081945) do
 
   create_table "results", force: :cascade do |t|
     t.decimal "score"
-    t.decimal "run"
+    t.integer "run"
     t.integer "parameter_id"
     t.integer "quality_control_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parameter_id"], name: "index_results_on_parameter_id"
     t.index ["quality_control_id"], name: "index_results_on_quality_control_id"
+  end
+
+  create_table "revisions", force: :cascade do |t|
+    t.integer "status"
+    t.integer "quality_control_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quality_control_id"], name: "index_revisions_on_quality_control_id"
   end
 
   create_table "users", force: :cascade do |t|

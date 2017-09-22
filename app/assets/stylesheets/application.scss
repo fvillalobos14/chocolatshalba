@@ -31,8 +31,8 @@ nav .brand-logo {
 }
 
 .side-nav{
-  width:200px;
-  margin-top:52px;
+  width:240px;
+  margin-top:51px;
   background-color:#282F37;
 }
 
@@ -48,11 +48,17 @@ h1,h2,h3,h4,h5,h6,table,th,tr,tbody,thead{
   line-height: 1;
 }
 
-h1{
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
+h1 {
+  font-size: 20px;
+}
+
+.page-header h1 {
+  background: #37BC9B;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 2px;
+  text-transform: uppercase;
+  margin-top: 0;
 }
 
 h2{
@@ -68,10 +74,36 @@ p{
   line-height: 1.7em;
 }
 
-.container{
+
+.container {
+  text-align: left;
+  margin-left: 255px;
+  margin-right: 15px;
+  width: auto;
+}
+
+body{
+  background-color: #EAEBF5;
+}
+
+@media only screen and (max-width: 991px) {
+  .container {
+    text-align: left;
+    margin-left: 15px;
+    margin-right: 15px;
+    width: auto;
+  }
+}
+
+.container-login {
   text-align: left;
   padding-top: 25px;
   padding-bottom: 25px;
   padding-right: 30px;
   padding-left: 30px;
+}
+
+.chart-size{
+  width: 15cm;
+  height: 15cm;
 }

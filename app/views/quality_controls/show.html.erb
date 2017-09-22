@@ -1,0 +1,180 @@
+<div class="container">
+  <div class="row">
+    <div class="col m12">
+      <div class="card">
+        <div class="card-content">
+          <div class="page-header">
+            <h1>Análisis de calidad</h1>
+          </div>
+          <p>
+            Cooperativa/Proveedor:
+            <%= @qualityControl.batch.entry_control.organization.name %>
+          </p>
+
+          <p>
+            Fecha de ingreso:
+            <%= @qualityControl.batch.entry_control.entryDate %>
+          </p>
+
+          <p>
+            Código de muestra:
+            <%= @qualityControl.batch.enterCode %>
+          </p>
+
+          <p>
+            Peso final:
+            <%= number_with_precision(@qualityControl.batch.weight, precision: 2) %>
+            lb
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col m12">
+      <div class="card">
+        <div class="card-content">
+          <p>
+            Fecha de corte:
+            <%= @qualityControl.cut_at %>
+          </p>
+
+          <p>
+            Número de hoja:
+            <%= @qualityControl.code %>
+          </p>
+
+          <p>
+            Persona responsable:
+            <%= @qualityControl.made_by %>
+          </p>
+
+          <p>
+            Observación:
+            <%= @qualityControl.observation %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col m12">
+      <div class="card">
+        <div class="card-content">
+          <p>
+            <% if @qualityControl.f_harvest %>
+              Cosecha: primera (agosto-febrero)
+            <% end %>
+          </p>
+
+          <p>
+            <% if @qualityControl.s_harvest %>
+              Cosecha: segunda (marzo-julio)
+            <% end %>
+          </p>
+
+          <p>
+            <% if @qualityControl.trinitary %>
+              Variedad: trinitario
+            <% end %>
+          </p>
+
+          <p>
+            <% if @qualityControl.outsider %>
+              Variedad: forastero
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col m12">
+      <div class="card">
+        <div class="card-content">
+          <% Category.all.order(:place).each do |category| %>
+            <table class="highlight">
+              <tr>
+                <th><%= category.name %></th>
+                <% (1..category.runs).each do |i| %>
+                  <th align="right"><%= i %></th>
+                <% end %>
+                <% if category.runs > 1 %>
+                  <th>Resultado promedio</th>
+                <% end %>
+              </tr>
+              <% category.parameters.order(:place).each do |parameter| %>
+              <tr>
+                <td width="7%"><%= parameter.name %></td>
+                <% if category.runs > 1 %>
+                  <% (1..category.runs).each do |i| %>
+                    <td width="7%"><%= number_with_precision(Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id, run: i).first.score,precision: 0) %></td>
+                  <% end %>
+                <% else %>
+                  <td width="7%"><%= number_with_precision(Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id, run: 1).first.score, precision: 2) %><%= parameter.unit %></td>
+                <% end %>
+                <% if category.runs > 1 %>
+                  <td width="7%"><%= number_with_precision(Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id).sum(:score)/3, precision: 2) %>%</td>
+                <% end %>
+              </tr>
+              <% end %>
+            </table>
+          <% end %>
+
+          <h2>Cálidad juzgada: <%=	@new_quality %></h2>
+          <% if current_user.quality_manager_role && !Revision.where(quality_control_id: @qualityControl.id).nil? %>
+            <a class="waves-effect waves-light btn" data-target="modal1">Determinar desición</a>
+          <% end %>
+          <a class="waves-effect waves-light btn" data-target="modal2">Ver gráfico</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if not Revision.where(quality_control_id: @qualityControl.id).nil? %>
+  <div id="modal1" class="modal" style="width: 40% !important ; height: 30% !important ;">
+    <%= form_for ([@qualityControl, @qualityControl.build_revision]) do |f| %>
+      <div class="modal-content">
+        <center>
+          <h5>Seleccione:</h5>
+          <div class="field">
+            <p style="width: 40%"><%= f.select :status, options_for_select([["Aceptar", 1], ["Rechazar", 0]]), class:"dropdown-button btn" %></p>
+          </div>
+          <%= f.submit 'Aceptar',class:"modal-action modal-close modal-action waves-effect waves-light btn" %>
+          <a class="modal-action modal-close waves-effect waves-light red darken-1 btn">Cancelar</a>
+        </center>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div id="modal2" class="modal"  style="max-height: 100% !important ; overflow-y: hidden !important ;">
+  <div class="modal-content">
+    <div class="col m6">
+      <div class="card-panel">
+        <center>
+          <h5>Análisis sensorial</h5>
+        </center>
+        <%= radar_chart  @data, :height => 250 %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $('.modal').modal();
+  });
+  $('#modal1').modal('open');
+  $('#modal1').modal('close');
+</script>
+
+<script>
+  $(document).on('turbolinks:load', function () {
+    $('select').material_select();
+  })
+</script>

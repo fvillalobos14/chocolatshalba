@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  get 'batches/moveBatches', to: 'batches#moveBatches'
 
   resources :quality_controls
+  resources :revisions
+  resources :entry_controls
+  resources :batches
 
   resources :entry_controls do
     resources :batches
@@ -11,11 +15,10 @@ Rails.application.routes.draw do
   end
 
   resources :quality_controls do
-    resources :results
+    resources :revisions
   end
 
   resources :organizations do
-    resources :collection_centers
     resources :entry_controls
   end
 

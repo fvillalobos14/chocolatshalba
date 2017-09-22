@@ -1,0 +1,56 @@
+<div class="container">
+<div class="row">
+  <div class="col m12">
+    <div class="card">
+      <div class="card-content">
+        <div class="page-header">
+          <h1>Lotes</h1>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Cantidad de sacos</th>
+              <th>Peso</th>
+              <th>Código de identificación</th>
+              <th>Tipo de cacao</th>
+              <th>Material genético</th>
+              <% if current_user.warehouse_role %>
+                <th></th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% @batches.each do |batch| %>
+              <% if !QualityControl.where(batch_id: batch.id).blank? && !Revision.where(quality_control_id: batch.quality_control.id).blank?%>
+                <tr>
+                  <td><%= batch.sackAmount %></td>
+                  <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                  <td><%= batch.enterCode %></td>
+                  <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                  <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                  <% if current_user.warehouse_role %>
+                    <%= form_for [batch] do |f| %>
+                      <td><%= button_tag(type: 'submit', class: "btn") do %>
+                        <i class="icon-ok icon-white"></i>Marcar como movido
+                      <% end %></td>
+                    <% end %>
+                  <% end %>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function () {
+    if (document.URL.indexOf("#") == -1) {
+      url = document.URL + "#";
+      location = "#";
+      location.reload(true);
+    }
+  });
+</script>

@@ -42,17 +42,32 @@ en:
         one: "Usuario"
         other: "Usuarios"
       genetic_material:
-        one: "Material Genético"
-        other: "Materiales Genéticos"
+        one: "Material genético"
+        other: "Materiales genéticos"
       entry_control:
-        one: "Control de Ingreso"
-        other: "Control de Ingresos"
+        one: "Control de ingreso"
+        other: "Control de ingresos"
       cocoa_type:
-        one: "Tipo de Cacao"
-        other: "Tipos de Cacao"
+        one: "Tipo de cacao"
+        other: "Tipos de cacao"
       batch:
         one: "Lote"
-        other: "Lotes"  
+        other: "Lotes"
+      category:
+        one: "Categoría"
+        other: "Categorías"
+      notification:
+        one: "Notificación"
+        other: "Notificaciones"
+      parameter:
+        one: "Parámetro"
+        other: "Parámetros"
+      revision:
+        one: "Revisión"
+        other: "Revisiones"
+      acceptance:
+        one: "Aceptación"
+        other: "Aceptaciones"
   admin:
     js:
       true: Cierto

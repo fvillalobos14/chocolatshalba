@@ -29,7 +29,7 @@ RailsAdmin.config do |config|
         label 'Usuario'
       end
       field :last_sign_in_at do
-        label 'Ultima Sesión'
+        label 'Última Sesión'
       end
     end
 
@@ -100,7 +100,7 @@ RailsAdmin.config do |config|
       field :name do
         label 'Nombre'
       end
-      field :organizations do
+      field :organization do
         label 'Organización'
       end
     end
@@ -113,6 +113,72 @@ RailsAdmin.config do |config|
       
       field :name do
         label 'Nombre'
+      end
+    end
+
+    exclude_fields :created_at, :updated_at
+  end
+
+  config.model 'Category' do
+    list do
+      
+      field :name do
+        label 'Nombre'
+      end
+      field :place do
+        label 'Lugar'
+      end
+      field :runs do
+        label 'Ejecución'
+      end
+    end
+
+    exclude_fields :created_at, :updated_at
+  end
+
+    config.model 'Acceptance' do
+    list do
+      
+      field :max_qualityA do
+        label 'Máxima calidad A'
+      end
+      field :max_qualityB do
+        label 'Máxima calidad B'
+      end
+      field :max_qualityC do
+        label 'Máxima calidad C'
+      end
+      field :min_qualityA do
+        label 'Mínima calidad A'
+      end
+      field :min_qualityB do
+        label 'Mínima calidad B'
+      end
+      field :min_qualityC do
+        label 'Mínima calidad C'
+      end
+      field :parameter_id do
+        label 'Parámetro'
+      end      
+    end
+
+    exclude_fields :created_at, :updated_at
+  end
+
+  config.model 'Parameter' do
+    list do
+      
+      field :name do
+        label 'Nombre'
+      end
+      field :unit do
+        label 'Unidad'
+      end
+      field :place do
+        label 'Lugar'
+      end
+      field :category do
+        label 'Categoria'
       end
     end
 
@@ -165,4 +231,10 @@ RailsAdmin.config do |config|
   end
   config.current_user_method(&:current_user)
   config.parent_controller = 'ApplicationController'
+  config.excluded_models << Batch
+  config.excluded_models << EntryControl
+  config.excluded_models << Notification
+  config.excluded_models << QualityControl
+  config.excluded_models << Result
+  config.excluded_models << Revision
 end

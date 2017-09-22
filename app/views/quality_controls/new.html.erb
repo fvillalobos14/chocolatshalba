@@ -1,79 +1,106 @@
-<h1>Analisis de calidad</h1>
+<div class="container">
+  <div class="row">
+    <div class="col m12">
+      <%= form_for [@batch, @qualityControl] do |f| %>
+        <%= f.hidden_field :cut_at, :value => Date.today %>
+        <div class="card">
+          <div class="card-content">
+            <div class="page-header">
+              <h1>Análisis de calidad</h1>
+            </div>
+            <p>
+              Cooperativa/Proveedor:
+              <%= @batch.entry_control.organization.name %>
+            </p>
 
-<%= form_for [@batch, @qualityControl] do |f| %>
-	<p>
-		Cooperativa/Proveedor:
-		<%= @batch.entry_control.organization.name %>
-	</p>
+            <p>
+              Fecha de ingreso:
+              <%= @batch.entry_control.entryDate %>
+            </p>
 
-	<p>
-		Fecha de Ingreso
-		<%= @batch.entry_control.entryDate %>
-	</p>
+            <p>
+              Código de muestra:
+              <%= @batch.enterCode %>
+            </p>
 
-	<p>
-		Codigo de Muestra
-		<%= @batch.enterCode %>
-	</p>
+            <p>
+              Peso final:
+              <%= number_with_precision(@batch.weight, precision: 2) %>
+              lb
+            </p>
+</div></div>
+            <div class="row">
+    <div class="col m12">
+      <div class="card">
+        <div class="card-content">
+            <div class="input-field">
+              <%= f.label :code, "Número de hoja" %>
+              <%= f.text_field :code %>
+            </div>
 
-	<p>
-		Peso final Libras
-		<%= @batch.weight %>
-	</p>
+            <div class="input-field">
+              <%= f.check_box :f_harvest %>
+              <%= f.label 'f_harvest', "Primera cosecha" %><br>
+            </div>
 
-	<p>
-		<%= f.label :cut_at, "Fecha P. Corte" %>
-		<%= f.date_field :cut_at, value: Date.today, :readonly => true %>
-	</p>
+            <div class="input-field">
+              <%= f.check_box :s_harvest %>
+              <%= f.label 's_harvest', "Segunda cosecha" %><br>
+            </div>
 
-	<p>
-		<%= f.label :code, "No." %>
-		<%= f.text_field :code %>
-	</p>
+            <div class="input-field">
+              <%= f.check_box :trinitary %>
+              <%= f.label 'trinitary', "Trinitario" %><br>
+            </div>
 
+            <div class="input-field">
+              <%= f.check_box :outsider %>
+              <%= f.label 'outsider', "Forastero" %>
+            </div><br>
 
-	<%= f.check_box :f_harvest %>
-	<%= f.label 'f_harvest', "Primera cosecha" %><br>
+            <div class="input-field">
+              <%= f.label :made_by, "Persona responsable" %>
+              <%= f.text_field :made_by %>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <% Category.all.order(:place).each do |category| %>
+              <table class="highlight">
+                <tr>
+                  <th><%= category.name %></th>
+                  <% (1..category.runs).each do |i| %>
+                    <th align="right"><%= i %></th>
+                  <% end %>
+                  <th></th>
+                </tr>
+                <% category.parameters.order(:place).each do |parameter| %>
+                  <tr>
+                    <td width="7%"><%= parameter.name %></td>
+                    <%= fields_for 'results[]', Result.new do |r| %>
+                      <% (1..category.runs).each do |i| %>
+                        <%= r.hidden_field :parameter_id, :value => parameter.id %>
+                        <%= r.hidden_field :run, :value => i %>
+                        <td width="3%"><%= r.number_field :score, step: :any, :value => 0, min: 0 %></td>
+                      <% end %>
+                    <% end %>
+                    <td width="1%"><%= parameter.unit %></td>
+                  </tr>
+                <% end %>
+              </table>
+            <% end %>
+            <p>
+              <%= f.label :observation, "Observación" %>
+              <%= f.text_area :observation %>
+            </p><br>
 
-	<%= f.check_box :s_harvest %>
-	<%= f.label 's_harvest', "Segunda cosecha" %><br>
-
-	<%= f.check_box :trinitary %>
-	<%= f.label 'trinitary', "Trinitario" %><br>
-
-	<%= f.check_box :outsider %>
-	<%= f.label 'outsider', "Forastero" %>
-
-	<p>
-		<%= f.label :observation, "Observación" %>
-		<%= f.text_field :observation %>
-	</p>
-
-	<p>
-		<%= f.label :made_by, "Persona responsable" %>
-		<%= f.text_field :made_by %>
-	</p>
-
-	<% Category.all.order(:place).each do |category| %>
-		<table class="highlight">
-			<tr>
-				<th><%= category.name %></th>
-				<% (1..category.runs).each do |i| %>
-					<th><%= i %></th>
-				<% end %>
-			</tr>
-			<% category.parameters.order(:place).each do |parameter| %>
-				<tr>
-					<td width="7%"><%= parameter.name %></td>
-					<% (1..category.runs).each do |i| %>
-						<td width="7%"><%= f.number_field :code %></td>
-					<% end %>
-				</tr>
-				<% end %>
-		</table>
-	<% end %>
-
-	<p>
-		<%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
-	</p>
-<% end %>
+            <p>
+              <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
