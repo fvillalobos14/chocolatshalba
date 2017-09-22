@@ -2,10 +2,11 @@
   <div class="row">
     <div class="col m12">
       <%= form_for [@batch, @qualityControl] do |f| %>
+        <%= f.hidden_field :cut_at, :value => Date.today %>
         <div class="card">
           <div class="card-content">
             <div class="page-header">
-              <h1>Analisis de calidad</h1>
+              <h1>Análisis de calidad</h1>
             </div>
             <p>
               Cooperativa/Proveedor:
@@ -18,20 +19,20 @@
             </p>
 
             <p>
-              Codigo de Muestra:
+              Código de muestra:
               <%= @batch.enterCode %>
             </p>
 
             <p>
-              Peso final en libras:
-              <%= @batch.weight %>
+              Peso final:
+              <%= number_with_precision(@batch.weight, precision: 2) %>
+              lb
             </p>
-
-            <p>
-              <%= f.label :cut_at, "Fecha de corte" %>
-              <%= f.date_field :cut_at, value: Date.today, :readonly => true %>
-            </p>
-
+</div></div>
+            <div class="row">
+    <div class="col m12">
+      <div class="card">
+        <div class="card-content">
             <div class="input-field">
               <%= f.label :code, "Número de hoja" %>
               <%= f.text_field :code %>
@@ -89,16 +90,16 @@
                 <% end %>
               </table>
             <% end %>
-        <p>
-          <%= f.label :observation, "Observación" %>
-          <%= f.text_area :observation %>
-        </p>
+            <p>
+              <%= f.label :observation, "Observación" %>
+              <%= f.text_area :observation %>
+            </p><br>
 
-        <p>
-          <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
-        </p>
-      <% end %>
-        </div>
+            <p>
+              <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
+            </p>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

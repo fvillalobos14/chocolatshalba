@@ -14,7 +14,7 @@ class QualityControlsController < ApplicationController
     @batch=Batch.find(params[:batch_id])
     @qualityControl=@batch.build_quality_control(quality_params)
     @entry=EntryControl.find(@batch.entry_control_id)
-    
+
     if @qualityControl.save
         params["results"].each do |result|
           Result.create(:quality_control_id => @qualityControl.id, :parameter_id => result["parameter_id"], :run => result["run"], :score => result["score"])
@@ -25,14 +25,13 @@ class QualityControlsController < ApplicationController
         redirect_to @entry
     else
         redirect_to "/batches/"+@batch.id.to_s+"/quality_controls/new"
-    end    
+    end
   end
 
   def show
     @qualityControl=QualityControl.find(params[:id])
     @new_quality = defineResult(@qualityControl.id)
     @data =  dataChart(@qualityControl.id)
-    @option ={:width => 10, :height => 10}
     @revisions = Revision.all
   end
 
@@ -99,7 +98,7 @@ class QualityControlsController < ApplicationController
     end
     return current_quality
   end
-  
+
   def createNotification
     @notification = Notification.create(read: false, kind: 2)
     @notification.save

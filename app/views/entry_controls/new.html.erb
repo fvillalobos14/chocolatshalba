@@ -4,22 +4,14 @@
       <div class="card">
         <div class="card-content">
           <%= form_for [@organization, @organization.entry_controls.build] do |f| %>
+            <%= f.hidden_field :entryDate, :value => Date.today %>
+            <%= f.hidden_field :exchangeRate, :value => 32.80 %>
             <div class="page-header">
               <h1>Control de ingreso</h1>
             </div>
             <p>
               Cooperativa:
               <%= @organization.name %>
-            </p>
-
-            <p>
-              <%= f.label :entryDate, "Fecha de ingreso" %>
-              <%= f.date_field :entryDate, value: Date.today, :readonly => true %>
-            </p>
-
-            <p>
-              <%= f.label :exchangeRate, "Tasa de cambio(USD/LPS)" %>
-              <%= f.number_field :exchangeRate, value:23.80, :readonly => true %>
             </p>
 
             <div class="input-field">

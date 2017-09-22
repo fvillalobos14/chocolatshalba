@@ -10,26 +10,30 @@
           <thead>
             <tr>
               <th>Cantidad de sacos</th>
-              <th>Peso libras</th>
+              <th>Peso</th>
               <th>Código de identificación</th>
               <th>Tipo de cacao</th>
               <th>Material genético</th>
-              <th></th>
+              <% if current_user.warehouse_role %>
+                <th></th>
+              <% end %>
             </tr>
           </thead>
           <tbody>
             <% @batches.each do |batch| %>
-              <% if (!current_user.warehouse_role || current_user.admin_role) && !QualityControl.where(batch_id: batch.id).blank? && !Revision.where(quality_control_id: batch.quality_control.id).blank?%>
+              <% if !QualityControl.where(batch_id: batch.id).blank? && !Revision.where(quality_control_id: batch.quality_control.id).blank?%>
                 <tr>
                   <td><%= batch.sackAmount %></td>
-                  <td><%= batch.weight %></td>
+                  <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
                   <td><%= batch.enterCode %></td>
                   <td><%= CocoaType.find(batch.cocoaType).name %></td>
                   <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                  <%= form_for [batch] do |f| %>
-                    <td><%= button_tag(type: 'submit', class: "btn") do %>
-                      <i class="icon-ok icon-white"></i>Marcar como movido
-                    <% end %></td>
+                  <% if current_user.warehouse_role %>
+                    <%= form_for [batch] do |f| %>
+                      <td><%= button_tag(type: 'submit', class: "btn") do %>
+                        <i class="icon-ok icon-white"></i>Marcar como movido
+                      <% end %></td>
+                    <% end %>
                   <% end %>
                 </tr>
               <% end %>

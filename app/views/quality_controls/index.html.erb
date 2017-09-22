@@ -7,7 +7,7 @@
             <div class="page-header">
               <h1>Controles de ingreso</h1>
             </div>
-            <table>
+            <table class="striped">
               <thead>
                 <tr>
                   <th>Recibido por</th>
@@ -18,14 +18,14 @@
               </thead>
               <tbody>
                 <% @entries.each do |entry| %>
-                  <tr>
-                    <% if QualityControl.where(batch_id: entry.batches.ids).count(:id) < entry.batches.count(:id)%>
+                  <% if QualityControl.where(batch_id: entry.batches.ids).count(:id) < entry.batches.count(:id)%>
+                    <tr>
                       <td><%= entry.receivedBy %></td>
                       <td><%= entry.deliveredBy %></td>
                       <td><%= entry.entryDate %></td>
                       <td><%= link_to "Lotes", entry %></td>
-                    <% end %>
-                  </tr>
+                    </tr>
+                  <% end %>
                 <% end %>
               </tbody>
             </table>

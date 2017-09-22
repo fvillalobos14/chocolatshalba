@@ -7,11 +7,12 @@
             <h1>Organizaciones</h1>
           </div>
           <input type="text" id="oNameCode" onkeyup="filterTable()" placeholder="Busque organización...">
-          <table id="oTable">
+          <table id="oTable" class="striped">
             <thead>
               <tr>
                 <th>Código</th>
                 <th>Nombre</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -19,7 +20,11 @@
                 <tr>
                   <td><%= organization.code %></td>
                   <td><%= organization.name %></td>
-                  <td><%= link_to "Control de ingreso", organization %></td>
+                  <% if current_user.warehouse_role %>
+                    <td><%= link_to "Nuevo control de ingreso", new_organization_entry_control_path(organization) %></td>
+                  <% else %>
+                    <td><%= link_to "Controles de ingreso", organization %></td>
+                  <% end %>
                 </tr>
               <% end %>
             </tbody>
