@@ -28,79 +28,91 @@
               <%= number_with_precision(@batch.weight, precision: 2) %>
               lb
             </p>
-</div></div>
-            <div class="row">
-    <div class="col m12">
-      <div class="card">
-        <div class="card-content">
-            <div class="input-field">
-              <%= f.label :code, "Número de hoja" %>
-              <%= f.text_field :code %>
-            </div>
-
-            <div class="input-field">
-              <%= f.check_box :f_harvest %>
-              <%= f.label 'f_harvest', "Primera cosecha" %><br>
-            </div>
-
-            <div class="input-field">
-              <%= f.check_box :s_harvest %>
-              <%= f.label 's_harvest', "Segunda cosecha" %><br>
-            </div>
-
-            <div class="input-field">
-              <%= f.check_box :trinitary %>
-              <%= f.label 'trinitary', "Trinitario" %><br>
-            </div>
-
-            <div class="input-field">
-              <%= f.check_box :outsider %>
-              <%= f.label 'outsider', "Forastero" %>
-            </div><br>
-
-            <div class="input-field">
-              <%= f.label :made_by, "Persona responsable" %>
-              <%= f.text_field :made_by %>
-            </div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-content">
-            <% Category.all.order(:place).each do |category| %>
-              <table class="highlight">
-                <tr>
-                  <th><%= category.name %></th>
-                  <% (1..category.runs).each do |i| %>
-                    <th align="right"><%= i %></th>
-                  <% end %>
-                  <th></th>
-                </tr>
-                <% category.parameters.order(:place).each do |parameter| %>
-                  <tr>
-                    <td width="7%"><%= parameter.name %></td>
-                    <%= fields_for 'results[]', Result.new do |r| %>
-                      <% (1..category.runs).each do |i| %>
-                        <%= r.hidden_field :parameter_id, :value => parameter.id %>
-                        <%= r.hidden_field :run, :value => i %>
-                        <td width="3%"><%= r.number_field :score, step: :any, :value => 0, min: 0 %></td>
-                      <% end %>
-                    <% end %>
-                    <td width="1%"><%= parameter.unit %></td>
-                  </tr>
-                <% end %>
-              </table>
-            <% end %>
-            <p>
-              <%= f.label :observation, "Observación" %>
-              <%= f.text_area :observation %>
-            </p><br>
+          <ul class="collapsible" data-collapsible="accordion">
+            <li>
+              <div class="collapsible-header section-color white-text text"><i class="material-icons">chrome_reader_mode</i><b>DATOS GENERALES</b></div>
+              <div class="collapsible-body white">
+                <div class="page-header">
+                <h1>Análisis de calidad</h1>
+              </div>
+                <div class="input-field">
+                  <%= f.label :code, "Número de hoja" %>
+                  <%= f.text_field :code %>
+                </div>
 
-            <p>
-              <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
-            </p>
-          </div>
-        <% end %>
-      </div>
+                <div class="input-field">
+                  <%= f.check_box :f_harvest %>
+                  <%= f.label 'f_harvest', "Primera cosecha" %><br>
+                </div>
+
+                <div class="input-field">
+                  <%= f.check_box :s_harvest %>
+                  <%= f.label 's_harvest', "Segunda cosecha" %><br>
+                </div>
+
+                <div class="input-field">
+                  <%= f.check_box :trinitary %>
+                  <%= f.label 'trinitary', "Trinitario" %><br>
+                </div>
+
+                <div class="input-field">
+                  <%= f.check_box :outsider %>
+                  <%= f.label 'outsider', "Forastero" %>
+                </div><br>
+
+                <div class="input-field">
+                  <%= f.label :made_by, "Persona responsable" %>
+                  <%= f.text_field :made_by %>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header section-color white-text"><i class="material-icons">insert_chart</i><b>DATOS DE ANALISIS</b></div>
+              <div class="collapsible-body white">
+                <% Category.all.order(:place).each do |category| %>
+                    <% if category.name != "Valores de referencia" %>
+                        <table class="highlight">
+                          <tr>
+                            <th><%= category.name %></th>
+                            <% (1..category.runs).each do |i| %>
+                                <th align="right"><%= i %></th>
+                            <% end %>
+                            <th></th>
+                          </tr>
+                          <% category.parameters.order(:place).each do |parameter| %>
+                              <tr>
+                                <td width="7%"><%= parameter.name %></td>
+                                <%= fields_for 'results[]', Result.new do |r| %>
+                                    <% (1..category.runs).each do |i| %>
+                                        <%= r.hidden_field :parameter_id, :value => parameter.id %>
+                                        <%= r.hidden_field :run, :value => i %>
+                                        <td width="3%"><%= r.number_field :score, step: :any, :value => 0, min: 0 %></td>
+                                    <% end %>
+                                <% end %>
+                                <td width="1%"><%= parameter.unit %></td>
+                              </tr>
+                          <% end %>
+                        </table>
+                    <% end %>
+                <% end %>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header section-color white-text"><i class="material-icons">visibilityt</i><b>OBSERVACIÓN</b></div>
+              <div class="collapsible-body white">
+                <div class="input-field">
+                  <%= f.label :observation, "Observación" %>
+                  <%= f.text_area :observation, class:"materialize-textarea" %>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <p>
+            <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
+          </p>
+      <% end %>
     </div>
   </div>
 </div>
