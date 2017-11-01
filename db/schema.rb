@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170915234809) do
+ActiveRecord::Schema.define(version: 20171101174849) do
 
   create_table "acceptances", force: :cascade do |t|
     t.decimal "max_qualityA"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170915234809) do
     t.integer "entry_control_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "ft"
     t.index ["entry_control_id"], name: "index_batches_on_entry_control_id"
   end
 
@@ -44,6 +45,23 @@ ActiveRecord::Schema.define(version: 20170915234809) do
     t.integer "runs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "certificate_checks", force: :cascade do |t|
+    t.integer "decision"
+    t.text "description"
+    t.integer "checking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "pertain"
+    t.index ["checking_id"], name: "index_certificate_checks_on_checking_id"
+  end
+
+  create_table "checkings", force: :cascade do |t|
+    t.integer "batch_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["batch_id"], name: "index_checkings_on_batch_id"
   end
 
   create_table "cocoa_types", force: :cascade do |t|

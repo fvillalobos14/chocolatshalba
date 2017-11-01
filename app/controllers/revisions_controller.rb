@@ -20,7 +20,7 @@ class RevisionsController < ApplicationController
     end
 
     def createNotification
-      @notification = Notification.create(read: false, kind: 3)
-      @notification.save
+      #@notification = Notification.create(read: false, kind: 3)
+      #@notification.save
     end
 end

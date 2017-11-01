@@ -19,9 +19,13 @@ class QualityControlsController < ApplicationController
         params["results"].each do |result|
           Result.create(:quality_control_id => @qualityControl.id, :parameter_id => result["parameter_id"], :run => result["run"], :score => result["score"])
         end
+
         @notification = Notification.where("kind = 1").first
         @notification.destroy
         createNotification
+        if @batch.ft
+          createChecking(@batch.id)
+        end
         redirect_to @entry
     else
         redirect_to "/batches/"+@batch.id.to_s+"/quality_controls/new"
@@ -102,6 +106,11 @@ class QualityControlsController < ApplicationController
   def createNotification
     @notification = Notification.create(read: false, kind: 2)
     @notification.save
+  end
+
+  def createChecking(batch_id)
+    @checking = Checking.create(batch_id: batch_id)
+    @checking.save
   end
 
   def dataValues(quality)
