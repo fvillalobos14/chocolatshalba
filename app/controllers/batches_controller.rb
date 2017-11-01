@@ -37,7 +37,7 @@ class BatchesController < ApplicationController
 
   private
   def batches_params
-    params.require(:batch).permit(:sackAmount, :weight, :enterCode, :cocoaType, :geneticMaterial)
+    params.require(:batch).permit(:sackAmount, :weight, :enterCode, :cocoaType, :geneticMaterial, :ft)
   end
 
   def createNotification
