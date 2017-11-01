@@ -24,6 +24,16 @@
             </p>
 
             <p>
+              Fair Trade:
+              <% if @batch.ft %>
+                Si
+              <% else %>
+                No
+              <% end %>
+            </p>
+
+
+            <p>
               Peso final:
               <%= number_with_precision(@batch.weight, precision: 2) %>
               lb
