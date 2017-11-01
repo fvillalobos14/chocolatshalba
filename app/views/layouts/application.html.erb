@@ -64,7 +64,7 @@
           <% elsif  Checking.all.count > 1 %>
             <span class="new badge" data-badge-caption="nuevos"><%= Checking.all.count %></span>
           <% end %>
-          <li><%= link_to 'Chequeos de Lotes', checkings_path, class:"white-text li-back"%></li>
+          <li><%= link_to 'Chequeo de lotes', checkings_path, class:"white-text li-back"%></li>
         <% end %>
         <% if current_user.administration_role || current_user.admin_role %>
           <li><a class="white-text">Administración</a></li>
@@ -114,7 +114,7 @@
           <% elsif  (Checking.all.count - CertificateCheck.where(decision: 1).count) > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%=	 Checking.all.count - CertificateCheck.where(decision: 1).count %></span>
           <% end %>
-          <li><%= link_to 'Chequeos de Lotes', checkings_path, class:"white-text li-back"%></li>
+          <li><%= link_to 'Chequeo de lotes', checkings_path, class:"white-text li-back"%></li>
         <% end %>
         <% if current_user.administration_role || current_user.admin_role %>
           <li><a class="white-text">Administración</a></li>

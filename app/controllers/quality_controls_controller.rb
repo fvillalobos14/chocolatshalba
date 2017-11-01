@@ -23,7 +23,9 @@ class QualityControlsController < ApplicationController
         @notification = Notification.where("kind = 1").first
         @notification.destroy
         createNotification
-        createChecking(@batch.id)
+        if @batch.ft
+          createChecking(@batch.id)
+        end
         redirect_to @entry
     else
         redirect_to "/batches/"+@batch.id.to_s+"/quality_controls/new"
