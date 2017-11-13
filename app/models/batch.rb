@@ -1,7 +1,8 @@
 class Batch < ApplicationRecord
 	belongs_to :entry_control
 	has_one :quality_control
-	has_one :checking
+	has_many :certificate_checks
+	has_one :purchase
 
 	validates :sackAmount, presence: true
 	validates :weight, presence: true

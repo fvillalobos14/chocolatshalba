@@ -1,12 +1,17 @@
 class CertificateChecksController < ApplicationController
 
   def create
-    @checking = Checking.find(params[:checking_id])
-    @certificate = @checking.certificate_checks.create(certificate_params)
-    @certificate.pertain = @checking.batch_id
+    @batch = Batch.find(params[:batch_id])
+    @certificate = @batch.certificate_checks.create(certificate_params)
     @certificate.save
     if @certificate.decision == 1
       createNotification
+      @notification = Notification.where("kind = 4").first
+      #@notification.destroy
+      @batch.review = 2
+      @batch.save
+      @batch.buy = 1
+      @batch.save
     end
     redirect_to checkings_path
   end
@@ -17,7 +22,7 @@ class CertificateChecksController < ApplicationController
     end
 
   def createNotification
-    @notification = Notification.create(read: false, kind: 3)
+    @notification = Notification.create(read: false, kind: 5)
     @notification.save
   end
 end

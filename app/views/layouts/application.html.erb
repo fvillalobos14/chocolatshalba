@@ -59,13 +59,20 @@
         <% end %>
         <% if current_user.certification_role || current_user.admin_role %>
           <li><a class="white-text">Certificación</a><li>
-          <% if  Checking.all.count == 1 %>
-            <span class="new badge" data-badge-caption="nuevo"><%= Checking.all.count %></span>
-          <% elsif  Checking.all.count > 1 %>
-            <span class="new badge" data-badge-caption="nuevos"><%= Checking.all.count %></span>
+          <% if  Notification.where(kind: 4).count == 1 %>
+              <span class="new badge" data-badge-caption="nuevo"><%=	Notification.where(kind: 4).count  %></span>
+          <% elsif  (Checking.all.count - CertificateCheck.where(decision: 1).count) > 1 %>
+              <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 4).count %></span>
           <% end %>
           <li><%= link_to 'Chequeos de Lotes', checkings_path, class:"white-text li-back"%></li>
         <% end %>
+        <li><a class="white-text">Compras</a><li>
+        <% if  Notification.where(kind: 5).count == 1 %>
+            <span class="new badge" data-badge-caption="nuevo"><%=	Notification.where(kind: 5).count  %></span>
+        <% elsif  (Checking.all.count - CertificateCheck.where(decision: 1).count) > 1 %>
+            <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 5).count %></span>
+        <% end %>
+        <li><%= link_to 'Compra de Lotes', purchases_path, class:"white-text li-back"%></li>
         <% if current_user.administration_role || current_user.admin_role %>
           <li><a class="white-text">Administración</a></li>
         <% end %>
@@ -109,13 +116,20 @@
         <% end %>
         <% if current_user.certification_role || current_user.admin_role %>
           <li><a class="white-text">Certificación</a><li>
-          <% if  (Checking.all.count - CertificateCheck.where(decision: 1).count) == 1 %>
-              <span class="new badge" data-badge-caption="nuevo"><%=	Checking.all.count - CertificateCheck.where(decision: 1).count  %></span>
+          <% if  Notification.where(kind: 4).count == 1 %>
+              <span class="new badge" data-badge-caption="nuevo"><%=	Notification.where(kind: 4).count  %></span>
           <% elsif  (Checking.all.count - CertificateCheck.where(decision: 1).count) > 1 %>
-              <span class="new badge" data-badge-caption="nuevos"><%=	 Checking.all.count - CertificateCheck.where(decision: 1).count %></span>
+              <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 4).count %></span>
           <% end %>
           <li><%= link_to 'Chequeos de Lotes', checkings_path, class:"white-text li-back"%></li>
         <% end %>
+        <li><a class="white-text">Compras</a><li>
+        <% if  Notification.where(kind: 5).count == 1 %>
+            <span class="new badge" data-badge-caption="nuevo"><%=	Notification.where(kind: 5).count  %></span>
+        <% elsif  (Checking.all.count - CertificateCheck.where(decision: 1).count) > 1 %>
+            <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 5).count %></span>
+        <% end %>
+        <li><%= link_to 'Compra de Lotes', purchases_path, class:"white-text li-back"%></li>
         <% if current_user.administration_role || current_user.admin_role %>
           <li><a class="white-text">Administración</a></li>
         <% end %>

@@ -17,14 +17,14 @@
               </tr>
             </thead>
             <tbody>
-            <% @checkings.each do |check| %>
-              <% if check.certificate_checks.where(pertain: check.batch_id, decision: 1).count == 0 %>
+            <% @batches.each do |batch| %>
+              <% if batch.review == 1 %>
                 <tr>
-                  <td><%= check.batch.enterCode %></td>
-                  <td><%=	check.batch.entry_control.entry_number %></td>
-                  <td><%=	check.batch.entry_control.organization.name %></td>
-                  <td><%=	check.batch.entry_control.entryDate %></td>
-                  <td><%=	link_to "Revisar", check %></td>
+                  <td><%= batch.enterCode %></td>
+                  <td><%=	batch.entry_control.entry_number %></td>
+                  <td><%=	batch.entry_control.organization.name %></td>
+                  <td><%=	batch.entry_control.entryDate %></td>
+                  <td><%=	link_to "Revisar", batch %></td>
                 </tr>
               <% end %>
             <% end %>
