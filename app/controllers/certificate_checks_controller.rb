@@ -7,7 +7,7 @@ class CertificateChecksController < ApplicationController
     if @certificate.decision == 1
       createNotification
       @notification = Notification.where("kind = 4").first
-      #@notification.destroy
+      @notification.destroy
       @batch.review = 2
       @batch.save
       @batch.buy = 1
