@@ -179,6 +179,7 @@ ActiveRecord::Schema.define(version: 20171101174849) do
     t.boolean "certification_role", default: false
     t.boolean "quality_role", default: false
     t.boolean "administration_role", default: false
+    t.boolean "purchase_role", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
