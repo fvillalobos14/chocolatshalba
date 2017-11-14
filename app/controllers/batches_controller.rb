@@ -33,6 +33,8 @@ class BatchesController < ApplicationController
   end
 
   def show
+    @batch = Batch.find(params[:id])
+    @certificate = CertificateCheck.new
   end
 
   private

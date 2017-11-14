@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'purchases/index'
+
+  get 'purchases/new'
+
   get 'batches/moveBatches', to: 'batches#moveBatches'
 
   resources :quality_controls
@@ -8,6 +12,7 @@ Rails.application.routes.draw do
   resources :batches
   resources :checkings
   resources :certificate_checks
+  resources :purchases
 
   resources :entry_controls do
     resources :batches
@@ -15,7 +20,9 @@ Rails.application.routes.draw do
 
   resources :batches do
     resources :quality_controls
+    resources :certificate_checks
     resources :checkings
+    resources :purchases
   end
 
   resources :quality_controls do
@@ -24,10 +31,6 @@ Rails.application.routes.draw do
 
   resources :organizations do
     resources :entry_controls
-  end
-
-  resources :checkings do
-    resources :certificate_checks
   end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

@@ -23,9 +23,8 @@ class QualityControlsController < ApplicationController
         @notification = Notification.where("kind = 1").first
         @notification.destroy
         createNotification
-        if @batch.ft
-          createChecking(@batch.id)
-        end
+        @batch.review=1
+        @batch.save
         redirect_to @entry
     else
         redirect_to "/batches/"+@batch.id.to_s+"/quality_controls/new"
@@ -84,12 +83,12 @@ class QualityControlsController < ApplicationController
           if current_quality == "C"
               if parameter.acceptance.min_qualityC == -1
                 if parameter.acceptance.max_qualityC < value
-                  current_quality = "D"
+                  current_quality = "C"
                   break
                 end
               elsif parameter.acceptance.max_qualityC == -1
                 if parameter.acceptance.min_qualityC > value
-                  current_quality = "D"
+                  current_quality = "C"
                   break
                 end
               end
@@ -106,11 +105,8 @@ class QualityControlsController < ApplicationController
   def createNotification
     @notification = Notification.create(read: false, kind: 2)
     @notification.save
-  end
-
-  def createChecking(batch_id)
-    @checking = Checking.create(batch_id: batch_id)
-    @checking.save
+    @notification1 = Notification.create(read: false, kind: 4)
+    @notification1.save
   end
 
   def dataValues(quality)

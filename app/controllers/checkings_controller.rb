@@ -1,10 +1,8 @@
 class CheckingsController < ApplicationController
   def index
-    @checkings = Checking.all
+    @batches = Batch.all
   end
 
   def show
-    @checking = Checking.find(params[:id])
-    @certificate = CertificateCheck.new
   end
 end

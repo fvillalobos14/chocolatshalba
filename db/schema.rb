@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101174849) do
+ActiveRecord::Schema.define(version: 20171113181923) do
 
   create_table "acceptances", force: :cascade do |t|
     t.decimal "max_qualityA"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20171101174849) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "ft"
+    t.integer "review", default: 0
+    t.integer "buy", default: 0
     t.index ["entry_control_id"], name: "index_batches_on_entry_control_id"
   end
 
@@ -50,11 +52,10 @@ ActiveRecord::Schema.define(version: 20171101174849) do
   create_table "certificate_checks", force: :cascade do |t|
     t.integer "decision"
     t.text "description"
-    t.integer "checking_id"
+    t.integer "batch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "pertain"
-    t.index ["checking_id"], name: "index_certificate_checks_on_checking_id"
+    t.index ["batch_id"], name: "index_certificate_checks_on_batch_id"
   end
 
   create_table "checkings", force: :cascade do |t|
@@ -125,6 +126,14 @@ ActiveRecord::Schema.define(version: 20171101174849) do
     t.index ["category_id"], name: "index_parameters_on_category_id"
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.integer "decision"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "batch_id"
+    t.index ["batch_id"], name: "index_purchases_on_batch_id"
+  end
+
   create_table "quality_controls", force: :cascade do |t|
     t.integer "code"
     t.string "final_code"
@@ -179,6 +188,7 @@ ActiveRecord::Schema.define(version: 20171101174849) do
     t.boolean "certification_role", default: false
     t.boolean "quality_role", default: false
     t.boolean "administration_role", default: false
+    t.boolean "purchase_role", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
