@@ -79,7 +79,6 @@
               <div class="collapsible-header section-color white-text"><i class="material-icons">insert_chart</i><b>DATOS DE ANALISIS</b></div>
               <div class="collapsible-body white">
                 <% Category.all.order(:place).each do |category| %>
-                    <% if category.name != "Valores de referencia" %>
                         <table class="highlight">
                           <tr>
                             <th><%= category.name %></th>
@@ -102,7 +101,6 @@
                               </tr>
                           <% end %>
                         </table>
-                    <% end %>
                 <% end %>
               </div>
             </li>

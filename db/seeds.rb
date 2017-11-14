@@ -34,6 +34,12 @@ User.create! do |u|
 	u.administration_role = true
 end
 
+User.create! do |u|
+	u.email = 'purchase'
+	u.password = 'purchase'
+	u.purchase_role = true
+end
+
 Organization.create! do |c|
 	c.code = 'CCJ'
 	c.name = 'COPRACAJUL'

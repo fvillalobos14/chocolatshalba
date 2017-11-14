@@ -6,5 +6,6 @@ class AddRolesToUser < ActiveRecord::Migration[5.1]
   	add_column :users, :certification_role, :boolean, default: false
   	add_column :users, :quality_role, :boolean, default: false
   	add_column :users, :administration_role, :boolean, default: false
+    add_column :users, :purchase_role, :boolean, default: false
   end
 end

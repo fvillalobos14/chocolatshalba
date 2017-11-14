@@ -136,13 +136,13 @@
 </div>
 
 <% if not Revision.where(quality_control_id: @qualityControl.id).nil? %>
-  <div id="modal1" class="modal" style="width: 40% !important ; height: 30% !important ;">
+  <div id="modal1" class="modal" style="width: 40% !important ; height: 40% !important ;">
     <%= form_for ([@qualityControl, @qualityControl.build_revision]) do |f| %>
       <div class="modal-content">
         <center>
           <h5>Seleccione:</h5>
           <div class="field">
-            <p style="width: 40%"><%= f.select :status, options_for_select([["Aceptar", 1], ["Rechazar", 0]]), class:"dropdown-button btn" %></p>
+            <p style="width: 40%"><%= f.select :status, options_for_select([["A", 0], ["B", 1] , ["C", 2]]), class:"dropdown-button btn" %></p>
           </div>
           <%= f.submit 'Aceptar',class:"modal-action modal-close modal-action waves-effect waves-light btn" %>
           <a class="modal-action modal-close waves-effect waves-light red darken-1 btn">Cancelar</a>
