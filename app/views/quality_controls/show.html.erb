@@ -8,22 +8,22 @@
           </div>
           <p>
             Cooperativa/Proveedor:
-            <%= @qualityControl.batch.entry_control.organization.name %>
+            <%= @batch.entry_control.organization.name %>
           </p>
 
           <p>
             Fecha de ingreso:
-            <%= @qualityControl.batch.entry_control.entryDate %>
+            <%= @batch.entry_control.entryDate %>
           </p>
 
           <p>
             Código de muestra:
-            <%= @qualityControl.batch.enterCode %>
+            <%= @batch.enterCode %>
           </p>
 
           <p>
             Peso final:
-            <%= number_with_precision(@qualityControl.batch.weight, precision: 2) %>
+            <%= number_with_precision(@batch.weight, precision: 2) %>
             lb
           </p>
         </div>
@@ -111,13 +111,13 @@
                 <td width="7%"><%= parameter.name %></td>
                 <% if category.runs > 1 %>
                   <% (1..category.runs).each do |i| %>
-                    <td width="7%"><%= number_with_precision(Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id, run: i).first.score,precision: 0) %></td>
+                    <td width="7%"><%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: i).first.score,precision: 0) %></td>
                   <% end %>
                 <% else %>
-                  <td width="7%"><%= number_with_precision(Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id, run: 1).first.score, precision: 2) %><%= parameter.unit %></td>
+                  <td width="7%"><%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: 1).first.score, precision: 2) %><%= parameter.unit %></td>
                 <% end %>
                 <% if category.runs > 1 %>
-                  <td width="7%"><%= number_with_precision(Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id).sum(:score)/3, precision: 2) %>%</td>
+                  <td width="7%"><%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)/3, precision: 2) %>%</td>
                 <% end %>
               </tr>
               <% end %>

@@ -4,6 +4,7 @@ class CreateCategories < ActiveRecord::Migration[5.1]
       t.string :name
       t.integer :place
       t.integer :runs
+      t.boolean :sensory
 
       t.timestamps
     end

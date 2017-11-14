@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20171113181923) do
     t.string "name"
     t.integer "place"
     t.integer "runs"
+    t.boolean "sensory"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -154,11 +155,11 @@ ActiveRecord::Schema.define(version: 20171113181923) do
     t.decimal "score"
     t.integer "run"
     t.integer "parameter_id"
-    t.integer "quality_control_id"
+    t.integer "batch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["batch_id"], name: "index_results_on_batch_id"
     t.index ["parameter_id"], name: "index_results_on_parameter_id"
-    t.index ["quality_control_id"], name: "index_results_on_quality_control_id"
   end
 
   create_table "revisions", force: :cascade do |t|

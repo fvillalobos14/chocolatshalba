@@ -74,24 +74,28 @@ Category.create do |c|
 	c.name = 'Contenido de agua'
 	c.place = 1
 	c.runs = 1
+	c.sensory = false
 end
 
 Category.create do |c|
 	c.name = 'Peso de granos'
 	c.place = 2
 	c.runs = 1
+	c.sensory = false
 end
 
 Category.create do |c|
 	c.name = 'Prueba de corte'
 	c.place = 3
 	c.runs = 6
+	c.sensory = false
 end
 
 Category.create do |c|
 	c.name = 'Valores de referencia'
 	c.place = 4
 	c.runs = 1
+	c.sensory = true
 end
 
 Parameter.create do |p|

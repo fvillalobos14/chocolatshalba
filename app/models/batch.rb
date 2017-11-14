@@ -3,6 +3,7 @@ class Batch < ApplicationRecord
 	has_one :quality_control
 	has_many :certificate_checks
 	has_one :purchase
+	has_many :results
 
 	validates :sackAmount, presence: true
 	validates :weight, presence: true
