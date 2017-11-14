@@ -1,3 +1,3 @@
 class CertificateCheck < ApplicationRecord
-  belongs_to :checking
+  belongs_to :batch
 end
