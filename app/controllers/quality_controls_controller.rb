@@ -17,14 +17,16 @@ class QualityControlsController < ApplicationController
 
     if @qualityControl.save
         params["results"].each do |result|
-          Result.create(:quality_control_id => @qualityControl.id, :parameter_id => result["parameter_id"], :run => result["run"], :score => result["score"])
+          Result.create(:batch_id => @batch.id, :parameter_id => result["parameter_id"], :run => result["run"], :score => result["score"])
         end
 
+        if not @batch.sensory_analysis.nil?
         @notification = Notification.where("kind = 1").first
         @notification.destroy
-        createNotification
-        @batch.review = 1
+        createNotification(@batch)
+        @batch.review=1
         @batch.save
+        end
         redirect_to @entry
     else
         redirect_to "/batches/"+@batch.id.to_s+"/quality_controls/new"
@@ -32,9 +34,12 @@ class QualityControlsController < ApplicationController
   end
 
   def show
-    @qualityControl = QualityControl.find(params[:id])
-    @new_quality = defineResult(@qualityControl.id)
-    @data =  dataChart(@qualityControl.id)
+
+    @qualityControl=QualityControl.find(params[:id])
+    @batch=Batch.find(@qualityControl.batch.id)
+    @new_quality = defineResult(@batch.id)
+    @data =  dataChart(@batch.id)
+
     @revisions = Revision.all
   end
 
@@ -43,17 +48,18 @@ class QualityControlsController < ApplicationController
     params.require(:quality_control).permit(:code, :final_code, :cut_at, :f_harvest, :s_harvest, :trinitary, :outsider, :observation, :made_by)
   end
 
-  def defineResult(quality)
-    @qualityControl = QualityControl.find(quality)
+  def defineResult(batch)
+    batch=Batch.find(batch)
+
     current_quality = "A"
     Category.all.order(:place).each do |category|
       category.parameters.order(:place).each do |parameter|
         value = -1
         if parameter.acceptance != nil
           if category.runs > 1
-            value = Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id).sum(:score)/3
+            value = Result.where(parameter_id: parameter.id, batch_id: batch.id).sum(:score)/3
           else
-            value = Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id, run: 1).first.score
+            value = Result.where(parameter_id: parameter.id, batch_id: batch.id, run: 1).first.score
           end
           #------------------------
           if current_quality == "A"
@@ -102,22 +108,25 @@ class QualityControlsController < ApplicationController
     return current_quality
   end
 
-  def createNotification
+  def createNotification(batch)
+    batch=Batch.find(batch.id)
     @notification = Notification.create(read: false, kind: 2)
     @notification.save
+    if batch.ft 
     @notification1 = Notification.create(read: false, kind: 4)
     @notification1.save
+    end 
   end
 
-  def dataValues(quality)
-    @qualityControl=QualityControl.find(quality)
+  def dataValues(batch)
+    batch=Batch.find(batch)
     data = []
     Category.all.order(:place).each do |category|
       category.parameters.order(:place).each do |parameter|
         if parameter.acceptance == nil
           if parameter.category.place = 4
             if category.runs = 1
-              value = Result.where(parameter_id: parameter.id, quality_control_id: @qualityControl.id, run: 1).first.score
+              value = Result.where(parameter_id: parameter.id, batch_id: batch.id, run: 1).first.score
               data.append(value)
             end
           end
@@ -127,8 +136,7 @@ class QualityControlsController < ApplicationController
     return data
   end
 
-  def dataChart(quality)
-    @qualityControl=QualityControl.find(quality)
+  def dataChart(batch)
     dataname = []
     paramaterPlace = Parameter.all
     for parama in paramaterPlace
@@ -136,7 +144,7 @@ class QualityControlsController < ApplicationController
         dataname.append(parama.name)
       end
     end
-    datavalues = dataValues(quality)
+    datavalues = dataValues(batch)
     data = {
         labels: dataname,
         datasets: [

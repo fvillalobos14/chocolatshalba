@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114190152) do
+ActiveRecord::Schema.define(version: 20161114210303) do
+
 
   create_table "acceptances", force: :cascade do |t|
     t.decimal "max_qualityA"
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 20171114190152) do
     t.string "name"
     t.integer "place"
     t.integer "runs"
+    t.boolean "sensory"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -166,11 +168,11 @@ ActiveRecord::Schema.define(version: 20171114190152) do
     t.decimal "score"
     t.integer "run"
     t.integer "parameter_id"
-    t.integer "quality_control_id"
+    t.integer "batch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["batch_id"], name: "index_results_on_batch_id"
     t.index ["parameter_id"], name: "index_results_on_parameter_id"
-    t.index ["quality_control_id"], name: "index_results_on_quality_control_id"
   end
 
   create_table "revisions", force: :cascade do |t|
@@ -179,6 +181,15 @@ ActiveRecord::Schema.define(version: 20171114190152) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quality_control_id"], name: "index_revisions_on_quality_control_id"
+  end
+
+  create_table "sensory_analyses", force: :cascade do |t|
+    t.string "observation"
+    t.string "made_by"
+    t.integer "batch_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["batch_id"], name: "index_sensory_analyses_on_batch_id"
   end
 
   create_table "users", force: :cascade do |t|

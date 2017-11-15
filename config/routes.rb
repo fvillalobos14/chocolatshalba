@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get 'batches/moveBatches', to: 'batches#moveBatches'
 
+  resources :sensory_analyses
   resources :quality_controls
   resources :revisions
   resources :entry_controls
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
     resources :certificate_checks
     resources :checkings
     resources :purchases
+    resources :sensory_analyses
   end
 
   resources :quality_controls do
