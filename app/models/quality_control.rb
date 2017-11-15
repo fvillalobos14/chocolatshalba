@@ -1,5 +1,4 @@
 class QualityControl < ApplicationRecord
-  has_many :results
   belongs_to :batch
   has_one :revision
 

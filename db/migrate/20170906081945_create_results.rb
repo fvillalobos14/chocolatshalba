@@ -4,7 +4,7 @@ class CreateResults < ActiveRecord::Migration[5.1]
       t.decimal :score
       t.integer :run
       t.references :parameter, foreign_key: true
-      t.references :quality_control, foreign_key: true
+      t.references :batch, foreign_key: true
 
       t.timestamps
     end
