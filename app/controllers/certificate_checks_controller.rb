@@ -5,7 +5,7 @@ class CertificateChecksController < ApplicationController
     @certificate = @batch.certificate_checks.create(certificate_params)
     @certificate.save
     if @certificate.decision == 1
-      if not @batch.revision.nil?
+      if not @batch.quality_control.revision.nil?
         createNotification
       end
       @notification = Notification.where("kind = 4").first

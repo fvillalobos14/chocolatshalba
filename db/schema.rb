@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114210303) do
-
+ActiveRecord::Schema.define(version: 20171114210303) do
 
   create_table "acceptances", force: :cascade do |t|
     t.decimal "max_qualityA"
