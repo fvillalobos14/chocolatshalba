@@ -1,19 +1,19 @@
 class QualityControlsController < ApplicationController
   def index
     @notification = Notification.where(kind: 1)
-    @entries=EntryControl.all
+    @entries = EntryControl.all
   end
 
   def new
-  	@batch=Batch.find(params[:batch_id])
-  	@qualityControl=@batch.build_quality_control
+  	@batch = Batch.find(params[:batch_id])
+  	@qualityControl = @batch.build_quality_control
     @Acceptances = Acceptance.all
   end
 
   def create
-    @batch=Batch.find(params[:batch_id])
-    @qualityControl=@batch.build_quality_control(quality_params)
-    @entry=EntryControl.find(@batch.entry_control_id)
+    @batch = Batch.find(params[:batch_id])
+    @qualityControl = @batch.build_quality_control(quality_params)
+    @entry = EntryControl.find(@batch.entry_control_id)
 
     if @qualityControl.save
         params["results"].each do |result|
@@ -23,7 +23,7 @@ class QualityControlsController < ApplicationController
         @notification = Notification.where("kind = 1").first
         @notification.destroy
         createNotification
-        @batch.review=1
+        @batch.review = 1
         @batch.save
         redirect_to @entry
     else
@@ -32,7 +32,7 @@ class QualityControlsController < ApplicationController
   end
 
   def show
-    @qualityControl=QualityControl.find(params[:id])
+    @qualityControl = QualityControl.find(params[:id])
     @new_quality = defineResult(@qualityControl.id)
     @data =  dataChart(@qualityControl.id)
     @revisions = Revision.all
@@ -44,7 +44,7 @@ class QualityControlsController < ApplicationController
   end
 
   def defineResult(quality)
-    @qualityControl=QualityControl.find(quality)
+    @qualityControl = QualityControl.find(quality)
     current_quality = "A"
     Category.all.order(:place).each do |category|
       category.parameters.order(:place).each do |parameter|

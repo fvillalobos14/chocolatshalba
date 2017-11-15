@@ -7,17 +7,17 @@
             <h1>Lote</h1>
           </div>
           <%= form_for [@entryControl, @entryControl.batches.build] do |f| %>
-            <div class="input-field">
+            <div class = "input-field">
               <%= f.label :sackAmount, "Cantidad de sacos" %>
               <%= f.number_field :sackAmount, min: 0 %>
             </div>
 
-            <div class="input-field">
+            <div class = "input-field">
               <%= f.label :weight, "Peso en libras" %>
               <%= f.number_field :weight, step: :any, min: 0 %>
             </div>
 
-            <div class="input-field">
+            <div class = "input-field">
               <%= f.label :enterCode, "Código de indentificación" %>
               <%= f.text_field :enterCode %>
             </div>
@@ -32,7 +32,7 @@
               <%= f.collection_select :geneticMaterial, @genetic, :id, :name, class:"dropdown-button btn" %>
             </p>
 
-            <div class="input-field">
+            <div class = "input-field">
               <%= f.check_box :ft %>
               <%= f.label 'ft', "Fair Trade" %>
             </div>

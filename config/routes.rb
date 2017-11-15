@@ -33,6 +33,10 @@ Rails.application.routes.draw do
     resources :entry_controls
   end
 
+  resources :entry_controls do
+    resources :documents
+  end
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, controllers: {
