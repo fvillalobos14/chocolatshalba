@@ -6,32 +6,32 @@
           <div class="page-header">
             <h1>Revision de Documentación</h1>
           </div>
-          <p>Codigo: <%=  @batch.enterCode %></p>
-          <p>Control de Ingreso: <%=  @batch.entry_control.entry_number %></p>
-          <p>Organización: <%=  @batch.entry_control.organization.name %></p>
-          <p>Fecha de Ingreso: <%=  @batch.entry_control.entryDate %></p>
+          <p>Codigo: <%= @batch.enterCode %></p>
+          <p>Control de Ingreso: <%= @batch.entry_control.entry_number %></p>
+          <p>Organización: <%= @batch.entry_control.organization.name %></p>
+          <p>Fecha de Ingreso: <%= @batch.entry_control.entryDate %></p>
           <h2>Documentos</h2>
-          <a class="waves-effect waves-light btn" data-target="modal1">Determinar</a>
+          <a class = "waves-effect waves-light btn" data-target = "modal1">Determinar</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div id="modal1" class="modal" >
+<div id = "modal1" class = "modal" >
   <%= form_for ([@batch, @batch.certificate_checks.build]) do |f| %>
       <div class="modal-content">
         <center>
           <h5>Seleccione:</h5>
-          <div class="field">
-            <p style="width: 40%"><%= f.select :decision, options_for_select([["Aceptar", 1], ["Rechazar", 0]]), class:"dropdown-button btn" %></p>
+          <div class = "field">
+            <p style = "width: 40%"><%= f.select :decision, options_for_select([["Aceptar", 1], ["Rechazar", 0]]), class:"dropdown-button btn" %></p>
           </div>
-          <div class="input-field">
+          <div class = "input-field">
             <%= f.label :description, "Observación" %>
             <%= f.text_area :description, class:"materialize-textarea" %>
           </div>
           <%= f.submit 'Aceptar',class:"modal-action modal-close waves-effect waves-light btn" %>
-          <a class="modal-action modal-close waves-effect waves-light red darken-1 btn">Cancelar</a>
+          <a class = "modal-action modal-close waves-effect waves-light red darken-1 btn">Cancelar</a>
         </center>
       </div>
   <% end %>
@@ -50,4 +50,3 @@
         $('select').material_select();
     })
 </script>
-

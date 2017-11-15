@@ -3,6 +3,7 @@ class EntryControl < ApplicationRecord
   has_many :batches
   has_attached_file :ec_files
   do_not_validate_attachment_file_type :ec_files
+  has_many :documents
 
   validates :organization, presence: true
   validates :entryDate, presence: true
