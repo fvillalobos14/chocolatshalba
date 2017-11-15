@@ -29,6 +29,7 @@
               <th>Tipo de cacao</th>
               <th>Material genético</th>
               <th></th>
+              <th></th>
             </tr>
             </thead>
             <tbody>
@@ -41,9 +42,15 @@
                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                 <% if current_user.quality_role && QualityControl.where(batch_id: batch.id).blank? %>
                   <td><%= link_to "Análisis de calidad", new_batch_quality_control_path(batch)%></td>
+                  
                 <% else %>
                   <td></td>
                 <% end %>
+                <% if current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank? %>
+                  <td><%= link_to "Análisis sensorial", new_batch_sensory_analysis_path(batch)%></td>
+              <% else %>
+                 <td></td>
+              <% end %>
               </tr>
             <% end %>
             </tbody>

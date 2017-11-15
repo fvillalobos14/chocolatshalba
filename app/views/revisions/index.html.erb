@@ -17,7 +17,7 @@
             </thead>
             <tbody>
               <% @batches.each do |batch|%>
-                <% if not batch.quality_control.nil? %>
+                <% if not batch.quality_control.nil? and not batch.sensory_analysis.nil? %>
                   <% if  batch.quality_control.revision.nil? %>
                     <tr>
                       <td><%=	batch.enterCode %></td>

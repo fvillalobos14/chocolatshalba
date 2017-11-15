@@ -11,6 +11,16 @@ class RevisionsController < ApplicationController
     end
     @notification = Notification.where("kind = 2").first
     @notification.destroy
+    @batch=@qualityControl.batch
+
+    if not @qualityControl.batch.ft or not @qualityControl.batch.certificate_checks.first.nil?
+    createNotification
+    @batch.review = 2
+    @batch.save
+    @batch.buy = 1
+    @batch.save
+    end
+
     redirect_to revisions_path
   end
 
@@ -20,7 +30,7 @@ class RevisionsController < ApplicationController
     end
 
     def createNotification
-      #@notification = Notification.create(read: false, kind: 3)
-      #@notification.save
+      @notification = Notification.create(read: false, kind: 5)
+      @notification.save
     end
 end

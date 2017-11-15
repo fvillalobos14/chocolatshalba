@@ -61,7 +61,7 @@
           <li><a class="white-text">Certificación</a><li>
           <% if  Notification.where(kind: 4).count == 1 %>
               <span class="new badge" data-badge-caption="nuevo"><%=	Notification.where(kind: 4).count  %></span>
-          <% elsif  (Checking.all.count - CertificateCheck.where(decision: 1).count) > 1 %>
+          <% elsif  Notification.where(kind: 4).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 4).count %></span>
           <% end %>
           <li><%= link_to 'Chequeo de lotes', checkings_path, class:"white-text li-back"%></li>
@@ -70,7 +70,7 @@
           <li><a class="white-text">Compras</a><li>
           <% if  Notification.where(kind: 5).count == 1 %>
               <span class="new badge" data-badge-caption="nuevo"><%=	Notification.where(kind: 5).count  %></span>
-          <% elsif  (Checking.all.count - CertificateCheck.where(decision: 1).count) > 1 %>
+          <% elsif  Notification.where(kind: 5).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 5).count %></span>
           <% end %>
           <li><%= link_to 'Compra de Lotes', purchases_path, class:"white-text li-back"%></li>
@@ -120,7 +120,7 @@
           <li><a class="white-text">Certificación</a><li>
           <% if  Notification.where(kind: 4).count == 1 %>
               <span class="new badge" data-badge-caption="nuevo"><%=	Notification.where(kind: 4).count  %></span>
-          <% elsif  (Checking.all.count - CertificateCheck.where(decision: 1).count) > 1 %>
+          <% elsif  Notification.where(kind: 4).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 4).count %></span>
           <% end %>
           <li><%= link_to 'Chequeo de lotes', checkings_path, class:"white-text li-back"%></li>
@@ -129,7 +129,7 @@
           <li><a class="white-text">Compras</a><li>
           <% if  Notification.where(kind: 5).count == 1 %>
               <span class="new badge" data-badge-caption="nuevo"><%=	Notification.where(kind: 5).count  %></span>
-          <% elsif  (Checking.all.count - CertificateCheck.where(decision: 1).count) > 1 %>
+          <% elsif  Notification.where(kind: 5).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 5).count %></span>
           <% end %>
           <li><%= link_to 'Compra de Lotes', purchases_path, class:"white-text li-back"%></li>

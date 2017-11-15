@@ -20,11 +20,13 @@ class QualityControlsController < ApplicationController
           Result.create(:batch_id => @batch.id, :parameter_id => result["parameter_id"], :run => result["run"], :score => result["score"])
         end
 
+        if not @batch.sensory_analysis.nil?
         @notification = Notification.where("kind = 1").first
         @notification.destroy
-        createNotification
+        createNotification(@batch)
         @batch.review=1
         @batch.save
+        end
         redirect_to @entry
     else
         redirect_to "/batches/"+@batch.id.to_s+"/quality_controls/new"
@@ -103,11 +105,14 @@ class QualityControlsController < ApplicationController
     return current_quality
   end
 
-  def createNotification
+  def createNotification(batch)
+    batch=Batch.find(batch.id)
     @notification = Notification.create(read: false, kind: 2)
     @notification.save
+    if batch.ft 
     @notification1 = Notification.create(read: false, kind: 4)
     @notification1.save
+    end 
   end
 
   def dataValues(batch)
