@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114210303) do
+ActiveRecord::Schema.define(version: 20161114210303) do
+
 
   create_table "acceptances", force: :cascade do |t|
     t.decimal "max_qualityA"
@@ -79,6 +80,18 @@ ActiveRecord::Schema.define(version: 20171114210303) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_collection_centers_on_organization_id"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string "title"
+    t.integer "entry_control_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "ec_data_file_name"
+    t.string "ec_data_content_type"
+    t.integer "ec_data_file_size"
+    t.datetime "ec_data_updated_at"
+    t.index ["entry_control_id"], name: "index_documents_on_entry_control_id"
   end
 
   create_table "entry_controls", force: :cascade do |t|

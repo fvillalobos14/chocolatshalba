@@ -1,19 +1,19 @@
 class QualityControlsController < ApplicationController
   def index
     @notification = Notification.where(kind: 1)
-    @entries=EntryControl.all
+    @entries = EntryControl.all
   end
 
   def new
-  	@batch=Batch.find(params[:batch_id])
-  	@qualityControl=@batch.build_quality_control
+  	@batch = Batch.find(params[:batch_id])
+  	@qualityControl = @batch.build_quality_control
     @Acceptances = Acceptance.all
   end
 
   def create
-    @batch=Batch.find(params[:batch_id])
-    @qualityControl=@batch.build_quality_control(quality_params)
-    @entry=EntryControl.find(@batch.entry_control_id)
+    @batch = Batch.find(params[:batch_id])
+    @qualityControl = @batch.build_quality_control(quality_params)
+    @entry = EntryControl.find(@batch.entry_control_id)
 
     if @qualityControl.save
         params["results"].each do |result|
@@ -34,10 +34,12 @@ class QualityControlsController < ApplicationController
   end
 
   def show
+
     @qualityControl=QualityControl.find(params[:id])
     @batch=Batch.find(@qualityControl.batch.id)
     @new_quality = defineResult(@batch.id)
     @data =  dataChart(@batch.id)
+
     @revisions = Revision.all
   end
 
@@ -48,6 +50,7 @@ class QualityControlsController < ApplicationController
 
   def defineResult(batch)
     batch=Batch.find(batch)
+
     current_quality = "A"
     Category.all.order(:place).each do |category|
       category.parameters.order(:place).each do |parameter|

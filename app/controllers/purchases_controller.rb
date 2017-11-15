@@ -9,8 +9,8 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @batch=Batch.find(params[:batch_id])
-    @purchase=@batch.build_purchase(purchase_params)
+    @batch = Batch.find(params[:batch_id])
+    @purchase = @batch.build_purchase(purchase_params)
     if @purchase.save
       @notification = Notification.where("kind = 5").first
       @notification.destroy

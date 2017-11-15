@@ -3,12 +3,12 @@ class BatchesController < ApplicationController
   def new
     @cocoa = CocoaType.all
     @genetic = GeneticMaterial.all
-  	@entryControl=EntryControl.find(params[:entry_control_id])
+  	@entryControl = EntryControl.find(params[:entry_control_id])
   	@batch=@entryControl.batches.build
   end
 
   def create
-    @entryControl=EntryControl.find(params[:entry_control_id])
+    @entryControl = EntryControl.find(params[:entry_control_id])
     @batch=@entryControl.batches.build(batches_params)
 
     if @batch.save
@@ -20,11 +20,11 @@ class BatchesController < ApplicationController
   end
 
   def moveBatches
-    @batches=Batch.where(moved: false)
+    @batches = Batch.where(moved: false)
   end
 
   def update
-    @batch=Batch.find(params[:id])
+    @batch = Batch.find(params[:id])
     if @batch.update(moved: true)
       @notification = Notification.where("kind = 3").first
       @notification.destroy
