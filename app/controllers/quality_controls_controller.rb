@@ -14,7 +14,6 @@ class QualityControlsController < ApplicationController
     @batch = Batch.find(params[:batch_id])
     @qualityControl = @batch.build_quality_control(quality_params)
     @entry = EntryControl.find(@batch.entry_control_id)
-
     if @qualityControl.save
         params["results"].each do |result|
           Result.create(:batch_id => @batch.id, :parameter_id => result["parameter_id"], :run => result["run"], :score => result["score"])

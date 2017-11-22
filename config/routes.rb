@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'reports/organization'
+
+
   get 'purchases/index'
 
   get 'purchases/new'
@@ -14,9 +17,11 @@ Rails.application.routes.draw do
   resources :checkings
   resources :certificate_checks
   resources :purchases
+  resources :reports
 
   resources :entry_controls do
     resources :batches
+    resources :reports
   end
 
   resources :batches do
@@ -25,6 +30,7 @@ Rails.application.routes.draw do
     resources :checkings
     resources :purchases
     resources :sensory_analyses
+    resources :reports
   end
 
   resources :quality_controls do
@@ -37,6 +43,10 @@ Rails.application.routes.draw do
 
   resources :entry_controls do
     resources :documents
+  end
+
+  resources :reports do
+    resources :entry_controls
   end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

@@ -16,4 +16,21 @@ class EntryControl < ApplicationRecord
   def remove_batches
     Batch.where(entry_control_id: id).destroy_all
   end
+
+  def self.search(search)
+
+    puts search
+    if search != nil
+      organization = Organization.find_by_name(search)
+      if organization != nil
+        where(organization_id: organization.id)
+      else
+        all
+      end
+    else
+      all
+    end
+
+  end
+
 end
