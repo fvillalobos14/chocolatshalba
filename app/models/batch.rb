@@ -4,6 +4,7 @@ class Batch < ApplicationRecord
 	has_one :sensory_analysis
 	has_many :certificate_checks
 	has_one :purchase
+	has_one :invoice
 	has_many :results
 
 	validates :sackAmount, presence: true
