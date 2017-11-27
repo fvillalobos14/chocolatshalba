@@ -17,18 +17,30 @@ class EntryControl < ApplicationRecord
     Batch.where(entry_control_id: id).destroy_all
   end
 
-  def self.search(search)
+  def self.search(search, from, hasta)
 
-    puts search
+    dateFrom = DateTime.new(1996,02,16,0,0,0)
+    dateTo = DateTime.now
+
+    if from != ""
+      fromsp = from.split(" ")
+      dateFrom = DateTime.new(fromsp[2].to_i,Date::MONTHNAMES.index((fromsp[1]).tr(',','')),fromsp[0].to_i,0,0,0)
+    end
+
+    if hasta != ""
+      tosp = hasta.split(" ")
+      dateTo = DateTime.new(tosp[2].to_i,Date::MONTHNAMES.index((tosp[1]).tr(',','')),tosp[0].to_i,0,0,0)
+    end
+
     if search != nil
       organization = Organization.find_by_name(search)
       if organization != nil
-        where(organization_id: organization.id)
+       where({organization_id: organization.id, created_at: dateFrom..dateTo})
       else
-        all
+        where(created_at: dateFrom..dateTo)
       end
     else
-      all
+      where(created_at: dateFrom..dateTo)
     end
 
   end
