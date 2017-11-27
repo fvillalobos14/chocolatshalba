@@ -7,11 +7,14 @@
             <h1>Reportes por Organización</h1>
           </div>
           <%= form_tag({:controller => "reports", :action => "organization"}, :method => :get) do %>
-              <p>Organización: <%= text_field_tag "searchbox", params[:searchbox] %></p>
+
+              <%=	 select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name) %>
 
               <p>Desde: <%= text_field_tag "from", params[:from], type:"date", class:"datepicker" %></p>
 
               <p>Hasta: <%= text_field_tag "to", params[:to], type:"date", class:"datepicker" %></p>
+
+              <p>Calidad: <%= select_tag :quality,  options_for_select([["A", 0], ["B", 1] , ["C", 2]], params[:quality]), id: "different_option_value_html", onchange: "this.form.submit();"%></p>
 
               <p>
               <%= check_box_tag(:purchased,params[:purchased]) %>
@@ -29,7 +32,7 @@
               <th>Codigo de identificación</th>
               <th>Tipo de cacao</th>
               <th>Material genético</th>
-              <th></th>
+              <th>Organización</th>
               <th></th>
             </tr>
             </thead>
@@ -37,7 +40,7 @@
             <% @entries.each  do |entry| %>
                 <% entry.batches.each do |batch| %>
                     <tr>
-                      <%	 if params[:purchased] == nil %>
+                      <%	 if params[:purchased] == nil && params[:quality] == "" %>
                           <td><%= batch.sackAmount %></td>
                           <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
                           <td><%= batch.enterCode %></td>
@@ -45,7 +48,7 @@
                           <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                           <td><%= batch.entry_control.organization.name %></td>
                       <%	end %>
-                      <%	 if params[:purchased] != nil %>
+                      <%	 if params[:purchased] != nil && params[:quality] == "" %>
                           <%	if batch.buy == 1 %>
                               <td><%= batch.sackAmount %></td>s
                               <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
@@ -54,6 +57,36 @@
                               <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                               <td><%= batch.entry_control.organization.name %></td>
                           <%  end %>
+                      <%	end %>
+                      <%	 if params[:purchased] == nil && params[:quality] != "" %>
+                          <%	 if batch.quality_control != nil %>
+                              <%	 if batch.quality_control.revision != nil %>
+                                  <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
+                                    <td><%= batch.sackAmount %></td>s
+                                    <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                    <td><%= batch.enterCode %></td>
+                                    <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                    <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                    <td><%= batch.entry_control.organization.name %></td>
+                                  <%	 end %>
+                              <%	 end %>
+                          <%	 end %>
+                      <%	end %>
+                      <%	 if params[:purchased] != nil && params[:quality] != "" %>
+                          <%	 if batch.quality_control != nil %>
+                              <%	 if batch.quality_control.revision != nil %>
+                                  <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
+                                      <%	if batch.buy == 1 %>
+                                        <td><%= batch.sackAmount %></td>s
+                                        <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                        <td><%= batch.enterCode %></td>
+                                        <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                        <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                        <td><%= batch.entry_control.organization.name %></td>
+                                      <% end %>
+                                  <%	 end %>
+                              <%	 end %>
+                          <%	 end %>
                       <%	end %>
                     </tr>
                 <% end %>
