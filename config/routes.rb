@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'reports/organization'
-
+  get 'reports/index'
 
   get 'purchases/index'
 

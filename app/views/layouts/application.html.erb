@@ -136,6 +136,7 @@
         <% end %>
         <% if current_user.administration_role || current_user.admin_role %>
           <li><a class="white-text">Administración</a></li>
+            <li><%= link_to 'Reportes', reports_path , class:"white-text li-back"%></li>
         <% end %>
       </ul>
     </header>

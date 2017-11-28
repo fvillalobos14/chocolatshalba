@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  def organization
+  def index
     @entries = EntryControl.search(params[:searchbox].to_s, params[:from].to_s,params[:to].to_s)
     part1 = request.original_url.to_s.split("?")[0]
     part2 = request.original_url.to_s.split("?")[1]

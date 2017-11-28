@@ -6,7 +6,7 @@
           <div class = "page-header">
             <h1>Reportes por Organización</h1>
           </div>
-          <%= form_tag({:controller => "reports", :action => "organization"}, :method => :get) do %>
+          <%= form_tag({:controller => "reports", :action => "index"}, :method => :get) do %>
 
               <%=	 select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name) %>
 
