@@ -13,6 +13,7 @@ Proyecto Ingeniería de software
 * [Rails_Admin](https://github.com/sferik/rails_admin) - Admin page
 * [Cancancan](https://github.com/CanCanCommunity/cancancan) - Restrictions for users
 * [Chartjs-ROR](https://github.com/airblade/chartjs-ror) - Charts
+* [Wicked_PDF](https://github.com/mileszs/wicked_pdf) - Generate PDF files
 
 ## Installation
 Install gems
@@ -26,4 +27,9 @@ rails db:migrate
 Seed database (Optional)
 ```
 rails db:seed
+```
+
+Install Wicked_PDF
+```
+rails g wicked_pdf
 ```
