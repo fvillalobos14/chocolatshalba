@@ -8,16 +8,16 @@
           </div>
           <%= form_tag({:controller => "reports", :action => "index"}, :method => :get) do %>
 
-              <%=	 select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name), :include_blank => 'TODOS', onchange: "this.form.submit();" %>
+              <%=	 select_tag "searchbox", options_from_collection_for_select(Organization.all, :id, :name), :include_blank => 'TODOS' %>
 
-              <p>Desde: <%= text_field_tag "from", params[:from], type:"date", class:"datepicker", :value => params[:from].to_s %></p>
+              <p>Desde: <%= text_field_tag "from", params[:from], type:"date", class:"datepicker" %></p>
 
-              <p>Hasta: <%= text_field_tag "to", params[:to], type:"date", class:"datepicker",:value => params[:from].to_s %></p>
+              <p>Hasta: <%= text_field_tag "to", params[:to], type:"date", class:"datepicker" %></p>
 
-              <p>Calidad: <%= select_tag :quality,  options_for_select([["A", 0], ["B", 1] , ["C", 2]], params[:quality]), id: "different_option_value_html", onchange: "this.form.submit();" ,:include_blank => 'TODOS'%></p>
+              <p>Calidad: <%= select_tag :quality,  options_for_select([["A", 0], ["B", 1] , ["C", 2]], params[:quality]), id: "different_option_value_html",:include_blank => 'TODOS'%></p>
 
               <p>
-              <%= check_box_tag(:purchased,params[:purchased]) %>
+              <%= check_box_tag(:purchased, params[:purchased]) %>
               <%= label_tag(:purchased, "Comprado") %>
               </p>
 
@@ -32,9 +32,7 @@
               <th>Codigo de identificación</th>
               <th>Tipo de cacao</th>
               <th>Material genético</th>
-              <%	 if params[:searchbox] == "" %>
-                <th>Organización</th>
-              <%  end %>
+              <th>Organización</th>
             </tr>
             </thead>
             <tbody>
@@ -47,9 +45,7 @@
                           <td><%= batch.enterCode %></td>
                           <td><%= CocoaType.find(batch.cocoaType).name %></td>
                           <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                          <%	 if params[:searchbox] == "" %>
-                            <td><%= batch.entry_control.organization.name %></td>
-                          <%	 end %>
+                          <td><%= batch.entry_control.organization.name %></td>
                       <%	end %>
                       <%	 if params[:purchased] != nil && params[:quality] == "" %>
                           <%	if batch.buy == 1 %>
