@@ -5,6 +5,7 @@
     <%= wicked_pdf_stylesheet_link_tag "application" %>
   </head>
   <body>
+
   <table class = "striped">
     <thead>
     <tr>
@@ -30,7 +31,7 @@
               <%	end %>
               <%	 if params[:purchased] != nil && params[:quality] == "" %>
                   <%	if batch.buy == 1 %>
-                      <td><%= batch.sackAmount %></td>s
+                      <td><%= batch.sackAmount %></td>
                       <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
                       <td><%= batch.enterCode %></td>
                       <td><%= CocoaType.find(batch.cocoaType).name %></td>
@@ -42,7 +43,7 @@
                   <%	 if batch.quality_control != nil %>
                       <%	 if batch.quality_control.revision != nil %>
                           <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
-                              <td><%= batch.sackAmount %></td>s
+                              <td><%= batch.sackAmount %></td>
                               <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
                               <td><%= batch.enterCode %></td>
                               <td><%= CocoaType.find(batch.cocoaType).name %></td>
@@ -57,7 +58,7 @@
                       <%	 if batch.quality_control.revision != nil %>
                           <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
                               <%	if batch.buy == 1 %>
-                                  <td><%= batch.sackAmount %></td>s
+                                  <td><%= batch.sackAmount %></td>
                                   <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
                                   <td><%= batch.enterCode %></td>
                                   <td><%= CocoaType.find(batch.cocoaType).name %></td>

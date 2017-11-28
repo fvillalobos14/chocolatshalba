@@ -21,7 +21,7 @@
                     <td><%= batch.enterCode %></td>
                     <td><%= CocoaType.find(batch.cocoaType).name %></td>
                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                    <% if batch.quality_control == nil %>
+                    <% if batch.quality_control == nil || batch.sensory_analysis == nil%>
                       <td>Analisis de Calidad</td>
                     <% elsif batch.quality_control.revision == nil %>
                         <td>Jefe de Calidad</td>
