@@ -1,0 +1,120 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col m12">
+      <div class = "card">
+        <div class = "card-content">
+          <div class = "page-header">
+            <h1>Reportes por Organización</h1>
+          </div>
+          <%= form_tag({:controller => "reports", :action => "index"}, :method => :get) do %>
+
+              <%=	 select_tag "searchbox", options_from_collection_for_select(Organization.all, :id, :name), :include_blank => 'TODOS' %>
+
+              <p>Desde: <%= text_field_tag "from", params[:from], type:"date", class:"datepicker" %></p>
+
+              <p>Hasta: <%= text_field_tag "to", params[:to], type:"date", class:"datepicker" %></p>
+
+              <p>Calidad: <%= select_tag :quality,  options_for_select([["A", 0], ["B", 1] , ["C", 2]], params[:quality]), id: "different_option_value_html",:include_blank => 'TODOS'%></p>
+
+              <p>
+              <%= check_box_tag(:purchased, params[:purchased]) %>
+              <%= label_tag(:purchased, "Comprado") %>
+              </p>
+
+              <br>
+              <%= submit_tag "Buscar", :name => nil, class:"btn btn-default btn-lg" %>
+          <% end %>
+          <table class = "striped">
+            <thead>
+            <tr>
+              <th>Cantidad de sacos</th>
+              <th>Peso</th>
+              <th>Codigo de identificación</th>
+              <th>Tipo de cacao</th>
+              <th>Material genético</th>
+              <th>Organización</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @entries.each  do |entry| %>
+                <% entry.batches.each do |batch| %>
+                    <tr>
+                      <%	 if params[:purchased] == nil && params[:quality] == "" %>
+                          <td><%= batch.sackAmount %></td>
+                          <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                          <td><%= batch.enterCode %></td>
+                          <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                          <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                          <td><%= batch.entry_control.organization.name %></td>
+                      <%	end %>
+                      <%	 if params[:purchased] != nil && params[:quality] == "" %>
+                          <%	if batch.buy == 1 %>
+                              <td><%= batch.sackAmount %></td>
+                              <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                              <td><%= batch.enterCode %></td>
+                              <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                              <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                              <%	 if params[:searchbox] == "" %>
+                                <td><%= batch.entry_control.organization.name %></td>
+                              <%	 end %>
+                          <%  end %>
+                      <%	end %>
+                      <%	 if params[:purchased] == nil && params[:quality] != "" %>
+                          <%	 if batch.quality_control != nil %>
+                              <%	 if batch.quality_control.revision != nil %>
+                                  <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
+                                    <td><%= batch.sackAmount %></td>
+                                    <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                    <td><%= batch.enterCode %></td>
+                                    <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                    <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                    <%	 if params[:searchbox] == "" %>
+                                      <td><%= batch.entry_control.organization.name %></td>
+                                    <%	 end %>
+                                  <%	 end %>
+                              <%	 end %>
+                          <%	 end %>
+                      <%	end %>
+                      <%	 if params[:purchased] != nil && params[:quality] != "" %>
+                          <%	 if batch.quality_control != nil %>
+                              <%	 if batch.quality_control.revision != nil %>
+                                  <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
+                                      <%	if batch.buy == 1 %>
+                                        <td><%= batch.sackAmount %></td>
+                                        <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                        <td><%= batch.enterCode %></td>
+                                        <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                        <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                        <%	 if params[:searchbox] == "" %>
+                                          <td><%= batch.entry_control.organization.name %></td>
+                                        <%	 end %>
+                                      <% end %>
+                                  <%	 end %>
+                              <%	 end %>
+                          <%	 end %>
+                      <%	end %>
+                    </tr>
+                <% end %>
+            <% end %>
+            </tbody>
+          </table>
+          <br>
+          <%= link_to "Generar Reporte", @new_url.to_s ,class:"btn btn-default btn-lg",target: :_blank %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
+</script>
+<script>
+    $(document).on('turbolinks:load', function () {
+        $('select').material_select();
+    })
+</script>
+
