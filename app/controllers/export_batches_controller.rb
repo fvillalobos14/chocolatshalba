@@ -18,5 +18,15 @@ class ExportBatchesController < ApplicationController
       end
     end
   end
+
+  def create
+    export_batch=ExportBatch.create
+    batches=Batch.where(id: params[:batches])
+    batches.each do |batch|
+      batch.export_batch_id=export_batch.id
+      batch.save
+    end
+    redirect export_batches_join_path
+  end
 end
 

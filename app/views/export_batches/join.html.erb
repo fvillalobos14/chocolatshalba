@@ -11,9 +11,11 @@
                         <% CocoaType.all.each do |type| %>
                             <optgroup label=<%=type.name %>>
                                 <% Revision.where(status: type).each do |revision| %>
-                                    <option value=<%=revision.quality_control.batch.id %>>
-                                        <%= revision.quality_control.batch.enterCode %>
-                                    </option>
+                                    <% if not revision.quality_control.batch.purchase.nil? and revision.quality_control.batch.purchase.decision==1 and revision.quality_control.batch.export_batch_id.blank?%>
+                                        <option value=<%=revision.quality_control.batch.id %>>
+                                            <%= revision.quality_control.batch.enterCode %>
+                                        </option>
+                                    <% end %>    
                                 <% end %>
                             </optgroup>
                         <% end %>

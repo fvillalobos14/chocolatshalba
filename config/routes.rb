@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get 'purchases/new'
 
+  post 'export_batches', to: 'export_batches#create'
+
   get 'batches/moveBatches', to: 'batches#moveBatches'
 
   resources :sensory_analyses
