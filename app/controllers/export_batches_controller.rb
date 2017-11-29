@@ -26,7 +26,7 @@ class ExportBatchesController < ApplicationController
       batch.export_batch_id=export_batch.id
       batch.save
     end
-    redirect export_batches_join_path
+    redirect_to export_batches_join_path
   end
 end
 
