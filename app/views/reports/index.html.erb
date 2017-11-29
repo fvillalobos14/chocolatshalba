@@ -4,17 +4,17 @@
       <div class = "card">
         <div class = "card-content">
           <div class = "page-header">
-            <h1>Reportes por Organización</h1>
+            <h1>Reportes</h1>
           </div>
           <%= form_tag({:controller => "reports", :action => "index"}, :method => :get) do %>
 
-              <%=	 select_tag "searchbox", options_from_collection_for_select(Organization.all, :id, :name), :include_blank => 'TODOS' %>
+              <p>Organización: <%=	 select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name), :include_blank => 'TODOS' %></p>
 
               <p>Desde: <%= text_field_tag "from", params[:from], type:"date", class:"datepicker" %></p>
 
               <p>Hasta: <%= text_field_tag "to", params[:to], type:"date", class:"datepicker" %></p>
 
-              <p>Calidad: <%= select_tag :quality,  options_for_select([["A", 0], ["B", 1] , ["C", 2]], params[:quality]), id: "different_option_value_html",:include_blank => 'TODOS'%></p>
+              <p>Calidad: <%= select_tag :quality,  options_for_select([["A", 0], ["B", 1] , ["C", 2]], params[:quality]), id: "different_option_value_html" ,:include_blank => 'TODOS'%></p>
 
               <p>
               <%= check_box_tag(:purchased, params[:purchased]) %>

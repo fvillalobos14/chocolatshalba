@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'purchases/new'
 
+  get 'static_pages/stages'
+
   get 'batches/moveBatches', to: 'batches#moveBatches'
 
   resources :sensory_analyses
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
   resources :certificate_checks
   resources :purchases
   resources :reports
+  resources :static_pages
 
   resources :entry_controls do
     resources :batches

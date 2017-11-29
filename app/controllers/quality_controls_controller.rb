@@ -33,7 +33,6 @@ class QualityControlsController < ApplicationController
   end
 
   def show
-
     @qualityControl=QualityControl.find(params[:id])
     @batch=Batch.find(@qualityControl.batch.id)
     @new_quality = defineResult(@batch.id)

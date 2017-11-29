@@ -12,4 +12,5 @@ class ReportsController < ApplicationController
       format.pdf {render template: 'reports/pdf', pdf: 'pdf'}
     end
   end
+
 end
