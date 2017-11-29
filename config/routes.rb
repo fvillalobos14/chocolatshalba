@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :revisions
   resources :entry_controls
   resources :batches
+  resources :invoices
   resources :checkings
   resources :certificate_checks
   resources :purchases

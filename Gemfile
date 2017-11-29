@@ -51,7 +51,7 @@ group :development do
 end
 
   group :production do
-    gem 'rails_12factor'
+    gem 'unicorn'
     gem 'pg'
   end
 
@@ -67,4 +67,3 @@ end
   gem 'chartjs-ror'
   gem 'wicked_pdf'
   gem 'wkhtmltopdf-binary'
-
