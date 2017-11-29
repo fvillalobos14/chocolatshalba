@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'export_batches/join'
+
+  get 'export_batches/new'
+
   get 'purchases/index'
 
   get 'purchases/new'

@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col m12">
+            <div class="card-panel">
+                <div class="page-header">
+                    <h1>Lote de exportación</h1>
+                </div>
+                <%= form_tag({:controller => "export_batches", :action => "new"}, :method => :get) do %>
+                    <select name="batches[]" multiple>
+                        <option value="" disabled selected>Seleccione lotes</option>
+                        <% CocoaType.all.each do |type| %>
+                            <optgroup label=<%=type.name %>>
+                                <% Revision.where(status: type).each do |revision| %>
+                                    <option value=<%=revision.quality_control.batch.id %>>
+                                        <%= revision.quality_control.batch.enterCode %>
+                                    </option>
+                                <% end %>
+                            </optgroup>
+                        <% end %>
+                    </select>
+                    <%= submit_tag "Calcular", :name => nil, class:"btn btn-default btn-lg" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('select').material_select();
+    });
+</script>
