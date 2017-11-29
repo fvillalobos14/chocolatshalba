@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
 
+  get 'export_batches/join'
+
+  get 'export_batches/new'
+  
   get 'reports/index'
 
   get 'purchases/index'
 
   get 'purchases/new'
 
+  post 'export_batches', to: 'export_batches#create'
+  
   get 'static_pages/stages'
 
   get 'batches/moveBatches', to: 'batches#moveBatches'
