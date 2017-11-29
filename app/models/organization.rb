@@ -11,4 +11,5 @@ class Organization < ApplicationRecord
     CollectionCenter.where(organization_id: id).destroy_all
     EntryControl.where(organization_id: id).destroy_all
   end
+
 end

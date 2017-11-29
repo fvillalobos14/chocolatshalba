@@ -65,3 +65,5 @@ end
   gem "paperclip"
   gem 'rails_admin_rollincode', '~> 1.0'
   gem 'chartjs-ror'
+  gem 'wicked_pdf'
+  gem 'wkhtmltopdf-binary'
