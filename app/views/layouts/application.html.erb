@@ -56,6 +56,7 @@
             <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 1).count %></span>
           <% end %>
           <li><%= link_to 'Análisis', quality_controls_path, class:"white-text li-back"%></li>
+          <li><%= link_to 'Unir lotes', export_batches_join_path, class:"white-text li-back"%></li>
         <% end %>
         <% if current_user.certification_role || current_user.admin_role %>
           <li><a class="white-text">Certificación</a><li>
@@ -73,7 +74,13 @@
           <% elsif  Notification.where(kind: 5).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 5).count %></span>
           <% end %>
-          <li><%= link_to 'Compra de Lotes', purchases_path, class:"white-text li-back"%></li>
+          <li><%= link_to 'Compra de lotes', purchases_path, class:"white-text li-back"%></li>
+          <% if  Invoice.where(paid: false).count == 1 %>
+              <span class="new badge" data-badge-caption="nuevo"><%=	Invoice.where(paid: false).count  %></span>
+          <% elsif Invoice.where(paid: false).count > 1 %>
+              <span class="new badge" data-badge-caption="nuevos"><%=	Invoice.where(paid: false).count %></span>
+          <% end %>
+          <li><%= link_to 'Facturas', invoices_path, class:"white-text li-back"%></li>
         <%end%>
         <% if current_user.administration_role || current_user.admin_role %>
           <li><a class="white-text">Administración</a></li>
@@ -115,6 +122,7 @@
             <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 1).count %></span>
           <% end %>
           <li><%= link_to 'Análisis', quality_controls_path, class:"white-text li-back"%></li>
+          <li><%= link_to 'Unir lotes', export_batches_join_path, class:"white-text li-back"%></li>
         <% end %>
         <% if current_user.certification_role || current_user.admin_role %>
           <li><a class="white-text">Certificación</a><li>
@@ -132,10 +140,18 @@
           <% elsif  Notification.where(kind: 5).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 5).count %></span>
           <% end %>
-          <li><%= link_to 'Compra de Lotes', purchases_path, class:"white-text li-back"%></li>
+          <li><%= link_to 'Compra de lotes', purchases_path, class:"white-text li-back"%></li>
+          <% if  Invoice.where(paid: false).count == 1 %>
+              <span class="new badge" data-badge-caption="nuevo"><%=	Invoice.where(paid: false).count  %></span>
+          <% elsif Invoice.where(paid: false).count > 1 %>
+              <span class="new badge" data-badge-caption="nuevos"><%=	Invoice.where(paid: false).count %></span>
+          <% end %>
+          <li><%= link_to 'Facturas', invoices_path, class:"white-text li-back"%></li>
         <% end %>
         <% if current_user.administration_role || current_user.admin_role %>
           <li><a class="white-text">Administración</a></li>
+            <li><%= link_to 'Etapas' , static_pages_stages_path,class:"white-text li-back"%></li>
+            <li><%= link_to 'Reportes', reports_path , class:"white-text li-back"%></li>
         <% end %>
       </ul>
     </header>

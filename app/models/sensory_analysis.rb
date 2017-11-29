@@ -3,4 +3,5 @@ class SensoryAnalysis < ApplicationRecord
       
     validates :made_by, presence: true
     validates :observation, presence: true
+
 end

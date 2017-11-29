@@ -237,4 +237,10 @@ RailsAdmin.config do |config|
   config.excluded_models << QualityControl
   config.excluded_models << Result
   config.excluded_models << Revision
+  config.excluded_models << CertificateCheck
+  config.excluded_models << Checking
+  config.excluded_models << Document
+  config.excluded_models << Invoice
+  config.excluded_models << Purchase
+  config.excluded_models << SensoryAnalysis
 end

@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
 
+  get 'export_batches/join'
+
+  get 'export_batches/new'
+  
+  get 'reports/index'
+
   get 'purchases/index'
 
   get 'purchases/new'
+
+  post 'export_batches', to: 'export_batches#create'
+  
+  get 'static_pages/stages'
 
   get 'batches/moveBatches', to: 'batches#moveBatches'
 
@@ -11,12 +21,16 @@ Rails.application.routes.draw do
   resources :revisions
   resources :entry_controls
   resources :batches
+  resources :invoices
   resources :checkings
   resources :certificate_checks
   resources :purchases
+  resources :reports
+  resources :static_pages
 
   resources :entry_controls do
     resources :batches
+    resources :reports
   end
 
   resources :batches do
@@ -25,6 +39,7 @@ Rails.application.routes.draw do
     resources :checkings
     resources :purchases
     resources :sensory_analyses
+    resources :reports
   end
 
   resources :quality_controls do
@@ -37,6 +52,10 @@ Rails.application.routes.draw do
 
   resources :entry_controls do
     resources :documents
+  end
+
+  resources :reports do
+    resources :entry_controls
   end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

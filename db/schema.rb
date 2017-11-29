@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114210303) do
+ActiveRecord::Schema.define(version: 20171129060804) do
 
   create_table "acceptances", force: :cascade do |t|
     t.decimal "max_qualityA"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20171114210303) do
     t.integer "geneticMaterial"
     t.boolean "moved", default: false
     t.integer "entry_control_id"
+    t.integer "export_batch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "ft"
@@ -109,10 +110,23 @@ ActiveRecord::Schema.define(version: 20171114210303) do
     t.index ["organization_id"], name: "index_entry_controls_on_organization_id"
   end
 
+  create_table "export_batches", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "genetic_materials", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.boolean "paid"
+    t.integer "batch_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["batch_id"], name: "index_invoices_on_batch_id"
   end
 
   create_table "notifications", force: :cascade do |t|
