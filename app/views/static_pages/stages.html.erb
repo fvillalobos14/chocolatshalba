@@ -25,11 +25,13 @@
                       <td>Analisis de Calidad</td>
                     <% elsif batch.quality_control.revision == nil %>
                         <td>Jefe de Calidad</td>
-                    <% elsif batch.certificate_checks == nil %>
+                    <% elsif batch.review == 1 && batch.ft%>
                         <td>Certificado</td>
-                    <% elsif batch.buy == 1 %>
+                    <% elsif batch.purchase == nil %>
+                        <td>Compras</td>
+                    <% elsif batch.moved == false %>
                         <td>Mover Lotes</td>
-                    <% elsif batch.moved == 1 %>
+                    <% elsif batch.moved %>
                         <td>Exportación</td>
                     <% end %>
                   </tr>
