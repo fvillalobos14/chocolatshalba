@@ -15,13 +15,9 @@ class RevisionsController < ApplicationController
 
     if not @qualityControl.batch.ft or not @qualityControl.batch.certificate_checks.first.nil?
     createNotification
-    if @batch.ft
-      @batch.review = 1
-    else
-      @batch.review = 2
+    if @batch.ft == FALSE
       @batch.buy = 1
     end
-    @batch.save
     @batch.save
     end
   end

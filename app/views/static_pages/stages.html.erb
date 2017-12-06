@@ -21,19 +21,21 @@
                     <td><%= batch.enterCode %></td>
                     <td><%= CocoaType.find(batch.cocoaType).name %></td>
                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                    <% if batch.quality_control == nil || batch.sensory_analysis == nil%>
+                    <%	 if batch.quality_control == nil || batch.sensory_analysis == nil %>
                       <td>Analisis de Calidad</td>
-                    <% elsif batch.quality_control.revision == nil %>
-                        <td>Jefe de Calidad</td>
-                    <% elsif batch.review == 1 && batch.ft%>
-                        <td>Certificado</td>
-                    <% elsif batch.purchase == nil %>
+                    <%	 elsif batch.quality_control.revision == nil %>
+                      <td>Jefe de Calidad</td>
+                    <%	 elsif batch.certificate_checks.first == nil and batch.ft %>
+                      <td>Certificado</td>
+                    <%	 elsif batch.purchase == nil and batch.buy == 1%>
                         <td>Compras</td>
-                    <% elsif batch.moved == false %>
-                        <td>Mover Lotes</td>
-                    <% elsif batch.moved %>
+                    <%	 elsif batch.moved == false%>
+                        <td>Mover lotes</td>
+                    <%	 elsif batch.export_batch == nil%>
                         <td>Exportación</td>
-                    <% end %>
+                    <%	 else %>
+                        <td>Venta</td>
+                    <%	 end %>
                   </tr>
               <%	end  %>
             </tbody>
