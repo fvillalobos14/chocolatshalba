@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129060804) do
+ActiveRecord::Schema.define(version: 20171206164919) do
 
   create_table "acceptances", force: :cascade do |t|
     t.decimal "max_qualityA"
@@ -151,6 +151,14 @@ ActiveRecord::Schema.define(version: 20171129060804) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_parameters_on_category_id"
+  end
+
+  create_table "prices", force: :cascade do |t|
+    t.decimal "price"
+    t.integer "cocoa_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cocoa_type_id"], name: "index_prices_on_cocoa_type_id"
   end
 
   create_table "purchases", force: :cascade do |t|
