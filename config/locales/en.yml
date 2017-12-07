@@ -68,6 +68,9 @@ en:
       acceptance:
         one: "Aceptación"
         other: "Aceptaciones"
+      price:
+        one: "Precio"
+        other: "Precios"
   admin:
     js:
       true: Cierto
