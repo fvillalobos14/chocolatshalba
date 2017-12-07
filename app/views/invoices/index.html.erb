@@ -28,6 +28,9 @@
                                                     <%= button_tag(type: 'submit', class: "btn") do %>
                                                         <i class="icon-ok icon-white"></i>Marcar como pagado
                                                     <% end %>
+                                                    <% if invoice.bills.empty? %>
+                                                      <%= link_to "Agregar Factura", new_invoice_bill_path(invoice), class:"waves-effect waves-light btn" %>
+                                                    <% end %>
                                                 </td>
                                             <% end %>
                                         <% end %>
@@ -41,6 +44,8 @@
         </div>
     </div>
 </div>
+
+
 <script type="text/javascript">
     $(document).ready(function () {
         if (document.URL.indexOf("#") == -1) {

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'export_batches/join'
 
   get 'export_batches/new'
-  
+
   get 'reports/index'
 
   get 'purchases/index'
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'purchases/new'
 
   post 'export_batches', to: 'export_batches#create'
-  
+
   get 'static_pages/stages'
 
   get 'batches/moveBatches', to: 'batches#moveBatches'
@@ -52,6 +52,10 @@ Rails.application.routes.draw do
 
   resources :entry_controls do
     resources :documents
+  end
+
+  resources :invoices do
+    resources :bills
   end
 
   resources :reports do
