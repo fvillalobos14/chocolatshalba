@@ -8,8 +8,9 @@ class CertificateChecksController < ApplicationController
       if not batch.quality_control.revision.nil?
         createNotification
       end
-      notification = Notification.where("kind = 4").first
-      notification.destroy
+      notification = Notification.where(kind: 4, read: false).first
+      notification.update(read: true)
+      notification.save
       batch.review = 2
       batch.save
       batch.buy = 1

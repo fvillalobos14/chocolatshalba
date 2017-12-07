@@ -18,8 +18,9 @@ class PurchasesController < ApplicationController
         invoice.save
         createNotification
       end
-      notification = Notification.where("kind = 5").first
-      notification.destroy
+      notification = Notification.where(kind: 5, read: false).first
+      notification.update(read: true)
+      notification.save
       redirect_to purchases_index_path
     end
   end
