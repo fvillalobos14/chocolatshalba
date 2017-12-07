@@ -15,10 +15,10 @@ class PurchasesController < ApplicationController
       if @purchase.decision == 1
         invoice = Invoice.create(paid: false, batch_id: @batch.id)
         invoice.save
+        createNotification
       end
       @notification = Notification.where("kind = 5").first
       @notification.destroy
-      createNotification
       redirect_to purchases_index_path
     end
   end
