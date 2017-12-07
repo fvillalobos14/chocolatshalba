@@ -8,14 +8,14 @@ class BatchesController < ApplicationController
   end
 
   def create
-    @entryControl = EntryControl.find(params[:entry_control_id])
-    @batch=@entryControl.batches.build(batches_params)
+    entryControl = EntryControl.find(params[:entry_control_id])
+    batch=entryControl.batches.build(batches_params)
 
-    if @batch.save
+    if batch.save
         createNotification
-        redirect_to @entryControl
+        redirect_to entryControl
     else
-        redirect_to "/entry_controls/"+@entryControl.id.to_s+"/batches/new"
+        redirect_to "/entry_controls/"+entryControl.id.to_s+"/batches/new"
     end
   end
 
@@ -24,17 +24,16 @@ class BatchesController < ApplicationController
   end
 
   def update
-    @batch = Batch.find(params[:id])
-    if @batch.update(moved: true)
-      @notification = Notification.where("kind = 3").first
-      @notification.destroy
+    batch = Batch.find(params[:id])
+    if batch.update(moved: true)
+      notification = Notification.where("kind = 3").first
+      notification.destroy
       redirect_to batches_moveBatches_path
     end
   end
 
   def show
     @batch = Batch.find(params[:id])
-    @certificate = CertificateCheck.new
   end
 
   private
@@ -43,7 +42,7 @@ class BatchesController < ApplicationController
   end
 
   def createNotification
-    @notification = Notification.create(read: false, kind: 1)
-    @notification.save
+    notification = Notification.create(read: false, kind: 1)
+    notification.save
   end
 end

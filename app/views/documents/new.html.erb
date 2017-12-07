@@ -6,7 +6,7 @@
           <div class="page-header">
             <h1>Documento</h1>
           </div>
-          <%= form_for [@entry,@entry.documents.build] do |f| %>
+          <%= form_for [@entry,@document] do |f| %>
           <div class="form-group">
               <%= f.label :title %>
               <%= f.text_field :title, class: 'form-control' %>

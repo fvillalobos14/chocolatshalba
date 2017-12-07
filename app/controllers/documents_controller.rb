@@ -1,23 +1,15 @@
 class DocumentsController < ApplicationController
-  def index
-      @documents=Document.all
-  end
-
-  def show
-      @document = Document.find(params[:id])
-  end
-
   def new
       @entry = EntryControl.find(params[:entry_control_id])
       @document = @entry.documents.build
   end
 
   def create
-      @entry = EntryControl.find(params[:entry_control_id])
-      @document = @entry.documents.build(document_params)
+      entry = EntryControl.find(params[:entry_control_id])
+      document = entry.documents.build(document_params)
 
-      if @document.save
-        redirect_to @entry, notice: "Documento agregado con exito"
+      if document.save
+        redirect_to entry, notice: "Documento agregado con exito"
       else
         flash[:errors] = "No se pudo adjuntar el documento"
         render :new
@@ -25,10 +17,10 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-      @entry = EntryControl.find(params[:entry_control_id])
-      @document = EntryControl.documents.find(params[:id])
-      @document.destroy
-      redirect_to @entry, notice: "Documento eliminado con exito"
+      entry = EntryControl.find(params[:entry_control_id])
+      document = EntryControl.documents.find(params[:id])
+      document.destroy
+      redirect_to entry, notice: "Documento eliminado con exito"
   end
 
   def document_params
