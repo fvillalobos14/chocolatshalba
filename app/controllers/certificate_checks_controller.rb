@@ -1,5 +1,5 @@
 class CertificateChecksController < ApplicationController
-
+  before_action :authenticate_user!
   def create
     batch = Batch.find(params[:batch_id])
     certificate = batch.certificate_checks.create(certificate_params)

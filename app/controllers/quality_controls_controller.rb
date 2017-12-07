@@ -1,4 +1,5 @@
 class QualityControlsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @entries = EntryControl.all
   end

@@ -1,4 +1,5 @@
 class SensoryAnalysesController < ApplicationController
+    before_action :authenticate_user!
     def new
         @batch=Batch.find(params[:batch_id])
         @sensoryAnalysis=@batch.build_sensory_analysis

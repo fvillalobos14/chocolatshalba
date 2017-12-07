@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
-  def new
+    before_action :authenticate_user!
+    def new
       @entry = EntryControl.find(params[:entry_control_id])
       @document = @entry.documents.build
   end
