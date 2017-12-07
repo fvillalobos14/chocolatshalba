@@ -382,3 +382,18 @@ Acceptance.create! do |p|
 	p.min_qualityC = -1
 	p.parameter_id = 11
 end
+
+Price.create! do |p|
+	p.price = 3000
+	p.cocoa_type_id = 1
+end
+
+Price.create! do |p|
+	p.price = 2000
+	p.cocoa_type_id = 2
+end
+
+Price.create! do |p|
+	p.price = 1000
+	p.cocoa_type_id = 3
+end

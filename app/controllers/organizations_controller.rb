@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
     end
 
     def show
-        @organization = Organization.find(params[:id])
-        @entries = @organization.entry_controls
+        organization = Organization.find(params[:id])
+        @entries = organization.entry_controls
     end
 end
