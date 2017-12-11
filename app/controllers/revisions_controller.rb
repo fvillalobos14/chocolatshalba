@@ -14,11 +14,9 @@ class RevisionsController < ApplicationController
     notification.save
     batch=qualityControl.batch
 
-    if not qualityControl.batch.ft or not qualityControl.batch.certificate_checks.first.nil?
+    if not batch.ft or not batch.certificate_checks.first.nil?
       createNotification
-      if batch.ft
-        batch.buy = 1
-      end
+      batch.buy = 1
       batch.save
     end
   end
