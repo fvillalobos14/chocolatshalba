@@ -9,32 +9,30 @@
           <table class = "striped">
             <thead>
             <tr>
-              <th>Codigo de identificación</th>
-              <th>Tipo de cacao</th>
-              <th>Material genético</th>
+              <th>Código de lote</th>
+              <th>Organización</th>
               <th>Etapa</th>
             </tr>
             </thead>
             <tbody>
               <% @batches.each do |batch| %>
-                  <tr>
-                    <td><%= batch.enterCode %></td>
-                    <td><%= CocoaType.find(batch.cocoaType).name %></td>
-                    <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                    <% if batch.quality_control == nil || batch.sensory_analysis == nil%>
-                      <td>Analisis de Calidad</td>
-                    <% elsif batch.quality_control.revision == nil %>
-                        <td>Jefe de Calidad</td>
-                    <% elsif batch.review == 1 && batch.ft%>
-                        <td>Certificado</td>
-                    <% elsif batch.purchase == nil %>
-                        <td>Compras</td>
-                    <% elsif batch.moved == false %>
-                        <td>Mover Lotes</td>
-                    <% elsif batch.moved %>
-                        <td>Exportación</td>
-                    <% end %>
-                  </tr>
+                <tr>
+                  <td><%= batch.enterCode %></td>
+                  <td><%= batch.entry_control.organization.name %></td>
+                  <% if batch.quality_control == nil || batch.sensory_analysis == nil%>
+                    <td>Analisis de Calidad</td>
+                  <% elsif batch.quality_control.revision == nil %>
+                      <td>Jefe de Calidad</td>
+                  <% elsif batch.review == 1 && batch.ft%>
+                      <td>Certificado</td>
+                  <% elsif batch.purchase == nil %>
+                      <td>Compras</td>
+                  <% elsif batch.moved == false %>
+                      <td>Mover Lotes</td>
+                  <% elsif batch.moved %>
+                      <td>Exportación</td>
+                  <% end %>
+                </tr>
               <%	end  %>
             </tbody>
           </table>

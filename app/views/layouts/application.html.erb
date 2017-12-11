@@ -65,7 +65,7 @@
           <% elsif  Notification.where(kind: 4).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 4).count %></span>
           <% end %>
-          <li><%= link_to 'Chequeo de lotes', checkings_path, class:"white-text li-back"%></li>
+          <li><%= link_to 'Revisión de lotes', checkings_path, class:"white-text li-back"%></li>
         <% end %>
         <% if current_user.purchase_role || current_user.admin_role %>
           <li><a class="white-text">Compras</a><li>
@@ -131,7 +131,7 @@
           <% elsif  Notification.where(kind: 4).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 4).count %></span>
           <% end %>
-          <li><%= link_to 'Chequeo de lotes', checkings_path, class:"white-text li-back"%></li>
+          <li><%= link_to 'Revisión de lotes', checkings_path, class:"white-text li-back"%></li>
         <% end %>
         <% if current_user.purchase_role || current_user.admin_role %>
           <li><a class="white-text">Compras</a><li>
