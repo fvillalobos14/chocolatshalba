@@ -51,11 +51,11 @@ Rails.application.routes.draw do
   end
 
   resources :entry_controls do
-    resources :documents
+    resources :documents, only: [:new, :create]
   end
 
   resources :invoices do
-    resources :bills
+    resources :bills, only: [:new, :create]
   end
 
   resources :reports do

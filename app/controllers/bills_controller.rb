@@ -1,11 +1,4 @@
 class BillsController < ApplicationController
-  def index
-    @bills = Bill.all
-  end
-
-  def show
-    @bill = Bill.find(params[:id])
-  end
 
   def new
     @invoice = Invoice.find(params[:invoice_id])
@@ -22,13 +15,6 @@ class BillsController < ApplicationController
       flash[:errors] = "No se pudo adjuntar la factura"
       render :new
     end
-  end
-
-  def destroy
-    @invoice = Invoice.find(params[:invoice_id])
-    @bill = Invoice.bills.find(params[:id])
-    @bill.destroy
-    redirect_to @invoice, notice: "Documento eliminado con exito"
   end
 
   def bill_params

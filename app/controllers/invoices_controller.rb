@@ -1,7 +1,6 @@
 class InvoicesController < ApplicationController
     def index
         @invoices = Invoice.where(paid: false)
-        @invoice = Invoice.all
     end
 
     def update
