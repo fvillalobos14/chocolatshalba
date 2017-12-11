@@ -1,4 +1,5 @@
 class ExportBatchesController < ApplicationController
+  before_action :authenticate_user!
   def join
   end
 

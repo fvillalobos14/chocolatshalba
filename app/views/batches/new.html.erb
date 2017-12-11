@@ -6,7 +6,7 @@
           <div class="page-header">
             <h1>Lote</h1>
           </div>
-          <%= form_for [@entryControl, @entryControl.batches.build] do |f| %>
+          <%= form_for [@entryControl, @batch] do |f| %>
             <div class = "input-field">
               <%= f.label :sackAmount, "Cantidad de sacos" %>
               <%= f.number_field :sackAmount, min: 0 %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129060804) do
+ActiveRecord::Schema.define(version: 20171206164919) do
 
   create_table "acceptances", force: :cascade do |t|
     t.decimal "max_qualityA"
@@ -32,13 +32,13 @@ ActiveRecord::Schema.define(version: 20171129060804) do
     t.integer "cocoaType"
     t.integer "geneticMaterial"
     t.boolean "moved", default: false
+    t.boolean "ft"
+    t.integer "review", default: 0
+    t.integer "buy", default: 0
     t.integer "entry_control_id"
     t.integer "export_batch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "ft"
-    t.integer "review", default: 0
-    t.integer "buy", default: 0
     t.index ["entry_control_id"], name: "index_batches_on_entry_control_id"
   end
 
@@ -153,11 +153,19 @@ ActiveRecord::Schema.define(version: 20171129060804) do
     t.index ["category_id"], name: "index_parameters_on_category_id"
   end
 
-  create_table "purchases", force: :cascade do |t|
-    t.integer "decision"
+  create_table "prices", force: :cascade do |t|
+    t.decimal "price"
+    t.integer "cocoa_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cocoa_type_id"], name: "index_prices_on_cocoa_type_id"
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.integer "decision"
     t.integer "batch_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["batch_id"], name: "index_purchases_on_batch_id"
   end
 

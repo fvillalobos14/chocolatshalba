@@ -1,24 +1,25 @@
 class RevisionsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @batches = Batch.all
   end
 
   def create
-    @qualityControl = QualityControl.find(params[:quality_control_id])
-    @revision = @qualityControl.build_revision(revision_params)
-    if @revision.save
+    qualityControl = QualityControl.find(params[:quality_control_id])
+    revision = qualityControl.build_revision(revision_params)
+    if revision.save
      
     
-    @notification = Notification.where("kind = 2").first
-    @notification.destroy
-    @batch=@qualityControl.batch
+    notification = Notification.where("kind = 2").first
+    notification.destroy
+    batch=qualityControl.batch
 
-    if not @qualityControl.batch.ft or not @qualityControl.batch.certificate_checks.first.nil?
-    createNotification
-    if @batch.ft == FALSE
-      @batch.buy = 1
-    end
-    @batch.save
+    if not qualityControl.batch.ft or not qualityControl.batch.certificate_checks.first.nil?
+      createNotification
+      if batch.ft
+        batch.buy = 1
+      end
+      batch.save
     end
   end
 
@@ -31,7 +32,7 @@ class RevisionsController < ApplicationController
     end
 
     def createNotification
-      @notification = Notification.create(read: false, kind: 5)
-      @notification.save
+      notification = Notification.create(read: false, kind: 5)
+      notification.save
     end
 end
