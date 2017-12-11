@@ -32,27 +32,27 @@
         <% if current_user.warehouse_role || current_user.admin_role %>
           <li><a class="white-text">Bodega</a><li>
           <li><%= link_to 'Control de ingreso', organizations_path, class:"white-text li-back"%></li>
-          <% if  Notification.where(kind: 3).count == 1 %>
+          <% if  Notification.where(kind: 3, read: false).count == 1 %>
             <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 3, read: false).count %></span>
-          <% elsif  Notification.where(kind: 3).count > 1 %>
+          <% elsif  Notification.where(kind: 3, read: false).count > 1 %>
             <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 3, read: false).count %></span>
           <% end %>
           <li><%= link_to 'Mover lotes', batches_moveBatches_path, class:"white-text li-back"%></li>
         <% end %>
         <% if current_user.quality_manager_role || current_user.admin_role %>
           <li><a class="white-text">Jefe de calidad</a><li>
-          <% if  Notification.where(kind: 2).count == 1 %>
+          <% if  Notification.where(kind: 2, read: false).count == 1 %>
             <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 2, read: false).count %></span>
-          <% elsif  Notification.where(kind: 2).count > 1 %>
+          <% elsif  Notification.where(kind: 2, read: false).count > 1 %>
             <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 2, read: false).count %></span>
           <% end %>
           <li><%= link_to 'Revisiones', revisions_path, class:"white-text li-back"%></li>
         <% end %>
         <% if current_user.quality_role || current_user.admin_role %>
           <li><a class="white-text">Calidad</a><li>
-          <% if  Notification.where(kind: 1).count == 1 %>
+          <% if  Notification.where(kind: 1, read: false).count == 1 %>
             <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 1, read: false).count %></span>
-          <% elsif  Notification.where(kind: 1).count > 0 %>
+          <% elsif  Notification.where(kind: 1, read: false).count > 0 %>
             <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 1, read: false).count %></span>
           <% end %>
           <li><%= link_to 'Análisis', quality_controls_path, class:"white-text li-back"%></li>
@@ -60,18 +60,18 @@
         <% end %>
         <% if current_user.certification_role || current_user.admin_role %>
           <li><a class="white-text">Certificación</a><li>
-          <% if  Notification.where(kind: 4).count == 1 %>
+          <% if  Notification.where(kind: 4, read: false).count == 1 %>
               <span class="new badge" data-badge-caption="nuevo"><%=	Notification.where(kind: 4, read: false).count  %></span>
-          <% elsif  Notification.where(kind: 4).count > 1 %>
+          <% elsif  Notification.where(kind: 4, read: false).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 4, read: false).count %></span>
           <% end %>
           <li><%= link_to 'Chequeo de lotes', checkings_path, class:"white-text li-back"%></li>
         <% end %>
         <% if current_user.purchase_role || current_user.admin_role %>
           <li><a class="white-text">Compras</a><li>
-          <% if  Notification.where(kind: 5).count == 1 %>
+          <% if  Notification.where(kind: 5, read: false).count == 1 %>
               <span class="new badge" data-badge-caption="nuevo"><%=	Notification.where(kind: 5, read: false).count  %></span>
-          <% elsif  Notification.where(kind: 5).count > 1 %>
+          <% elsif  Notification.where(kind: 5, read: false).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 5, read: false).count %></span>
           <% end %>
           <li><%= link_to 'Compra de lotes', purchases_path, class:"white-text li-back"%></li>
@@ -84,6 +84,8 @@
         <%end%>
         <% if current_user.administration_role || current_user.admin_role %>
           <li><a class="white-text">Administración</a></li>
+            <li><%= link_to 'Etapas' , static_pages_stages_path,class:"white-text li-back"%></li>
+            <li><%= link_to 'Reportes', reports_path , class:"white-text li-back"%></li>
         <% end %>
         <li>
           <a class="white-text" rel="nofollow" data-method="delete" href="/users/sign_out">Salir</a>
@@ -98,27 +100,27 @@
         <% if current_user.warehouse_role || current_user.admin_role %>
           <li><a class="white-text">Bodega</a><li>
           <li><%= link_to 'Control de ingreso', organizations_path, class:"white-text li-back"%></li>
-          <% if  Notification.where(kind: 3).count == 1 %>
+          <% if  Notification.where(kind: 3, read: false).count == 1 %>
             <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 3, read: false).count %></span>
-          <% elsif  Notification.where(kind: 3).count > 1 %>
+          <% elsif  Notification.where(kind: 3, read: false).count > 1 %>
             <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 3, read: false).count %></span>
           <% end %>
           <li><%= link_to 'Mover lotes', batches_moveBatches_path,class:"white-text li-back"%></li>
         <% end %>
         <% if current_user.quality_manager_role || current_user.admin_role %>
           <li><a class="white-text">Jefe de calidad</a><li>
-          <% if  Notification.where(kind: 2).count == 1 %>
+          <% if  Notification.where(kind: 2, read: false).count == 1 %>
             <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 2, read: false).count %></span>
-          <% elsif  Notification.where(kind: 2).count > 1 %>
+          <% elsif  Notification.where(kind: 2, read: false).count > 1 %>
             <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 2, read: false).count %></span>
           <% end %>
           <li><%= link_to 'Revisiones', revisions_path, class:"white-text li-back"%></li>
         <% end %>
         <% if current_user.quality_role || current_user.admin_role %>
           <li><a class="white-text">Calidad</a><li>
-          <% if  Notification.where(kind: 1).count == 1 %>
+          <% if  Notification.where(kind: 1, read: false).count == 1 %>
             <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 1, read: false).count %></span>
-          <% elsif  Notification.where(kind: 1).count > 0 %>
+          <% elsif  Notification.where(kind: 1, read: false).count > 0 %>
             <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 1, read: false).count %></span>
           <% end %>
           <li><%= link_to 'Análisis', quality_controls_path, class:"white-text li-back"%></li>
@@ -126,18 +128,18 @@
         <% end %>
         <% if current_user.certification_role || current_user.admin_role %>
           <li><a class="white-text">Certificación</a><li>
-          <% if  Notification.where(kind: 4).count == 1 %>
+          <% if  Notification.where(kind: 4, read: false).count == 1 %>
               <span class="new badge" data-badge-caption="nuevo"><%=	Notification.where(kind: 4, read: false).count  %></span>
-          <% elsif  Notification.where(kind: 4).count > 1 %>
+          <% elsif  Notification.where(kind: 4, read: false).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 4, read: false).count %></span>
           <% end %>
           <li><%= link_to 'Chequeo de lotes', checkings_path, class:"white-text li-back"%></li>
         <% end %>
         <% if current_user.purchase_role || current_user.admin_role %>
           <li><a class="white-text">Compras</a><li>
-          <% if  Notification.where(kind: 5).count == 1 %>
+          <% if  Notification.where(kind: 5, read: false).count == 1 %>
               <span class="new badge" data-badge-caption="nuevo"><%=	Notification.where(kind: 5, read: false).count  %></span>
-          <% elsif  Notification.where(kind: 5).count > 1 %>
+          <% elsif  Notification.where(kind: 5, read: false).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 5, read: false).count %></span>
           <% end %>
           <li><%= link_to 'Compra de lotes', purchases_path, class:"white-text li-back"%></li>
