@@ -28,8 +28,7 @@ Seed database (Optional)
 ```
 rails db:seed
 ```
-
-Install Wicked_PDF
+Create Wicked_PDF initializer
 ```
 rails g wicked_pdf
 ```
