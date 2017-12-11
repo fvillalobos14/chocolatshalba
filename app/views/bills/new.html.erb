@@ -6,18 +6,19 @@
           <div class="page-header">
             <h1>Factura</h1>
           </div>
-          <%= form_for [@invoice,@invoice.bills.build] do |f| %>
-            <div class="form-group">
-              <%= f.label :code, "Codigo de Factura" %>
-              <%= f.number_field :code, class: 'form-control' %>
+          <%= form_for [@invoice, @bill] do |f| %>
+            <div class="input-field">
+              <%= f.label :code, "Código de factura" %>
+              <%= f.number_field :code, class: 'form-control', :required => true %>
             </div>
 
             <div class="form-group">
               <br><%= f.label :invoice_doc, "Factura" %>
-              <%= f.file_field :invocie_doc, class: 'form-control'%>
+              <%= f.file_field :invocie_doc, class: 'form-control', :required => true%>
             </div>
             <br>
-            <%= f.submit 'SUBIR', class: 'btn btn-primary' %>
+            <%= link_to "Regresar", invoices_path , class: "btn btn-primary"%>
+            <%= f.submit 'Subir', class: 'btn btn-primary' %>
           <%end%>
         </div>
       </div>

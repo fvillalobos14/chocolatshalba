@@ -9,7 +9,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Lote</th>
+                                <th>Código de lote</th>
                                 <% if current_user.purchase_role %>
                                     <th></th>
                                 <% end %>
@@ -29,7 +29,7 @@
                                                         <i class="icon-ok icon-white"></i>Marcar como pagado
                                                     <% end %>
                                                     <% if invoice.bills.empty? %>
-                                                      <%= link_to "Agregar Factura", new_invoice_bill_path(invoice), class:"waves-effect waves-light btn" %>
+                                                        <%= link_to "Agregar factura", new_invoice_bill_path(invoice), class:"waves-effect waves-light btn" %>
                                                     <% end %>
                                                 </td>
                                             <% end %>
@@ -44,8 +44,6 @@
         </div>
     </div>
 </div>
-
-
 <script type="text/javascript">
     $(document).ready(function () {
         if (document.URL.indexOf("#") == -1) {
