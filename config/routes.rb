@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   
   get 'static_pages/stages'
 
+  get 'static_pages/traceability'
+
   get 'batches/moveBatches', to: 'batches#moveBatches'
 
   resources :sensory_analyses

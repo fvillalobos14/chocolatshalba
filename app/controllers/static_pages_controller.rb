@@ -6,4 +6,8 @@ class StaticPagesController < ApplicationController
 	def stages
 		@batches = Batch.all
 	end
+
+	def traceability
+		@batches = Batch.all
+	end
 end

@@ -1,3 +1,4 @@
+<% if current_user.certification_role || current_user.admin_role %>
 <div class="container">
   <div class="row">
     <div class="col m12">
@@ -17,6 +18,108 @@
     </div>
   </div>
 </div>
+<% end %>
+
+<% if current_user.administration_role || current_user.admin_role %>
+    <div class="container">
+      <div class="row">
+        <div class="col m12">
+          <div class="card">
+            <div class="card-content">
+              <div class="page-header">
+                <h1>Info</h1>
+              </div>
+              <p>Codigo: <%= @batch.enterCode %></p>
+              <p>Control de Ingreso: <%= @batch.entry_control.entry_number %></p>
+              <p>Organización: <%= @batch.entry_control.organization.name %></p>
+              <p>Fecha de Ingreso: <%= @batch.entry_control.entryDate %></p>
+              <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                  <div class="collapsible-header">
+                    <i class="material-icons">filter_drama</i>
+                    Decisión de calidad
+                  </div>
+                  <div class="collapsible-body">
+                    <div class="col m6">
+                      <p>Calidad escogida:
+                        <%	 if @batch.quality_control.revision.status == 1 %>
+                            A
+                        <%	 elsif @batch.quality_control.revision.status == 2 %>
+                            B
+                        <%	 elsif @batch.quality_control.revision.status == 3 %>
+                            C
+                        <%	 end %>
+                      </p>
+                    </div>
+                    <div class="col m6">
+                      <p><%=	 link_to "Ver analisis", @batch.quality_control %></p>
+                    </div>
+                    <br>
+                  </div>
+                </li>
+                <%	 if @batch.ft == true %>
+                  <li>
+                    <div class="collapsible-header">
+                      <i class="material-icons">place</i>
+                      Certificado
+                    </div>
+                    <div class="collapsible-body">
+                      <%	 if @batch.certificate_checks.first == nil %>
+                          No se ha tomado
+                      <%	 else %>
+                          <table class = "striped">
+                            <thead>
+                            <tr>
+                              <th>Desición</th>
+                              <th>Descripcion</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% @batch.certificate_checks.each do |certi| %>
+                                <tr>
+                                  <%	 if certi.decision == 1 %>
+                                    <td>Aceptado</td>
+                                  <%	 else %>
+                                    <td>Negado</td>
+                                  <%	 end %>
+                                  <td><%=	 certi.description %></td>
+                                </tr>
+                            <% end %>
+                            </tbody>
+                          </table>
+                      <%	 end %>
+                    </div>
+                  </li>
+                <%	 end %>
+                <li>
+                  <div class="collapsible-header">
+                    <i class="material-icons">filter_drama</i>
+                    Compras
+                  </div>
+                  <div class="collapsible-body">
+                    <p>Comprado:
+                      <%	 if @batch.purchase == nil %>
+                        No
+                      <%   else %>
+                        Si
+                      <%   end %>
+                    </p>
+                    <p>Pagado:
+                      <%	 if @batch.invoice == nil %>
+                          No
+                      <%   else %>
+                          Si
+                      <%   end %>
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
 
 <div id = "modal1" class = "modal" >
   <%= form_for ([@batch, @batch.certificate_checks.build]) do |f| %>
