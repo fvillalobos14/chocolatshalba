@@ -7,19 +7,19 @@
             <h1>Lote</h1>
           </div>
           <%= form_for [@entryControl, @batch] do |f| %>
-            <div class = "input-field">
+            <div class="input-field">
               <%= f.label :sackAmount, "Cantidad de sacos" %>
-              <%= f.number_field :sackAmount, min: 0 %>
+              <%= f.number_field :sackAmount, min: 0 , :required => true %>
             </div>
 
-            <div class = "input-field">
+            <div class="input-field">
               <%= f.label :weight, "Peso en libras" %>
-              <%= f.number_field :weight, step: :any, min: 0 %>
+              <%= f.number_field :weight, step: :any, min: 0 , :required => true %>
             </div>
 
-            <div class = "input-field">
+            <div class="input-field">
               <%= f.label :enterCode, "Código de indentificación" %>
-              <%= f.text_field :enterCode %>
+              <%= f.text_field :enterCode , :required => true %>
             </div>
 
             <p>
@@ -32,14 +32,14 @@
               <%= f.collection_select :geneticMaterial, @genetic, :id, :name, class:"dropdown-button btn" %>
             </p>
 
-            <div class = "input-field">
+            <div class="input-field">
               <%= f.check_box :ft %>
-              <%= f.label 'ft', "Fair Trade" %>
+              <%= f.label 'ft', "Comercio justo" %>
             </div>
 
-              <br>
-
+            <br>
             <p>
+              <%= link_to "Regresar", @entryControl , class: "btn btn-primary"%>
               <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
             </p>
           <% end %>

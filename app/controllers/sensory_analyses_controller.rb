@@ -25,7 +25,7 @@ class SensoryAnalysesController < ApplicationController
             end
             redirect_to entry
         else
-            redirect_to "/batches/"+batch.id.to_s+"/sensory_analysis/new"
+            redirect_to "/batches/"+batch.id.to_s+"/sensory_analyses/new"
         end
       end
 
