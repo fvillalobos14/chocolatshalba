@@ -11,8 +11,6 @@ class CertificateChecksController < ApplicationController
       notification = Notification.where(kind: 4, read: false).first
       notification.update(read: true)
       notification.save
-      batch.review = 2
-      batch.save
       batch.buy = 1
       batch.save
     end

@@ -18,7 +18,7 @@
             </thead>
             <tbody>
             <% @batches.each do |batch| %>
-              <% if batch.review == 1 && batch.ft %>
+              <% if batch.certificate_checks.first == nil && batch.ft %>
                 <tr>
                   <td><%= batch.enterCode %></td>
                   <td><%=	batch.entry_control.entry_number %></td>
