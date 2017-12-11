@@ -27,6 +27,10 @@
                       <td>Jefe de Calidad</td>
                     <%	 elsif batch.certificate_checks.first == nil and batch.quality_control.revision == nil and batch.ft %>
                       <td>Jefe de Calidad y Certificado</td>
+                    <%	 elsif batch.certificate_checks.first != nil and batch.quality_control.revision == nil and batch.ft %>
+                        <td>Jefe de Calidad</td>
+                    <%	 elsif batch.certificate_checks.first == nil and batch.quality_control.revision != nil and batch.ft %>
+                        <td>Certificado</td>
                     <%	 elsif batch.purchase == nil and batch.buy == 1%>
                         <td>Compras</td>
                     <%	 elsif batch.moved == false%>
@@ -34,7 +38,7 @@
                     <%	 elsif batch.export_batch == nil%>
                         <td>Exportación</td>
                     <%	 else %>
-                        <td>Venta</td>
+                        <td>Bodega y Ventas</td>
                     <%	 end %>
                   </tr>
               <%	end  %>
