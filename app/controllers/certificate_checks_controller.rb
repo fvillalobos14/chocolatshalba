@@ -10,8 +10,6 @@ class CertificateChecksController < ApplicationController
       end
       notification = Notification.where("kind = 4").first
       notification.destroy
-      batch.review = 2
-      batch.save
       batch.buy = 1
       batch.save
     end
