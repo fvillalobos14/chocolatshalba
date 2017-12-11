@@ -26,8 +26,9 @@ class BatchesController < ApplicationController
   def update
     batch = Batch.find(params[:id])
     if batch.update(moved: true)
-      notification = Notification.where("kind = 3").first
-      notification.destroy
+      notification = Notification.where(kind: 3, read: false).first
+      notification.update(read: true)
+      notification.save
       redirect_to batches_moveBatches_path
     end
   end

@@ -18,20 +18,27 @@
               <% @batches.each do |batch| %>
                 <tr>
                   <td><%= batch.enterCode %></td>
-                  <td><%= batch.entry_control.organization.name %></td>
-                  <% if batch.quality_control == nil || batch.sensory_analysis == nil%>
+                  <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                  <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                  <%	 if batch.quality_control == nil || batch.sensory_analysis == nil %>
                     <td>Analisis de Calidad</td>
-                  <% elsif batch.quality_control.revision == nil %>
+                  <%	 elsif batch.quality_control.revision == nil and batch.ft == false%>
+                    <td>Jefe de Calidad</td>
+                  <%	 elsif batch.certificate_checks.first == nil and batch.quality_control.revision == nil and batch.ft %>
+                    <td>Jefe de Calidad y Certificado</td>
+                  <%	 elsif batch.certificate_checks.first != nil and batch.quality_control.revision == nil and batch.ft %>
                       <td>Jefe de Calidad</td>
-                  <% elsif batch.review == 1 && batch.ft%>
+                  <%	 elsif batch.certificate_checks.first == nil and batch.quality_control.revision != nil and batch.ft %>
                       <td>Certificado</td>
-                  <% elsif batch.purchase == nil %>
+                  <%	 elsif batch.purchase == nil and batch.buy == 1%>
                       <td>Compras</td>
-                  <% elsif batch.moved == false %>
-                      <td>Mover Lotes</td>
-                  <% elsif batch.moved %>
+                  <%	 elsif batch.moved == false%>
+                      <td>Bodega</td>
+                  <%	 elsif batch.export_batch == nil%>
                       <td>Exportación</td>
-                  <% end %>
+                  <%	 else %>
+                      <td>Bodega y Ventas</td>
+                  <%	 end %>
                 </tr>
               <%	end  %>
             </tbody>

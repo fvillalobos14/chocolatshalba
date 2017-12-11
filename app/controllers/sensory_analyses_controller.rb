@@ -16,8 +16,9 @@ class SensoryAnalysesController < ApplicationController
             end
 
             if not batch.quality_control.nil?
-                notification = Notification.where("kind = 1").first
-                notification.destroy
+                notification = Notification.where(kind: 1, read: false).first
+                notification.update(read:true)
+                notification.save
                 createNotification(batch)
                 batch.review=1
                 batch.save
