@@ -185,6 +185,20 @@ RailsAdmin.config do |config|
     exclude_fields :created_at, :updated_at
   end
 
+  config.model 'Price' do
+    list do
+      
+      field :price do
+        label 'Precio'
+      end
+      field :cocoa_type do
+        label 'Tipo de cacao'
+      end
+    end
+
+    exclude_fields :created_at, :updated_at
+  end
+
   config.model 'Batch' do
     list do
       
@@ -243,4 +257,5 @@ RailsAdmin.config do |config|
   config.excluded_models << Invoice
   config.excluded_models << Purchase
   config.excluded_models << SensoryAnalysis
+  config.excluded_models << ExportBatch
 end
