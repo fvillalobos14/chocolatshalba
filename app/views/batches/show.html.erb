@@ -77,26 +77,19 @@
                       <%	 if @batch.certificate_checks.first == nil %>
                           No se ha tomado
                       <%	 else %>
-                          <table class = "striped">
-                            <thead>
-                            <tr>
-                              <th>Desición</th>
-                              <th>Descripcion</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <% @batch.certificate_checks.each do |certi| %>
-                                <tr>
-                                  <%	 if certi.decision == 1 %>
-                                    <td>Aceptado</td>
-                                  <%	 else %>
-                                    <td>Negado</td>
-                                  <%	 end %>
-                                  <td><%=	 certi.description %></td>
-                                </tr>
-                            <% end %>
-                            </tbody>
-                          </table>
+                          <div class="col m6">
+                          <p>Decisión:
+                            <%	if @batch.certificate_checks.where(decision: 1).first.decision == 1  %>
+                              Aceptado
+                            <%	else %>
+                              Denegado
+                            <%	end %>
+                          </p>
+                          </div>
+                          <div class="col m6">
+                            <p>Descripcion: <%=	 @batch.certificate_checks.where(decision: 1).first.description %></p>
+                          </div>
+                          <br>
                       <%	 end %>
                     </div>
                   </li>
@@ -132,20 +125,25 @@
                     Compras
                   </div>
                   <div class="collapsible-body">
-                    <p>Comprado:
-                      <%	 if @batch.purchase == nil %>
-                        No
-                      <%   else %>
-                        Si
-                      <%   end %>
-                    </p>
-                    <p>Pagado:
-                      <%	 if @batch.invoice == nil %>
+                    <div class="col m6">
+                      <p>Comprado:
+                        <%	 if @batch.purchase == nil %>
                           No
-                      <%   else %>
+                        <%   else %>
                           Si
-                      <%   end %>
-                    </p>
+                        <%   end %>
+                      </p>
+                    </div>
+                    <div class="col m6">
+                      <p>Pagado:
+                        <%	 if @batch.invoice == nil %>
+                            No
+                        <%   else %>
+                            Si
+                        <%   end %>
+                      </p>
+                    </div>
+                    <br>
                   </div>
                 </li>
               </ul>
