@@ -18,7 +18,7 @@
               <% @export_batches.each do |batch| %>
                 <tr>
                   <td><%= batch.id %></td>
-                  <td><%= batch.created_at %> </td>
+                  <td><%= batch.created_at.strftime("%Y-%m-%d")  %> </td>
                   <td><%=	 link_to "Ver", batch %></td>
                 </tr>
               <% end %>
