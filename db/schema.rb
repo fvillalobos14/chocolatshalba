@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207040638) do
+ActiveRecord::Schema.define(version: 20171212223913) do
 
   create_table "acceptances", force: :cascade do |t|
     t.decimal "max_qualityA"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 20171207040638) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parameter_id"], name: "index_acceptances_on_parameter_id"
+  end
+
+  create_table "archives", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "batches", force: :cascade do |t|

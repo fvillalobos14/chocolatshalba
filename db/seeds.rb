@@ -273,114 +273,114 @@ Parameter.create do |p|
 	p.category_id = 4
 end
 
-Acceptance.create! do |p|
-  p.max_qualityA = 6.5
-	p.max_qualityB = 6.5
-	p.max_qualityC = 6.5
-	p.min_qualityA = -1
-	p.min_qualityB = -1
-	p.min_qualityC = -1
-  p.parameter_id = 1
+Acceptance.create! do |a|
+  a.max_qualityA = 6.5
+	a.max_qualityB = 6.5
+	a.max_qualityC = 6.5
+	a.min_qualityA = -1
+	a.min_qualityB = -1
+	a.min_qualityC = -1
+  a.parameter_id = 1
 end
 
-Acceptance.create! do |p|
-	p.max_qualityA = -1
-	p.max_qualityB = -1
-	p.max_qualityC = -1
-	p.min_qualityA = 105
-	p.min_qualityB = 80
-	p.min_qualityC = 75
-	p.parameter_id = 2
+Acceptance.create! do |a|
+	a.max_qualityA = -1
+	a.max_qualityB = -1
+	a.max_qualityC = -1
+	a.min_qualityA = 105
+	a.min_qualityB = 80
+	a.min_qualityC = 75
+	a.parameter_id = 2
 end
 
-Acceptance.create! do |p|
-	p.max_qualityA = -1
-	p.max_qualityB = -1
-	p.max_qualityC = -1
-	p.min_qualityA = 1.05
-	p.min_qualityB = 0.8
-	p.min_qualityC = 0.75
-	p.parameter_id = 3
+Acceptance.create! do |a|
+	a.max_qualityA = -1
+	a.max_qualityB = -1
+	a.max_qualityC = -1
+	a.min_qualityA = 1.05
+	a.min_qualityB = 0.8
+	a.min_qualityC = 0.75
+	a.parameter_id = 3
 end
 
-Acceptance.create! do |p|
-	p.max_qualityA = -1
-	p.max_qualityB = -1
-	p.max_qualityC = -1
-	p.min_qualityA = 75
-	p.min_qualityB = 65
-	p.min_qualityC = -1
-	p.parameter_id = 4
+Acceptance.create! do |a|
+	a.max_qualityA = -1
+	a.max_qualityB = -1
+	a.max_qualityC = -1
+	a.min_qualityA = 75
+	a.min_qualityB = 65
+	a.min_qualityC = -1
+	a.parameter_id = 4
 end
 
-Acceptance.create! do |p|
-	p.max_qualityA = 20
-	p.max_qualityB = 30
-	p.max_qualityC = -1
-	p.min_qualityA = -1
-	p.min_qualityB = -1
-	p.min_qualityC = -1
-	p.parameter_id = 5
+Acceptance.create! do |a|
+	a.max_qualityA = 20
+	a.max_qualityB = 30
+	a.max_qualityC = -1
+	a.min_qualityA = -1
+	a.min_qualityB = -1
+	a.min_qualityC = -1
+	a.parameter_id = 5
 end
 
-Acceptance.create! do |p|
-	p.max_qualityA = 8
-	p.max_qualityB = 20
-	p.max_qualityC = -1
-	p.min_qualityA = -1
-	p.min_qualityB = -1
-	p.min_qualityC = -1
-	p.parameter_id = 6
+Acceptance.create! do |a|
+	a.max_qualityA = 8
+	a.max_qualityB = 20
+	a.max_qualityC = -1
+	a.min_qualityA = -1
+	a.min_qualityB = -1
+	a.min_qualityC = -1
+	a.parameter_id = 6
 end
 
-Acceptance.create! do |p|
-	p.max_qualityA = 3
-	p.max_qualityB = 15
-	p.max_qualityC = -1
-	p.min_qualityA = -1
-	p.min_qualityB = -1
-	p.min_qualityC = -1
-	p.parameter_id = 7
+Acceptance.create! do |a|
+	a.max_qualityA = 3
+	a.max_qualityB = 15
+	a.max_qualityC = -1
+	a.min_qualityA = -1
+	a.min_qualityB = -1
+	a.min_qualityC = -1
+	a.parameter_id = 7
 end
 
-Acceptance.create! do |p|
-	p.max_qualityA = 3
-	p.max_qualityB = 5
-	p.max_qualityC = 8
-	p.min_qualityA = -1
-	p.min_qualityB = -1
-	p.min_qualityC = -1
-	p.parameter_id = 8
+Acceptance.create! do |a|
+	a.max_qualityA = 3
+	a.max_qualityB = 5
+	a.max_qualityC = 8
+	a.min_qualityA = -1
+	a.min_qualityB = -1
+	a.min_qualityC = -1
+	a.parameter_id = 8
 end
 
-Acceptance.create! do |p|
-	p.max_qualityA = 1
-	p.max_qualityB = 4
-	p.max_qualityC = 10
-	p.min_qualityA = -1
-	p.min_qualityB = -1
-	p.min_qualityC = -1
-	p.parameter_id = 9
+Acceptance.create! do |a|
+	a.max_qualityA = 1
+	a.max_qualityB = 4
+	a.max_qualityC = 10
+	a.min_qualityA = -1
+	a.min_qualityB = -1
+	a.min_qualityC = -1
+	a.parameter_id = 9
 end
 
-Acceptance.create! do |p|
-	p.max_qualityA = 2.5
-	p.max_qualityB = 3.5
-	p.max_qualityC = 7
-	p.min_qualityA = -1
-	p.min_qualityB = -1
-	p.min_qualityC = -1
-	p.parameter_id = 10
+Acceptance.create! do |a|
+	a.max_qualityA = 2.5
+	a.max_qualityB = 3.5
+	a.max_qualityC = 7
+	a.min_qualityA = -1
+	a.min_qualityB = -1
+	a.min_qualityC = -1
+	a.parameter_id = 10
 end
 
-Acceptance.create! do |p|
-	p.max_qualityA = 1
-	p.max_qualityB = 1.5
-	p.max_qualityC = 2
-	p.min_qualityA = -1
-	p.min_qualityB = -1
-	p.min_qualityC = -1
-	p.parameter_id = 11
+Acceptance.create! do |a|
+	a.max_qualityA = 1
+	a.max_qualityB = 1.5
+	a.max_qualityC = 2
+	a.min_qualityA = -1
+	a.min_qualityB = -1
+	a.min_qualityC = -1
+	a.parameter_id = 11
 end
 
 Price.create! do |p|
@@ -396,4 +396,23 @@ end
 Price.create! do |p|
 	p.price = 1000
 	p.cocoa_type_id = 3
+end
+
+Archive.create! do|a|
+  a.title = "Hoja de remision de la cooperativa"
+end
+Archive.create! do|a|
+  a.title = "Listado de productores"
+end
+Archive.create! do|a|
+  a.title = "Hoja de inspeccion y limpieza del vehiculo de transporte"
+end
+Archive.create! do|a|
+  a.title = "Hoja de limpieza del centro de acopio"
+end
+Archive.create! do|a|
+  a.title = "Hoja de constancia del envasado del cacao"
+end
+Archive.create! do|a|
+  a.title = "Factura de venta"
 end
