@@ -184,7 +184,7 @@
           </h2>
           <%= link_to "Regresar", revisions_path , class: "btn btn-primary"%>
           <% if current_user.quality_manager_role && !Revision.where(quality_control_id: @qualityControl.id).nil? %>
-            <a class="waves-effect waves-light btn" data-target="modal1">Determinar desición</a>
+            <a class="waves-effect waves-light btn" data-target="modal1">Determinar decisión</a>
           <% end %>
         </div>
       </div>
