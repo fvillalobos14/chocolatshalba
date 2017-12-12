@@ -1,0 +1,198 @@
+<div class="container">
+  <div class="row">
+    <div class="col m12">
+      <div class="card">
+        <div class="card-content">
+          <%	 if @batch != nil %>
+          <div class="page-header">
+            <h1>Análisis de calidad</h1>
+          </div>
+          <p>
+            Cooperativa/Proveedor:
+            <%= @batch.entry_control.organization.name %>
+          </p>
+
+          <p>
+            Fecha de ingreso:
+            <%= @batch.entry_control.entryDate %>
+          </p>
+
+          <p>
+            Código de muestra:
+            <%= @batch.enterCode %>
+          </p>
+
+          <p>
+            Peso final:
+            <%= number_with_precision(@batch.weight, precision: 2) %>
+            lb
+          </p>
+          <br>
+          <%	 if @qualityControl != nil %>
+          <ul class="collapsible" data-collapsible="accordion">
+            <li>
+              <div class="collapsible-header section-color white-text text">
+                <i class="material-icons">description</i>
+                <b>CORTE</b>
+              </div>
+              <div class="collapsible-body white">
+                <p>
+                  Número de hoja:
+                  <%= @qualityControl.code %>
+                </p>
+
+                <p>
+                  Fecha de corte:
+                  <%= @qualityControl.cut_at %>
+                </p>
+
+                <p>
+                  Persona responsable:
+                  <%= @qualityControl.made_by %>
+                </p>
+
+                <p>
+                  <% if @qualityControl.f_harvest %>
+                      Cosecha: primera (agosto-febrero)
+                  <% end %>
+                </p>
+
+                <p>
+                  <% if @qualityControl.s_harvest %>
+                      Cosecha: segunda (marzo-julio)
+                  <% end %>
+                </p>
+
+                <p>
+                  <% if @qualityControl.trinitary %>
+                      Variedad: trinitario
+                  <% end %>
+                </p>
+
+                <p>
+                  <% if @qualityControl.outsider %>
+                      Variedad: forastero
+                  <% end %>
+                </p>
+
+                <p>
+                  Observación:
+                  <%= @qualityControl.observation %>
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header section-color white-text text">
+                <i class="material-icons">dashboard</i>
+                <b>ANÁLISIS FÍSICO</b>
+              </div>
+              <div class="collapsible-body white">
+                <% Category.where(sensory: false).order(:place).each do |category| %>
+                    <table class="highlight">
+                      <tr>
+                        <th>
+                          <%= category.name %>
+                        </th>
+                        <% (1..category.runs).each do |i| %>
+                            <th align="right">
+                              <%= i %>
+                            </th>
+                        <% end %>
+                        <% if category.runs > 1 %>
+                            <th>Resultado promedio</th>
+                        <% end %>
+                      </tr>
+                      <% category.parameters.order(:place).each do |parameter| %>
+                          <tr>
+                            <td width="7%">
+                              <%= parameter.name %>
+                            </td>
+                            <% if category.runs > 1 %>
+                                <% (1..category.runs).each do |i| %>
+                                    <td width="7%">
+                                      <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: i).first.score,precision: 0) %>
+                                    </td>
+                                <% end %>
+                            <% else %>
+                                <td width="7%">
+                                  <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: 1).first.score, precision: 2) %>
+                                  <%= parameter.unit %>
+                                </td>
+                            <% end %>
+                            <% if category.runs > 1 %>
+                                <td width="7%">
+                                  <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)/3, precision: 2) %>%</td>
+                            <% end %>
+                          </tr>
+                      <% end %>
+                    </table>
+                <% end %>
+              </div>
+            </li>
+
+            <li>
+              <div class="collapsible-header section-color white-text text">
+                <i class="material-icons">pie_chart</i>
+                <b>ANÁLISIS SENSORIAL</b>
+              </div>
+              <div class="collapsible-body white">
+                <% Category.where(sensory: true).order(:place).each do |category| %>
+                    <table class="highlight">
+                      <tr>
+                        <th>
+                          <%= category.name %>
+                        </th>
+                        <% (1..category.runs).each do |i| %>
+                            <th align="right">
+                              <%= i %>
+                            </th>
+                        <% end %>
+                        <% if category.runs > 1 %>
+                            <th>Resultado promedio</th>
+                        <% end %>
+                      </tr>
+                      <% category.parameters.order(:place).each do |parameter| %>
+                          <tr>
+                            <td width="7%">
+                              <%= parameter.name %>
+                            </td>
+                            <% if category.runs > 1 %>
+                                <% (1..category.runs).each do |i| %>
+                                    <td width="7%">
+                                      <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: i).first.score,precision: 0) %>
+                                    </td>
+                                <% end %>
+                            <% else %>
+                                <td width="7%">
+                                  <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: 1).first.score, precision: 2) %>
+                                  <%= parameter.unit %>
+                                </td>
+                            <% end %>
+                            <% if category.runs > 1 %>
+                                <td width="7%">
+                                  <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)/3, precision: 2) %>%</td>
+                            <% end %>
+                          </tr>
+                      <% end %>
+                    </table>
+                <% end %>
+                <br>
+                <a class="waves-effect waves-light btn" data-target="modal2">Ver gráfico</a>
+              </div>
+            </li>
+          </ul>
+          <% else %>
+             <center>
+              <h1>Calidad no disponible</h1>
+             </center>
+          <% end %>
+          <% else %>
+              <center>
+                <h1>Información no disponible</h1>
+              </center>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

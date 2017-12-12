@@ -35,32 +35,42 @@
               <p>Fecha de Ingreso: <%= @batch.entry_control.entryDate %></p>
               <ul class="collapsible" data-collapsible="accordion">
                 <li>
-                  <div class="collapsible-header">
-                    <i class="material-icons">filter_drama</i>
+                  <div class="collapsible-header section-color white-text text">
+                    <i class="material-icons">assessment</i>
                     Decisión de calidad
                   </div>
                   <div class="collapsible-body">
                     <div class="col m6">
                       <p>Calidad escogida:
-                        <%	 if @batch.quality_control.revision.status == 1 %>
-                            A
-                        <%	 elsif @batch.quality_control.revision.status == 2 %>
-                            B
-                        <%	 elsif @batch.quality_control.revision.status == 3 %>
-                            C
-                        <%	 end %>
+                        <%	 if @batch.quality_control != nil %>
+                            <%	 if @batch.quality_control.revision != nil %>
+                              <%	 if @batch.quality_control.revision.status == 1 %>
+                                  A
+                              <%	 elsif @batch.quality_control.revision.status == 2 %>
+                                  B
+                              <%	 elsif @batch.quality_control.revision.status == 3 %>
+                                  C
+                              <%	 end %>
+                            <%	 else %>
+                                No se ha tomado
+                            <%	 end %>
+                      <%	 else %>
+                            No se ha tomado
+                      <%	 end %>
                       </p>
                     </div>
                     <div class="col m6">
-                      <p><%=	 link_to "Ver analisis", @batch.quality_control %></p>
+                      <%	 if @batch.quality_control != nil %>
+                      <p><%=	 link_to "Ver analisis", "/static_pages/quality_info?utf8=✓&lote=1" %></p>
+                      <%	 end %>
                     </div>
                     <br>
                   </div>
                 </li>
                 <%	 if @batch.ft == true %>
                   <li>
-                    <div class="collapsible-header">
-                      <i class="material-icons">place</i>
+                    <div class="collapsible-header section-color white-text text">
+                      <i class="material-icons">check_circle</i>
                       Certificado
                     </div>
                     <div class="collapsible-body">
@@ -92,8 +102,33 @@
                   </li>
                 <%	 end %>
                 <li>
-                  <div class="collapsible-header">
-                    <i class="material-icons">filter_drama</i>
+                  <div class="collapsible-header section-color white-text text">
+                    <i class="material-icons">collections_bookmark</i>
+                    Documentos
+                  </div>
+                  <div class="collapsible-body">
+                    <b>DOCUMENTOS</b>
+                    <table class="striped">
+                      <thead>
+                      <tr>
+                        <th>Nombre del archivo</th>
+                        <th></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <% @batch.entry_control.documents.each do |doc| %>
+                          <tr>
+                            <td><%=doc.title%></td>
+                            <td><%= link_to "Descargar archivo", doc.ec_data.url(:original, false) %><td>
+                          </tr>
+                      <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header section-color white-text text">
+                    <i class="material-icons">credit_card</i>
                     Compras
                   </div>
                   <div class="collapsible-body">
