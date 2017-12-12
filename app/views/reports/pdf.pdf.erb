@@ -24,63 +24,69 @@
       <% @entries.each  do |entry| %>
           <% entry.batches.each do |batch| %>
               <%	 if batch.quality_control != nil %>
-                  <%	if batch.quality_control.revision != nil %>
-                      <tr>
-                        <%	 if params[:purchased] == nil && params[:quality] == "" %>
-                            <td><%= batch.sackAmount %></td>
-                            <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
-                            <td><%= batch.enterCode %></td>
-                            <td><%= CocoaType.find(batch.cocoaType).name %></td>
-                            <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                            <td><%= batch.entry_control.organization.name %></td>
-                        <%	end %>
-                        <%	 if params[:purchased] != nil && params[:quality] == "" %>
-                            <%	if batch.buy == 1 %>
-                                <td><%= batch.sackAmount %></td>
-                                <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
-                                <td><%= batch.enterCode %></td>
-                                <td><%= CocoaType.find(batch.cocoaType).name %></td>
-                                <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                                <%	 if params[:searchbox] == "" %>
+                  <%	 if batch.quality_control != nil %>
+                      <%	if batch.quality_control.revision != nil %>
+                          <tr>
+                            <%	 if  params[:purchased].to_s != "on" && params[:quality] == "" %>
+                                <%	if batch.buy == 0 %>
+                                    <td><%= batch.sackAmount %></td>
+                                    <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                    <td><%= batch.enterCode %></td>
+                                    <td><%= CocoaType.find(batch.quality_control.revision.status).name %></td>
+                                    <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                     <td><%= batch.entry_control.organization.name %></td>
-                                <%	 end %>
-                            <%  end %>
-                        <%	end %>
-                        <%	 if params[:purchased] == nil && params[:quality] != "" %>
-                            <%	 if batch.quality_control != nil %>
-                                <%	 if batch.quality_control.revision != nil %>
-                                    <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
-                                        <td><%= batch.sackAmount %></td>
-                                        <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
-                                        <td><%= batch.enterCode %></td>
-                                        <td><%= CocoaType.find(batch.cocoaType).name %></td>
-                                        <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                                        <%	 if params[:searchbox] == "" %>
-                                            <td><%= batch.entry_control.organization.name %></td>
+                                <%	end %>
+                            <%	end %>
+                            <%	 if params[:purchased].to_s == "on" && params[:quality] == "" %>
+                                <%	if batch.buy == 1 %>
+                                    <td><%= batch.sackAmount %></td>
+                                    <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                    <td><%= batch.enterCode %></td>
+                                    <td><%= CocoaType.find(batch.quality_control.revision.status).name %></td>
+                                    <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                    <%	 if params[:searchbox] == "" %>
+                                        <td><%= batch.entry_control.organization.name %></td>
+                                    <%	 end %>
+                                <%  end %>
+                            <%	end %>
+                            <%	 if params[:purchased].to_s != "on" && params[:quality] != "" %>
+                                <%	 if batch.quality_control != nil %>
+                                    <%	 if batch.quality_control.revision != nil %>
+                                        <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
+                                            <%	if batch.buy == 0 %>
+                                                <td><%= batch.sackAmount %></td>
+                                                <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                                <td><%= batch.enterCode %></td>
+                                                <td><%= CocoaType.find(batch.quality_control.revision.status).name %></td>
+                                                <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                                <%	 if params[:searchbox] == "" %>
+                                                    <td><%= batch.entry_control.organization.name %></td>
+                                                <%	 end %>
+                                            <%	 end %>
                                         <%	 end %>
                                     <%	 end %>
                                 <%	 end %>
-                            <%	 end %>
-                        <%	end %>
-                        <%	 if params[:purchased] != nil && params[:quality] != "" %>
-                            <%	 if batch.quality_control != nil %>
-                                <%	 if batch.quality_control.revision != nil %>
-                                    <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
-                                        <%	if batch.buy == 1 %>
-                                            <td><%= batch.sackAmount %></td>
-                                            <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
-                                            <td><%= batch.enterCode %></td>
-                                            <td><%= CocoaType.find(batch.cocoaType).name %></td>
-                                            <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                                            <%	 if params[:searchbox] == "" %>
-                                                <td><%= batch.entry_control.organization.name %></td>
-                                            <%	 end %>
-                                        <% end %>
+                            <%	end %>
+                            <%	 if  params[:purchased].to_s == "on" && params[:quality] != "" %>
+                                <%	 if batch.quality_control != nil %>
+                                    <%	 if batch.quality_control.revision != nil %>
+                                        <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
+                                            <%	if batch.buy == 1 %>
+                                                <td><%= batch.sackAmount %></td>
+                                                <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                                <td><%= batch.enterCode %></td>
+                                                <td><%= CocoaType.find(batch.quality_control.revision.status).name %></td>
+                                                <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                                <%	 if params[:searchbox] == "" %>
+                                                    <td><%= batch.entry_control.organization.name %></td>
+                                                <%	 end %>
+                                            <% end %>
+                                        <%	 end %>
                                     <%	 end %>
                                 <%	 end %>
-                            <%	 end %>
-                        <%	end %>
-                      </tr>
+                            <%	end %>
+                          </tr>
+                      <% end %>
                   <% end %>
               <% end %>
           <% end %>
