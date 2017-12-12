@@ -19,7 +19,6 @@
               <%= check_box_tag(:purchased, params[:purchased]) %>
               <%= label_tag(:purchased, "Comprado") %>
               </p>
-
               <br>
               <%= submit_tag "Buscar", :name => nil, class:"btn btn-default btn-lg" %>
           <% end %>
@@ -40,7 +39,7 @@
                   <%	 if batch.quality_control != nil %>
                     <%	if batch.quality_control.revision != nil %>
                       <tr>
-                        <%	 if params[:purchased] == nil && params[:quality] == "" %>
+                        <%	 if  params[:purchased].to_s != "on" && params[:quality] == "" %>
                             <td><%= batch.sackAmount %></td>
                             <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
                             <td><%= batch.enterCode %></td>
@@ -48,7 +47,7 @@
                             <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                             <td><%= batch.entry_control.organization.name %></td>
                         <%	end %>
-                        <%	 if params[:purchased] != nil && params[:quality] == "" %>
+                        <%	 if params[:purchased].to_s == "on" && params[:quality] == "" %>
                             <%	if batch.buy == 1 %>
                                 <td><%= batch.sackAmount %></td>
                                 <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
@@ -60,7 +59,7 @@
                                 <%	 end %>
                             <%  end %>
                         <%	end %>
-                        <%	 if params[:purchased] == nil && params[:quality] != "" %>
+                        <%	 if params[:purchased].to_s != "on" && params[:quality] != "" %>
                             <%	 if batch.quality_control != nil %>
                                 <%	 if batch.quality_control.revision != nil %>
                                     <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
@@ -76,7 +75,7 @@
                                 <%	 end %>
                             <%	 end %>
                         <%	end %>
-                        <%	 if params[:purchased] != nil && params[:quality] != "" %>
+                        <%	 if  params[:purchased].to_s == "on" && params[:quality] != "" %>
                             <%	 if batch.quality_control != nil %>
                                 <%	 if batch.quality_control.revision != nil %>
                                     <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
