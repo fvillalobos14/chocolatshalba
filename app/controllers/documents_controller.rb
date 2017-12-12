@@ -1,37 +1,23 @@
 class DocumentsController < ApplicationController
-  def index
-      @documents=Document.all
-  end
-
-  def show
-      @document = Document.find(params[:id])
-  end
-
+  before_action :authenticate_user!
   def new
-      @entry = EntryControl.find(params[:entry_control_id])
-      @document = @entry.documents.build
+    @entry = EntryControl.find(params[:entry_control_id])
+    @document = @entry.documents.build
   end
 
   def create
-      @entry = EntryControl.find(params[:entry_control_id])
-      @document = @entry.documents.build(document_params)
+    entry = EntryControl.find(params[:entry_control_id])
+    document = entry.documents.build(document_params)
 
-      if @document.save
-        redirect_to @entry, notice: "Documento agregado con exito"
-      else
-        flash[:errors] = "No se pudo adjuntar el documento"
-        render :new
-      end
-  end
-
-  def destroy
-      @entry = EntryControl.find(params[:entry_control_id])
-      @document = EntryControl.documents.find(params[:id])
-      @document.destroy
-      redirect_to @entry, notice: "Documento eliminado con exito"
+    if document.save
+      redirect_to entry, notice: "Documento agregado con éxito"
+    else
+      flash[:errors] = "No se pudo adjuntar el documento"
+      render :new
+    end
   end
 
   def document_params
-      params.require(:document).permit(:title,:ec_data)
+    params.require(:document).permit(:title,:ec_data)
   end
 end
