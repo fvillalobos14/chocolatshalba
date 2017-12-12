@@ -61,7 +61,7 @@
                     </div>
                     <div class="col m6">
                       <%	 if @batch.quality_control != nil %>
-                      <p><%=	 link_to "Ver analisis", "/static_pages/quality_info?utf8=✓&lote=1" %></p>
+                      <p><%=	 link_to "Ver analisis", "/static_pages/quality_info?utf8=✓&lote="+@batch.id.to_s %></p>
                       <%	 end %>
                     </div>
                     <br>
@@ -149,6 +149,7 @@
                   </div>
                 </li>
               </ul>
+              <%= link_to 'Regresar', url_for(:back), class:"waves-effect waves-light btn" %>
             </div>
           </div>
         </div>

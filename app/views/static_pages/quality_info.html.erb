@@ -28,7 +28,7 @@
             lb
           </p>
           <br>
-          <%	 if @qualityControl != nil %>
+          <%	 if @qualityControl != nil and @batch.sensory_analysis != nil %>
           <ul class="collapsible" data-collapsible="accordion">
             <li>
               <div class="collapsible-header section-color white-text text">
@@ -177,7 +177,7 @@
                     </table>
                 <% end %>
                 <br>
-                <a class="waves-effect waves-light btn" data-target="modal2">Ver gráfico</a>
+                <a class="waves-effect waves-light btn" data-target="modal1">Ver gráfico</a>
               </div>
             </li>
           </ul>
@@ -191,8 +191,36 @@
                 <h1>Información no disponible</h1>
               </center>
         <% end %>
+          <%= link_to 'Regresar', url_for(:back), class:"waves-effect waves-light btn" %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div id="modal1" class="modal"  style="max-height: 100% !important ; overflow-y: hidden !important ;">
+  <div class="modal-content">
+    <div class="col m6">
+      <div class="card-panel">
+        <center>
+          <h5>Análisis sensorial</h5>
+        </center>
+        <%= radar_chart  @data, :height => 250 %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.modal').modal();
+    });
+    $('#modal1').modal('open');
+    $('#modal1').modal('close');
+</script>
+
+<script>
+    $(document).on('turbolinks:load', function () {
+        $('select').material_select();
+    })
+</script>
