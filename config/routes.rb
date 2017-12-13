@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   resources :reports
   resources :static_pages
   resources :export_batches
+  resources :documents
 
   resources :entry_controls do
     resources :batches

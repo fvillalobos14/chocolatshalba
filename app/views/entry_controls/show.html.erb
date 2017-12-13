@@ -98,6 +98,9 @@
                         <tr>
                           <td><%=doc.title%></td>
                           <td><%= link_to "Descargar archivo", doc.ec_data.url(:original, false) %><td>
+                          <% if current_user.warehouse_role || current_user.warehouse_role %>
+                            <td><%= link_to 'Editar', edit_document_path(doc) %></td>
+                          <% end %> 
                         </tr>
                       <% end %>
                     </tbody>
