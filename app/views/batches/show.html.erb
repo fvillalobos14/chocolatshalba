@@ -8,10 +8,30 @@
             <h1>Revision de Documentación</h1>
           </div>
           <p>Codigo: <%= @batch.enterCode %></p>
-          <p>Control de Ingreso: <%= @batch.entry_control.entry_number %></p>
+          <p>Control de ingreso: <%= @batch.entry_control.entry_number %></p>
           <p>Organización: <%= @batch.entry_control.organization.name %></p>
-          <p>Fecha de Ingreso: <%= @batch.entry_control.entryDate %></p>
-          <h2>Documentos</h2>
+          <p>Fecha de ingreso: <%= @batch.entry_control.entryDate %></p>
+
+          <div class="card-content">
+            <b>DOCUMENTOS</b>
+            <table class="striped bordered">
+              <thead>
+                <tr>
+                  <th>Nombre del archivo</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @batch.entry_control.documents.each do |doc| %>
+                  <tr>
+                    <td><%=doc.title%></td>
+                    <td><%= link_to "Descargar archivo", doc.ec_data.url(:original, false) %><td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <%= link_to "Regresar", checkings_path , class: "btn btn-primary"%>
           <a class = "waves-effect waves-light btn" data-target = "modal1">Determinar</a>
         </div>
       </div>
@@ -159,13 +179,13 @@
   <%= form_for ([@batch, @batch.certificate_checks.build]) do |f| %>
       <div class="modal-content">
         <center>
-          <h5>Seleccione:</h5>
+          <h5>Decisión:</h5>
           <div class = "field">
             <p style = "width: 40%"><%= f.select :decision, options_for_select([["Aceptar", 1], ["Rechazar", 0]]), class:"dropdown-button btn" %></p>
           </div>
           <div class = "input-field">
             <%= f.label :description, "Observación" %>
-            <%= f.text_area :description, class:"materialize-textarea" %>
+            <%= f.text_area :description, class:"materialize-textarea", :required => true%>
           </div>
           <%= f.submit 'Aceptar',class:"modal-action modal-close waves-effect waves-light btn" %>
           <a class = "modal-action modal-close waves-effect waves-light red darken-1 btn">Cancelar</a>

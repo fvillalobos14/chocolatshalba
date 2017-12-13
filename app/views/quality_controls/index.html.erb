@@ -7,12 +7,11 @@
             <div class="page-header">
               <h1>Controles de ingreso</h1>
             </div>
-            <table class="striped">
+            <table class="striped bordered">
               <thead>
                 <tr>
-                  <th>Recibido por</th>
-                  <th>Entregado por</th>
-                  <th>Fecha de Ingreso</th>
+                  <th>Organización</th>
+                  <th>Fecha de ingreso</th>
                   <th></th>
                 </tr>
               </thead>
@@ -20,8 +19,7 @@
                 <% @entries.each do |entry| %>
                   <% if QualityControl.where(batch_id: entry.batches.ids).count(:id) < entry.batches.count(:id) or SensoryAnalysis.where(batch_id: entry.batches.ids).count(:id) < entry.batches.count(:id)%>
                     <tr>
-                      <td><%= entry.receivedBy %></td>
-                      <td><%= entry.deliveredBy %></td>
+                      <td><%= entry.organization.name %></td>
                       <td><%= entry.entryDate %></td>
                       <td><%= link_to "Lotes", entry %></td>
                     </tr>

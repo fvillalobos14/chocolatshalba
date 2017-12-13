@@ -7,16 +7,16 @@
             <h1>Documento</h1>
           </div>
           <%= form_for [@entry,@document] do |f| %>
-          <div class="form-group">
-              <%= f.label :title %>
-              <%= f.text_field :title, class: 'form-control' %>
-            </div>
-
+            <p>
+              <%= f.label :title, "Nombre del archivo" %>
+              <%= f.collection_select :title, Archive.all, :title, :title, class:"dropdown-button btn" %>
+            </p>
             <div class="form-group">
-              <br><%= f.label :ec_data %>
-              <%= f.file_field :ec_data, class: 'form-control'%>
+                <%= f.label :ec_data, "Documento" %>
+                <%= f.file_field :ec_data, class: 'form-control', :required => true%>
             </div>
             <br>
+            <%= link_to "Regresar", @entry , class: "btn btn-primary"%>
             <%= f.submit 'Subir', class: 'btn btn-primary' %>
           <%end%>
         </div>
@@ -24,3 +24,9 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).on('turbolinks:load', function () {
+    $('select').material_select();
+  })
+</script>

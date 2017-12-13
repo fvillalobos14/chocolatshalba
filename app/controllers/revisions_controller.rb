@@ -9,19 +9,14 @@ class RevisionsController < ApplicationController
     revision = qualityControl.build_revision(revision_params)
     if revision.save
      
-    
-    notification = Notification.where("kind = 2").first
-    notification.destroy
+    notification = Notification.where(kind: 2, read: false).first
+    notification.update(read: true)
+    notification.save
     batch=qualityControl.batch
 
-    if not qualityControl.batch.ft or not qualityControl.batch.certificate_checks.first.nil?
+    if not batch.ft or not batch.certificate_checks.first.nil?
       createNotification
-      if batch.ft
-        batch.review = 1
-      else
-        batch.review = 2
-        batch.buy = 1
-      end
+      batch.buy = 1
       batch.save
     end
   end

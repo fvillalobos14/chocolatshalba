@@ -2,7 +2,62 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="422e7f06-29d4-45ba-94ce-5aa359cb2a3d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/bills.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bills.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/bills_controller.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/bills_helper.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/archive.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/bill.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/bills/new.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20171207040220_create_bills.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20171207040638_add_attachment_invoice_doc_to_bills.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20171212223913_create_archives.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/controllers/bills_controller_test.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/fixtures/archives.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/fixtures/bills.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/models/archive_test.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/models/bill_test.rb" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/entry_controls/_entry_controls_document.html.erb" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/batches_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/batches_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/certificate_checks_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/certificate_checks_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/documents_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/documents_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/invoices_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/invoices_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/purchases_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/purchases_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/quality_controls_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/quality_controls_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/revisions_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/revisions_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/sensory_analyses_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/sensory_analyses_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/invoice.rb" afterPath="$PROJECT_DIR$/app/models/invoice.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/batches/moveBatches.html.erb" afterPath="$PROJECT_DIR$/app/views/batches/moveBatches.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/batches/new.html.erb" afterPath="$PROJECT_DIR$/app/views/batches/new.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/batches/show.html.erb" afterPath="$PROJECT_DIR$/app/views/batches/show.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/checkings/index.html.erb" afterPath="$PROJECT_DIR$/app/views/checkings/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/documents/new.html.erb" afterPath="$PROJECT_DIR$/app/views/documents/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/entry_controls/new.html.erb" afterPath="$PROJECT_DIR$/app/views/entry_controls/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/entry_controls/show.html.erb" afterPath="$PROJECT_DIR$/app/views/entry_controls/show.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/export_batches/new.html.erb" afterPath="$PROJECT_DIR$/app/views/export_batches/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/invoices/index.html.erb" afterPath="$PROJECT_DIR$/app/views/invoices/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/organizations/index.html.erb" afterPath="$PROJECT_DIR$/app/views/organizations/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/organizations/show.html.erb" afterPath="$PROJECT_DIR$/app/views/organizations/show.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/purchases/index.html.erb" afterPath="$PROJECT_DIR$/app/views/purchases/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/purchases/new.html.erb" afterPath="$PROJECT_DIR$/app/views/purchases/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/quality_controls/index.html.erb" afterPath="$PROJECT_DIR$/app/views/quality_controls/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/quality_controls/new.html.erb" afterPath="$PROJECT_DIR$/app/views/quality_controls/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/quality_controls/show.html.erb" afterPath="$PROJECT_DIR$/app/views/quality_controls/show.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/reports/index.html.erb" afterPath="$PROJECT_DIR$/app/views/reports/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/reports/pdf.pdf.erb" afterPath="$PROJECT_DIR$/app/views/reports/pdf.pdf.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/revisions/index.html.erb" afterPath="$PROJECT_DIR$/app/views/revisions/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/sensory_analyses/new.html.erb" afterPath="$PROJECT_DIR$/app/views/sensory_analyses/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/static_pages/stages.html.erb" afterPath="$PROJECT_DIR$/app/views/static_pages/stages.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/rails_admin.rb" afterPath="$PROJECT_DIR$/config/initializers/rails_admin.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/en.yml" afterPath="$PROJECT_DIR$/config/locales/en.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -16,27 +71,75 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="chocolatshalba" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="show.html.erb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/batches/show.html.erb">
+      <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/reports/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="145" column="24" lean-forward="false" selection-start-line="145" selection-start-column="24" selection-end-line="145" selection-end-column="24" />
+            <state relative-caret-position="270">
+              <caret line="39" column="16" lean-forward="false" selection-start-line="95" selection-start-column="24" selection-end-line="96" selection-end-column="25" />
+              <folding>
+                <marker date="1513149678915" expanded="true" signature="313:880" ph="do ... end" />
+                <marker date="1513149678915" expanded="true" signature="5453:5477" ph="do ... end" />
+                <marker date="1513149678915" expanded="true" signature="5453:5499" ph="do ... end" />
+                <marker date="1513149678915" expanded="true" signature="5453:5522" ph="..." />
+                <marker date="1513149678915" expanded="true" signature="5453:5541" ph="..." />
+                <marker date="1513149678915" expanded="true" signature="5727:5919" ph="..." />
+                <marker date="1513149678915" expanded="true" signature="5760:5908" ph="{...}" />
+                <marker date="1513149678915" expanded="true" signature="5928:6036" ph="..." />
+                <marker date="1513149678915" expanded="true" signature="5980:6026" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pdf.pdf.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/reports/pdf.pdf.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1125">
+              <caret line="75" column="10" lean-forward="false" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="10" />
+              <folding>
+                <marker date="1513149678916" expanded="true" signature="163:3612" ph="..." />
+                <marker date="1513149678916" expanded="true" signature="175:366" ph="..." />
+                <marker date="1513149678916" expanded="true" signature="378:3601" ph="..." />
+                <marker date="1513149678916" expanded="true" signature="402:3586" ph="do ... end" />
+                <marker date="1513149678916" expanded="true" signature="446:3572" ph="do ... end" />
+                <marker date="1513149678916" expanded="true" signature="475:3556" ph="..." />
+                <marker date="1513149678916" expanded="true" signature="495:987" ph="if ... end" />
+                <marker date="1513149678916" expanded="true" signature="1009:1596" ph="if ... end" />
+                <marker date="1513149678916" expanded="true" signature="1088:1572" ph="if ... end" />
+                <marker date="1513149678916" expanded="true" signature="1618:2507" ph="if ... end" />
+                <marker date="1513149678916" expanded="true" signature="1698:2483" ph="if ... end" />
+                <marker date="1513149678916" expanded="true" signature="1759:2454" ph="if ... end" />
+                <marker date="1513149678916" expanded="true" signature="1833:2421" ph="if ... end" />
+                <marker date="1513149678916" expanded="true" signature="2529:3536" ph="if ... end" />
+                <marker date="1513149678916" expanded="true" signature="2609:3512" ph="if ... end" />
+                <marker date="1513149678916" expanded="true" signature="2670:3483" ph="if ... end" />
+                <marker date="1513149678916" expanded="true" signature="2744:3450" ph="if ... end" />
+                <marker date="1513149678916" expanded="true" signature="2846:3413" ph="if ... end" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/invoices/index.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-162">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="20171101163730_create_certificate_checks.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20171101163730_create_certificate_checks.rb">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="364">
+              <caret line="45" column="7" lean-forward="false" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -44,19 +147,12 @@
       </file>
     </leaf>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>s</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/revisions/index.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/quality_controls/show.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/sessions/new.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
         <option value="$PROJECT_DIR$/db/migrate/20171101144219_create_checkings.rb" />
@@ -106,6 +202,8 @@
         <option value="$PROJECT_DIR$/app/views/static_pages/quality_info.html.erb" />
         <option value="$PROJECT_DIR$/app/views/export_batches/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/batches/show.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/invoices/index.html.erb" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -114,12 +212,6 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="40" />
-    <option name="y" value="207" />
-    <option name="width" value="1440" />
-    <option name="height" value="810" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -159,33 +251,15 @@
               <item name="chocolatshalba" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="batches" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chocolatshalba" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chocolatshalba" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="static_pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chocolatshalba" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chocolatshalba" type="462c0819:PsiDirectoryNode" />
-              <item name="db" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chocolatshalba" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chocolatshalba" type="462c0819:PsiDirectoryNode" />
-              <item name="db" type="462c0819:PsiDirectoryNode" />
-              <item name="migrate" type="462c0819:PsiDirectoryNode" />
+              <item name="invoices" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="RailsProjectView" />
       <pane id="Scratches" />
+      <pane id="RailsProjectView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -193,14 +267,6 @@
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/views/reports" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/assets/images" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -551,22 +617,19 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129403000" />
+    <option name="totallyTimeSpent" value="129640000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="154" y="23" width="1440" height="810" extended-state="0" />
-    <editor active="true" />
+    <frame x="427" y="23" width="1440" height="810" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2453505" sideWeight="0.49203187" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24892704" sideWeight="0.49203187" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5028612" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3373656" sideWeight="0.49713877" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3360215" sideWeight="0.49713877" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2532189" sideWeight="0.5079681" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -574,8 +637,8 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5028612" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3373656" sideWeight="0.49713877" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2453505" sideWeight="0.49203187" order="0" side_tool="false" content_ui="combo" />
@@ -583,8 +646,8 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2532189" sideWeight="0.5079681" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2532189" sideWeight="0.5079681" order="2" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,20 +663,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/reports.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/entry_controls.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="339">
@@ -903,9 +952,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/reports/pdf.pdf.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
+        <state relative-caret-position="1125">
           <caret line="75" column="10" lean-forward="false" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="10" />
-          <folding />
+          <folding>
+            <marker date="1513149678916" expanded="true" signature="163:3612" ph="..." />
+            <marker date="1513149678916" expanded="true" signature="175:366" ph="..." />
+            <marker date="1513149678916" expanded="true" signature="378:3601" ph="..." />
+            <marker date="1513149678916" expanded="true" signature="402:3586" ph="do ... end" />
+            <marker date="1513149678916" expanded="true" signature="446:3572" ph="do ... end" />
+            <marker date="1513149678916" expanded="true" signature="475:3556" ph="..." />
+            <marker date="1513149678916" expanded="true" signature="495:987" ph="if ... end" />
+            <marker date="1513149678916" expanded="true" signature="1009:1596" ph="if ... end" />
+            <marker date="1513149678916" expanded="true" signature="1088:1572" ph="if ... end" />
+            <marker date="1513149678916" expanded="true" signature="1618:2507" ph="if ... end" />
+            <marker date="1513149678916" expanded="true" signature="1698:2483" ph="if ... end" />
+            <marker date="1513149678916" expanded="true" signature="1759:2454" ph="if ... end" />
+            <marker date="1513149678916" expanded="true" signature="1833:2421" ph="if ... end" />
+            <marker date="1513149678916" expanded="true" signature="2529:3536" ph="if ... end" />
+            <marker date="1513149678916" expanded="true" signature="2609:3512" ph="if ... end" />
+            <marker date="1513149678916" expanded="true" signature="2670:3483" ph="if ... end" />
+            <marker date="1513149678916" expanded="true" signature="2744:3450" ph="if ... end" />
+            <marker date="1513149678916" expanded="true" signature="2846:3413" ph="if ... end" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -925,9 +993,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/reports/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="40" column="18" lean-forward="false" selection-start-line="95" selection-start-column="24" selection-end-line="96" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="270">
+          <caret line="39" column="16" lean-forward="false" selection-start-line="95" selection-start-column="24" selection-end-line="96" selection-end-column="25" />
+          <folding>
+            <marker date="1513149678915" expanded="true" signature="313:880" ph="do ... end" />
+            <marker date="1513149678915" expanded="true" signature="5453:5477" ph="do ... end" />
+            <marker date="1513149678915" expanded="true" signature="5453:5499" ph="do ... end" />
+            <marker date="1513149678915" expanded="true" signature="5453:5522" ph="..." />
+            <marker date="1513149678915" expanded="true" signature="5453:5541" ph="..." />
+            <marker date="1513149678915" expanded="true" signature="5727:5919" ph="..." />
+            <marker date="1513149678915" expanded="true" signature="5760:5908" ph="{...}" />
+            <marker date="1513149678915" expanded="true" signature="5928:6036" ph="..." />
+            <marker date="1513149678915" expanded="true" signature="5980:6026" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -935,7 +1013,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -943,6 +1020,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="401">
           <caret line="145" column="24" lean-forward="false" selection-start-line="145" selection-start-column="24" selection-end-line="145" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/invoices/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-162">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="45" column="7" lean-forward="false" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
           <folding />
         </state>
       </provider>
