@@ -6,7 +6,8 @@
           <div class="page-header">
             <h1>Lotes de Exportación</h1>
           </div>
-          <table class="striped">
+          <input type="text" id="oNameCode" onkeyup="filterTable()" placeholder="Busque código...">
+          <table id="oTable" class="striped bordered">
             <thead>
               <tr>
                 <th>Código</th>
@@ -35,3 +36,36 @@
     </div>
   </div>
 </div>
+
+<script>
+function filterTable() {
+  var input,
+    filter,
+    table,
+    tr,
+    td,
+    i,
+    j,
+    f;
+  input = document.getElementById("oNameCode");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("oTable");
+  tr = table.getElementsByTagName("tr");
+  f = true;
+  for (j = 0; j < 1; j++) {
+    if (f) {
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[j];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+            f = false;
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  }
+}
+</script>

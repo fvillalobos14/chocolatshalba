@@ -9,25 +9,16 @@
           <table class = "striped">
             <thead>
             <tr>
-              <th>Codigo de identificación</th>
-              <th>Tipo de cacao</th>
-              <th>Material genético</th>
-              <th>Fair Trade</th>
-              <th></th>
+              <th>Código de lote</th>
+              <th>Organización</th>
             </tr>
             </thead>
             <tbody>
             <% @export_batch.batches.each do |batch| %>
                 <tr>
                   <td><%= batch.enterCode %></td>
-                  <td><%= CocoaType.find(batch.cocoaType).name %></td>
-                  <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                  <% if batch.ft%>
-                      <td>Si</td>
-                  <% else  %>
-                      <td>No</td>
-                  <% end %>
-                  <th><%=	 link_to "Ver", batch %></th>
+                  <td><%= batch.entry_control.organization.name %></td>
+                  <td><%=	link_to "Ver", batch %></td>
                 </tr>
             <% end %>
             </tbody>
