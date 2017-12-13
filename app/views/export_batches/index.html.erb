@@ -6,20 +6,26 @@
           <div class="page-header">
             <h1>Lotes de Exportación</h1>
           </div>
-          <table class = "striped">
+          <table class="striped">
             <thead>
-            <tr>
-              <th>Codigo</th>
-              <th>Fecha de creación</th>
-              <th></th>
-            </tr>
+              <tr>
+                <th>Código</th>
+                <th>Fecha de creación</th>
+                <th></th>
+              </tr>
             </thead>
             <tbody>
               <% @export_batches.each do |batch| %>
                 <tr>
-                  <td><%= batch.id %></td>
-                  <td><%= batch.created_at.strftime("%Y-%m-%d")  %> </td>
-                  <td><%=	 link_to "Ver", batch %></td>
+                  <td>
+                    <%= batch.id %>
+                  </td>
+                  <td>
+                    <%= batch.created_at.strftime("%Y-%m-%d")  %>
+                  </td>
+                  <td>
+                    <%=	link_to "Ver", batch %>
+                  </td>
                 </tr>
               <% end %>
             </tbody>
