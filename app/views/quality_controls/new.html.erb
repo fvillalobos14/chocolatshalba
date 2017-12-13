@@ -43,7 +43,7 @@
                   </div>
 
                   <div class="input-field">
-                    <table class="bordered">
+                    <table>
                       <tc>
                         <td>
                           <%= f.check_box :f_harvest, :class=>"harvest" %>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="collapsible-body white">
                   <% Category.where(sensory: false).order(:place).each do |category| %>
-                    <table class="highlight">
+                    <table class="highlight bordered">
                       <tr>
                         <th>
                           <%= category.name %>
