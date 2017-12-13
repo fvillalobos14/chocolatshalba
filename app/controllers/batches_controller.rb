@@ -19,11 +19,24 @@ class BatchesController < ApplicationController
     end
   end
 
+  def edit
+    @batch=Batch.find(params[:id])
+  end
+
+  def update
+    batch=Batch.find(params[:id])
+    if batch.update(batches_params)
+      redirect_to batch.entry_control
+    else
+      render 'edit'
+    end
+  end
+
   def moveBatches
     @batches = Batch.where(moved: false)
   end
 
-  def update
+  def move_batch
     batch = Batch.find(params[:id])
     if batch.update(moved: true)
       notification = Notification.where(kind: 3, read: false).first

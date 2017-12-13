@@ -1,0 +1,164 @@
+<div class="container">
+<div class="row">
+  <div class="col m12">
+    <%= form_for [@quality_control] do |f| %>
+      <%= f.hidden_field :cut_at, :value => @quality_control.cut_at %>
+      <div class="card">
+        <div class="card-content">
+          <div class="page-header">
+            <h1>Análisis de calidad</h1>
+          </div>
+          <p>
+            Cooperativa/Proveedor:
+            <%= @batch.entry_control.organization.name %>
+          </p>
+
+          <p>
+            Fecha de ingreso:
+            <%= @batch.entry_control.entryDate %>
+          </p>
+
+          <p>
+            Código de muestra:
+            <%= @batch.enterCode %>
+          </p>
+
+          <p>
+            Peso final:
+            <%= number_with_precision(@batch.weight, precision: 2) %>
+            lb
+          </p>
+          
+          <br>
+          <ul class="collapsible" data-collapsible="accordion">
+            <li>
+              <div class="collapsible-header section-color white-text text">
+                <i class="material-icons">chrome_reader_mode</i>
+                <b>DATOS GENERALES</b>
+              </div>
+              <div class="collapsible-body white">
+                <div class="input-field">
+                  <%= f.label :code, "Número de hoja" %>
+                  <%= f.text_field :code , :required => true%>
+                </div>
+
+                <div class="input-field">
+                  <table>
+                    <tc>
+                      <td>
+                        <%= f.check_box :f_harvest, :class=>"harvest" %>
+                        <%= f.label 'f_harvest', "Primera cosecha" %>
+                      </td>
+                    </tc>
+
+                    <tc>
+                      <td>
+                        <%= f.check_box :s_harvest, :class=>"harvest" %>
+                        <%= f.label 's_harvest', "Segunda cosecha" %>
+                      </td>
+                    </tc>
+                  </table>
+                </div>
+
+                <div class="input-field">
+                  <table>
+                    <tc>
+                      <td>
+                        <%= f.check_box :trinitary, :class=>"variety" %>
+                        <%= f.label 'trinitary', "Trinitario" %>
+                      </td>
+                    </tc>
+                      
+                    <tc>
+                      <td>
+                        <%= f.check_box :outsider, :class=>"variety" %>
+                        <%= f.label 'outsider', "Forastero" %>
+                      </td>
+                    </tc>
+                  </table>
+                </div>
+
+                <br>
+                <div class="input-field">
+                  <%= f.label :made_by, "Persona responsable" %>
+                  <%= f.text_field :made_by , :required => true%>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header section-color white-text">
+                <i class="material-icons">insert_chart</i>
+                <b>DATOS DE ANALISIS</b>
+              </div>
+              <div class="collapsible-body white">
+                <% r_index=0 %>
+                <% Category.where(sensory: false).order(:place).each do |category| %>
+                  <table class="highlight bordered">
+                    <tr>
+                      <th>
+                        <%= category.name %>
+                      </th>
+                      <% (1..category.runs).each do |i| %>
+                        <th align="right">
+                          <%= i %>
+                        </th>
+                      <% end %>
+                      <th></th>
+                    </tr>
+                    <% category.parameters.order(:place).each do |parameter| %>
+                      <tr>
+                        <td width="7%">
+                          <%= parameter.name %>
+                        </td>
+                        <%= fields_for 'results[]', Result.new do |r| %>
+                          <% (1..category.runs).each do |i| %>
+                            <%= r.hidden_field :parameter_id, :value => parameter.id %>
+                                <%= r.hidden_field :run, :value => i %>
+                                <td width="3%">
+                                  <%= r.number_field :score, step: :any, :value => @results[r_index].score, min: 0 , :required => true%>
+                                </td>
+                                <% r_index=r_index+1 %>
+                            <% end %>
+                        <% end %>
+                        <td width="1%">
+                            <%= parameter.unit %>
+                        </td>
+                        </tr>
+                    <% end %>
+                  </table>
+                <% end %>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header section-color white-text">
+                <i class="material-icons">visibilityt</i>
+                <b>OBSERVACIÓN</b>
+              </div>
+              <div class="collapsible-body white">
+                <div class="input-field">
+                  <%= f.label :observation, "Observación" %>
+                  <%= f.text_area :observation, class:"materialize-textarea", :required => true%>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <p>
+            <%= link_to "Regresar", @batch.entry_control , class: "btn btn-primary"%>
+            <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+<script>
+$('input.harvest').on('change', function() {
+  $('input.harvest').not(this).prop('checked', false);  
+});
+
+$('input.variety').on('change', function() {
+  $('input.variety').not(this).prop('checked', false);  
+});
+</script>
