@@ -1,5 +1,5 @@
 class BillsController < ApplicationController
-
+  before_action :authenticate_user!
   def new
     @invoice = Invoice.find(params[:invoice_id])
     @bill = @invoice.bills.build

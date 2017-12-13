@@ -398,21 +398,21 @@ Price.create! do |p|
 	p.cocoa_type_id = 3
 end
 
-Archive.create! do|a|
-  a.title = "Hoja de remision de la cooperativa"
+Archive.create! do |a|
+  a.title = "Hoja de remisión de la cooperativa"
 end
-Archive.create! do|a|
+Archive.create! do |a|
   a.title = "Listado de productores"
 end
-Archive.create! do|a|
-  a.title = "Hoja de inspeccion y limpieza del vehiculo de transporte"
+Archive.create! do |a|
+  a.title = "Hoja de inspección y limpieza del vehiculo de transporte"
 end
-Archive.create! do|a|
+Archive.create! do |a|
   a.title = "Hoja de limpieza del centro de acopio"
 end
-Archive.create! do|a|
-  a.title = "Hoja de constancia del envasado del cacao"
+Archive.create! do |a|
+  a.title = "Hoja de constancia de envasado del cacao"
 end
-Archive.create! do|a|
+Archive.create! do |a|
   a.title = "Factura de venta"
 end

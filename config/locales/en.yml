@@ -71,6 +71,9 @@ en:
       price:
         one: "Precio"
         other: "Precios"
+      archive:
+        one: "Documento"
+        other: "Documentos"
   admin:
     js:
       true: Cierto
