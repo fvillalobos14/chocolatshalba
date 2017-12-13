@@ -70,6 +70,11 @@
                         <% else %>
                           <td></td>
                         <% end %>
+                        <% if current_user.admin_role and not batch.quality_control.nil? %>
+                          <td>
+                            <%= link_to "Editar análisis físico", edit_quality_control_path(batch.quality_control.id) %>
+                          </td>
+                        <% end %>
                       </tr>
                     <% end %>
                   </tbody>

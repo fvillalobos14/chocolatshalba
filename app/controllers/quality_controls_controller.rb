@@ -19,16 +19,37 @@ class QualityControlsController < ApplicationController
         end
 
         if not batch.sensory_analysis.nil?
-        notification = Notification.where(kind: 1, read: false).first
-        notification.update(read: true)
-        notification.save
-        createNotification(batch)
-        batch.review=1
-        batch.save
+          notification = Notification.where(kind: 1, read: false).first
+          notification.update(read: true)
+          notification.save
+          createNotification(batch)
+          batch.review=1
+          batch.save
         end
         redirect_to entry
     else
         redirect_to "/batches/"+batch.id.to_s+"/quality_controls/new"
+    end
+  end
+
+  def edit
+    @quality_control=QualityControl.find(params[:id])
+    @batch=@quality_control.batch
+    @results=@batch.results
+  end
+
+  def update
+    quality_control=QualityControl.find(params[:id])
+    batch=quality_control.batch
+    if quality_control.update(quality_params)
+      params["results"].each do |result|
+        r=Result.where(:batch_id => batch.id, :parameter_id => result["parameter_id"], :run => result["run"]).first
+        r.score=result["score"]
+        r.save
+      end
+      redirect_to quality_control.batch.entry_control
+    else
+      render 'edit'
     end
   end
 
