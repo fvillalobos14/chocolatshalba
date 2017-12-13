@@ -26,7 +26,7 @@
                 <b>LOTES</b>
               </div>
               <div class="collapsible-body white">
-                <table class="striped">
+                <table class="striped bordered">
                   <thead>
                     <tr>
                       <th>Cantidad de sacos</th>
@@ -57,11 +57,15 @@
                           <td>
                             <%= link_to "Análisis físico", new_batch_quality_control_path(batch)%>
                           </td>
+                        <% else %>
+                          <td></td>
                         <% end %>
                         <% if current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank? %>
                           <td>
                             <%= link_to "Análisis sensorial", new_batch_sensory_analysis_path(batch)%>
                           </td>
+                        <% else %>
+                          <td></td>
                         <% end %>
                       </tr>
                     <% end %>
@@ -79,7 +83,7 @@
                   <b>ARCHIVOS</b>
                 </div>
                 <div class="collapsible-body white">
-                  <table class="striped">
+                  <table class="striped bordered">
                     <thead>
                       <tr>
                         <th>Nombre del archivo</th>

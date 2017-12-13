@@ -34,7 +34,7 @@
                 </div>
                 <div class="collapsible-body white">
                   <% Category.where(sensory: true).order(:place).each do |category| %>
-                    <table class="highlight">
+                    <table class="highlight bordered">
                       <tr>
                         <th>
                           <%= category.name %>

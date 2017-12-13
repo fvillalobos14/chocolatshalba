@@ -18,7 +18,7 @@
                 </div>
                 <div class="collapsible-body white">
 
-                  <table>
+                  <table class="striped bordered">
                     <thead>
                       <tr>
                         <th>Cantidad de sacos</th>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="collapsible-body white">
                   <% Category.all.order(:place).each do |category| %>
-                    <table class="highlight">
+                    <table class="highlight bordered">
                       <tr>
                         <th><%= category.name %></th>
                         <th>Resultado promedio</th>
