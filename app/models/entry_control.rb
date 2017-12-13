@@ -32,8 +32,8 @@ class EntryControl < ApplicationRecord
       dateTo = DateTime.new(tosp[2].to_i,Date::MONTHNAMES.index((tosp[1]).tr(',','')),tosp[0].to_i,0,0,0)
     end
 
-    if search.to_i != 0
-      organization = Organization.find(search.to_i)
+    if search.to_s != nil
+      organization = Organization.find_by_name(search.to_s)
       if organization != nil
        where({organization_id: organization.id, created_at: dateFrom..dateTo})
       else
