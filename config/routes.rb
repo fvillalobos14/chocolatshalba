@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
   get 'static_pages/stages'
 
+  get 'static_pages/traceability'
+
+  get 'static_pages/quality_info'
+
   get 'batches/moveBatches', to: 'batches#moveBatches'
 
   resources :sensory_analyses
@@ -27,6 +31,7 @@ Rails.application.routes.draw do
   resources :purchases
   resources :reports
   resources :static_pages
+  resources :export_batches
 
   resources :entry_controls do
     resources :batches

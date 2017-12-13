@@ -1,0 +1,39 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col m12">
+      <div class = "card">
+        <div class = "card-content">
+          <div class = "page-header">
+            <h1>Trazabilidad</h1>
+          </div>
+          <table class = "striped">
+            <thead>
+            <tr>
+              <th>Codigo de identificación</th>
+              <th>Tipo de cacao</th>
+              <th>Material genético</th>
+              <th>Fair Trade</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @export_batch.batches.each do |batch| %>
+                <tr>
+                  <td><%= batch.enterCode %></td>
+                  <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                  <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                  <% if batch.ft%>
+                      <td>Si</td>
+                  <% else  %>
+                      <td>No</td>
+                  <% end %>
+                  <th><%=	 link_to "Ver", batch %></th>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

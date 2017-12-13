@@ -82,7 +82,9 @@
             <% if current_user.administration_role  %>
                 <li><a class="white-text"><i class="material-icons white-text">assignment</i>Administración</a></li>
                 <li><%= link_to 'Etapas' , static_pages_stages_path,class:"white-text li-back"%></li>
+                <li><%= link_to 'Lotes de exportación', export_batches_path , class:"white-text li-back"%></li>
                 <li><%= link_to 'Reportes', reports_path , class:"white-text li-back"%></li>
+                <li><%= link_to 'Trazabilidad', static_pages_traceability_path , class:"white-text li-back"%></li>
             <% end %>
           <li>
             <a class="white-text" rel="nofollow" data-method="delete" href="/users/sign_out"><i class="material-icons white-text">exit_to_app</i>Salir</a>
@@ -169,8 +171,10 @@
                 <li><a class="collapsible-header white-text"><i class="material-icons white-text">assignment</i>Administración</a>
                   <div class="collapsible-body">
                     <ul>
-                      <li class="selection"><%= link_to 'Etapas' , static_pages_stages_path,class:"white-text li-back"%></li>
-                      <li class="selection"><%= link_to 'Reportes', reports_path , class:"white-text li-back"%></li>
+                      <li><%= link_to 'Etapas' , static_pages_stages_path,class:"white-text li-back"%></li>
+                      <li><%= link_to 'Lotes de exportación', export_batches_path , class:"white-text li-back"%></li>
+                      <li><%= link_to 'Reportes', reports_path , class:"white-text li-back"%></li>
+                      <li><%= link_to 'Trazabilidad', static_pages_traceability_path , class:"white-text li-back"%></li>
                     </ul>
                   </div>
                 </li>
@@ -239,7 +243,9 @@
           <% if current_user.administration_role  %>
             <li><a class="white-text"><i class="material-icons white-text">assignment</i>Administración</a></li>
               <li><%= link_to 'Etapas' , static_pages_stages_path,class:"white-text li-back"%></li>
+              <li><%= link_to 'Lotes de exportación', export_batches_path , class:"white-text li-back"%></li>
               <li><%= link_to 'Reportes', reports_path , class:"white-text li-back"%></li>
+              <li><%= link_to 'Trazabilidad', static_pages_traceability_path , class:"white-text li-back"%></li>
           <% end %>
         <% else %>
             <div>
@@ -323,8 +329,10 @@
                 <li><a class="collapsible-header white-text"><i class="material-icons white-text">assignment</i>Administración</a>
                   <div class="collapsible-body">
                     <ul>
-                      <li class="selection"><%= link_to 'Etapas' , static_pages_stages_path,class:"white-text li-back"%></li>
-                      <li class="selection"><%= link_to 'Reportes', reports_path , class:"white-text li-back"%></li>
+                      <li><%= link_to 'Etapas' , static_pages_stages_path,class:"white-text li-back"%></li>
+                      <li><%= link_to 'Lotes de exportación', export_batches_path , class:"white-text li-back"%></li>
+                      <li><%= link_to 'Reportes', reports_path , class:"white-text li-back"%></li>
+                      <li><%= link_to 'Trazabilidad', static_pages_traceability_path , class:"white-text li-back"%></li>
                     </ul>
                   </div>
                 </li>
