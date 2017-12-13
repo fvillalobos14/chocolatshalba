@@ -199,6 +199,17 @@ RailsAdmin.config do |config|
     exclude_fields :created_at, :updated_at
   end
 
+  config.model 'Archive' do
+    list do
+      
+      field :title do
+        label 'Título'
+      end
+    end
+
+    exclude_fields :created_at, :updated_at
+  end
+
   config.model 'Batch' do
     list do
       
