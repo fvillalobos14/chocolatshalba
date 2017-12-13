@@ -188,8 +188,12 @@
                   <div class="col m6">
                     <p>
                       Pagado:
-                      <% if @batch.invoice.paid %>
-                        Si
+                      <% if not @batch.invoice.nil? %>
+                        <% if @batch.invoice.paid %>
+                          Si
+                        <% else %>
+                          No
+                        <% end %>
                       <% else %>
                         No
                       <% end %>

@@ -35,7 +35,6 @@ class QualityControlsController < ApplicationController
   def edit
     @quality_control=QualityControl.find(params[:id])
     @batch=@quality_control.batch
-    @results=@batch.results
   end
 
   def update

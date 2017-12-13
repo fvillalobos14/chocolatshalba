@@ -91,7 +91,6 @@
                 <b>DATOS DE ANALISIS</b>
               </div>
               <div class="collapsible-body white">
-                <% r_index=0 %>
                 <% Category.where(sensory: false).order(:place).each do |category| %>
                   <table class="highlight bordered">
                     <tr>
@@ -115,9 +114,8 @@
                             <%= r.hidden_field :parameter_id, :value => parameter.id %>
                                 <%= r.hidden_field :run, :value => i %>
                                 <td width="3%">
-                                  <%= r.number_field :score, step: :any, :value => @results[r_index].score, min: 0 , :required => true%>
+                                  <%= r.number_field :score, step: :any, :value => Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: i).first.score, min: 0 , :required => true%>
                                 </td>
-                                <% r_index=r_index+1 %>
                             <% end %>
                         <% end %>
                         <td width="1%">
