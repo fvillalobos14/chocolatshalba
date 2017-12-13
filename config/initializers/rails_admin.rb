@@ -29,7 +29,7 @@ RailsAdmin.config do |config|
         label 'Usuario'
       end
       field :last_sign_in_at do
-        label 'Última Sesión'
+        label 'Última sesión'
       end
     end
 
@@ -69,18 +69,18 @@ RailsAdmin.config do |config|
     list do
       
       field :entryDate do
-        label 'Fecha de Entrada'
+        label 'Fecha de entrada'
       end
       field :exchangeRate do
-        label 'Tasa de Cambio'
+        label 'Tasa de cambio'
       end
 
       field :receivedBy do
-        label 'Recibido Por'
+        label 'Recibido por'
       end
       
       field :deliveredBy do
-        label 'Enviado Por'
+        label 'Enviado por'
       end
       
       field :organization do
@@ -178,7 +178,32 @@ RailsAdmin.config do |config|
         label 'Lugar'
       end
       field :category do
-        label 'Categoria'
+        label 'Categoría'
+      end
+    end
+
+    exclude_fields :created_at, :updated_at
+  end
+
+  config.model 'Price' do
+    list do
+      
+      field :price do
+        label 'Precio'
+      end
+      field :cocoa_type do
+        label 'Tipo de cacao'
+      end
+    end
+
+    exclude_fields :created_at, :updated_at
+  end
+
+  config.model 'Archive' do
+    list do
+      
+      field :title do
+        label 'Título'
       end
     end
 
@@ -189,22 +214,22 @@ RailsAdmin.config do |config|
     list do
       
       field :sackAmount do
-        label 'Cantidad de Sacos'
+        label 'Cantidad de sacos'
       end
       field :weight do
-        label 'Peso en Libras'
+        label 'Peso en libras'
       end
       field :enterCode do
         label 'Código'
       end
       field :cocoaType do
-        label 'Tipo de Cacao'
+        label 'Tipo de cacao'
       end
       field :geneticMaterial do
-        label 'Material Genético'
+        label 'Material genético'
       end
       field :entry_control do
-        label 'Control de Calidad'
+        label 'Control de calidad'
       end                  
     end
 
@@ -243,4 +268,6 @@ RailsAdmin.config do |config|
   config.excluded_models << Invoice
   config.excluded_models << Purchase
   config.excluded_models << SensoryAnalysis
+  config.excluded_models << ExportBatch
+  config.excluded_models << Bill
 end

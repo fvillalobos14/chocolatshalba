@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'export_batches/join'
 
   get 'export_batches/new'
-  
+
   get 'reports/index'
 
   get 'purchases/index'
@@ -11,10 +11,16 @@ Rails.application.routes.draw do
   get 'purchases/new'
 
   post 'export_batches', to: 'export_batches#create'
-  
+
   get 'static_pages/stages'
 
+  get 'static_pages/traceability'
+
+  get 'static_pages/quality_info'
+
   get 'batches/moveBatches', to: 'batches#moveBatches'
+
+  put 'batches/:id(.:format)', to: 'batches#move_batch'
 
   resources :sensory_analyses
   resources :quality_controls
@@ -27,6 +33,8 @@ Rails.application.routes.draw do
   resources :purchases
   resources :reports
   resources :static_pages
+  resources :export_batches
+  resources :documents
 
   resources :entry_controls do
     resources :batches
@@ -51,7 +59,11 @@ Rails.application.routes.draw do
   end
 
   resources :entry_controls do
-    resources :documents
+    resources :documents, only: [:new, :create]
+  end
+
+  resources :invoices do
+    resources :bills, only: [:new, :create]
   end
 
   resources :reports do

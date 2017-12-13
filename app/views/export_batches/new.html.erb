@@ -18,12 +18,12 @@
                 </div>
                 <div class="collapsible-body white">
 
-                  <table>
+                  <table class="striped bordered">
                     <thead>
                       <tr>
                         <th>Cantidad de sacos</th>
                         <th>Peso</th>
-                        <th>Código de identificación</th>
+                        <th>Código de lote</th>
                         <th>Tipo de cacao</th>
                         <th>Material genético</th>
                         <% if current_user.warehouse_role %>
@@ -43,7 +43,7 @@
                             <%= batch.enterCode %>
                           </td>
                           <td>
-                            <%= CocoaType.find(batch.cocoaType).name %>
+                            <%= CocoaType.find(batch.quality_control.revision.status).name %>
                           </td>
                           <td>
                             <%= GeneticMaterial.find(batch.geneticMaterial).name %>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="collapsible-body white">
                   <% Category.all.order(:place).each do |category| %>
-                    <table class="highlight">
+                    <table class="highlight bordered">
                       <tr>
                         <th><%= category.name %></th>
                         <th>Resultado promedio</th>

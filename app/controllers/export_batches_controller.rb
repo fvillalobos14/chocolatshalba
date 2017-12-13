@@ -1,4 +1,14 @@
 class ExportBatchesController < ApplicationController
+  before_action :authenticate_user!
+
+  def index
+    @export_batches = ExportBatch.all
+  end
+
+  def show
+    @export_batch = ExportBatch.find(params[:id])
+  end
+
   def join
   end
 

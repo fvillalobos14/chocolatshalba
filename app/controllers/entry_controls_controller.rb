@@ -6,13 +6,13 @@ class EntryControlsController < ApplicationController
   end
 
   def create
-    @organization = Organization.find(params[:organization_id])
-    @entryControl = @organization.entry_controls.build(entryControl_params)
+    organization = Organization.find(params[:organization_id])
+    entryControl = organization.entry_controls.build(entryControl_params)
 
-    if @entryControl.save
-        redirect_to @entryControl
+    if entryControl.save
+        redirect_to entryControl
     else
-        redirect_to '/organizations/'+@organization.id.to_s+'/entry_controls/new'
+        redirect_to '/organizations/'+organization.id.to_s+'/entry_controls/new'
     end
   end
 

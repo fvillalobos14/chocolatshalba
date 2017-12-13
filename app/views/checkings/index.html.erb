@@ -4,24 +4,22 @@
       <div class = "card">
         <div class = "card-content">
           <div class = "page-header">
-            <h1>Chequeo de Lotes</h1>
+            <h1>Revisión de lotes</h1>
           </div>
-          <table class = "striped">
+          <table class = "striped bordered">
             <thead>
               <tr>
-                <th>Lote</th>
-                <th>Control de Ingreso</th>
+                <th>Código de lote</th>
                 <th>Organización</th>
-                <th>Fecha de Ingreso</th>
+                <th>Fecha de ingreso</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
             <% @batches.each do |batch| %>
-              <% if batch.review == 1 && batch.ft %>
+              <% if batch.certificate_checks.first == nil && batch.ft %>
                 <tr>
                   <td><%= batch.enterCode %></td>
-                  <td><%=	batch.entry_control.entry_number %></td>
                   <td><%=	batch.entry_control.organization.name %></td>
                   <td><%=	batch.entry_control.entryDate %></td>
                   <td><%=	link_to "Revisar", batch %></td>

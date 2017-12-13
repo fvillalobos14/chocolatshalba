@@ -1,52 +1,265 @@
-<div class="container">
-  <div class="row">
-    <div class="col m12">
-      <div class="card">
-        <div class="card-content">
-          <div class="page-header">
-            <h1>Revision de Documentación</h1>
+<% if current_user.certification_role || current_user.admin_role %>
+  <div class="container">
+    <div class="row">
+      <div class="col m12">
+        <div class="card">
+          <div class="card-content">
+            <div class="page-header">
+              <h1>Revision de Documentación</h1>
+            </div>
+            <p>Codigo:
+              <%= @batch.enterCode %>
+            </p>
+            <p>Control de ingreso:
+              <%= @batch.entry_control.entry_number %>
+            </p>
+            <p>Organización:
+              <%= @batch.entry_control.organization.name %>
+            </p>
+            <p>Fecha de ingreso:
+              <%= @batch.entry_control.entryDate %>
+            </p>
+
+            <div class="card-content">
+              <b>DOCUMENTOS</b>
+              <table class="striped bordered">
+                <thead>
+                  <tr>
+                    <th>Nombre del archivo</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @batch.entry_control.documents.each do |doc| %>
+                    <tr>
+                      <td>
+                        <%=doc.title%>
+                      </td>
+                      <td>
+                        <%= link_to "Descargar archivo", doc.ec_data.url(:original, false) %>
+                      <td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <%= link_to "Regresar", checkings_path , class: "btn btn-primary"%>
+            <a class="waves-effect waves-light btn" data-target="modal1">Determinar</a>
           </div>
-          <p>Codigo: <%= @batch.enterCode %></p>
-          <p>Control de Ingreso: <%= @batch.entry_control.entry_number %></p>
-          <p>Organización: <%= @batch.entry_control.organization.name %></p>
-          <p>Fecha de Ingreso: <%= @batch.entry_control.entryDate %></p>
-          <h2>Documentos</h2>
-          <a class = "waves-effect waves-light btn" data-target = "modal1">Determinar</a>
         </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>
 
-<div id = "modal1" class = "modal" >
-  <%= form_for ([@batch, @batch.certificate_checks.build]) do |f| %>
-      <div class="modal-content">
-        <center>
-          <h5>Seleccione:</h5>
-          <div class = "field">
-            <p style = "width: 40%"><%= f.select :decision, options_for_select([["Aceptar", 1], ["Rechazar", 0]]), class:"dropdown-button btn" %></p>
+<% if current_user.administration_role || current_user.admin_role %>
+  <div class="container">
+    <div class="row">
+      <div class="col m12">
+        <div class="card">
+          <div class="card-content">
+            <div class="page-header">
+              <h1>Info</h1>
+            </div>
+            <p>
+              Código de lote:
+              <%= @batch.enterCode %>
+            </p>
+            <p>
+              Organización:
+              <%= @batch.entry_control.organization.name %>
+            </p>
+            <p>
+              Control de ingreso:
+              <%= @batch.entry_control.entry_number %>
+            </p>
+            <p>
+              Fecha de ingreso:
+              <%= @batch.entry_control.entryDate %>
+            </p>
+            
+            <br>
+            <ul class="collapsible" data-collapsible="accordion">
+              <li>
+                <div class="collapsible-header section-color white-text text">
+                  <i class="material-icons">assessment</i>
+                  Decisión de calidad
+                </div>
+                <div class="collapsible-body">
+                  <div class="col m6">
+                    <p>Calidad escogida:
+                      <% if @batch.quality_control != nil %>
+                        <% if @batch.quality_control.revision != nil %>
+                          <%= CocoaType.find(@batch.quality_control.revision.status).name %>
+                        <% else %>
+                          Pendiente
+                        <% end %>
+                      <% else %>
+                        Pendiente
+                      <% end %>
+                    </p>
+                  </div>
+                  <div class="col m6">
+                    <% if @batch.quality_control != nil and not @batch.sensory_analysis.nil?%>
+                      <p>
+                        <%= link_to "Ver análisis", "/static_pages/quality_info?utf8=✓&lote="+@batch.id.to_s %>
+                      </p>
+                    <% end %>
+                  </div>
+                  <br>
+                </div>
+              </li>
+              <% if @batch.ft == true %>
+                <li>
+                  <div class="collapsible-header section-color white-text text">
+                    <i class="material-icons">check_circle</i>
+                    Certificado
+                  </div>
+                  <div class="collapsible-body">
+                    <% if @batch.certificate_checks.first == nil %>
+                      Pendiente
+                    <% else %>
+                      <div class="col m6">
+                        <p>
+                          Decisión:
+                          <% if @batch.certificate_checks.where(decision: 1).first.decision == 1  %>
+                            Aceptado
+                          <% else %>
+                            Denegado
+                          <%end %>
+                        </p>
+                      </div>
+                      <div class="col m6">
+                        <p>
+                          Descripción:
+                          <%= @batch.certificate_checks.where(decision: 1).first.description %>
+                        </p>
+                      </div>
+                      <br>
+                    <% end %>
+                  </div>
+                </li>
+              <% end %>
+              <li>
+                <div class="collapsible-header section-color white-text text">
+                  <i class="material-icons">collections_bookmark</i>
+                  Documentos
+                </div>
+                <div class="collapsible-body">
+                  <b>DOCUMENTOS</b>
+                  <table class="striped">
+                    <thead>
+                      <tr>
+                        <th>Nombre del archivo</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @batch.entry_control.documents.each do |doc| %>
+                        <tr>
+                          <td>
+                            <%=doc.title%>
+                          </td>
+                          <td>
+                            <%= link_to "Descargar archivo", doc.ec_data.url(:original, false) %>
+                          <td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header section-color white-text text">
+                  <i class="material-icons">credit_card</i>
+                  Compras
+                </div>
+                <div class="collapsible-body">
+                  <div class="col m6">
+                    <p>
+                      Comprado:
+                      <% if @batch.purchase == nil %>
+                        No
+                      <% else %>
+                        Si
+                      <% end %>
+                    </p>
+                  </div>
+                  <div class="col m6">
+                    <p>
+                      Pagado:
+                      <% if @batch.invoice.paid %>
+                        Si
+                      <% else %>
+                        No
+                      <% end %>
+                    </p>
+                  </div>
+                  <div class="col m6">
+                    <% if not @batch.invoice.nil? %>
+                      <% if @batch.invoice.bills.first != nil %>
+                        <p> 
+                          Factura:
+                          <%= @batch.invoice.bills.first.code %>
+                        </p>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="col m6">
+                    <% if not @batch.invoice.nil? %>
+                      <% if not @batch.invoice.bills.first.nil? %>
+                        <% if @batch.invoice.bills.first.invoice_doc != nil %>
+                          <p>
+                            <%= link_to "Ver factura", @batch.invoice.bills.first.invoice_doc.url(:original, false) %>
+                          </p>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                 
+                  <br><br>
+                </div>
+              </li>
+            </ul>
+            <%= link_to 'Regresar', static_pages_traceability_path, class:"waves-effect waves-light btn" %>
           </div>
-          <div class = "input-field">
-            <%= f.label :description, "Observación" %>
-            <%= f.text_area :description, class:"materialize-textarea" %>
-          </div>
-          <%= f.submit 'Aceptar',class:"modal-action modal-close waves-effect waves-light btn" %>
-          <a class = "modal-action modal-close waves-effect waves-light red darken-1 btn">Cancelar</a>
-        </center>
+        </div>
       </div>
+    </div>
+  </div>
+<% end %>
+
+<div id="modal1" class="modal">
+  <%= form_for ([@batch, @batch.certificate_checks.build]) do |f| %>
+    <div class="modal-content">
+      <center>
+        <h5>Decisión:</h5>
+        <div class="field">
+          <p style="width: 40%">
+          <%= f.select :decision, options_for_select([["Aceptar", 1], ["Rechazar", 0]]), class:"dropdown-button btn" %>
+          </p>
+        </div>
+        <div class="input-field">
+          <%= f.label :description, "Observación" %>
+          <%= f.text_area :description, class:"materialize-textarea", :required => true%>
+        </div>
+        <%= f.submit 'Aceptar',class:"modal-action modal-close waves-effect waves-light btn" %>
+        <a class="modal-action modal-close waves-effect waves-light red darken-1 btn">Cancelar</a>
+      </center>
+    </div>
   <% end %>
 </div>
 
 <script>
-    $(document).ready(function () {
-        $('.modal').modal();
-    });
-    $('#modal1').modal('open');
-    $('#modal1').modal('close');
+  $(document).ready(function () {
+    $('.modal').modal();
+  });
+  $('#modal1').modal('open');
+  $('#modal1').modal('close');
 </script>
 
 <script>
-    $(document).on('turbolinks:load', function () {
-        $('select').material_select();
-    })
+  $(document).on('turbolinks:load', function () {
+    $('select').material_select();
+  })
 </script>

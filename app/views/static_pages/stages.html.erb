@@ -1,41 +1,45 @@
-<div class = "container">
-  <div class = "row">
-    <div class = "col m12">
-      <div class = "card">
-        <div class = "card-content">
-          <div class = "page-header">
+<div class="container">
+  <div class="row">
+    <div class="col m12">
+      <div class="card">
+        <div class="card-content">
+          <div class="page-header">
             <h1>Etapas del proceso</h1>
           </div>
-          <table class = "striped">
+          <input type="text" id="oNameCode" onkeyup="filterTable()" placeholder="Busque lote...">
+          <table id="oTable" class="striped bordered">
             <thead>
             <tr>
-              <th>Codigo de identificación</th>
-              <th>Tipo de cacao</th>
-              <th>Material genético</th>
-              <th>Etapa</th>
+              <th>Código de lote</th>
+              <th>Organización</th>
             </tr>
             </thead>
             <tbody>
               <% @batches.each do |batch| %>
-                  <tr>
-                    <td><%= batch.enterCode %></td>
-                    <td><%= CocoaType.find(batch.cocoaType).name %></td>
-                    <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                    <% if batch.quality_control == nil || batch.sensory_analysis == nil%>
-                      <td>Analisis de Calidad</td>
-                    <% elsif batch.quality_control.revision == nil %>
-                        <td>Jefe de Calidad</td>
-                    <% elsif batch.review == 1 && batch.ft%>
-                        <td>Certificado</td>
-                    <% elsif batch.purchase == nil %>
-                        <td>Compras</td>
-                    <% elsif batch.moved == false %>
-                        <td>Mover Lotes</td>
-                    <% elsif batch.moved %>
-                        <td>Exportación</td>
-                    <% end %>
-                  </tr>
-              <%	end  %>
+                <tr>
+                  <td><%= batch.enterCode %></td>
+                  <td><%= batch.entry_control.organization.name %></td>
+                  <% if batch.quality_control == nil || batch.sensory_analysis == nil %>
+                    <td>Análisis de calidad</td>
+                  <% elsif batch.quality_control.revision == nil and batch.ft == false%>
+                    <td>Revisión de calidad</td>
+                  <% elsif batch.certificate_checks.first == nil and batch.quality_control.revision == nil and batch.ft %>
+                    <td>Revisión de calidad y certificado</td>
+                  <% elsif batch.certificate_checks.first != nil and batch.quality_control.revision == nil and batch.ft %>
+                      <td>Revisión de calidad</td>
+                  <% elsif batch.certificate_checks.first == nil and batch.quality_control.revision != nil and batch.ft %>
+                      <td>Revision de certificado</td>
+                  <% elsif batch.purchase == nil and batch.buy == 1%>
+                      <td>Compras</td>
+                  <% elsif batch.moved == false%>
+                      <td>Movimiento a bodega</td>
+                  <% elsif batch.export_batch == nil%>
+                      <td>En bodega</td>
+                  <% else %>
+                      <td>Exportación</td>
+                  <% end %>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
@@ -43,3 +47,36 @@
     </div>
   </div>
 </div>
+
+<script>
+  function filterTable() {
+    var input,
+      filter,
+      table,
+      tr,
+      td,
+      i,
+      j,
+      f;
+    input = document.getElementById("oNameCode");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("oTable");
+    tr = table.getElementsByTagName("tr");
+    f = true;
+    for (j = 0; j < 3; j++) {
+      if (f) {
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[j];
+          if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+              f = false;
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+    }
+  }
+</script>
