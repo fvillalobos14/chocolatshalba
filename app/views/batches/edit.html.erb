@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row">
+    <div class="col m12">
+        <div class="card">
+        <div class="card-content">
+            <div class="page-header">
+            <h1>Lote</h1>
+            </div>
+            <%= form_for [@batch] do |f| %>
+            <div class="input-field">
+                <%= f.label :sackAmount, "Cantidad de sacos" %>
+                <%= f.number_field :sackAmount, min: 0 , :required => true %>
+            </div>
+
+            <div class="input-field">
+                <%= f.label :weight, "Peso en libras" %>
+                <%= f.number_field :weight, step: :any, min: 0 , :required => true %>
+            </div>
+
+            <div class="input-field">
+                <%= f.label :enterCode, "Código de indentificación" %>
+                <%= f.text_field :enterCode , :required => true %>
+            </div>
+
+            <p>
+                <%= f.label :cocoaType, "Tipo de cacao" %>
+                <%= f.collection_select :cocoaType, CocoaType.all, :id, :name, class:"dropdown-button btn" %>
+            </p>
+
+            <p>
+                <%= f.label :geneticMaterial, "Material genético" %>
+                <%= f.collection_select :geneticMaterial, GeneticMaterial.all, :id, :name, class:"dropdown-button btn" %>
+            </p>
+
+            <div class="input-field">
+                <%= f.check_box :ft %>
+                <%= f.label 'ft', "Comercio justo" %>
+            </div>
+
+            <br>
+            <p>
+                <%= link_to "Regresar", @batch.entry_control , class: "btn btn-primary"%>
+                <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
+            </p>
+            <% end %>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<script>
+$(document).on('turbolinks:load', function () {
+  $('select').material_select();
+})
+</script>
