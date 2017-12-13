@@ -43,7 +43,7 @@
                             <%= batch.enterCode %>
                           </td>
                           <td>
-                            <%= CocoaType.find(batch.cocoaType).name %>
+                            <%= CocoaType.find(batch.quality_control.revision.status).name %>
                           </td>
                           <td>
                             <%= GeneticMaterial.find(batch.geneticMaterial).name %>
