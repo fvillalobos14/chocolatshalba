@@ -40,7 +40,7 @@
                     <%	if batch.quality_control.revision != nil %>
                       <tr>
                         <%	 if  params[:purchased].to_s != "on" && params[:quality] == "" %>
-                            <%	if batch.buy == 0 %>
+                            <%	if batch.purchase == nil %>
                               <td><%= batch.sackAmount %></td>
                               <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
                               <td><%= batch.enterCode %></td>
@@ -50,7 +50,8 @@
                             <%	end %>
                         <%	end %>
                         <%	 if params[:purchased].to_s == "on" && params[:quality] == "" %>
-                            <%	if batch.buy == 1 %>
+                            <%	if batch.purchase != nil %>
+                            <%	if batch.purchase.decision == 1 %>
                                 <td><%= batch.sackAmount %></td>
                                 <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
                                 <td><%= batch.enterCode %></td>
@@ -60,12 +61,13 @@
                                   <td><%= batch.entry_control.organization.name %></td>
                                 <%	 end %>
                             <%  end %>
+                            <%  end %>
                         <%	end %>
                         <%	 if params[:purchased].to_s != "on" && params[:quality] != "" %>
                             <%	 if batch.quality_control != nil %>
                                 <%	 if batch.quality_control.revision != nil %>
                                     <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
-                                        <%	if batch.buy == 0 %>
+                                        <%	if batch.purchase == nil %>
                                           <td><%= batch.sackAmount %></td>
                                           <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
                                           <td><%= batch.enterCode %></td>
@@ -83,7 +85,8 @@
                             <%	 if batch.quality_control != nil %>
                                 <%	 if batch.quality_control.revision != nil %>
                                     <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
-                                        <%	if batch.buy == 1 %>
+                                        <%	if batch.purchase != nil %>
+                                        <%	if batch.purchase.decision == 1 %>
                                           <td><%= batch.sackAmount %></td>
                                           <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
                                           <td><%= batch.enterCode %></td>
@@ -92,6 +95,7 @@
                                           <%	 if params[:searchbox] == "" %>
                                             <td><%= batch.entry_control.organization.name %></td>
                                           <%	 end %>
+                                        <% end %>
                                         <% end %>
                                     <%	 end %>
                                 <%	 end %>
