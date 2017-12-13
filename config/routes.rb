@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   get 'batches/moveBatches', to: 'batches#moveBatches'
 
+  put 'batches/:id(.:format)', to: 'batches#move_batch'
+
   resources :sensory_analyses
   resources :quality_controls
   resources :revisions
