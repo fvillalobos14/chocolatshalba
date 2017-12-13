@@ -71,6 +71,9 @@ en:
       price:
         one: "Precio"
         other: "Precios"
+      archive:
+        one: "Documento"
+        other: "Documentos"
   admin:
     js:
       true: Cierto
@@ -151,7 +154,7 @@ en:
         breadcrumb: "Nuevo"
         link: "Agregar un nuevo %{model_label}"
         done: "creado"
-        code: "Codigo"
+        code: "Código"
       edit:
         title: "Editar %{model_label} '%{object_label}'"
         menu: "Editar"

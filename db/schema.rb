@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206164919) do
+ActiveRecord::Schema.define(version: 20171212223913) do
 
   create_table "acceptances", force: :cascade do |t|
     t.decimal "max_qualityA"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 20171206164919) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parameter_id"], name: "index_acceptances_on_parameter_id"
+  end
+
+  create_table "archives", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "batches", force: :cascade do |t|
@@ -40,6 +46,18 @@ ActiveRecord::Schema.define(version: 20171206164919) do
     t.integer "review", default: 0
     t.integer "buy", default: 0
     t.index ["entry_control_id"], name: "index_batches_on_entry_control_id"
+  end
+
+  create_table "bills", force: :cascade do |t|
+    t.integer "code"
+    t.integer "invoice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "invoice_doc_file_name"
+    t.string "invoice_doc_content_type"
+    t.integer "invoice_doc_file_size"
+    t.datetime "invoice_doc_updated_at"
+    t.index ["invoice_id"], name: "index_bills_on_invoice_id"
   end
 
   create_table "categories", force: :cascade do |t|
