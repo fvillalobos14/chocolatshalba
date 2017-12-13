@@ -18,7 +18,7 @@ Proyecto Ingeniería de software
 ## Installation
 Install gems
 ```
-bundle install
+bundle install --without production
 ```
 Migrate database
 ```
