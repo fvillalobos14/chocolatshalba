@@ -1,0 +1,2 @@
+class CertificateType < ApplicationRecord
+end
