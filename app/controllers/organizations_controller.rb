@@ -4,6 +4,8 @@ class OrganizationsController < ApplicationController
         @organizations = Organization.all
     end
 
+    @organization ||= Organization.all
+
     def show
         organization = Organization.find(params[:id])
         @entries = organization.entry_controls

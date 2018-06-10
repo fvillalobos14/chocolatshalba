@@ -21,6 +21,11 @@ class EntryControlsController < ApplicationController
     @batches = @entry.batches
   end
 
+  def index
+    #@batches = @entry.batches
+  end
+
+
   private
   def entryControl_params
     params.require(:entry_control).permit(:entryDate, :exchangeRate, :receivedBy, :deliveredBy,:entry_number)
