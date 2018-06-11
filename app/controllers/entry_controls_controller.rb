@@ -5,6 +5,8 @@ class EntryControlsController < ApplicationController
   	@entryControl = @organization.entry_controls.build
   end
 
+  
+
   def create
     organization = Organization.find(params[:organization_id])
     entryControl = organization.entry_controls.build(entryControl_params)
@@ -19,10 +21,14 @@ class EntryControlsController < ApplicationController
   def show
     @entry = EntryControl.find(params[:id])
     @batches = @entry.batches
+    
   end
 
   def index
     #@batches = @entry.batches
+    
+    
+
   end
 
 

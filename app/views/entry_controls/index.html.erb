@@ -4,30 +4,40 @@
     <div class="col m12">
       <div class="card">
         <div class="card-content">
+        
           <div class="page-header">
             <h1>Control de ingreso</h1>
           </div>
+        
+          <div class="input-field col s6"> 
           
-          <div class="col s6">
-          
+            <select class="browser-default ">
+              <option value="" disabled selected>Escoja una organizacion</option>
+              <%= options_from_collection_for_select(Organization.all, :id, :name) %>
+            </select>
+
           </div>
 
           <div class="input-field col s6">
-          <label for="first_name">Numero Hoja de Ingreso</label>
-          <input placeholder="Numero Hoja de Ingreso" id="HojaIngreso" type="text" class="validate">
+          <label for="HojaIngreso">Numero Hoja de Ingreso</label>
+          <input id="HojaIngreso" type="text" class="validate">
           </div>
           
           <div class="input-field col s6">
-          <label for="first_name">Recibido por</label>
-          <input placeholder="Recibido por" id="recibido" type="text" class="validate">
+          <label for="recibido">Recibido por</label>
+          <input id="recibido" type="text" class="validate">
           </div>
           <div class="input-field col s6">
-          <label for="first_name">Entregado por</label>
-          <input placeholder="Entregado por" id="entregado" type="text" class="validate">
+          <label for="entregado">Entregado por</label>
+          <input id="entregado" type="text" class="validate">
           </div>
           <div class="input-field col s3">
-          <label for="first_name">Peso en Libras</label>
-          <input placeholder="Peso en Libras" id="peso" type="text" class="validate">
+          <label for="peso">Peso en Libras</label>
+          <input id="peso" type="text" class="validate">
+          </div>
+          <div class="input-field col s5">
+          <label for="centroPost">Centro Post-Cosecha</label>
+          <input id="centroPost" type="text" class="validate">
           </div>
           
           <div class="col s4">
@@ -43,38 +53,20 @@
           <div class="col s5">
             <label>Variedad</label>
             <select class="browser-default ">
-              <option value="" disabled selected>Escoja una Variedad</option>
-              <option value="Opcion1">I have</option>
-              <option value="Opcion2">no idea</option>
-              <option value="Opcion3">what goes in here</option>
+              <option value="" disabled selected>Escoja una organizacion</option>
+              <%= options_from_collection_for_select(GeneticMaterial.all, :id, :name) %>
             </select>
+
           </div>
   
 
-          <div class="col s4">
-            <label>Tipo de Cacao</label>
-            <select class="browser-default ">
-              <option value="" disabled selected>Escoja un tipo de Cacao</option>
-              <option value="Opcion1">I have</option>
-              <option value="Opcion2">no idea</option>
-              <option value="Opcion3">what goes in here</option>
-            </select>
-          </div>
+
           
-          <div class="col s5">
-            <label>Centro Post-Cosecha</label>
-            <select class="browser-default ">
-              <option value="" disabled selected>Escoja un Centro</option>
-              <option value="Opcion1">I have</option>
-              <option value="Opcion2">no idea</option>
-              <option value="Opcion3">what goes in here</option>
-            </select>
-          </div>
+          <%= link_to "Cancelar", '/entry_controls' , class: "btn btn-primary"%>
+          
           
  
-          <div>
-          <%= link_to "Regresar", quality_controls_path , class: "btn btn-primary"%>
-          </div>
+         
           
         </div>
       </div>
