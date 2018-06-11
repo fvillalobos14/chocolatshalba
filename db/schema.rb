@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212223913) do
+ActiveRecord::Schema.define(version: 20180531204815) do
 
   create_table "acceptances", force: :cascade do |t|
     t.decimal "max_qualityA"
@@ -45,6 +45,12 @@ ActiveRecord::Schema.define(version: 20171212223913) do
     t.integer "export_batch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "certificatetype"
+    t.integer "postharvestCenter"
+    t.integer "entrySheetNumber"
+    t.integer "organizationId"
+    t.string "receivedBy"
+    t.string "deliveredBy"
     t.index ["entry_control_id"], name: "index_batches_on_entry_control_id"
   end
 
@@ -76,6 +82,12 @@ ActiveRecord::Schema.define(version: 20171212223913) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["batch_id"], name: "index_certificate_checks_on_batch_id"
+  end
+
+  create_table "certificate_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "checkings", force: :cascade do |t|

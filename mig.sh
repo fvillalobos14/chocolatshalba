@@ -1,0 +1,8 @@
+rails g migration add_certificatetype_to_batches certificatetype:integer
+rails g migration add_postharvestCenter_to_batches postharvestCenter:integer
+rails g migration add_entrySheetNumber_to_batches entrySheetNumber:integer
+rails g migration add_organizationId_to_batches organizationId:integer
+rails g migration add_receivedBy_to_batches receivedBy:string
+rails g migration add_deliveredBy_to_batches deliveredBy:string
+rails g model certificate_types name:string
+rake db:migrate

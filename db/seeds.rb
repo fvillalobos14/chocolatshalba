@@ -62,6 +62,18 @@ CocoaType.create do |c|
 	c.name = 'C'
 end
 
+CertificateType.create do |ct|
+    ct.name= 'E'
+end
+
+CertificateType.create do |ct|
+    ct.name= 'T'
+end
+
+CertificateType.create do |ct|
+    ct.name= 'C'
+end
+
 GeneticMaterial.create do |g|
 	g.name = 'HT'
 end
