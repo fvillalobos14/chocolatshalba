@@ -1,7 +1,7 @@
 class EntryControlsController < ApplicationController
   before_action :authenticate_user!
   def new
-    @organization = Organization.find(params[:organization_id])
+    @organization = Organization.all
   	@entryControl = @organization.entry_controls.build
   end
 
