@@ -36,10 +36,12 @@ Rails.application.routes.draw do
   resources :export_batches
   resources :documents
   resources :filechecklists
+  resources :barcodes
 
   resources :entry_controls do
     resources :batches
     resources :reports
+    resources :barcodes
   end
 
   resources :batches do
@@ -49,6 +51,7 @@ Rails.application.routes.draw do
     resources :purchases
     resources :sensory_analyses
     resources :reports
+    resources :barcodes
   end
 
   resources :quality_controls do

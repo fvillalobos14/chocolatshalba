@@ -74,7 +74,10 @@
                           <td>
                             <%= link_to "Editar análisis físico", edit_quality_control_path(batch.quality_control.id) %>
                           </td>
-                        <% end %>
+                        <% end %>purchase_role
+                        <td>
+                            <%= link_to "Código de Barra", new_batch_barcode_path(batch) %>
+                        </td>
                       </tr>
                     <% end %>
                   </tbody>
