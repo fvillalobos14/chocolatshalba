@@ -20,8 +20,10 @@ class BatchesController < ApplicationController
     if batch.ft
       if quality== 'C' && cocoat == 'C'
         code=c
+        batch.ft=false
       else  
         code=c+"-FT"
+       
       end
     else
       code= c
