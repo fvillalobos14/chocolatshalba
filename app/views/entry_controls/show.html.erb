@@ -88,17 +88,15 @@
               <li>
                 <div class="collapsible-header section-color white-text text">
                   <i class="material-icons">file_upload</i>
-                  <b>ARCHIVOS</b>
+                  <b>DOCUMENTOS</b>
                 </div>
                 <div class="collapsible-body white">
                   <% if current_user.warehouse_role %>
-                    <br>
                     <% if @entry.filechecklists.empty? %>
                       <%= link_to "Verificar documentos", new_entry_control_filechecklist_path(@entry), class:"waves-effect waves-light btn" %>
                     <% else %>
                       <%= link_to "Verificar documentos", edit_filechecklist_path(@entry.filechecklists.first), class:"waves-effect waves-light btn" %>
                     <% end %>
-
                   <% end %>
                 </div>
               </li>

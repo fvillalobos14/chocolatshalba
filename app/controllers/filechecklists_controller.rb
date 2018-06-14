@@ -1,5 +1,6 @@
 class FilechecklistsController < ApplicationController
   before_action :authenticate_user!
+  after_action :set_everything, only: [:edit, :update]
   
   def new
     @entry = EntryControl.find(params[:entry_control_id])
@@ -9,7 +10,7 @@ class FilechecklistsController < ApplicationController
   def create
     entry = EntryControl.find(params[:entry_control_id])
     checklist = entry.filechecklists.build(checklist_params)
-    
+    checklist.everything= false
     if checklist.save
       redirect_to entry, notice: "Guardado con éxito"
     else
@@ -31,7 +32,17 @@ class FilechecklistsController < ApplicationController
     end
   end
   
+  def set_everything
+    @checklist = Filechecklist.find(params[:id])
+    if @checklist.referralSheet & @checklist.inspectionSheet & @checklist.embacingControl & @checklist.producersList & @checklist.collectionCleaningControl & @checklist.warehouseEntrySheet & @checklist.billCopy
+      @checklist.everything= true
+    else
+      @checklist.everything= false
+    end
+    @checklist.save
+  end
+
   def checklist_params
-    params.require(:filechecklist).permit(:referralSheet, :producersList, :inspectionSheet, :embacingControl, :collectionCleaningControl, :warehouseEntrySheet)
+    params.require(:filechecklist).permit(:referralSheet, :producersList, :inspectionSheet, :embacingControl, :collectionCleaningControl, :warehouseEntrySheet, :billCopy)
   end
 end

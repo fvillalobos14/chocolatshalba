@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180613214638) do
+ActiveRecord::Schema.define(version: 20180614012904) do
 
   create_table "acceptances", force: :cascade do |t|
     t.decimal "max_qualityA"
@@ -155,6 +155,8 @@ ActiveRecord::Schema.define(version: 20180613214638) do
     t.integer "entry_control_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "everything"
+    t.boolean "billCopy"
     t.index ["entry_control_id"], name: "index_filechecklists_on_entry_control_id"
   end
 
