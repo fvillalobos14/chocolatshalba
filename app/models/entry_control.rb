@@ -4,6 +4,7 @@ class EntryControl < ApplicationRecord
   has_attached_file :ec_files
   do_not_validate_attachment_file_type :ec_files
   has_many :documents
+  has_many :filechecklists
 
   validates :organization, presence: true
   validates :entryDate, presence: true

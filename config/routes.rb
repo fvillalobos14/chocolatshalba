@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'export_batches/new'
 
-  get 'reports/index'
+  get 'reports/index'#
 
   get 'purchases/index'
 
@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   resources :static_pages
   resources :export_batches
   resources :documents
+  resources :filechecklists
 
   resources :entry_controls do
     resources :batches
@@ -60,6 +61,7 @@ Rails.application.routes.draw do
 
   resources :entry_controls do
     resources :documents, only: [:new, :create]
+    resources :filechecklists, only: [:new, :create]
   end
 
   resources :invoices do

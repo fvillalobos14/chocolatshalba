@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col m12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="page-header">
+                        <h1>DOCUMENTOS</h1>
+                        <%= form_for [@entry, @checklist] do |f| %>
+                            <div class="input-field">
+                                <%= f.check_box :referralSheet %>
+                                <%= f.label 'referralSheet', "Hoja de Remisión" %>
+                            </div>
+                            <div class="input-field">
+                                <%= f.check_box :producersList %>
+                                <%= f.label 'producersList', "Lista de productores" %>
+                            </div>
+                            <div class="input-field">
+                                <%= f.check_box :inspectionSheet %>
+                                <%= f.label 'inspectionSheet', "Hoja de Inspección y limpieza del vehículo" %>
+                            </div>
+                            <div class="input-field">
+                                <%= f.check_box :embacingControl %>
+                                <%= f.label 'embacingControl', "Control del envase de producto" %>
+                            </div>
+                            <div class="input-field">
+                                <%= f.check_box :collectionCleaningControl %>
+                                <%= f.label 'collectionCleaningControl', "Control de limpieza de áreas del centro de acopio" %>
+                            </div>
+                            <div class="input-field">
+                                <%= f.check_box :warehouseEntrySheet %>
+                                <%= f.label 'warehouseEntrySheet', "Hoja de ingreso a bodega" %>
+                            </div>
+                            <div class="input-field">
+                                <%= f.check_box :billCopy %>
+                                <%= f.label 'billCopy', "Copia de factura" %>
+                            </div>
+                            <br>        
+                            <div>
+                            <%= link_to "Regresar",  @checklist.entry_control , class: "btn btn-primary"%>
+                            <%= f.submit "Guardar", class:"btn btn-default btn-lg" %>
+                            </div>
+                        <% end %>             
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>      
+</div>
