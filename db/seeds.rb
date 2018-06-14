@@ -1,3 +1,4 @@
+=begin
 User.create! do |u|
     u.email = 'warehouse'
     u.password = 'warehouse'
@@ -61,7 +62,7 @@ end
 CocoaType.create do |c|
 	c.name = 'C'
 end
-
+=end
 CertificateType.create do |ct|
     ct.name= 'E'
 end
@@ -73,7 +74,7 @@ end
 CertificateType.create do |ct|
     ct.name= 'C'
 end
-
+=begin
 GeneticMaterial.create do |g|
 	g.name = 'HT'
 end
@@ -428,3 +429,4 @@ end
 Archive.create! do |a|
   a.title = "Factura de venta"
 end
+=end
