@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180531204815) do
+ActiveRecord::Schema.define(version: 20180613214638) do
 
   create_table "acceptances", force: :cascade do |t|
     t.decimal "max_qualityA"
@@ -143,6 +143,19 @@ ActiveRecord::Schema.define(version: 20180531204815) do
   create_table "export_batches", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "filechecklists", force: :cascade do |t|
+    t.boolean "referralSheet"
+    t.boolean "producersList"
+    t.boolean "inspectionSheet"
+    t.boolean "embacingControl"
+    t.boolean "collectionCleaningControl"
+    t.boolean "warehouseEntrySheet"
+    t.integer "entry_control_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["entry_control_id"], name: "index_filechecklists_on_entry_control_id"
   end
 
   create_table "genetic_materials", force: :cascade do |t|
