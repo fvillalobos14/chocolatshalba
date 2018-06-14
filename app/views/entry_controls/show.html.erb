@@ -74,7 +74,7 @@
                           <td>
                             <%= link_to "Editar análisis físico", edit_quality_control_path(batch.quality_control.id) %>
                           </td>
-                        <% end %>purchase_role
+                        <% end %>
                         <td>
                             <%= link_to "Código de Barra", new_batch_barcode_path(batch) %>
                         </td>
@@ -94,13 +94,13 @@
                   <b>DOCUMENTOS</b>
                 </div>
                 <div class="collapsible-body white">
-                  <% if current_user.warehouse_role %>
+                  
                     <% if @entry.filechecklists.empty? %>
                       <%= link_to "Verificar documentos", new_entry_control_filechecklist_path(@entry), class:"waves-effect waves-light btn" %>
                     <% else %>
                       <%= link_to "Verificar documentos", edit_filechecklist_path(@entry.filechecklists.first), class:"waves-effect waves-light btn" %>
                     <% end %>
-                  <% end %>
+                  
                 </div>
               </li>
             <% end %>

@@ -15,10 +15,14 @@ class BatchesController < ApplicationController
     genetic=GeneticMaterial.find(batch.geneticMaterial).name
     quality=CertificateType.find(batch.certificatetype).name
     cocoat=CocoaType.find(batch.cocoaType).name
-    c = entryControl.organization.code+batch.postharvestCenter.to_s+"-"+entryControl.entryDate.strftime('%d%m%y')+"-"+quality+cocoat+genetic
+    c = entryControl.organization.code+"0"+batch.postharvestCenter.to_s+"-"+entryControl.entryDate.strftime('%d%m%y')+"-"+quality+cocoat+genetic
     code=""
     if batch.ft
-      code=c+"-FT"
+      if quality== 'C' && cocoat == 'C'
+        code=c
+      else  
+        code=c+"-FT"
+      end
     else
       code= c
     end

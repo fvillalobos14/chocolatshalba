@@ -26,7 +26,7 @@ class FilechecklistsController < ApplicationController
   def update
     checklist = Filechecklist.find(params[:id])
     if checklist.update(checklist_params)
-      redirect_to checklist.entry_control
+      redirect_to checklist.entry_control, notice: "Guardado con éxito"
     else
       render 'edit'
     end
