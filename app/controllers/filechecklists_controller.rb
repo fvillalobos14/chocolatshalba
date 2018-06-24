@@ -32,6 +32,10 @@ class FilechecklistsController < ApplicationController
     end
   end
   
+  def show
+    @checklist = Filechecklist.find(params[:id])
+  end
+
   def set_everything
     @checklist = Filechecklist.find(params[:id])
     if @checklist.referralSheet & @checklist.inspectionSheet & @checklist.embacingControl & @checklist.producersList & @checklist.collectionCleaningControl & @checklist.warehouseEntrySheet & @checklist.billCopy

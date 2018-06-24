@@ -7,41 +7,36 @@
                         <h1>DOCUMENTOS</h1>
                         <%= form_for [@entry, @checklist] do |f| %>
                             <div class="input-field">
-                                <%= f.check_box :referralSheet %>
+                                <%= f.check_box :referralSheet, :disabled => true  %>
                                 <%= f.label 'referralSheet', "Hoja de Remisión" %>
                             </div>
                             <div class="input-field">
-                                <%= f.check_box :producersList %>
+                                <%= f.check_box :producersList, :disabled => true  %>
                                 <%= f.label 'producersList', "Lista de productores" %>
                             </div>
                             <div class="input-field">
-                                <%= f.check_box :inspectionSheet %>
+                                <%= f.check_box :inspectionSheet, :disabled => true  %>
                                 <%= f.label 'inspectionSheet', "Hoja de Inspección y limpieza del vehículo" %>
                             </div>
                             <div class="input-field">
-                                <%= f.check_box :embacingControl %>
+                                <%= f.check_box :embacingControl, :disabled => true  %>
                                 <%= f.label 'embacingControl', "Control del envase de producto" %>
                             </div>
                             <div class="input-field">
-                                <%= f.check_box :collectionCleaningControl %>
+                                <%= f.check_box :collectionCleaningControl, :disabled => true  %>
                                 <%= f.label 'collectionCleaningControl', "Control de limpieza de áreas del centro de acopio" %>
                             </div>
                             <div class="input-field">
-                                <%= f.check_box :warehouseEntrySheet %>
+                                <%= f.check_box :warehouseEntrySheet, :disabled => true  %>
                                 <%= f.label 'warehouseEntrySheet', "Hoja de ingreso a bodega" %>
                             </div>
                             <div class="input-field">
-                                <%= f.check_box :billCopy %>
+                                <%= f.check_box :billCopy, :disabled => true  %>
                                 <%= f.label 'billCopy', "Copia de factura" %>
                             </div>
                             <br>        
                             <div>
-                            <% if current_user.certification_role %>
                                 <%= link_to "Regresar",  :back , class: "btn btn-primary"%>
-                            <% else %>
-                                <%= link_to "Regresar",  @checklist.entry_control , class: "btn btn-primary"%>
-                                <%= f.submit "Guardar", class:"btn btn-default btn-lg" %>
-                            <% end %>
                             </div>
                         <% end %>             
                     </div>
