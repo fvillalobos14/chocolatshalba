@@ -61,7 +61,7 @@ class QualityControlsController < ApplicationController
 
   private
   def quality_params
-    params.require(:quality_control).permit(:code, :final_code, :cut_at, :f_harvest, :s_harvest, :trinitary, :outsider, :observation, :made_by)
+    params.require(:quality_control).permit(:code, :final_code, :cut_at, :f_harvest, :s_harvest, :trinitary, :outsider, :observation, :made_by, :samples)
   end
 
   def defineResult(batch)
@@ -141,8 +141,8 @@ class QualityControlsController < ApplicationController
       category.parameters.order(:place).each do |parameter|
         if parameter.acceptance == nil
           if parameter.category.place = 4
-            if category.runs = 1
-              value = Result.where(parameter_id: parameter.id, batch_id: batch.id, run: 1).first.score
+            if category.runs >= 1
+              value = Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)/3
               data.append(value)
             end
           end

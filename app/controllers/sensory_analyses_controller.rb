@@ -31,7 +31,7 @@ class SensoryAnalysesController < ApplicationController
 
       private
       def sensory_params
-        params.require(:sensory_analysis).permit(:observation, :made_by)
+        params.require(:sensory_analysis).permit(:observation, :made_by, :samples)
       end
 
       def createNotification(batch)
