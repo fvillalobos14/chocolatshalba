@@ -6,29 +6,20 @@
           <div class="page-header">
             <h1>Organizaciones</h1>
           </div>
-          <input type="text" id="oNameCode" onkeyup="filterTable()" placeholder="Busque organización...">
-          <table id="oTable" class="striped bordered">
-            <thead>
-              <tr>
-                <th>Código</th>
-                <th>Nombre</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @organizations.each do |organization| %>
-                <tr>
-                  <td><%= organization.code %></td>
-                  <td><%= organization.name %></td>
-                  <% if current_user.warehouse_role %>
-                    <td><%= link_to "Nuevo control de ingreso", new_organization_entry_control_path(organization) %></td>
-                  <% else %>
-                    <td><%= link_to "Controles de ingreso", organization %></td>
-                  <% end %>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+
+          
+          <%= form_tag({:controller => "entry_controls", :action => "new"}, :method => :get) do %>
+
+            <p>Organización: <%=	 select_tag "searchbox",  options_from_collection_for_select(@organizations, :id, :name), id:"or"%></p>
+
+            <br>
+              <%= submit_tag "Aceptar", :name => nil, class:"btn btn-default btn-lg" %>
+              <%= link_to "Limpiar", '/organizations' , class: "btn btn-primary"%>
+              
+
+          <% end %>
+         
+          
         </div>
       </div>
     </div>
@@ -66,4 +57,21 @@
       }
     }
   }
+</script>
+<script>
+    $(document).on('turbolinks:load', function () {
+        $('select').material_select();
+    })
+</script>
+<script type="text/javascript">    
+    $("#reset").on("click", function() {
+        $("#recibidopor").val("");
+        $("#entregadopor").val("");
+        $("#numerohoja").val("");
+    });
+</script>
+<script type="text/javascript">    
+    var rowCount = $("#or").value;
+    var message =  "Cantidad de resultados: " + rowCount;
+    document.getElementById("output").innerHTML=message;
 </script>

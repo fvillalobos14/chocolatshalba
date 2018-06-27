@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  referralSheet: false
+  producersList: false
+  inspectionSheet: false
+  embacingControl: false
+  collectionCleaningControl: false
+  warehouseEntrySheet: false
+  entry_control: one
+
+two:
+  referralSheet: false
+  producersList: false
+  inspectionSheet: false
+  embacingControl: false
+  collectionCleaningControl: false
+  warehouseEntrySheet: false
+  entry_control: two
