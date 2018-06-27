@@ -11,9 +11,25 @@ class BatchesController < ApplicationController
   def create
     entryControl = EntryControl.find(params[:entry_control_id])
     batch=entryControl.batches.build(batches_params)
-    
-    batch.enterCode = entryControl.organization.code+batch.postharvestCenter+"-"+entryControl.entryDate.strftime('%d%m%y')+"-EAHT"
-            
+     
+    genetic=GeneticMaterial.find(batch.geneticMaterial).name
+    quality=CertificateType.find(batch.certificatetype).name
+    cocoat=CocoaType.find(batch.cocoaType).name
+    c = entryControl.organization.code+"0"+batch.postharvestCenter.to_s+"-"+entryControl.entryDate.strftime('%d%m%y')+"-"+quality+cocoat+genetic
+    code=""
+    if batch.ft
+      if quality== 'C' && cocoat == 'C'
+        code=c
+        batch.ft=false
+      else  
+        code=c+"-FT"
+       
+      end
+    else
+      code= c
+    end
+
+    batch.enterCode=code   
     if batch.save
         createNotification
         redirect_to entryControl

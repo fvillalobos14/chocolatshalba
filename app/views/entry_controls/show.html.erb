@@ -76,6 +76,9 @@
                             <%= link_to "Editar análisis físico", edit_quality_control_path(batch.quality_control.id) %>
                           </td>
                         <% end %>
+                        <td>
+                            <%= link_to "Código de Barra", new_batch_barcode_path(batch) %>
+                        </td>
                       </tr>
                     <% end %>
                   </tbody>
@@ -89,32 +92,16 @@
               <li>
                 <div class="collapsible-header section-color white-text text">
                   <i class="material-icons">file_upload</i>
-                  <b>ARCHIVOS</b>
+                  <b>DOCUMENTOS</b>
                 </div>
                 <div class="collapsible-body white">
-                  <table class="striped bordered">
-                    <thead>
-                      <tr>
-                        <th>Nombre del archivo</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% @entry.documents.each do |doc| %>
-                        <tr>
-                          <td><%=doc.title%></td>
-                          <td><%= link_to "Descargar archivo", doc.ec_data.url(:original, false) %><td>
-                          <% if current_user.warehouse_role || current_user.admin_role %>
-                            <td><%= link_to 'Editar', edit_document_path(doc) %></td>
-                          <% end %> 
-                        </tr>
-                      <% end %>
-                    </tbody>
-                  </table>
-                  <% if current_user.warehouse_role %>
-                    <br>
-                    <%= link_to "Agregar Archivo", new_entry_control_document_path(@entry), class:"waves-effect waves-light btn" %>
-                  <% end %>
+                  
+                    <% if @entry.filechecklists.empty? %>
+                      <%= link_to "Verificar documentos", new_entry_control_filechecklist_path(@entry), class:"waves-effect waves-light btn" %>
+                    <% else %>
+                      <%= link_to "Verificar documentos", edit_filechecklist_path(@entry.filechecklists.first), class:"waves-effect waves-light btn" %>
+                    <% end %>
+                  
                 </div>
               </li>
             <% end %>
