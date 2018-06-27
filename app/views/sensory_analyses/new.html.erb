@@ -26,6 +26,7 @@
               <%= f.text_field :made_by, :required => true%>
             </div>
 
+
             <ul class="collapsible" data-collapsible="accordion">
               <li>
                 <div class="collapsible-header section-color white-text">
@@ -39,7 +40,7 @@
                         <th>
                           <%= category.name %>
                         </th>
-                        <% (1..category.runs).each do |i| %>
+                        <% (1..@batch.samples).each do |i| %>
                           <th align="right">
                             <%= i %>
                           </th>
@@ -52,7 +53,7 @@
                             <%= parameter.name %>
                           </td>
                           <%= fields_for 'results[]', Result.new do |r| %>
-                            <% (1..category.runs).each do |i| %>
+                            <% (1..@batch.samples).each do |i| %>
                               <%= r.hidden_field :parameter_id, :value => parameter.id %>
                               <%= r.hidden_field :run, :value => i %>
                               <td width="3%">
