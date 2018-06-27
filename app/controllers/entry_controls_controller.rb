@@ -1,9 +1,11 @@
 class EntryControlsController < ApplicationController
   before_action :authenticate_user!
   def new
-    @organization = Organization.find(params[:organization_id])
-  	@entryControl = @organization.entry_controls.build
+    @organization = Organization.find(params[:searchbox])
+    @entryControl = @organization.entry_controls.build
   end
+
+  
 
   def create
     organization = Organization.find(params[:organization_id])
@@ -19,7 +21,17 @@ class EntryControlsController < ApplicationController
   def show
     @entry = EntryControl.find(params[:id])
     @batches = @entry.batches
+    
   end
+
+  def index
+    @organization = Organization.all
+   
+    
+    
+
+  end
+
 
   private
   def entryControl_params

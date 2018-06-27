@@ -26,12 +26,16 @@ class FilechecklistsController < ApplicationController
   def update
     checklist = Filechecklist.find(params[:id])
     if checklist.update(checklist_params)
-      redirect_to checklist.entry_control
+      redirect_to checklist.entry_control, notice: "Guardado con éxito"
     else
       render 'edit'
     end
   end
   
+  def show
+    @checklist = Filechecklist.find(params[:id])
+  end
+
   def set_everything
     @checklist = Filechecklist.find(params[:id])
     if @checklist.referralSheet & @checklist.inspectionSheet & @checklist.embacingControl & @checklist.producersList & @checklist.collectionCleaningControl & @checklist.warehouseEntrySheet & @checklist.billCopy

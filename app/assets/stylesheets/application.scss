@@ -127,3 +127,19 @@ body{
 .padding-sidenav{
   padding-left: 25px;
 }
+
+$font-path: './fonts';
+$font-name: 'IDAutomationHC39M';
+$fallback-src: url("#{$font-path}/#{$font-name}.eot");
+$src:
+  url("#{$font-path}/#{$font-name}.eot?#iefix") format('embedded-opentype'),
+  url("#{$font-path}/#{$font-name}.woff") format('woff')
+;
+
+@font-face {
+    font-family: $font-name;
+    src:  $fallback-src;
+    src:  $src;
+    font-weight: normal;
+    font-style: normal;
+} 
