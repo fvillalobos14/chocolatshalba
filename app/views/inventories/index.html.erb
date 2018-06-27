@@ -14,7 +14,7 @@
                   <b>FILTROS</b>
                 </div>
                 <div class="collapsible-body white">
-          <%= form_tag({:controller => "inventories", :action => "index"}, :method => :get) do %>
+                <%= form_tag({:controller => "inventories", :action => "index"}, :method => :get) do %>
 
               <p>Organización: <%=	 select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name), :include_blank => 'TODOS' %></p>
 
@@ -41,14 +41,13 @@
           </div>
           </li>
           </ul>
-          
-          
+           
         <center><p style="font-size:30px">
             INVENTARIO
         </p></center> 
         
         <p>Calidad: 
-            <%	if params[:quality]=="" %>    
+            <%	if params[:quality]=="" || params[:quality]==nil  %>    
                 TODAS
             <%else%>
                 <%= CocoaType.find(params[:quality]).name%> 
@@ -56,7 +55,7 @@
         </p>  
 
         <p>Certificado:
-        <%	if params[:certificate]=="" %>    
+        <%	if params[:certificate]=="" || params[:certificate]==nil  %>    
                 TODOS
             <%else%>
                 <%= CertificateType.find(params[:certificate]).name%> 
@@ -64,7 +63,7 @@
         </p>  
 
         <p>Variedad:
-        <%	if params[:variety]=="" %>    
+        <%	if params[:variety]=="" || params[:variety]==nil  %>    
                 TODAS
             <%else%>
                 <%= GeneticMaterial.find(params[:variety]).name%> 
