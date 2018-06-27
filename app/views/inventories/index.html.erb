@@ -36,7 +36,7 @@
               </div>
               <div class = "col m6" >
               <p>
-              <%= check_box_tag(:purchase, params[:purchase], :disabled => true) %>
+              <%= check_box_tag(:purchase, params[:purchase], false ,disabled: true) %>
               <%= label_tag(:purchase, "Comprado") %>
               </p>
               </div>
