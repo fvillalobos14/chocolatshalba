@@ -8,7 +8,8 @@
           </div>
           <p>
             Organización:
-            <%= Organization.find(@entry.organization_id).name %>
+            <%= Organization.find(@entry.organization_id).name%>
+            
           </p>
           <p>
             Recibido por:
@@ -30,7 +31,8 @@
                   <thead>
                     <tr>
                       <th>Cantidad de sacos</th>
-                      <th>Peso</th>
+                      <th>Peso en Libras</th>
+                      <th>Peso en Kilogramos</th>
                       <th>Código de identificación</th>
                       <th>Tipo de cacao</th>
                       <th>Material genético</th>
@@ -44,6 +46,7 @@
                         </td>
                         <td>
                           <%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                          <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td> 
                         <td>
                           <%= batch.enterCode %>
                         </td>

@@ -429,4 +429,8 @@ end
 Archive.create! do |a|
   a.title = "Factura de venta"
 end
+<<<<<<< HEAD
 =end
+=======
+=end
+>>>>>>> origin/Esther

@@ -21,27 +21,11 @@
             </p>
 
             <div class="card-content">
-              <b>DOCUMENTOS</b>
-              <table class="striped bordered">
-                <thead>
-                  <tr>
-                    <th>Nombre del archivo</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @batch.entry_control.documents.each do |doc| %>
-                    <tr>
-                      <td>
-                        <%=doc.title%>
-                      </td>
-                      <td>
-                        <%= link_to "Descargar archivo", doc.ec_data.url(:original, false) %>
-                      <td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
+              <% if @batch.entry_control.filechecklists.empty? %>
+                      <%= link_to "Verificar documentos", new_entry_control_filechecklist_path(@batch.entry_control), class:"waves-effect waves-light btn" %>
+              <% else %>
+                      <%= link_to "Verificar documentos", filechecklist_path(@batch.entry_control.filechecklists.first), class:"waves-effect waves-light btn" %>
+              <% end %> 
             </div>
             <%= link_to "Regresar", checkings_path , class: "btn btn-primary"%>
             <a class="waves-effect waves-light btn" data-target="modal1">Determinar</a>
