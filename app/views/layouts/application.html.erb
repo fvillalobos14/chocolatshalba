@@ -34,6 +34,7 @@
                 <% elsif  Notification.where(kind: 3, read: false).count > 1 %>
                     <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 3, read: false).count %></span>
                 <% end %>
+                <li><%= link_to 'Controles de Ingreso', "/quality_controls",class:"white-text li-back"%></li>
                 <li><%= link_to 'Mover lotes', batches_moveBatches_path,class:"white-text li-back"%></li>
             <% end %>
             <% if current_user.quality_manager_role  %>
@@ -195,6 +196,7 @@
             <% elsif  Notification.where(kind: 3, read: false).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 3, read: false).count %></span>
             <% end %>
+            <li><%= link_to 'Controles de Ingreso', "/quality_controls",class:"white-text li-back"%></li>
             <li><%= link_to 'Mover lotes', batches_moveBatches_path,class:"white-text li-back"%></li>
           <% end %>
           <% if current_user.quality_manager_role  %>
