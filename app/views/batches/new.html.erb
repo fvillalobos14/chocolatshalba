@@ -17,10 +17,7 @@
               <%= f.number_field :weight, step: :any, min: 0 , :required => true %>
             </div> 
             
-            <div class="input-field">
-              <%= f.label :samples, "Número de Muestras" %>
-              <%= f.number_field :samples, step: :any, min: 0 , :required => true %>
-            </div> 
+            <%= f.hidden_field :samples, step: :any, :value => 1, :required => true %>
 
             <div class="input-field">
               <%= f.label :postharvestCenter, "Centro de poscosecha" %>
