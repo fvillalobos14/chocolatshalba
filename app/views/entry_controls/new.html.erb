@@ -9,10 +9,8 @@
             <div class="page-header">
               <h1>Control de ingreso</h1>
             </div>
-            <p>
-              Cooperativa:
-              <%= @organization.name %>
-            </p>
+
+              
 
             <div class = "input-field">
               <%= f.label :entry_number, "Número de hoja de ingreso" %>
@@ -28,6 +26,7 @@
               <%= f.label :deliveredBy, "Entregado por" %>
               <%= f.text_field :deliveredBy, :required => true %>
             </div>
+
             <br>
             <p>
               <%= link_to "Regresar", organizations_path , class: "btn btn-primary"%>

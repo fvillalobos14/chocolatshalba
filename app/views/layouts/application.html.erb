@@ -35,6 +35,7 @@
                 <% elsif  Notification.where(kind: 3, read: false).count > 1 %>
                     <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 3, read: false).count %></span>
                 <% end %>
+                <li><%= link_to 'Controles de Ingreso', "/quality_controls",class:"white-text li-back"%></li>
                 <li><%= link_to 'Mover lotes', batches_moveBatches_path,class:"white-text li-back"%></li>
                 
             <% end %>
@@ -191,12 +192,13 @@
         <% if not current_user.admin_role %>
           <% if current_user.warehouse_role  %>
             <li><a class="white-text"><i class="material-icons white-text">archive</i>Bodega</a><li>
-            <li><%= link_to 'Control de ingreso', organizations_path, class:"white-text li-back"%></li>
+            <li><%= link_to 'Control de ingreso',organizations_path, class:"white-text li-back"%></li>
             <% if  Notification.where(kind: 3, read: false).count == 1 %>
               <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 3, read: false).count %></span>
             <% elsif  Notification.where(kind: 3, read: false).count > 1 %>
               <span class="new badge" data-badge-caption="nuevos"><%= Notification.where(kind: 3, read: false).count %></span>
             <% end %>
+            <li><%= link_to 'Lista de Lotes', "/quality_controls",class:"white-text li-back"%></li>
             <li><%= link_to 'Mover lotes', batches_moveBatches_path,class:"white-text li-back"%></li>
             <li><%= link_to 'Inventario', inventories_path , class:"white-text li-back"%></li>
           <% end %>

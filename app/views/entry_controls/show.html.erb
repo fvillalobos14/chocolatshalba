@@ -8,7 +8,8 @@
           </div>
           <p>
             Organización:
-            <%= Organization.find(@entry.organization_id).name %>
+            <%= Organization.find(@entry.organization_id).name%>
+            
           </p>
           <p>
             Recibido por:
@@ -18,6 +19,7 @@
             Entregado por:
             <%= @entry.deliveredBy %>
           </p>
+          
           <br>
           <ul class="collapsible" data-collapsible="accordion">
             <li>
@@ -30,7 +32,8 @@
                   <thead>
                     <tr>
                       <th>Cantidad de sacos</th>
-                      <th>Peso</th>
+                      <th>Peso en Libras</th>
+                      <th>Peso en Kilogramos</th>
                       <th>Código de identificación</th>
                       <th>Tipo de cacao</th>
                       <th>Material genético</th>
@@ -44,6 +47,7 @@
                         </td>
                         <td>
                           <%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                          <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td> 
                         <td>
                           <%= batch.enterCode %>
                         </td>
@@ -53,7 +57,7 @@
                         <td>
                           <%= GeneticMaterial.find(batch.geneticMaterial).name %>
                         </td>
-                        <% if current_user.warehouse_role || current_user.admin_role %>
+                        <% if current_user.warehouse_role || current_user.admin_role || current_user.quality_role%>
                           <td><%= link_to 'Editar', edit_batch_path(batch) %></td>
                         <% end %>
                         <% if current_user.quality_role && QualityControl.where(batch_id: batch.id).blank? %>
