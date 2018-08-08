@@ -16,7 +16,7 @@
                 <div class="collapsible-body white">
                 <%= form_tag({:controller => "inventories", :action => "index"}, :method => :get) do %>
 
-              <p>Organización: <%=	 select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name), :include_blank => 'TODOS' %></p>
+              <p>Proveedor: <%=	 select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name), :include_blank => 'TODOS' %></p>
 
               <p>Desde: <%= text_field_tag "from", params[:from], type:"date", class:"datepicker" %></p>
 
@@ -95,7 +95,7 @@
                 <div class = "col m6">
                     <center>
 
-                    <p>Organización:
+                    <p>Proveedor:
                     <%	if params[:searchbox]==""  %>    
                             TODAS
                         <%else%>
@@ -148,7 +148,7 @@
               <th>Tipo de cacao</th>
               <th>Variedad</th>
               <th>Certificado</th>
-              <th>Organización</th>
+              <th>Proveedor</th>
             </tr> 
             </thead>
             <tbody>
