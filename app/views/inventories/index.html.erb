@@ -36,7 +36,7 @@
               </div>
               <div class = "col m6" >
               <p>
-              <%= check_box_tag(:purchase, params[:purchase], false ,disabled: true) %>
+              <%= check_box_tag(:purchase, params[:purchase]) %>
               <%= label_tag(:purchase, "Comprado") %>
               </p>
               </div>
@@ -154,8 +154,9 @@
             <tbody>
             <% @entries.each  do |entry| %>
                 <% entry.batches.each do |batch| %>
-                    <tr>                     
-                    <% if params[:ft].to_s == "on" && batch.ft%>
+                    <tr>  
+                    <% if params[:purchase].to_s == "on" && batch.purchase != nil %>                   
+                    <% if params[:ft].to_s == "on" && batch.ft  %>
                     <% if params[:variety] == "" %>
                         <% if params[:quality] == "" %>
                             <% if params[:certificate] == "" %>
@@ -359,6 +360,215 @@
                             <% end %>
                         <% end %>
                     <% end %>	
+                <% end %> 
+                <% else %>
+                <% if batch.purchase == nil  %>
+                <% if params[:ft].to_s == "on" && batch.ft  %>
+                <% if params[:variety] == "" %>
+                    <% if params[:quality] == "" %>
+                        <% if params[:certificate] == "" %>
+                            <td><%= batch.sackAmount %></td>
+                            <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                            
+                            <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td> 
+                            
+                            <td><%= batch.enterCode %></td>
+                            <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                            <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                            <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                            <td><%= batch.entry_control.organization.name %></td>
+                        <% else %>
+                            <% if batch.certificatetype == params[:certificate].to_i %>
+                                <td><%= batch.sackAmount %></td>
+                                <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td>
+                                <td><%= batch.enterCode %></td>
+                                <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                                <td><%= batch.entry_control.organization.name %></td>
+                            <% end %>
+                        <% end %>
+                    <% else %>
+                        <% if batch.cocoaType== params[:quality].to_i %>	
+                            <% if params[:certificate] == "" %>
+                                <td><%= batch.sackAmount %></td>
+                                <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td>
+                                <td><%= batch.enterCode %></td>
+                                <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                                <td><%= batch.entry_control.organization.name %></td>
+                            <% else %>
+                                <% if batch.certificatetype == params[:certificate].to_i %>
+                                    <td><%= batch.sackAmount %></td>
+                                    <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                    <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td>
+                                    <td><%= batch.enterCode %></td>
+                                    <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                    <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                    <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                                    <td><%= batch.entry_control.organization.name %></td>
+                                <% end %>
+                            <% end %>
+                        <% end %>    
+                    <% end %>
+                <% else %>
+                    <% if batch.geneticMaterial== params[:variety].to_i %>	
+                        <% if params[:quality] == "" %>
+                            <% if params[:certificate] == "" %>
+                                <td><%= batch.sackAmount %></td>
+                                <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td>
+                                <td><%= batch.enterCode %></td>
+                                <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                                <td><%= batch.entry_control.organization.name %></td>
+                            <% else %>
+                                <% if batch.certificatetype == params[:certificate].to_i %>
+                                    <td><%= batch.sackAmount %></td>
+                                    <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                    <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td>
+                                    <td><%= batch.enterCode %></td>
+                                    <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                    <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                    <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                                    <td><%= batch.entry_control.organization.name %></td>
+                                <% end %>
+                            <% end %>
+                        <% else %>
+                            <% if batch.cocoaType== params[:quality].to_i %>	
+                                <% if params[:certificate] == "" %>
+                                    <td><%= batch.sackAmount %></td>
+                                    <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                    <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td>
+                                    <td><%= batch.enterCode %></td>
+                                    <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                    <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                    <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                                    <td><%= batch.entry_control.organization.name %></td>
+                                <% else %>
+                                    <% if batch.certificatetype == params[:certificate].to_i %>
+                                        <td><%= batch.sackAmount %></td>
+                                        <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                        <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td>
+                                        <td><%= batch.enterCode %></td>
+                                        <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                        <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                        <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                                        <td><%= batch.entry_control.organization.name %></td>
+                                    <% end %>
+                                <% end %>
+                            <% end %>    
+                        <% end %>
+                    <% end %>
+                <% end %>
+            <% else %>
+                <%  if !(batch.ft) %>
+                    <% if params[:variety] == "" %>
+                        <% if params[:quality] == "" %>
+                            <% if params[:certificate] == "" %>
+                                <td><%= batch.sackAmount %></td>
+                                <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td>
+                                <td><%= batch.enterCode %></td>
+                                <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                                <td><%= batch.entry_control.organization.name %></td>
+                            <% else %>
+                                <% if batch.certificatetype == params[:certificate].to_i %>
+                                    <td><%= batch.sackAmount %></td>
+                                    <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                    <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td>
+                                    <td><%= batch.enterCode %></td>
+                                    <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                    <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                    <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                                    <td><%= batch.entry_control.organization.name %></td>
+                                <% end %>
+                            <% end %>
+                        <% else %>
+                            <% if batch.cocoaType== params[:quality].to_i %>	
+                                <% if params[:certificate] == "" %>
+                                    <td><%= batch.sackAmount %></td>
+                                    <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                    <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td>
+                                    <td><%= batch.enterCode %></td>
+                                    <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                    <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                    <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                                    <td><%= batch.entry_control.organization.name %></td>
+                                <% else %>
+                                    <% if batch.certificatetype == params[:certificate].to_i %>
+                                        <td><%= batch.sackAmount %></td>
+                                        <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                        <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td>
+                                        <td><%= batch.enterCode %></td>
+                                        <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                        <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                        <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                                        <td><%= batch.entry_control.organization.name %></td>
+                                    <% end %>
+                                <% end %>
+                            <% end %>    
+                        <% end %>
+                    <% else %>
+                        <% if batch.geneticMaterial== params[:variety].to_i %>	
+                            <% if params[:quality] == "" %>
+                                <% if params[:certificate] == "" %>
+                                    <td><%= batch.sackAmount %></td>
+                                    <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                    <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td>
+                                    <td><%= batch.enterCode %></td>
+                                    <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                    <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                    <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                                    <td><%= batch.entry_control.organization.name %></td>
+                                <% else %>
+                                    <% if batch.certificatetype == params[:certificate].to_i %>
+                                        <td><%= batch.sackAmount %></td>
+                                        <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                        <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td>
+                                        <td><%= batch.enterCode %></td>
+                                        <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                        <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                        <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                                        <td><%= batch.entry_control.organization.name %></td>
+                                    <% end %>
+                                <% end %>
+                            <% else %>
+                                <% if batch.cocoaType== params[:quality].to_i %>	
+                                    <% if params[:certificate] == "" %>
+                                        <td><%= batch.sackAmount %></td>
+                                        <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                        <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td>
+                                        <td><%= batch.enterCode %></td>
+                                        <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                        <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                        <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                                        <td><%= batch.entry_control.organization.name %></td>
+                                    <% else %>
+                                        <% if batch.certificatetype == params[:certificate].to_i %>
+                                            <td><%= batch.sackAmount %></td>
+                                            <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
+                                            <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td>
+                                            <td><%= batch.enterCode %></td>
+                                            <td><%= CocoaType.find(batch.cocoaType).name %></td>
+                                            <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+                                            <td><%= CertificateType.find(batch.certificatetype).name %></td>
+                                            <td><%= batch.entry_control.organization.name %></td>
+                                        <% end %>
+                                    <% end %>
+                                <% end %>    
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                <% end %>	
+            <% end %> 
+            <% end %> 
                 <% end %>    
                 </tr>
                 <% end %>

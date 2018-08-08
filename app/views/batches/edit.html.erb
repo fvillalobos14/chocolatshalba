@@ -7,10 +7,11 @@
             <h1>Lote</h1>
             </div>
             <%= form_for [@batch] do |f| %>
+            <% if current_user.warehouse_role || current_user.admin_role  %>
             <div class="input-field">
                 <%= f.label :sackAmount, "Cantidad de sacos" %>
                 <%= f.number_field :sackAmount, min: 0 , :required => true %>
-            </div>
+             </div>
 
             <div class="input-field">
                 <%= f.label :weight, "Peso en libras" %>
@@ -36,6 +37,12 @@
                 <%= f.check_box :ft %>
                 <%= f.label 'ft', "Comercio justo" %>
             </div>
+            <% else %>
+                <div class="input-field">
+                    <%= f.label :samples, "Número de Muestras" %>
+                    <%= f.number_field :samples, step: :any, min: 0 %>
+                </div>
+            <% end %>
 
             <br>
             <p>

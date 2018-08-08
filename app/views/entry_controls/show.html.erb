@@ -19,6 +19,7 @@
             Entregado por:
             <%= @entry.deliveredBy %>
           </p>
+          
           <br>
           <ul class="collapsible" data-collapsible="accordion">
             <li>
@@ -56,7 +57,7 @@
                         <td>
                           <%= GeneticMaterial.find(batch.geneticMaterial).name %>
                         </td>
-                        <% if current_user.warehouse_role || current_user.admin_role %>
+                        <% if current_user.warehouse_role || current_user.admin_role || current_user.quality_role%>
                           <td><%= link_to 'Editar', edit_batch_path(batch) %></td>
                         <% end %>
                         <% if current_user.quality_role && QualityControl.where(batch_id: batch.id).blank? %>
