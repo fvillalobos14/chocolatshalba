@@ -1,99 +1,122 @@
 <!DOCTYPE html>
 <hlml>
-  <head>
-    <title></title>
-    <%= wicked_pdf_stylesheet_link_tag "pdf" %>
-  </head>
-  <body>
-    <center>
-      <h1>Chocolats Halba</h1>
-      <h1>Reporte</h1>
-    </center>
-    <table class = "striped">
-      <thead>
-      <tr>
-        <th>Cant. sacos</th>
-        <th>Peso</th>
-        <th>Identificacion</th>
-        <th>Tipo de cacao</th>
-        <th>Material genetico</th>
-        <th>Organizacion</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @entries.each  do |entry| %>
-          <% entry.batches.each do |batch| %>
-              <%	 if batch.quality_control != nil %>
-                  <%	if batch.quality_control.revision != nil %>
-                      <tr>
-                        <%	 if  params[:purchased].to_s != "on" && params[:quality] == "" %>
-                            <%	if batch.purchase == nil %>
-                                <td><%= batch.sackAmount %></td>
-                                <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
-                                <td><%= batch.enterCode %></td>
-                                <td><%= CocoaType.find(batch.quality_control.revision.status).name %></td>
-                                <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                                <td><%= batch.entry_control.organization.name %></td>
-                            <%	end %>
-                        <%	end %>
-                        <%	 if params[:purchased].to_s == "on" && params[:quality] == "" %>
-                            <%	if batch.purchase != nil %>
-                                <%	if batch.purchase.decision == 1 %>
-                                    <td><%= batch.sackAmount %></td>
-                                    <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
-                                    <td><%= batch.enterCode %></td>
-                                    <td><%= CocoaType.find(batch.quality_control.revision.status).name %></td>
-                                    <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                                    <%	 if params[:searchbox] == "" %>
-                                        <td><%= batch.entry_control.organization.name %></td>
-                                    <%	 end %>
-                                <%  end %>
-                            <%  end %>
-                        <%	end %>
-                        <%	 if params[:purchased].to_s != "on" && params[:quality] != "" %>
-                            <%	 if batch.quality_control != nil %>
-                                <%	 if batch.quality_control.revision != nil %>
-                                    <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
-                                        <%	if batch.purchase == nil %>
-                                            <td><%= batch.sackAmount %></td>
-                                            <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
-                                            <td><%= batch.enterCode %></td>
-                                            <td><%= CocoaType.find(batch.quality_control.revision.status).name %></td>
-                                            <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                                            <%	 if params[:searchbox] == "" %>
-                                                <td><%= batch.entry_control.organization.name %></td>
-                                            <%	 end %>
-                                        <%	 end %>
-                                    <%	 end %>
-                                <%	 end %>
-                            <%	 end %>
-                        <%	end %>
-                        <%	 if  params[:purchased].to_s == "on" && params[:quality] != "" %>
-                            <%	 if batch.quality_control != nil %>
-                                <%	 if batch.quality_control.revision != nil %>
-                                    <%	 if batch.quality_control.revision.status == params[:quality].to_i %>
-                                        <%	if batch.purchase != nil %>
-                                            <%	if batch.purchase.decision == 1 %>
-                                                <td><%= batch.sackAmount %></td>
-                                                <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
-                                                <td><%= batch.enterCode %></td>
-                                                <td><%= CocoaType.find(batch.quality_control.revision.status).name %></td>
-                                                <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                                                <%	 if params[:searchbox] == "" %>
-                                                    <td><%= batch.entry_control.organization.name %></td>
-                                                <%	 end %>
-                                            <% end %>
-                                        <% end %>
-                                    <%	 end %>
-                                <%	 end %>
-                            <%	 end %>
-                        <%	end %>
-                      </tr>
-                  <% end %>
-              <% end %>
-          <% end %>
-      <% end %>
-      </tbody>
-    </table>
-  </body>
+    <head>
+        <title></title>
+        <%= wicked_pdf_stylesheet_link_tag "pdf" %>
+        <style>
+            td {
+                border-bottom: 1px solid #ddd;
+                text-align: center;
+            }
+            th {
+                border-bottom: 1px solid #000;
+                text-align: center;
+            }
+            table {
+                width:100% ;
+            }
+        </style>
+    </head>
+
+    <body>
+        <center>
+        <h1>Chocolats Halba</h1>
+        <h2>Reporte de Inventario</h2>
+
+        </center>
+
+        <table class = "striped bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Calidad</th>
+                    <th>Cantidad (Kg)</th>
+                    <th>Cantidad (Lb)</th>
+                    <th>Numero de sacos</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>A</td>
+                    <td><%= number_with_precision(@batchesEAHT.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesEAHT.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesEAHT.sum(&:sackAmount)%></td> 
+                </tr> 
+                <tr> 
+                    <td>B</td>
+                    <td><%= number_with_precision(@batchesEBHT.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesEBHT.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesEBHT.sum(&:sackAmount)%></td> 
+                </tr> 
+                <tr> 
+                    <td>C</td>
+                    <td><%= number_with_precision(@batchesECHT.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesECHT.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesECHT.sum(&:sackAmount)%></td> 
+                </tr> 
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <br>
+        <table class = "striped bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Certificado</th>
+                    <th>Cantidad (Kg)</th>
+                    <th>Cantidad (Lb)</th>
+                    <th>Numero de sacos</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>E</td>
+                    <td><%= number_with_precision(@batchesCE.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesCE.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesCE.sum(&:sackAmount)%></td> 
+                </tr> 
+                <tr> 
+                    <td>T</td>
+                    <td><%= number_with_precision(@batchesCT.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesCT.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesCT.sum(&:sackAmount)%></td> 
+                </tr> 
+                <tr> 
+                    <td>C</td>
+                    <td><%= number_with_precision(@batchesCC.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesCC.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesCC.sum(&:sackAmount)%></td> 
+                </tr> 
+            </tbody>
+        </table>
+
+        <br>
+        <br>
+        <br>
+        
+        <table class = "striped bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Variedad</th>
+                    <th>Cantidad (Kg)</th>
+                    <th>Cantidad (Lb)</th>
+                    <th>Numero de sacos</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>HT</td>
+                    <td><%= number_with_precision(@batchesHT.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesHT.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesHT.sum(&:sackAmount)%></td> 
+                </tr> 
+                <tr> 
+                    <td>IA</td>
+                    <td><%= number_with_precision(@batchesIA.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesIA.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesIA.sum(&:sackAmount)%></td> 
+                </tr> 
+            </tbody>
+        </table>
+        
+    </body>
 </hlml>
