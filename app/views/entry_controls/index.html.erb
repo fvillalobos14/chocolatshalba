@@ -12,7 +12,7 @@
           <%= form_for [@organization, @entryControl] do |f| %>
            
               <p>
-                <%= f.label :organization_id, "Organizacion" %>
+                <%= f.label :organization_id, "Proveedor" %>
                 <%= f.collection_select :organization_id, @organization, :id, :name, class:"dropdown-button btn" %>
               </p>
 

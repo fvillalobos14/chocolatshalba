@@ -38,48 +38,6 @@
                 </div>
                 <div class="collapsible-body white">
                   <div class="input-field">
-                    <%= f.label :code, "Número de hoja" %>
-                    <%= f.text_field :code , :required => true%>
-                  </div>
-
-                  <div class="input-field">
-                    <table>
-                      <tc>
-                        <td>
-                          <%= f.check_box :f_harvest, :class=>"harvest" %>
-                          <%= f.label 'f_harvest', "Primera cosecha" %>
-                        </td>
-                      </tc>
-
-                      <tc>
-                        <td>
-                          <%= f.check_box :s_harvest, :class=>"harvest" %>
-                          <%= f.label 's_harvest', "Segunda cosecha" %>
-                        </td>
-                      </tc>
-                    </table>
-                  </div>
-
-                  <div class="input-field">
-                    <table>
-                      <tc>
-                        <td>
-                          <%= f.check_box :trinitary, :class=>"variety" %>
-                          <%= f.label 'trinitary', "Trinitario" %>
-                        </td>
-                      </tc>
-                        
-                      <tc>
-                        <td>
-                          <%= f.check_box :outsider, :class=>"variety" %>
-                          <%= f.label 'outsider', "Forastero" %>
-                        </td>
-                      </tc>
-                    </table>
-                  </div>
-
-                  <br>
-                  <div class="input-field">
                     <%= f.label :made_by, "Persona responsable" %>
                     <%= f.text_field :made_by , :required => true%>
                   </div>

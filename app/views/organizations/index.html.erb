@@ -4,13 +4,13 @@
       <div class="card">
         <div class="card-content">
           <div class="page-header">
-            <h1>Organizaciones</h1>
+            <h1>Proveedores</h1>
           </div>
 
           
           <%= form_tag({:controller => "entry_controls", :action => "new"}, :method => :get) do %>
 
-            <p>Organización: <%=	 select_tag "searchbox",  options_from_collection_for_select(@organizations, :id, :name), id:"or"%></p>
+            <p>Proveedor: <%=	 select_tag "searchbox",  options_from_collection_for_select(@organizations, :id, :name), id:"or"%></p>
 
             <br>
               <%= submit_tag "Aceptar", :name => nil, class:"btn btn-default btn-lg" %>
