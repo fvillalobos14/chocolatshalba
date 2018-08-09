@@ -6,7 +6,7 @@ class QualityControlsController < ApplicationController
 
   def new
   	@batch = Batch.find(params[:batch_id])
-  	@qualityControl = @batch.build_quality_control
+    @qualityControl = @batch.build_quality_control
   end
 
   def create
