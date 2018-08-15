@@ -19,9 +19,10 @@ class InventoriesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render :pdf => "Reporte_Inventario.pdf",:template => "inventories/pdf.html.erb"
-      end
-      
+        render :pdf => "Reporte_Inventario.pdf",
+        :template => "inventories/pdf.html.erb",
+        :layout => 'pdf.html'
+      end     
     end
   end
 
