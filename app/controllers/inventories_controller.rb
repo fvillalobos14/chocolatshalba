@@ -19,15 +19,9 @@ class InventoriesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render :pdf => "Reporte_Inventario.pdf",
-        :template => "inventories/pdf.html.erb"
+        render :pdf => "Reporte de Inventario",:template => "inventories/pdf.html.erb", :title => "Reporte de Inventario" 
       end     
     end
-
   end
-
-  def to_pdf
-    kit = PDFKit.new("#{Rails.root}/app/views/inventories", page_size: 'A4')
-    kit.to_file("#{Rails.root}/app/views/report.pdf")
-  end
+ 
 end

@@ -66,6 +66,6 @@ end
   gem 'rails_admin_rollincode', '~> 1.0'
   gem 'chartjs-ror'
   gem 'wicked_pdf'
-  gem 'pdfkit'
+  
   gem 'wkhtmltopdf-binary'
   gem 'listen', '>= 3.0.5', '< 3.2'
