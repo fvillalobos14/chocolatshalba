@@ -8,7 +8,7 @@
           </div>
           <%= form_tag({:controller => "reports", :action => "index"}, :method => :get) do %>
 
-              <p>Organización: <%=	 select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name), :include_blank => 'TODOS' %></p>
+              <p>Proveedor: <%=	 select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name), :include_blank => 'TODOS' %></p>
 
               <p>Desde: <%= text_field_tag "from", params[:from], type:"date", class:"datepicker" %></p>
 
@@ -30,7 +30,7 @@
               <th>Código de lote</th>
               <th>Tipo de cacao</th>
               <th>Material genético</th>
-              <th>Organización</th>
+              <th>Proveedor</th>
             </tr>
             </thead>
             <tbody>
