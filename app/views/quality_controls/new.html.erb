@@ -75,9 +75,15 @@
                             <% (1..category.runs).each do |i| %>
                               <%= r.hidden_field :parameter_id, :value => parameter.id %>
                                 <%= r.hidden_field :run, :value => i %>
-                                <td width="3%">
-                                  <%= r.number_field :score, step: :any, :value => 0, min: 0 , :required => true%>
-                                </td>
+                                <% if parameter.id == 1 || parameter.id == 2 || parameter.id == 3 %> 
+                                  <td width="3%">
+                                  <%= r.number_field :score, step: :any, :value => 0, min: 0 , :required => true, :class=>"nontest"%>
+                                  </td>
+                                <%else%>
+                                  <td width="3%">
+                                  <%= r.number_field :score, step: :any, :value => 0, min: 0 , :required => true, :class=>"phys"%>
+                                  </td>
+                                <% end %>
                               <% end %>
                             <% end %>
                             <td width="1%">
@@ -85,10 +91,11 @@
                             </td>
                           </tr>
                         <% end %>
-                    </table>
-                  <% end %>
-                </div>
-              </li>
+                     </table>
+                   <% end %>
+                   <%= f.submit "Verificar cantidad de granos", class:"btn btn-default btn-lg", :onclick => "alert_phys_test()" %>
+                 </div>
+               </li>
               <li>
                 <div class="collapsible-header section-color white-text">
                   <i class="material-icons">visibilityt</i>
@@ -104,7 +111,7 @@
             </ul>
             <p>
               <%= link_to "Regresar", @batch.entry_control , class: "btn btn-primary"%>
-              <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
+              <%= f.submit "Aceptar", class:"btn btn-default btn-lg btn-submit", data: { disable_with: false } %>
             </p>
           </div>
         </div>
@@ -121,4 +128,20 @@
   $('input.variety').on('change', function() {
     $('input.variety').not(this).prop('checked', false);  
   });
+
+  function alert_phys_test()
+  { 
+    var sum = 0;
+    $("input[class *= 'phys']").each(function(){
+        sum += +$(this).val();
+    });
+    if(sum < 300 && sum >= 0){
+      alert("La cantidad total de granos en el análisis físico no es de 300. Es de " + sum + " grano(s).");
+    }else if(sum >300){
+      alert("La cantidad total de granos en el análisis físico no es de 300. Es de " + sum + " grano(s).");
+      $('#btn-submit').removeAttr('data-disable-with');                          
+    }else{
+      alert("La cantidad total de granos en el análisis físico es de 300.");
+    }
+  }
 </script>
