@@ -93,7 +93,7 @@
                         <% end %>
                      </table>
                    <% end %>
-                   <%= f.submit "Verificar cantidad de granos", class:"btn btn-default btn-lg", :onclick => "alert_phys_test()" %>
+                    <button name="button" type="button" onclick="alert_phys_test()">Verificar cantidad de granos</button>
                  </div>
                </li>
               <li>
@@ -111,7 +111,7 @@
             </ul>
             <p>
               <%= link_to "Regresar", @batch.entry_control , class: "btn btn-primary"%>
-              <%= f.submit "Aceptar", class:"btn btn-default btn-lg btn-submit", data: { disable_with: false } %>
+              <%= f.submit "Aceptar", class:"btn btn-default btn-lg", id: "btn-submit", disabled: true%>
             </p>
           </div>
         </div>
@@ -121,14 +121,6 @@
 </div>
 
 <script>
-  $('input.harvest').on('change', function() {
-    $('input.harvest').not(this).prop('checked', false);  
-  });
-
-  $('input.variety').on('change', function() {
-    $('input.variety').not(this).prop('checked', false);  
-  });
-
   function alert_phys_test()
   { 
     var sum = 0;
@@ -136,12 +128,14 @@
         sum += +$(this).val();
     });
     if(sum < 300 && sum >= 0){
-      alert("La cantidad total de granos en el análisis físico no es de 300. Es de " + sum + " grano(s).");
+      $('#btn-submit').attr('disabled', true); 
+      Materialize.toast('La cantidad total de granos en el análisis físico no es de 300. Es de ' + sum + ' grano(s).', 4000);
     }else if(sum >300){
-      alert("La cantidad total de granos en el análisis físico no es de 300. Es de " + sum + " grano(s).");
-      $('#btn-submit').removeAttr('data-disable-with');                          
+      $('#btn-submit').attr('disabled', true); 
+      Materialize.toast('La cantidad total de granos en el análisis físico no es de 300. Es de ' + sum +  ' grano(s).', 4000);
     }else{
-      alert("La cantidad total de granos en el análisis físico es de 300.");
+      $('#btn-submit').attr('disabled', false); 
+      Materialize.toast('La cantidad total de granos en el análisis físico es de 300.', 4000);
     }
   }
 </script>
