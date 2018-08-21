@@ -133,6 +133,7 @@
                         <%= Batch.all.count %>
                     </p>
                     <p id="output"></p>
+                    
                     <%= link_to "Generar Estadisticas", @new_url.to_s ,class:"btn btn-default btn-lg",target: :_blank %>
                 </center>
             </div>
@@ -797,8 +798,7 @@
 
 
 <script type="text/javascript">    
-            var rowCount = $("#tblCustomers td").closest("tr").length;
-            
+            var rowCount = $("#tblCustomers td").closest("tr").length;        
             var message =  "Cantidad de resultados: " + (rowCount-1) ;
             document.getElementById("output").innerHTML=message;
 </script>
@@ -820,6 +820,7 @@
         selectYears: 15 // Creates a dropdown of 15 years to control year
     });
 </script>
+
 <script>
     $(document).on('turbolinks:load', function () {
         $('select').material_select();
@@ -830,9 +831,7 @@
     $(document).ready(function(){
         var sum = 0;
         $(".PesoLB").each(function() {
-            var value = $(this).text();
-            
-            
+            var value = $(this).text();            
             if(!isNaN(value) && value.length != 0) {
                 sum += parseFloat(value);
             }
@@ -844,14 +843,14 @@
 <script>
     $(document).ready(function(){
         var sum = 0.00;
-        $(".PesoKG").each(function() {
-            var value = $(this).text();
-            
-            
+        $(".total-pesoLB").each(function() {
+            var value = $(this).text();            
             if(!isNaN(value) && value.length != 0) {
                 sum += parseFloat(value);
             }
         });
-        $(this).find('.total-pesoKG').html(sum);
+        sum = parseFloat(sum/2.204623);
+        $(this).find('.total-pesoKG').html(sum.toFixed(2));
     });
 </script>
+
