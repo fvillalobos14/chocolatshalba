@@ -26,10 +26,6 @@ class EntryControlsController < ApplicationController
 
   def index
     @organization = Organization.all
-   
-    
-    
-
   end
 
 
