@@ -109,14 +109,16 @@
                         <%else%>
                             <%	if params[:ft] == "false" %>    
                                 No
-                            <%else%>  
+                            <%elsif params[:ft] == "true" %>  
                                 Si
+                            <%else %>
+                                
                             <%end%>
                         <%end%>
                         </p> 
 
                         <p>Comprado: 
-                        <%	if params[:purchase].to_s != "on" %>    
+                            <%	if params[:purchase].to_s != "on" %>    
                                 No
                             <%else%>
                                 Si
