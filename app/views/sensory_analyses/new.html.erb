@@ -77,8 +77,9 @@
                 </div>
                 <div class="collapsible-body white">
                   <div class="input-field">
+                    <%= f.hidden_field :observation, :value => "n/a" %>
                     <%= f.label :observation, "Observación" %>
-                    <%= f.text_area :observation, class:"materialize-textarea", :required => true%>
+                    <%= f.text_area :observation, class:"materialize-textarea", :required => true, :disabled => true%>
                   </div>
                 </div>
               </li>
