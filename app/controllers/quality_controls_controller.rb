@@ -40,13 +40,13 @@ class QualityControlsController < ApplicationController
   def update
     quality_control=QualityControl.find(params[:id])
     batch=quality_control.batch
-    if quality_control.update(quality_params)
-      params["results"].each do |result|
-        r=Result.where(:batch_id => batch.id, :parameter_id => result["parameter_id"], :run => result["run"]).first
-        r.score=result["score"]
-        r.save
-      end
-      redirect_to quality_control.batch.entry_control
+    if quality_control.update(quality_params_update)
+      ##params["results"].each do |result|
+      ##  r=Result.where(:batch_id => batch.id, :parameter_id => result["parameter_id"], :run => result["run"]).first
+      ##  r.score=result["score"]
+      ##  r.save
+      ##end
+      redirect_to quality_control
     else
       render 'edit'
     end
@@ -62,6 +62,10 @@ class QualityControlsController < ApplicationController
   private
   def quality_params
     params.require(:quality_control).permit(:code, :final_code, :cut_at, :f_harvest, :s_harvest, :trinitary, :outsider, :observation, :made_by, :samples)
+  end
+
+  def quality_params_update
+    params.require(:quality_control).permit(:observation)
   end
 
   def defineResult(batch)

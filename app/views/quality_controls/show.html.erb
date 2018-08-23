@@ -34,10 +34,10 @@
                 <b>CORTE</b>
               </div>
               <div class="collapsible-body white">
-              <p>
-                Número de hoja:
-                <%= @qualityControl.code %>
-              </p>
+                <p>
+                  Número de hoja:
+                  <%= @qualityControl.code %>
+                </p>
 
                 <p>
                   Fecha de corte:
@@ -127,7 +127,6 @@
                 <% end %>
               </div>
             </li>
-
             <li>
               <div class="collapsible-header section-color white-text text">
                 <i class="material-icons">pie_chart</i>
@@ -178,6 +177,37 @@
                 <a class="waves-effect waves-light btn" data-target="modal2">Ver gráfico</a>
               </div>
             </li>
+
+            <li>
+              <div class="collapsible-header section-color white-text text">
+                <i class="material-icons">short_text</i>
+                <b>OBSERVACIÓN</b>
+              </div>
+              <div class="collapsible-body white">
+                <% if current_user.quality_role %>
+                  <% if @qualityControl.observation == "Ninguna" %>
+                    <%= form_for ([@qualityControl]) do |f| %> 
+                      <div class="input-field">
+                        <%= f.label :observation, "Observación" %>
+                        <%= f.text_area :observation, class:"materialize-textarea", :required => true%>
+                      </div>
+                      <%= f.submit 'Aceptar',class:" waves-effect waves-light btn" %>
+                    <% end %>
+                  <% else %>
+                    <p>
+                      Observación:
+                      <%= @qualityControl.observation %>
+                    </p>
+                  <% end %> 
+                <% else %>
+                  <p>
+                    Observación:
+                    <%= @qualityControl.observation %>
+                  </p>
+                <% end %>                      
+              </div>
+            </li>
+
           </ul>
           <h2>Cálidad juzgada:
             <%=	@new_quality %>
