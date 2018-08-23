@@ -42,6 +42,9 @@ Rails.application.routes.draw do
   resources :filechecklists
   resources :barcodes
 
+
+  resources :sequences
+
   resources :entry_controls do
     resources :batches
     resources :reports
