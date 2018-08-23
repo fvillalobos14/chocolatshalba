@@ -61,6 +61,10 @@
                           <td><%= link_to 'Editar', edit_batch_path(batch) %></td>
                         <% end %>
 
+                        <% if current_user.quality_role && (SensoryAnalysis.where(batch_id: batch.id).present? && QualityControl.where(batch_id: batch.id).present?)%>
+                          <td><%= link_to "Ver análisis", batch.quality_control %></td>
+                        <% end %>
+
                         <% if current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank? %>
                           <td><%= link_to 'Ingresar número de catadores', edit_batch_path(batch) %></td>
                         <% end %>

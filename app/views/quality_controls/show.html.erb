@@ -182,7 +182,11 @@
           <h2>Cálidad juzgada:
             <%=	@new_quality %>
           </h2>
-          <%= link_to "Regresar", revisions_path , class: "btn btn-primary"%>
+          <% if current_user.quality_manager_role %>
+            <%= link_to "Regresar", revisions_path , class: "btn btn-primary"%>
+          <% else %>
+            <%= link_to "Regresar", @batch.entry_control , class: "btn btn-primary"%>
+          <% end %>
           <% if current_user.quality_manager_role && !Revision.where(quality_control_id: @qualityControl.id).nil? %>
             <a class="waves-effect waves-light btn" data-target="modal1">Determinar calidad</a>
           <% end %>
