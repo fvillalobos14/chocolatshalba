@@ -55,7 +55,7 @@
               <% elsif  Notification.where(kind: 1, read: false).count > 0 %>
                 <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 1, read: false).count %></span>
               <% end %>
-              <li><%= link_to 'Análisis', quality_controls_path, class:"white-text li-back"%></li>
+              <li><%= link_to 'Análisis', '/sequence', class:"white-text li-back"%></li>
               <li><%= link_to 'Unir lotes', export_batches_join_path, class:"white-text li-back"%></li>
             <% end %>
             <% if current_user.certification_role  %>
@@ -218,7 +218,7 @@
             <% elsif  Notification.where(kind: 1, read: false).count > 0 %>
               <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 1, read: false).count %></span>
             <% end %>
-            <li><%= link_to 'Análisis', quality_controls_path, class:"white-text li-back"%></li>
+            <li><%= link_to 'Análisis', sequences_path,:method => :post , class:"white-text li-back"%></li>
             <li><%= link_to 'Unir lotes', export_batches_join_path, class:"white-text li-back"%></li>
           <% end %>
           <% if current_user.certification_role  %>
