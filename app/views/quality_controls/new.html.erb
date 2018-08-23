@@ -96,19 +96,9 @@
                     <button name="button" type="button" onclick="alert_phys_test()">Verificar cantidad de granos</button>
                  </div>
                </li>
-              <li>
-                <div class="collapsible-header section-color white-text">
-                  <i class="material-icons">visibilityt</i>
-                  <b>OBSERVACIÓN</b>
-                </div>
-                <div class="collapsible-body white">
-                  <div class="input-field">
-                    <%= f.hidden_field :observation, :value => "n/a" %>
-                    <%= f.label :observation, "Observación" %>
-                    <%= f.text_area :observation, class:"materialize-textarea", :required => true, :disabled => true%>
-                  </div>
-                </div>
-              </li>
+               <li>
+                 <%= f.hidden_field :observation, :value => "n/a" %>
+               </li>
             </ul>
             <p>
               <%= link_to "Regresar", @batch.entry_control , class: "btn btn-primary"%>
