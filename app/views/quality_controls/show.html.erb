@@ -34,10 +34,10 @@
                 <b>CORTE</b>
               </div>
               <div class="collapsible-body white">
-              <p>
-                Número de hoja:
-                <%= @qualityControl.code %>
-              </p>
+                <p>
+                  Número de hoja:
+                  <%= @qualityControl.code %>
+                </p>
 
                 <p>
                   Fecha de corte:
@@ -73,10 +73,7 @@
                     <% end %>
                 </p>
 
-                <p>
-                  Observación:
-                  <%= @qualityControl.observation %>
-                </p>
+              
               </div>
             </li>
             <li>
@@ -127,7 +124,6 @@
                 <% end %>
               </div>
             </li>
-
             <li>
               <div class="collapsible-header section-color white-text text">
                 <i class="material-icons">pie_chart</i>
@@ -140,12 +136,12 @@
                       <th>
                         <%= category.name %>
                       </th>
-                      <% (1..category.runs).each do |i| %>
+                      <% (1..@batch.samples.to_i).each do |i| %>
                         <th align="right">
                           <%= i %>
                         </th>
                       <% end %>
-                      <% if category.runs > 1 %>
+                      <% if @batch.samples.to_i > 1 %>
                         <th>Resultado promedio</th>
                       <% end %>
                     </tr>
@@ -154,8 +150,8 @@
                         <td width="7%">
                           <%= parameter.name %>
                         </td>
-                        <% if category.runs > 1 %>
-                          <% (1..category.runs).each do |i| %>
+                        <% if @batch.samples.to_i > 1 %>
+                          <% (1..@batch.samples.to_i).each do |i| %>
                             <td width="7%">
                               <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: i).first.score,precision: 0) %>
                             </td>
@@ -166,7 +162,7 @@
                             <%= parameter.unit %>
                           </td>
                         <% end %>
-                        <% if category.runs > 1 %>
+                        <% if @batch.samples.to_i > 1 %>
                           <td width="7%">
                           <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)/3, precision: 2) %>%</td>
                         <% end %>
@@ -178,11 +174,46 @@
                 <a class="waves-effect waves-light btn" data-target="modal2">Ver gráfico</a>
               </div>
             </li>
+
+            <li>
+              <div class="collapsible-header section-color white-text text">
+                <i class="material-icons">short_text</i>
+                <b>OBSERVACIÓN</b>
+              </div>
+              <div class="collapsible-body white">
+                <% if current_user.quality_role %>
+                  <% if @qualityControl.observation == "Ninguna" %>
+                    <%= form_for ([@qualityControl]) do |f| %> 
+                      <div class="input-field">
+                        <%= f.label :observation, "Observación" %>
+                        <%= f.text_area :observation, class:"materialize-textarea", :required => true%>
+                      </div>
+                      <%= f.submit 'Aceptar',class:" waves-effect waves-light btn" %>
+                    <% end %>
+                  <% else %>
+                    <p>
+                      Observación:
+                      <%= @qualityControl.observation %>
+                    </p>
+                  <% end %> 
+                <% else %>
+                  <p>
+                    Observación:
+                    <%= @qualityControl.observation %>
+                  </p>
+                <% end %>                      
+              </div>
+            </li>
+
           </ul>
           <h2>Cálidad juzgada:
             <%=	@new_quality %>
           </h2>
-          <%= link_to "Regresar", revisions_path , class: "btn btn-primary"%>
+          <% if current_user.quality_manager_role %>
+            <%= link_to "Regresar", revisions_path , class: "btn btn-primary"%>
+          <% else %>
+            <%= link_to "Regresar", @batch.entry_control , class: "btn btn-primary"%>
+          <% end %>
           <% if current_user.quality_manager_role && !Revision.where(quality_control_id: @qualityControl.id).nil? %>
             <a class="waves-effect waves-light btn" data-target="modal1">Determinar calidad</a>
           <% end %>

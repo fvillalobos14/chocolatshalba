@@ -7,7 +7,7 @@
             <h1>Control de ingreso</h1>
           </div>
           <p>
-            Organización:
+            Proveedor:
             <%= Organization.find(@entry.organization_id).name%>
             
           </p>
@@ -19,6 +19,7 @@
             Entregado por:
             <%= @entry.deliveredBy %>
           </p>
+          
           <br>
           <ul class="collapsible" data-collapsible="accordion">
             <li>
@@ -59,6 +60,15 @@
                         <% if current_user.warehouse_role || current_user.admin_role %>
                           <td><%= link_to 'Editar', edit_batch_path(batch) %></td>
                         <% end %>
+
+                        <% if current_user.quality_role && (SensoryAnalysis.where(batch_id: batch.id).present? && QualityControl.where(batch_id: batch.id).present?)%>
+                          <td><%= link_to "Ver análisis", batch.quality_control %></td>
+                        <% end %>
+
+                        <% if current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank? %>
+                          <td><%= link_to 'Ingresar número de catadores', edit_batch_path(batch) %></td>
+                        <% end %>
+
                         <% if current_user.quality_role && QualityControl.where(batch_id: batch.id).blank? %>
                           <td>
                             <%= link_to "Análisis físico", new_batch_quality_control_path(batch)%>

@@ -39,46 +39,8 @@
                 <div class="collapsible-body white">
                   <div class="input-field">
                     <%= f.label :code, "Número de hoja" %>
-                    <%= f.text_field :code , :required => true%>
+                    <%= f.text_field :code , :required => true, value: Time.current.year.to_s + Time.current.month.to_s+"000"+(Sequence.find_by year: Time.current.year).number.to_s, rating: 4 %>
                   </div>
-
-                  <div class="input-field">
-                    <table>
-                      <tc>
-                        <td>
-                          <%= f.check_box :f_harvest, :class=>"harvest" %>
-                          <%= f.label 'f_harvest', "Primera cosecha" %>
-                        </td>
-                      </tc>
-
-                      <tc>
-                        <td>
-                          <%= f.check_box :s_harvest, :class=>"harvest" %>
-                          <%= f.label 's_harvest', "Segunda cosecha" %>
-                        </td>
-                      </tc>
-                    </table>
-                  </div>
-
-                  <div class="input-field">
-                    <table>
-                      <tc>
-                        <td>
-                          <%= f.check_box :trinitary, :class=>"variety" %>
-                          <%= f.label 'trinitary', "Trinitario" %>
-                        </td>
-                      </tc>
-                        
-                      <tc>
-                        <td>
-                          <%= f.check_box :outsider, :class=>"variety" %>
-                          <%= f.label 'outsider', "Forastero" %>
-                        </td>
-                      </tc>
-                    </table>
-                  </div>
-
-                  <br>
                   <div class="input-field">
                     <%= f.label :made_by, "Persona responsable" %>
                     <%= f.text_field :made_by , :required => true%>
@@ -113,9 +75,15 @@
                             <% (1..category.runs).each do |i| %>
                               <%= r.hidden_field :parameter_id, :value => parameter.id %>
                                 <%= r.hidden_field :run, :value => i %>
-                                <td width="3%">
-                                  <%= r.number_field :score, step: :any, :value => 0, min: 0 , :required => true%>
-                                </td>
+                                <% if parameter.id == 1 || parameter.id == 2 || parameter.id == 3 %> 
+                                  <td width="3%">
+                                  <%= r.number_field :score, step: :any, :value => 0, min: 0 , :required => true, :class=>"nontest"%>
+                                  </td>
+                                <%else%>
+                                  <td width="3%">
+                                  <%= r.number_field :score, step: :any, :value => 0, min: 0 , :required => true, :class=>"phys"%>
+                                  </td>
+                                <% end %>
                               <% end %>
                             <% end %>
                             <td width="1%">
@@ -123,26 +91,18 @@
                             </td>
                           </tr>
                         <% end %>
-                    </table>
-                  <% end %>
-                </div>
-              </li>
-              <li>
-                <div class="collapsible-header section-color white-text">
-                  <i class="material-icons">visibilityt</i>
-                  <b>OBSERVACIÓN</b>
-                </div>
-                <div class="collapsible-body white">
-                  <div class="input-field">
-                    <%= f.label :observation, "Observación" %>
-                    <%= f.text_area :observation, class:"materialize-textarea", :required => true%>
-                  </div>
-                </div>
-              </li>
+                     </table>
+                   <% end %>
+                    <button name="button" type="button" onclick="alert_phys_test()" class= "btn btn-primary">Verificar cantidad de granos</button>
+                 </div>
+               </li>
+               <li>
+                 <%= f.hidden_field :observation, :value => "Ninguna" %>
+               </li>
             </ul>
             <p>
               <%= link_to "Regresar", @batch.entry_control , class: "btn btn-primary"%>
-              <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
+              <%= f.submit "Aceptar", class:"btn btn-default btn-lg", id: "btn-submit", disabled: true%>
             </p>
           </div>
         </div>
@@ -152,11 +112,21 @@
 </div>
 
 <script>
-  $('input.harvest').on('change', function() {
-    $('input.harvest').not(this).prop('checked', false);  
-  });
-
-  $('input.variety').on('change', function() {
-    $('input.variety').not(this).prop('checked', false);  
-  });
+  function alert_phys_test()
+  { 
+    var sum = 0;
+    $("input[class *= 'phys']").each(function(){
+        sum += +$(this).val();
+    });
+    if(sum < 300 && sum >= 0){
+      $('#btn-submit').attr('disabled', true); 
+      Materialize.toast('La cantidad total de granos en el análisis físico no es de 300. Es de ' + sum + ' grano(s).', 4000);
+    }else if(sum >300){
+      $('#btn-submit').attr('disabled', true); 
+      Materialize.toast('La cantidad total de granos en el análisis físico no es de 300. Es de ' + sum +  ' grano(s).', 4000);
+    }else{
+      $('#btn-submit').attr('disabled', false); 
+      Materialize.toast('La cantidad total de granos en el análisis físico es de 300.', 4000);
+    }
+  }
 </script>

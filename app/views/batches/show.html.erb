@@ -13,7 +13,7 @@
             <p>Control de ingreso:
               <%= @batch.entry_control.entry_number %>
             </p>
-            <p>Organización:
+            <p>Proveedor:
               <%= @batch.entry_control.organization.name %>
             </p>
             <p>Fecha de ingreso:
@@ -24,7 +24,7 @@
               <% if @batch.entry_control.filechecklists.empty? %>
                       <%= link_to "Verificar documentos", new_entry_control_filechecklist_path(@batch.entry_control), class:"waves-effect waves-light btn" %>
               <% else %>
-                      <%= link_to "Verificar documentos", filechecklist_path(@batch.entry_control.filechecklists.first), class:"waves-effect waves-light btn" %>
+                      <%= link_to "Verificar documentos", edit_filechecklist_path(@batch.entry_control.filechecklists.first), class:"waves-effect waves-light btn" %>
               <% end %> 
             </div>
             <%= link_to "Regresar", checkings_path , class: "btn btn-primary"%>
@@ -50,7 +50,7 @@
               <%= @batch.enterCode %>
             </p>
             <p>
-              Organización:
+              Proveedor:
               <%= @batch.entry_control.organization.name %>
             </p>
             <p>
