@@ -52,7 +52,8 @@
                 <p>
                   <% if @qualityControl.f_harvest %>
                     Cosecha: primera (agosto-febrero)
-                    <% end %>
+                  <% end %>
+                  
                 </p>
 
                 <p>
@@ -62,15 +63,16 @@
                 </p>
 
                 <p>
-                  <% if @qualityControl.trinitary %>
+                  <% if GeneticMaterial.find(@qualityControl.batch.geneticMaterial).name == "HT" %>
                     Variedad: trinitario
-                    <% end %>
+                  <% end %>
+                  
                 </p>
 
                 <p>
-                  <% if @qualityControl.outsider %>
+                  <% if GeneticMaterial.find(@qualityControl.batch.geneticMaterial).name == "IA" %>
                     Variedad: forastero
-                    <% end %>
+                  <% end %>
                 </p>
 
               
