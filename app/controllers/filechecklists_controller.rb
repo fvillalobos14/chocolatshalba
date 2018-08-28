@@ -26,7 +26,7 @@ class FilechecklistsController < ApplicationController
   def update
     checklist = Filechecklist.find(params[:id])
     if checklist.update(checklist_params)
-      if current_user.certification_role
+      if current_user.certification_role | current_user.purchase_role
         flash[:notice] = "Guardado"
       else
         redirect_to checklist.entry_control, notice: "Guardado con éxito"
