@@ -31,7 +31,7 @@
                 <table class="striped bordered">
                   <thead>
                     <tr>
-                      <th>Cantidad de sacos</th>
+                      <th>Numero de hoja de ingreso</th>
                       <th>Peso en Libras</th>
                       <th>Peso en Kilogramos</th>
                       <th>Código de identificación</th>
@@ -43,7 +43,7 @@
                     <% @batches.each do |batch| %>
                       <tr>
                         <td>
-                          <%= batch.sackAmount %>
+                          <%= EntryControl.find(batch.id).entry_number %>
                         </td>
                         <td>
                           <%= number_with_precision(batch.weight, precision: 2) %> lb</td>
