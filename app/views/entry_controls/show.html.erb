@@ -43,7 +43,7 @@
                     <% @batches.each do |batch| %>
                       <tr>
                         <td>
-                          <%= EntryControl.find(batch.id).entry_number %>
+                          <%= EntryControl.find(batch.entry_control_id).entry_number %>
                         </td>
                         <td>
                           <%= number_with_precision(batch.weight, precision: 2) %> lb</td>
