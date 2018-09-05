@@ -145,9 +145,7 @@
   document.getElementById("averageWeight").style.color = "black";
   
   function average_weight_per_grain(){
-    var x = document.getElementById("grainWeight").value;
-    var sackAmount = <%= @batch.sackAmount.to_json %>;
-    var weight = <%= @batch.weight%>;
-    document.getElementById("averageWeight").value = ((weight*453.592)/(x*sackAmount)).toFixed(2); 
+    var weight = document.getElementById("grainWeight").value;
+    document.getElementById("averageWeight").value = (weight/300).toFixed(2); 
   }
 </script>
