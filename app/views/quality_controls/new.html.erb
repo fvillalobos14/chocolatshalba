@@ -76,13 +76,24 @@
                               <%= r.hidden_field :parameter_id, :value => parameter.id %>
                                 <%= r.hidden_field :run, :value => i %>
                                 <% if parameter.id == 1 || parameter.id == 2 || parameter.id == 3 %> 
-                                  <td width="3%">
-                                  <%= r.number_field :score, step: :any, :value => 0, min: 0 , :required => true, :class=>"nontest"%>
-                                  </td>
+                                  <% if parameter.name.start_with?("Peso de 300 granos")%>
+                                      <td width="3%">
+                                      <%= r.text_field :score, step: :any, :value => 0, min: 0 ,:required => true, :class=>"nontest", :id => "grainWeight"%>
+                                      </td>
+                                  <% elsif !parameter.name.start_with?("Peso de 300 granos") && !parameter.name.start_with?("Humedad")%>
+                                      <td width="3%">
+                                      <%= r.text_field :score, step: :any, :required => true, :disabled=>true, :class=>"nontest", :id => "averageWeight"%>
+                                      </td>
+                                    <%else%>                                  
+                                      <td width="3%">
+                                      <%= r.number_field :score, step: :any, :value => 0, min: 0 , :required => true, :class=>"nontest"%>
+                                      </td>
+                                    <%end%>
                                 <%else%>
                                   <td width="3%">
                                   <%= r.number_field :score, step: :any, :value => 0, min: 0 , :required => true, :class=>"phys"%>
                                   </td>
+
                                 <% end %>
                               <% end %>
                             <% end %>
@@ -128,5 +139,15 @@
       $('#btn-submit').attr('disabled', false); 
       Materialize.toast('La cantidad total de granos en el análisis físico es de 300.', 4000);
     }
+  }
+
+  document.getElementById("grainWeight").addEventListener("keyup", average_weight_per_grain); 
+  document.getElementById("averageWeight").style.color = "black";
+  
+  function average_weight_per_grain(){
+    var x = document.getElementById("grainWeight").value;
+    var sackAmount = <%= @batch.sackAmount.to_json %>;
+    var weight = <%= @batch.weight%>;
+    document.getElementById("averageWeight").value = ((weight*453.592)/(x*sackAmount)).toFixed(2); 
   }
 </script>
