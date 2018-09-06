@@ -76,13 +76,24 @@
                               <%= r.hidden_field :parameter_id, :value => parameter.id %>
                                 <%= r.hidden_field :run, :value => i %>
                                 <% if parameter.id == 1 || parameter.id == 2 || parameter.id == 3 %> 
-                                  <td width="3%">
-                                  <%= r.number_field :score, step: :any, :value => 0, min: 0 , :required => true, :class=>"nontest"%>
-                                  </td>
+                                  <% if parameter.name.start_with?("Peso de 300 granos")%>
+                                      <td width="3%">
+                                      <%= r.text_field :score, step: :any, :value => 0, min: 0 ,:required => true, :class=>"nontest", :id => "grainWeight"%>
+                                      </td>
+                                  <% elsif !parameter.name.start_with?("Peso de 300 granos") && !parameter.name.start_with?("Humedad")%>
+                                      <td width="3%">
+                                      <%= r.text_field :score, step: :any, :required => true, :readonly=>true, :class=>"nontest", :id => "averageWeight"%>
+                                      </td>
+                                    <%else%>                                  
+                                      <td width="3%">
+                                      <%= r.number_field :score, step: :any, :value => 0, min: 0 , :required => true, :class=>"nontest"%>
+                                      </td>
+                                    <%end%>
                                 <%else%>
                                   <td width="3%">
                                   <%= r.number_field :score, step: :any, :value => 0, min: 0 , :required => true, :class=>"phys"%>
                                   </td>
+
                                 <% end %>
                               <% end %>
                             <% end %>
@@ -114,19 +125,28 @@
 <script>
   function alert_phys_test()
   { 
+    var beans = <%=@batch.beans%>;
     var sum = 0;
     $("input[class *= 'phys']").each(function(){
         sum += +$(this).val();
     });
-    if(sum < 300 && sum >= 0){
+    if(sum < beans && sum >= 0){
       $('#btn-submit').attr('disabled', true); 
-      Materialize.toast('La cantidad total de granos en el análisis físico no es de 300. Es de ' + sum + ' grano(s).', 4000);
-    }else if(sum >300){
+      Materialize.toast('La cantidad total de granos en el análisis físico no es de ' + beans + '. Es de ' + sum + ' grano(s).', 4000);
+    }else if(sum >beans){
       $('#btn-submit').attr('disabled', true); 
-      Materialize.toast('La cantidad total de granos en el análisis físico no es de 300. Es de ' + sum +  ' grano(s).', 4000);
+      Materialize.toast('La cantidad total de granos en el análisis físico no es de '+ beans +'. Es de ' + sum +  ' grano(s).', 4000);
     }else{
       $('#btn-submit').attr('disabled', false); 
-      Materialize.toast('La cantidad total de granos en el análisis físico es de 300.', 4000);
+      Materialize.toast('La cantidad total de granos en el análisis físico es de ' + beans +'.', 4000);
     }
+  }
+
+  document.getElementById("grainWeight").addEventListener("keyup", average_weight_per_grain); 
+  document.getElementById("averageWeight").style.color = "black";
+  
+  function average_weight_per_grain(){
+    var weight = document.getElementById("grainWeight").value;
+    document.getElementById("averageWeight").value = (weight/300).toFixed(2); 
   }
 </script>

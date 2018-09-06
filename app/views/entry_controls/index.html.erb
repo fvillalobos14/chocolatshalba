@@ -15,26 +15,12 @@
                 <%= f.label :organization_id, "Proveedor" %>
                 <%= f.collection_select :organization_id, @organization, :id, :name, class:"dropdown-button btn" %>
               </p>
-
             
             <p>
               <%= link_to "Regresar", organizations_path , class: "btn btn-primary"%>
               <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
             </p>
-          <% end %>
-          
-
-          
-          
-
-        
-    
-          
-          
-          
- 
-         
-          
+          <% end %> 
         </div>
       </div>
     </div>

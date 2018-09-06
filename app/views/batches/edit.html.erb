@@ -33,10 +33,17 @@
                 <%= f.label 'ft', "Comercio justo" %>
             </div>
             <% else %>
-                <div class="input-field">
-                    <%= f.label :samples, "Número de Catadores" %>
-                    <%= f.number_field :samples, step: :any, min: 0 %>
-                </div>
+                <% if QualityControl.where(batch_id: @batch.id).blank? %>
+                    <div class="input-field">
+                        <%= f.label :beans, "Número de Granos de Prueba de Corte" %>
+                        <%= f.number_field :beans, step: :any, min: 0 %>
+                    </div> 
+                <% else %>
+                    <div class="input-field">
+                        <%= f.label :samples, "Número de Catadores" %>
+                        <%= f.number_field :samples, step: :any, min: 0 %>
+                    </div>
+                <%end%>
             <% end %>
 
             <br>
