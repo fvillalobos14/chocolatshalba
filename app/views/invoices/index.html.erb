@@ -28,9 +28,11 @@
                                                     <%= button_tag(type: 'submit', class: "btn") do %>
                                                         <i class="icon-ok icon-white"></i>Marcar como pagado
                                                     <% end %>
-                                                    <% if invoice.bills.empty? %>
-                                                        <%= link_to "Agregar factura", new_invoice_bill_path(invoice), class:"waves-effect waves-light btn" %>
-                                                    <% end %>
+                                                    <% if invoice.batch.entry_control.filechecklists.empty? %>
+                                                            <%= link_to "Agregar factura", new_entry_control_filechecklist_path(invoice.batch.entry_control), class:"waves-effect waves-light btn" %>
+                                                    <% else %>
+                                                            <%= link_to "Agregar factura", edit_filechecklist_path(invoice.batch.entry_control.filechecklists.first), class:"waves-effect waves-light btn" %>
+                                                    <% end %> 
                                                 </td>
                                             <% end %>
                                         <% end %>

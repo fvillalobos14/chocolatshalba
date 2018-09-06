@@ -36,7 +36,7 @@
                             </div>
                             <br>        
                             <div>
-                            <% if current_user.certification_role %>
+                            <% if current_user.certification_role | current_user.purchase_role %>
                                 <%= link_to "Regresar",  :back , class: "btn btn-primary"%>
                                 <%= f.submit "Guardar", class:"btn btn-default btn-lg" %>
                             <% else %>

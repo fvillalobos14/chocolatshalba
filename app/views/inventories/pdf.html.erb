@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<hlml>
+<html>
     <head>
         <title>Reporte de Inventario</title>
-        <%= wicked_pdf_stylesheet_link_tag "pdf" %>
         <style>
             
             h2 {
@@ -33,7 +32,7 @@
 
     <body>
         <center>
-        <%= wicked_pdf_image_tag 'ch.jpg',:width => "230",  :height=>"120"%>
+        <img src="/home/estherc/HALBA/chocolatshalba/app/assets/images/ch.jpg" width="230" height="120">
         <h2>Reporte de Inventario</h2>
         <h3>Fecha: <%=Date.today%></h3>        
         
@@ -132,4 +131,4 @@
         </table>
         </center>
     </body>
-</hlml>
+</html>
