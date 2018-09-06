@@ -75,9 +75,10 @@ class QualityControlsController < ApplicationController
     Category.all.order(:place).each do |category|
       category.parameters.order(:place).each do |parameter|
         value = -1
+        div = batch.beans / 100
         if parameter.acceptance != nil
           if category.runs > 1
-            value = Result.where(parameter_id: parameter.id, batch_id: batch.id).sum(:score)/3
+            value = Result.where(parameter_id: parameter.id, batch_id: batch.id).sum(:score)/(@batch.beans/100)
           else
             value = Result.where(parameter_id: parameter.id, batch_id: batch.id, run: 1).first.score
           end

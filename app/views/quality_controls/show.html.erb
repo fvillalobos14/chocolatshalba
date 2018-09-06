@@ -118,7 +118,13 @@
                         <% end %>
                         <% if category.runs > 1 %>
                           <td width="7%">
-                          <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)/3, precision: 2) %>%</td>
+                          <%if @batch.beans == 300%>
+                            <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)/3, precision: 2) %>%</td>
+                          <% elsif @batch.beans == 150%>
+                            <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)/1.5, precision: 2) %>%</td>
+                          <%else%>
+                            <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)/(@batch.beans/100), precision: 2) %>%</td>
+                          <%end%>
                         <% end %>
                       </tr>
                     <% end %>

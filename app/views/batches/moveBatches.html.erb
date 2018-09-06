@@ -9,7 +9,7 @@
           <table class="striped bordered">
             <thead>
               <tr>
-                <th>Cantidad de sacos</th>
+                <th>Numero de hoja de ingreso</th>
                 <th>Peso</th>
                 <th>Código de lote</th>
                 <th>Tipo de cacao</th>
@@ -24,7 +24,7 @@
                 <% if not batch.purchase.nil? %>
                   <% if batch.purchase.decision==1 %>
                     <tr>
-                      <td><%= batch.sackAmount %></td>
+                      <td><%= EntryControl.find(batch.id).entry_number %></td>
                       <td><%= number_with_precision(batch.weight, precision: 2) %> lb</td>
                       <td><%= batch.enterCode %></td>
                       <td><%= CocoaType.find(batch.quality_control.revision.status).name %></td>

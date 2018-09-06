@@ -114,19 +114,20 @@
 <script>
   function alert_phys_test()
   { 
+    var beans = <%=@batch.beans%>;
     var sum = 0;
     $("input[class *= 'phys']").each(function(){
         sum += +$(this).val();
     });
-    if(sum < 300 && sum >= 0){
+    if(sum < beans && sum >= 0){
       $('#btn-submit').attr('disabled', true); 
-      Materialize.toast('La cantidad total de granos en el análisis físico no es de 300. Es de ' + sum + ' grano(s).', 4000);
-    }else if(sum >300){
+      Materialize.toast('La cantidad total de granos en el análisis físico no es de ' + beans + '. Es de ' + sum + ' grano(s).', 4000);
+    }else if(sum >beans){
       $('#btn-submit').attr('disabled', true); 
-      Materialize.toast('La cantidad total de granos en el análisis físico no es de 300. Es de ' + sum +  ' grano(s).', 4000);
+      Materialize.toast('La cantidad total de granos en el análisis físico no es de '+ beans +'. Es de ' + sum +  ' grano(s).', 4000);
     }else{
       $('#btn-submit').attr('disabled', false); 
-      Materialize.toast('La cantidad total de granos en el análisis físico es de 300.', 4000);
+      Materialize.toast('La cantidad total de granos en el análisis físico es de ' + beans +'.', 4000);
     }
   }
 </script>
