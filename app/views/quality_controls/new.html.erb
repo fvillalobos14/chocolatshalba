@@ -146,7 +146,8 @@
   document.getElementById("averageWeight").style.color = "black";
   
   function average_weight_per_grain(){
+    var beans = <%=@batch.beans%>;
     var weight = document.getElementById("grainWeight").value;
-    document.getElementById("averageWeight").value = (weight/300).toFixed(2); 
+    document.getElementById("averageWeight").value = (weight/beans).toFixed(2); 
   }
 </script>
