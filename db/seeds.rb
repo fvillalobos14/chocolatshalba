@@ -112,8 +112,8 @@ Organization.create! do |c|
 end
 
 Organization.create! do |c|
-	c.code = 'APP'
-	c.name = 'APROCAPIM'
+	c.code = 'APP/FDL'
+	c.name = 'APROCAPIM/FLOR DE LAURELES'
 end
 
 Organization.create! do |c|
