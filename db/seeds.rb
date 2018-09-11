@@ -50,6 +50,270 @@ Organization.create! do |c|
 	c.name = 'COPROASERSO'
 end
 
+Organization.create! do |c|
+	c.code = 'AMU'
+	c.name = 'AMUCALAY'
+end
+
+Organization.create! do |c|
+	c.code = 'APA'
+	c.name = 'APACH'
+end
+
+Organization.create! do |c|
+	c.code = 'AGS'
+	c.name = 'APAGRISAC'
+end
+
+Organization.create! do |c|
+	c.code = 'CCG'
+	c.name = 'APROCAGUAL'
+end
+
+Organization.create! do |c|
+	c.code = 'APB'
+	c.name = 'ASOPROPIB'
+end
+
+Organization.create! do |c|
+	c.code = 'APS'
+	c.name = 'APROSACAO'
+end
+
+Organization.create! do |c|
+	c.code = 'COA'
+	c.name = 'COAGRICSAL'
+
+end
+
+Organization.create! do |c|
+	c.code = 'COP'
+	c.name = 'COAPANPAL'
+end
+
+Organization.create! do |c|
+	c.code = 'CRA'
+	c.name = 'CRASVIDMIL'
+end
+
+Organization.create! do |c|
+	c.code = 'COV'
+	c.name = 'COAVEL'
+end
+
+Organization.create! do |c|
+	c.code = 'AFG'
+	c.name = 'APROFIGUA'
+end
+
+Organization.create! do |c|
+	c.code = 'SFE'
+	c.name = 'SAN FERNANDO'
+end
+
+Organization.create! do |c|
+	c.code = 'APP/FDL'
+	c.name = 'APROCAPIM/FLOR DE LAURELES'
+end
+
+Organization.create! do |c|
+	c.code = 'ASF'
+	c.name = 'ASOPROSANFRA'
+end
+
+
+Organization.create! do |c|
+	c.code = 'CCR'
+	c.name = 'COPROCADER'
+end
+
+
+Organization.create! do |c|
+	c.code = 'CPF'
+	c.name = 'CAPROCAFIM'
+end
+
+
+Organization.create! do |c|
+	c.code = 'APRO'
+	c.name = 'APROCACAHO'
+end
+
+
+Organization.create! do |c|
+	c.code = 'CLF'
+	c.name = 'COOPERATIVA AGROPECUARIA LAS FLORES'
+end
+
+Organization.create! do |c|
+    c.code = 'AGR'
+    c.name = 'AGRONEGOCIOS FENIX'
+end
+
+Organization.create! do |c|
+    c.code = 'IHF'
+    c.name = 'INVERSIONES HALDAL FAJARDO'
+end
+
+Organization.create! do |c|
+    c.code = 'CFM'
+    c.name = 'CACAO FINO Y MADERABLES'
+end
+
+Organization.create! do |c|
+    c.code = 'ANBM'
+    c.name = 'ANA BELLA MACCHI'
+end
+
+Organization.create! do |c|
+    c.code = 'BFPA'
+    c.name = 'BENIGNO FERNANDEZ PAZ'
+end
+
+Organization.create! do |c|
+    c.code = 'CATU'
+    c.name = 'CARLOS TURCIOS'
+end
+
+Organization.create! do |c|
+    c.code = 'ENRO'
+    c.name = 'ENIO NOE RODRIGUEZ'
+end
+
+Organization.create! do |c|
+    c.code = 'GMRO'
+    c.name = 'GERARDO MANUEL ROMERO'
+end
+
+Organization.create! do |c|
+    c.code = 'GEPA'
+    c.name = 'GERARDO PALMA'
+end
+
+Organization.create! do |c|
+    c.code = 'HENK'
+    c.name = 'HENNING KRETSCHMER'
+end
+Organization.create! do |c|
+    c.code = 'INME'
+    c.name = 'INVERSIONES MELARA'
+end
+Organization.create! do |c|
+    c.code = 'JOHH'
+    c.name = 'JOHNNY HANDAL'
+end
+Organization.create! do |c|
+    c.code = 'JORL'
+    c.name = 'JORGE LANZA'
+end
+Organization.create! do |c|
+    c.code = 'JVTO'
+    c.name = 'JOSE VICENTE TORRES'
+end
+
+Organization.create! do |c|
+    c.code = 'JAVI'
+    c.name = 'JUAN ANGEL VIDES'
+end
+Organization.create! do |c|
+    c.code = 'JCBE'
+    c.name = 'JUAN CARLOS BENITEZ'
+end
+Organization.create! do |c|
+    c.code = 'JCIC'
+    c.name = 'JUAN CARLOS ICAZA'
+end
+Organization.create! do |c|
+    c.code = 'JUMO'
+    c.name = 'JUAN CARLOS ICAZA'
+end
+Organization.create! do |c|
+	c.code = 'JUMA'
+	c.name = 'JUBER MARTINEZ'
+end
+
+Organization.create! do |c|
+	c.code = 'JDMU'
+	c.name = 'JUSTINIANO DIAZ'
+end
+Organization.create! do |c|
+	c.code = 'LEOB'
+	c.name = 'LEONARDO BARAHONA'
+end
+Organization.create! do |c|
+	c.code = 'MAXO'
+	c.name = 'MAXIMILIANO ORTEGA'
+end
+Organization.create! do |c|
+	c.code = 'MARE'
+	c.name = 'MIGUEL ANGEL REYES'
+end
+Organization.create! do |c|
+	c.code = 'NAPC'
+	c.name = 'NAPOLEON CONTRERAS'
+end
+Organization.create! do |c|
+	c.code = 'OLRA'
+	c.name = 'OLMAN RAMOS'
+end
+Organization.create! do |c|
+	c.code = 'OWHE'
+	c.name = 'OSWALDO HERCULES'
+end
+
+Organization.create! do |c|
+	c.code = 'PEBC'
+	c.name = 'PULPERIA EL BUEN CAMINO'
+end
+Organization.create! do |c|
+	c.code = 'ZUMM'
+	c.name = 'WALTER ZUMMAR'
+end
+Organization.create! do |c|
+ 	c.code = 'CVCA'
+ 	c.name = 'CARLOS VIVIAN CALDERON'
+end
+Organization.create! do |c|
+ 	c.code = 'FLRO'
+ 	c.name = 'FINCA LA ROMA'
+end
+Organization.create! do |c|
+ 	c.code = 'ERBT'
+ 	c.name = 'ERICK BABIE THOMAS'
+end
+Organization.create! do |c|
+ 	c.code = 'CAVJ'
+ 	c.name = 'COMPAÑÍA AGRICOLA VILLA JULIA'
+end
+Organization.create! do |c|
+ 	c.code = 'EACB'
+	c.name = 'EMPRESA ASOCIATIVA CAMPESINA BIENVENIDO'
+end
+Organization.create! do |c|
+ 	c.code = 'BDCA'
+	c.name = 'BELLEZAS DEL CAMPO'
+end
+Organization.create! do |c|
+	c.code = 'RDFA'
+	c.name = 'RODOLFO FASQUELLE'
+end
+Organization.create! do |c|
+	c.code = 'JACR'
+	c.name = 'JOSE ANIBAL CALLEJAS'
+end
+Organization.create! do |c|
+	c.code = 'JCGM'
+	c.name = 'JUAN CARLOS GARCIA MUÑOZ'
+end
+Organization.create! do |c|
+	c.code = 'NL'
+	c.name = 'NEPTALI LOPEZ'
+end
+Organization.create! do |c|
+	c.code = 'JRFM'
+	c.name = 'JORGE ROBERTO FAJARDO MOREL'
+end
+
 CocoaType.create do |c|
 	c.name = 'A'
 end
