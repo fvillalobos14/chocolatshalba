@@ -78,7 +78,7 @@
                         <% else %>
                           <td></td>
                         <% end %>
-                        <% if current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank? %>
+                        <% if current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank? && !QualityControl.where(batch_id: batch.id).blank? %>
                           <td>
                             <%= link_to "Análisis sensorial", new_batch_sensory_analysis_path(batch)%>
                           </td>
