@@ -26,6 +26,16 @@
                 </tr>
               <% end %>
             <% end %>
+             <% @batches.each do |batch| %>
+              <% if (batch.certificate_checks.first != nil && batch.certificate_checks.first != 1) && batch.ft %>
+                <tr>
+                  <td><%= batch.enterCode %></td>
+                  <td><%= batch.entry_control.organization.name %></td>
+                  <td><%= batch.entry_control.entryDate %></td>
+                  <td><%= link_to "Revisar", batch %></td>
+                </tr>
+              <% end %>
+            <% end %>
             </tbody>
           </table>
         </div>
