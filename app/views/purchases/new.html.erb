@@ -8,7 +8,7 @@
           </div>
           <p>Código de lote: <%=  @batch.enterCode %></p>
           <p>Control de Ingreso: <%=  @batch.entry_control.entry_number %></p>
-          <p>Organización: <%=  @batch.entry_control.organization.name %></p>
+          <p>Proveedor: <%=  @batch.entry_control.organization.name %></p>
           <p>Fecha de Ingreso: <%=  @batch.entry_control.entryDate %></p>
           <p>Precio: L.<%= number_with_precision(Price.where(cocoa_type_id: @batch.quality_control.revision.status).first.price*@batch.weight, precision: 2) %></p>
           <br>

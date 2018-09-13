@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Reporte de Inventario</title>
+        <style>
+            
+            h2 {
+                font-size: 25px;
+            }
+            h3 {
+                font-size: 15px;
+            }
+            td {
+                border-bottom: 1px solid #ddd;
+                border-right: 1px solid #ddd;
+                border-left: 1px solid #ddd;
+                text-align: center;
+            }
+            th {
+                border-bottom: 1px solid #000;
+                border-right: 1px solid #000;
+                border-left: 1px solid #000;
+                border-top: 1px solid #000;
+                text-align: center;
+            }
+            table {
+                width:90% ;
+                border-collapse: collapse;
+            }
+        </style>
+    </head>
+
+    <body>
+        <center>
+        <h2>Chocolats Halba</h2>        
+        <h2>Reporte de Inventario</h2>
+        <h3>Fecha: <%=Date.today%></h3>        
+        
+
+        <table class = "striped bordered">
+            <thead>
+                <tr>
+                    <th>Calidad</th>
+                    <th>Cantidad (Kg)</th>
+                    <th>Cantidad (Lb)</th>
+                    <th>Numero de sacos</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>A</td>
+                    <td><%= number_with_precision(@batchesEAHT.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesEAHT.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesEAHT.sum(&:sackAmount)%></td> 
+                </tr> 
+                <tr> 
+                    <td>B</td>
+                    <td><%= number_with_precision(@batchesEBHT.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesEBHT.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesEBHT.sum(&:sackAmount)%></td> 
+                </tr> 
+                <tr> 
+                    <td>C</td>
+                    <td><%= number_with_precision(@batchesECHT.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesECHT.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesECHT.sum(&:sackAmount)%></td> 
+                </tr> 
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <br>
+        <table class = "striped bordered">
+            <thead>
+                <tr>
+                    <th>Certificado</th>
+                    <th>Cantidad (Kg)</th>
+                    <th>Cantidad (Lb)</th>
+                    <th>Numero de sacos</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>E</td>
+                    <td><%= number_with_precision(@batchesCE.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesCE.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesCE.sum(&:sackAmount)%></td> 
+                </tr> 
+                <tr> 
+                    <td>T</td>
+                    <td><%= number_with_precision(@batchesCT.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesCT.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesCT.sum(&:sackAmount)%></td> 
+                </tr> 
+                <tr> 
+                    <td>C</td>
+                    <td><%= number_with_precision(@batchesCC.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesCC.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesCC.sum(&:sackAmount)%></td> 
+                </tr> 
+            </tbody>
+        </table>
+
+        <br>
+        <br>
+        <br>
+        
+        <table class = "striped bordered" >
+            <thead>
+                <tr>
+                    <th>Variedad</th>
+                    <th>Cantidad (Kg)</th>
+                    <th>Cantidad (Lb)</th>
+                    <th>Numero de sacos</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>HT</td>
+                    <td><%= number_with_precision(@batchesHT.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesHT.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesHT.sum(&:sackAmount)%></td> 
+                </tr> 
+                <tr> 
+                    <td>IA</td>
+                    <td><%= number_with_precision(@batchesIA.sum(&:weight)/2.204623, precision: 2)%></td> 
+                    <td><%= number_with_precision(@batchesIA.sum(&:weight), precision: 2)%></td> 
+                    <td><%= @batchesIA.sum(&:sackAmount)%></td> 
+                </tr> 
+            </tbody>
+        </table>
+        </center>
+    </body>
+</html>

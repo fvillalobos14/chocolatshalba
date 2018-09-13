@@ -7,29 +7,13 @@ class BatchesController < ApplicationController
   	@entryControl = EntryControl.find(params[:entry_control_id])
     @batch=@entryControl.batches.build
   end
+  
+
 
   def create
     entryControl = EntryControl.find(params[:entry_control_id])
     batch=entryControl.batches.build(batches_params)
-     
-    genetic=GeneticMaterial.find(batch.geneticMaterial).name
-    quality=CertificateType.find(batch.certificatetype).name
-    cocoat=CocoaType.find(batch.cocoaType).name
-    c = entryControl.organization.code+"0"+batch.postharvestCenter.to_s+"-"+entryControl.entryDate.strftime('%d%m%y')+"-"+quality+cocoat+genetic
-    code=""
-    if batch.ft
-      if quality== 'C' && cocoat == 'C'
-        code=c
-        batch.ft=false
-      else  
-        code=c+"-FT"
-       
-      end
-    else
-      code= c
-    end
-
-    batch.enterCode=code   
+    batch.enterCode= "k"
     if batch.save
         createNotification
         redirect_to entryControl
@@ -40,9 +24,11 @@ class BatchesController < ApplicationController
 
   def edit
     @batch=Batch.find(params[:id])
+    
   end
 
   def update
+    
     batch=Batch.find(params[:id])
     if batch.update(batches_params)
       redirect_to batch.entry_control
@@ -71,7 +57,7 @@ class BatchesController < ApplicationController
 
   private
   def batches_params
-    params.require(:batch).permit(:sackAmount, :weight, :enterCode, :certificatetype, :postharvestCenter, :cocoaType, :geneticMaterial, :ft)
+    params.require(:batch).permit(:sackAmount, :weight, :enterCode, :certificatetype, :postharvestCenter, :cocoaType, :geneticMaterial, :ft, :samples, :beans)
   end
 
   def createNotification
