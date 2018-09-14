@@ -205,10 +205,13 @@
                     </p>
                   <% end %> 
                 <% else %>
-                  <p>
-                    Observación:
-                    <%= @qualityControl.observation %>
-                  </p>
+                  <%= form_for ([@qualityControl]) do |f| %> 
+                    <div class="input-field">
+                      <%= f.label :observation, "Observación" %>
+                      <%= f.text_area :observation, class:"materialize-textarea", :required => true%>
+                    </div>
+                    <%= f.submit 'Aceptar',class:" waves-effect waves-light btn" %>
+                  <% end %>
                 <% end %>                      
               </div>
             </li>
