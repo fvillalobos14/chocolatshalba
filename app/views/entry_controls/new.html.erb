@@ -4,7 +4,7 @@
       <div class = "card">
         <div class = "card-content">
           <%= form_for [@organization, @entryControl] do |f| %>
-            <%= f.hidden_field :entryDate, :value => Date.today %>
+            
             <%= f.hidden_field :exchangeRate, :value => 23.50 %>
             <div class="page-header">
               <h1>Control de ingreso</h1>
@@ -13,6 +13,11 @@
             <div class = "input-field">
               <%= f.label :entry_number, "Número de hoja de ingreso" %>
               <%= f.number_field :entry_number, min: 0, :required => true %>
+            </div>
+            
+            <div class = "input-field">
+              <%= f.label :entryDate, "Fecha de ingreso" %>
+              <%= f.text_field :entryDate, :required => true , class: 'datepicker'%>
             </div>
 
             <div class = "input-field">
@@ -36,3 +41,10 @@
     </div>
   </div>
 </div>
+
+<script>
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
+</script>
