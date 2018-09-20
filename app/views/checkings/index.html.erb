@@ -26,7 +26,7 @@
                 </tr>
               <% end %>
             <% end %>
-             <% @batches.each do |batch| %>
+            <% @batches.each do |batch| %>
               <% if (batch.certificate_checks.first != nil && batch.certificate_checks.first.decision != 1) && batch.ft %>
                 <tr>
                   <td><%= batch.enterCode %></td>
