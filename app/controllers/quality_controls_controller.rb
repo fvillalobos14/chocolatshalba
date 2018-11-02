@@ -26,7 +26,7 @@ class QualityControlsController < ApplicationController
           batch.review=1
           batch.save
         end
-        redirect_to "/quality_controls/"+batch.id.to_s
+        redirect_to entry
     else
         redirect_to "/batches/"+batch.id.to_s+"/quality_controls/new"
     end

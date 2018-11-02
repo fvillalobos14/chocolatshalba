@@ -11,9 +11,6 @@
           <p>Proveedor: <%=  @batch.entry_control.organization.name %></p>
           <p>Fecha de Ingreso: <%=  @batch.entry_control.entryDate %></p>
           <p>Precio: L.<%= number_with_precision(Price.where(cocoa_type_id: @batch.quality_control.revision.status).first.price*@batch.weight, precision: 2) %></p>
-          <% if @batch.ft %>
-            <p>Observación de certificaciones: <%=@batch.certificate_checks.first.description%></p>
-          <% end %>
           <br>
           <%= link_to "Regresar", purchases_path , class: "btn btn-primary"%>
           <a class="waves-effect waves-light btn" data-target="modal1">Comprar</a>

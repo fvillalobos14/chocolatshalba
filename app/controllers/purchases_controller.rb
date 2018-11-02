@@ -12,10 +12,6 @@ class PurchasesController < ApplicationController
   def create
     batch = Batch.find(params[:batch_id])
     purchase = batch.build_purchase(purchase_params)
-    if purchase.decision==0
-      batch.purchase =nil
-      batch.buy=1
-    end
     if purchase.save
       if purchase.decision == 1
         invoice = Invoice.create(paid: false, batch_id: batch.id)
