@@ -23,7 +23,7 @@ class SensoryAnalysesController < ApplicationController
                 batch.review=1
                 batch.save
             end
-            redirect_to entry
+            redirect_to "/quality_controls/"+batch.id.to_s
         else
             redirect_to "/batches/"+batch.id.to_s+"/sensory_analyses/new"
         end

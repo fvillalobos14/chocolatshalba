@@ -6,7 +6,7 @@ export ruby_ver=$(rvm list default string)
 
 export CONFIGURED=yes
 export TIMEOUT=50
-export APP_ROOT=/home/rails/rails_project
+export APP_ROOT=/home/rails/chocolatshalba
 export RAILS_ENV="production"
 export GEM_HOME="/home/rails/chocolatshalba/vendor/bundle"
 export GEM_PATH="/home/rails/chocolatshalba/vendor/bundle:/usr/local/rvm/gems/${ruby_ver}:/usr/local/rvm/gems/${ruby_ver}@global"
