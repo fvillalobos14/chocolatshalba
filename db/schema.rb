@@ -264,6 +264,7 @@ ActiveRecord::Schema.define(version: 20180825013312) do
   create_table "sequences", force: :cascade do |t|
     t.integer "number"
     t.integer "year"
+    t.integer "day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
