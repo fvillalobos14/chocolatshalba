@@ -7,7 +7,9 @@
               <h1>Código de Barra</h1>
             </div><p></p>
             <div>
-              <p style="font-size:17pt ; font-family: IDAutomationHC39M">(<%=@batch.enterCode%>)</font></p>
+              
+              <%= image_tag  "barcode.png" %>
+              <p><%=@batch.enterCode%></p>
             </div>
           </div>
           <div class="card-content">

@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   put 'batches/:id(.:format)', to: 'batches#move_batch'
 
+  get 'sequence', to: 'sequences#create'
+
   resources :sensory_analyses
   resources :quality_controls
   resources :revisions
