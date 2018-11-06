@@ -16,15 +16,12 @@ class QualityControl < ApplicationRecord
   end
 
   def update_sequence
-    @sequence=(Sequence.find_by(year: Time.current.year, day: Time.current.day))
-    puts @sequence
+    @sequence=(Sequence.find_by(year: Time.now.year, day: Time.now.day))
     if @sequence != nil
       Sequence.update(@sequence.id, :number => @sequence.number+1)
     else
-      seq = Sequence.new(:year => Time.current.year, :day => Time.current.day)
-      puts @seq
-      Seq.save
-      @sequence = Seq
+      seq = Sequence.new(:year => Time.now.year, :day => Time.now.day)
+      seq.save
 
     end
   end
