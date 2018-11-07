@@ -39,7 +39,6 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'chunky_png'
-  gem 'barby'
 end
 
 group :development do
@@ -70,3 +69,4 @@ end
   gem 'wicked_pdf'
   gem 'wkhtmltopdf-binary'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'barby'
