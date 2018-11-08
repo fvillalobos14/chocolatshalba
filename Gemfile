@@ -38,7 +38,6 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  gem 'chunky_png'
 end
 
 group :development do
@@ -70,3 +69,4 @@ end
   gem 'wkhtmltopdf-binary'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'barby'
+  gem 'chunky_png'
