@@ -14,6 +14,7 @@ class BatchesController < ApplicationController
     entryControl = EntryControl.find(params[:entry_control_id])
     batch=entryControl.batches.build(batches_params)
     batch.enterCode= "k"
+    batch.state = "Rec. Ingresado"
     if batch.save
         createNotification
         redirect_to entryControl
@@ -57,7 +58,8 @@ class BatchesController < ApplicationController
 
   private
   def batches_params
-    params.require(:batch).permit(:sackAmount, :weight, :enterCode, :certificatetype, :postharvestCenter, :cocoaType, :geneticMaterial, :ft, :samples, :beans)
+    params.require(:batch).permit(:sackAmount, :weight, :enterCode, :certificatetype, :postharvestCenter, :cocoaType,
+                                  :geneticMaterial, :ft, :samples, :beans, :state)
   end
 
   def createNotification
