@@ -67,7 +67,7 @@
 
                         <% if current_user.quality_role && QualityControl.where(batch_id: batch.id).blank? %>
                           <td><%= link_to 'Ingresar número de granos', edit_batch_path(batch) %></td>
-                        <% elsif current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank?%>
+                        <% elsif current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank? && @qc_results[batch.id].eql?("A")%>
                           <td><%= link_to 'Ingresar número de catadores', edit_batch_path(batch) %></td>
                         <%end%>
 
@@ -78,7 +78,7 @@
                         <% else %>
                           <td></td>
                         <% end %>
-                        <% if current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank? %>
+                        <% if current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank? && QualityControl.where(batch_id: batch.id).present? && @qc_results[batch.id].eql?("A")%>
                           <td>
                             <%= link_to "Análisis sensorial", new_batch_sensory_analysis_path(batch)%>
                           </td>
