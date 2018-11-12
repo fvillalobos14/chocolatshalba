@@ -26,6 +26,7 @@ class QualityControlsController < ApplicationController
           batch.review=1
           batch.save
         end
+        puts "*******RESULTADO: " +defineResult(batch)
         redirect_to entry
     else
         redirect_to "/batches/"+batch.id.to_s+"/quality_controls/new"
@@ -69,9 +70,9 @@ class QualityControlsController < ApplicationController
   end
 
   def defineResult(batch)
-    batch=Batch.find(batch)
+    batch=Batch.find(batch.id)
 
-    current_quality = "A"
+    current_quality = CocoaType.find(batch.cocoaType).name
     Category.all.order(:place).each do |category|
       category.parameters.order(:place).each do |parameter|
         value = -1
@@ -126,6 +127,9 @@ class QualityControlsController < ApplicationController
         break
       end
     end
+    batch.cocoaType = CocoaType.where("name = ?",current_quality).first.id
+    batch.generateCode()
+    batch.save
     return current_quality
   end
 
