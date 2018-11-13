@@ -563,7 +563,8 @@ Acceptance.create! do |a|
 	a.max_qualityA = -1
 	a.max_qualityB = -1
 	a.max_qualityC = -1
-	a.min_qualityA = 105
+	#aqui antes tenia 105 el minqualityA
+	a.min_qualityA = 315
 	a.min_qualityB = 80
 	a.min_qualityC = 75
 	a.parameter_id = 2
@@ -581,8 +582,8 @@ end
 
 Acceptance.create! do |a|
 	a.max_qualityA = -1
-	a.max_qualityB = -1
-	a.max_qualityC = -1
+	a.max_qualityB = 74
+	a.max_qualityC = 64
 	a.min_qualityA = 75
 	a.min_qualityB = 65
 	a.min_qualityC = -1
@@ -640,21 +641,21 @@ Acceptance.create! do |a|
 end
 
 Acceptance.create! do |a|
-	a.max_qualityA = 2.5
+	a.max_qualityA = 1
 	a.max_qualityB = 3.5
 	a.max_qualityC = 7
 	a.min_qualityA = -1
-	a.min_qualityB = -1
-	a.min_qualityC = -1
+	a.min_qualityB = 1.5
+	a.min_qualityC = 1.5
 	a.parameter_id = 10
 end
 
 Acceptance.create! do |a|
-	a.max_qualityA = 1
-	a.max_qualityB = 1.5
-	a.max_qualityC = 2
+	a.max_qualityA = 2.5
+	a.max_qualityB = 5
+	a.max_qualityC = -1
 	a.min_qualityA = -1
-	a.min_qualityB = -1
+	a.min_qualityB = 2.6
 	a.min_qualityC = -1
 	a.parameter_id = 11
 end
