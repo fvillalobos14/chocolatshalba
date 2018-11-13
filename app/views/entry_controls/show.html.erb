@@ -61,7 +61,7 @@
                           <td><%= link_to 'Editar', edit_batch_path(batch) %></td>
                         <% end %>
 
-                        <% if current_user.quality_role && (SensoryAnalysis.where(batch_id: batch.id).present? && QualityControl.where(batch_id: batch.id).present?)%>
+                        <% if current_user.quality_role && ((SensoryAnalysis.where(batch_id: batch.id).present? && QualityControl.where(batch_id: batch.id).present?)) || (QualityControl.where(batch_id: batch.id).present? && SensoryAnalysis.where(batch_id: batch.id).blank? && !@qc_results[batch.id].eql?("A"))%>
                           <td><%= link_to "Ver análisis", batch.quality_control %></td>
                         <% end %>
 
