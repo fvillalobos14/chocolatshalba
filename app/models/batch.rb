@@ -46,7 +46,7 @@ class Batch < ApplicationRecord
   def defineResult()
     batch=Batch.find(self.id)
     contador = 0;
-    current_quality = CocoaType.find(batch.cocoaType).name
+    current_quality = "A"
     Category.all.order(:place).each do |category|
       category.parameters.order(:place).each do |parameter|
         contador++
