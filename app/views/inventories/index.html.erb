@@ -640,7 +640,7 @@
                                                 <% if params[:variety] == "" %>
                                                     <% if params[:quality] == "" %>
                                                         <% if params[:certificate] == "" %>
-                                                            <td><%= EntryControl.find(batch.id).entry_number %></td>
+                                                            <td><%= EntryControl.find(batch.entry_control_id).entry_number %></td>
                                                             <td class= "PesoLB"><%= number_with_precision(batch.weight, precision: 2) %> </td> 
                                                             <td class= "PesoKG"><%= number_with_precision(batch.weight/2.204623, precision: 2) %> </td>                                            
                                                             <td><%= batch.enterCode %></td>
