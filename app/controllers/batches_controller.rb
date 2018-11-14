@@ -8,7 +8,9 @@ class BatchesController < ApplicationController
     @batch=@entryControl.batches.build
   end
   
-
+  def batch
+    @batches = Batch.all
+  end
 
   def create
     entryControl = EntryControl.find(params[:entry_control_id])
