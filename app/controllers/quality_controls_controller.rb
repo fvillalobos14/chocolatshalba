@@ -56,7 +56,7 @@ class QualityControlsController < ApplicationController
   def show
     @qualityControl=QualityControl.find(params[:id])
     @batch=Batch.find(@qualityControl.batch.id)
-    @new_quality = @batch.defineResult()
+    @new_quality = CocoaType.where("id = ?",@batch.cocoaType).first.name
     @data =  dataChart(@batch.id)
   end
 
