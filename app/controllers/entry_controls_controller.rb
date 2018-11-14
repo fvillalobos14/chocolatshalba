@@ -28,7 +28,7 @@ class EntryControlsController < ApplicationController
       @qc_results = {}
       @batches.each do |batch|
         if not QualityControl.where(batch_id: batch.id).blank?
-          @qc_results[batch.id] = defineResult(batch.id)
+          @qc_results[batch.id] = CocoaType.where("id = ?",batch.cocoaType).first.name
         end
       end  
     end
