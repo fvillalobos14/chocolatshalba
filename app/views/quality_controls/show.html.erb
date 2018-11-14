@@ -165,10 +165,17 @@
                             </td>
                           <% end %>
                         <% else %>
-                          <td width="7%">
-                            <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: 1).first.score, precision: 2) %>
-                            <%= parameter.unit %>
-                          </td>
+                          <%if Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: 1).present?%>
+                            <td width="7%">
+                              <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: 1).first.score, precision: 2) %>
+                              <%= parameter.unit %>
+                            </td>
+                          <% else %>
+                            <td width="7%">
+                              <%= "0" %>
+                              <%= parameter.unit %>
+                            </td>
+                          <% end %>
                         <% end %>
                         <% if @batch.samples.to_i > 1 %>
                           <td width="7%">
