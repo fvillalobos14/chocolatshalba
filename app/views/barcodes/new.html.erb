@@ -8,7 +8,7 @@
             </div><p></p>
             <div>
               
-              <%= image_tag  "barcode.png" %>
+              <%= image_tag(url_for({:controller => 'barcodes', :action => 'new', :format => 'png' }) ) %>
               <p><%=@batch.enterCode%></p>
             </div>
           </div>
