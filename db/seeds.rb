@@ -550,9 +550,9 @@ Parameter.create do |p|
 end
 
 Acceptance.create! do |a|
-  a.max_qualityA = 6.5
-	a.max_qualityB = 6.5
-	a.max_qualityC = 6.5
+  a.max_qualityA = 11
+	a.max_qualityB = 11
+	a.max_qualityC = 11
 	a.min_qualityA = -1
 	a.min_qualityB = -1
 	a.min_qualityC = -1
@@ -564,9 +564,9 @@ Acceptance.create! do |a|
 	a.max_qualityB = -1
 	a.max_qualityC = -1
 	#aqui antes tenia 105 el minqualityA
-	a.min_qualityA = 315
-	a.min_qualityB = 80
-	a.min_qualityC = 75
+	a.min_qualityA = 0
+	a.min_qualityB = 0
+	a.min_qualityC = 0
 	a.parameter_id = 2
 end
 
@@ -574,9 +574,9 @@ Acceptance.create! do |a|
 	a.max_qualityA = -1
 	a.max_qualityB = -1
 	a.max_qualityC = -1
-	a.min_qualityA = 1.05
-	a.min_qualityB = 0.8
-	a.min_qualityC = 0.75
+	a.min_qualityA = 0
+	a.min_qualityB = 0
+	a.min_qualityC = 0
 	a.parameter_id = 3
 end
 
@@ -585,14 +585,14 @@ Acceptance.create! do |a|
 	a.max_qualityB = -1
 	a.max_qualityC = -1
 	a.min_qualityA = 75
-	a.min_qualityB = 65
+	a.min_qualityB = 64
 	a.min_qualityC = -1
 	a.parameter_id = 4
 end
 
 Acceptance.create! do |a|
-	a.max_qualityA = 20
-	a.max_qualityB = 30
+	a.max_qualityA = 101
+	a.max_qualityB = 101
 	a.max_qualityC = -1
 	a.min_qualityA = -1
 	a.min_qualityB = -1
@@ -601,8 +601,8 @@ Acceptance.create! do |a|
 end
 
 Acceptance.create! do |a|
-	a.max_qualityA = 8
-	a.max_qualityB = 5
+	a.max_qualityA = 101
+	a.max_qualityB = 101
 	a.max_qualityC = -1
 	a.min_qualityA = -1
 	a.min_qualityB = -1
@@ -612,7 +612,7 @@ end
 
 Acceptance.create! do |a|
 	a.max_qualityA = 3
-	a.max_qualityB = 5
+	a.max_qualityB = 6
 	a.max_qualityC = -1
 	a.min_qualityA = -1
 	a.min_qualityB = -1
@@ -622,7 +622,7 @@ end
 
 Acceptance.create! do |a|
 	a.max_qualityA = 3
-	a.max_qualityB = 5
+	a.max_qualityB = 6
 	a.max_qualityC = -1
 	a.min_qualityA = -1
 	a.min_qualityB = -1
@@ -631,9 +631,9 @@ Acceptance.create! do |a|
 end
 
 Acceptance.create! do |a|
-	a.max_qualityA = 1
-	a.max_qualityB = 4
-	a.max_qualityC = 10
+	a.max_qualityA = 101
+	a.max_qualityB = 101
+	a.max_qualityC = -1
 	a.min_qualityA = -1
 	a.min_qualityB = -1
 	a.min_qualityC = -1
@@ -641,8 +641,8 @@ Acceptance.create! do |a|
 end
 
 Acceptance.create! do |a|
-	a.max_qualityA = 1
-	a.max_qualityB = 3.5
+	a.max_qualityA = 2
+	a.max_qualityB = 2
 	a.max_qualityC = -1
 	a.min_qualityA = -1
 	a.min_qualityB = -1
@@ -651,8 +651,8 @@ Acceptance.create! do |a|
 end
 
 Acceptance.create! do |a|
-	a.max_qualityA = 2.5
-	a.max_qualityB = 5
+	a.max_qualityA = 101
+	a.max_qualityB = 101
 	a.max_qualityC = -1
 	a.min_qualityA = -1
 	a.min_qualityB = -1
@@ -686,7 +686,10 @@ Acceptance.create! do |a|
 end
 
 Acceptance.create! do |a|
-	a.max_qualityA = 3
+	#este 11 lo coloco para que este parametro no baje la calidad
+	# segun lo que dijeron en chocolatshalba, este parametro
+	# no baja la calidad del cacao
+	a.max_qualityA = 11
 	a.max_qualityB = 11
 	a.max_qualityC = -1
 	a.min_qualityA = -1
@@ -696,7 +699,7 @@ Acceptance.create! do |a|
 end
 
 Acceptance.create! do |a|
-	a.max_qualityA = 3
+	a.max_qualityA = 11
 	a.max_qualityB = 11
 	a.max_qualityC = -1
 	a.min_qualityA = -1
@@ -709,7 +712,7 @@ Acceptance.create! do |a|
 	a.max_qualityA = -1
 	a.max_qualityB = -1
 	a.max_qualityC = -1
-	a.min_qualityA = 1
+	a.min_qualityA = 0
 	a.min_qualityB = 0
 	a.min_qualityC = -1
 	a.parameter_id = 16
@@ -719,7 +722,7 @@ Acceptance.create! do |a|
 	a.max_qualityA = -1
 	a.max_qualityB = -1
 	a.max_qualityC = -1
-	a.min_qualityA = 1
+	a.min_qualityA = 0
 	a.min_qualityB = 0
 	a.min_qualityC = -1
 	a.parameter_id = 17
@@ -729,7 +732,7 @@ Acceptance.create! do |a|
 	a.max_qualityA = -1
 	a.max_qualityB = -1
 	a.max_qualityC = -1
-	a.min_qualityA = 1
+	a.min_qualityA = 0
 	a.min_qualityB = 0
 	a.min_qualityC = -1
 	a.parameter_id = 18
@@ -739,14 +742,14 @@ Acceptance.create! do |a|
 	a.max_qualityA = -1
 	a.max_qualityB = -1
 	a.max_qualityC = -1
-	a.min_qualityA = 1
+	a.min_qualityA = 0
 	a.min_qualityB = 0
 	a.min_qualityC = -1
 	a.parameter_id = 19
 end
 
 Acceptance.create! do |a|
-	a.max_qualityA = 1
+	a.max_qualityA = 11
 	a.max_qualityB = 11
 	a.max_qualityC = -1
 	a.min_qualityA = -1
@@ -756,7 +759,7 @@ Acceptance.create! do |a|
 end
 
 Acceptance.create! do |a|
-	a.max_qualityA = 1
+	a.max_qualityA = 11
 	a.max_qualityB = 11
 	a.max_qualityC = -1
 	a.min_qualityA = -1
