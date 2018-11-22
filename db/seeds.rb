@@ -641,8 +641,8 @@ Acceptance.create! do |a|
 end
 
 Acceptance.create! do |a|
-	a.max_qualityA = 2
-	a.max_qualityB = 2
+	a.max_qualityA = 1
+	a.max_qualityB = 1
 	a.max_qualityC = -1
 	a.min_qualityA = -1
 	a.min_qualityB = -1
