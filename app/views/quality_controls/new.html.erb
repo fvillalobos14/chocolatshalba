@@ -82,7 +82,7 @@
                                       </td>
                                   <% elsif !parameter.name.start_with?("Peso de 300 granos") && !parameter.name.start_with?("Humedad")%>
                                       <td width="3%">
-                                      <%= r.text_field :score, step: :any, :required => true, :readonly=>true, :class=>"nontest", :id => "averageWeight"%>
+                                      <%= r.text_field :score, step: :any,:value => 0, :required => true, :readonly=>true, :class=>"nontest", :id => "averageWeight"%>
                                       </td>
                                     <%else%>                                  
                                       <td width="3%">
