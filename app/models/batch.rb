@@ -111,6 +111,9 @@ class Batch < ApplicationRecord
       end
     end
     batch.cocoaType = CocoaType.where("name = ?",current_quality).first.id
+    if batch.ft && (current_quality == "C" || current_quality == "B")
+      batch.ft=false;
+    end
     batch.generateCode()
     batch.save
     return current_quality
@@ -179,6 +182,9 @@ class Batch < ApplicationRecord
         end
       end
     batch.cocoaType = CocoaType.where("name = ?",current_quality).first.id
+    if batch.ft && (current_quality == "C" || current_quality == "B")
+      batch.ft=false;
+    end
     batch.generateCode()
     batch.save
     return current_quality
