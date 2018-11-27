@@ -52,7 +52,7 @@
                 <li><a class="white-text"><i class="material-icons white-text">assessment</i>Calidad</a><li>
               <% if  Notification.where(kind: 1, read: false).count == 1 %>
                 <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 1, read: false).count %></span>
-              <% elsif  Notification.where(kind: 1, read: false).count > 0 %>
+              <% elsif  Notification.where(kind: 1, read: false).count > 1 %>
                 <span class="new badge" data-badge-caption="nuevos"><%=	Notification.where(kind: 1, read: false).count %></span>
               <% end %>
               <li><%= link_to 'Análisis', '/sequence', class:"white-text li-back"%></li>
