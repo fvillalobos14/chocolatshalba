@@ -172,13 +172,7 @@
                                                             <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                             <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                             <td><%= batch.entry_control.organization.name %></td>
-                                                            <% if batch.sensory_analysis != nil%>
-                                                            <td> Evaluado </td>
-                                                          <% elsif batch.quality_control != nil %>
-                                                            <td> En Evaluacion </td>
-                                                          <% else %>
-                                                            <td><%= batch.state %></ td>
-                                                          <%end%>
+                                                            <td><%= batch.state %></td>
                                                         <% else %>
                                                             <% if batch.certificatetype == params[:certificate].to_i %>
                                                                 <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -189,13 +183,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% end %>
                                                         <% end %>
                                                     <% else %>
@@ -209,13 +197,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% else %>
                                                                 <% if batch.certificatetype == params[:certificate].to_i %>
                                                                     <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -226,13 +208,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                    <td> Evaluado </td>
-                                                                  <% elsif batch.quality_control != nil %>
-                                                                    <td> En Evaluacion </td>
-                                                                  <% else %>
-                                                                    <td><%= batch.state %></ td>
-                                                                  <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% end %>
                                                             <% end %>
                                                         <% end %>    
@@ -249,13 +225,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% else %>
                                                                 <% if batch.certificatetype == params[:certificate].to_i %>
                                                                     <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -266,13 +236,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% end %>
                                                             <% end %>
                                                         <% else %>
@@ -286,13 +250,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% else %>
                                                                     <% if batch.certificatetype == params[:certificate].to_i %>
                                                                         <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -303,13 +261,7 @@
                                                                         <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                         <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                         <td><%= batch.entry_control.organization.name %></td>
-                                                                        <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                        <td><%= batch.state %></td>
                                                                     <% end %>
                                                                 <% end %>
                                                             <% end %>    
@@ -329,13 +281,7 @@
                                                             <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                             <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                             <td><%= batch.entry_control.organization.name %></td>
-                                                            <% if batch.sensory_analysis != nil%>
-                                                            <td> Evaluado </td>
-                                                          <% elsif batch.quality_control != nil %>
-                                                            <td> En Evaluacion </td>
-                                                          <% else %>
-                                                            <td><%= batch.state %></ td>
-                                                          <%end%>
+                                                            <td><%= batch.state %></td>
                                                         <% else %>
                                                             <% if batch.certificatetype == params[:certificate].to_i %>
                                                                 <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -346,13 +292,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% end %>
                                                         <% end %>
                                                     <% else %>
@@ -366,13 +306,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% else %>
                                                                 <% if batch.certificatetype == params[:certificate].to_i %>
                                                                     <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -383,13 +317,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% end %>
                                                             <% end %>
                                                         <% end %>    
@@ -406,13 +334,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                                <td> Evaluado </td>
-                                                              <% elsif batch.quality_control != nil %>
-                                                                <td> En Evaluacion </td>
-                                                              <% else %>
-                                                                <td><%= batch.state %></ td>
-                                                              <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% else %>
                                                                 <% if batch.certificatetype == params[:certificate].to_i %>
                                                                     <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -423,13 +345,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% end %>
                                                             <% end %>
                                                         <% else %>
@@ -443,13 +359,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                    <td> Evaluado </td>
-                                                                  <% elsif batch.quality_control != nil %>
-                                                                    <td> En Evaluacion </td>
-                                                                  <% else %>
-                                                                    <td><%= batch.state %></ td>
-                                                                  <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% else %>
                                                                     <% if batch.certificatetype == params[:certificate].to_i %>
                                                                         <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -460,13 +370,7 @@
                                                                         <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                         <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                         <td><%= batch.entry_control.organization.name %></td>
-                                                                        <% if batch.sensory_analysis != nil%>
-                                                                        <td> Evaluado </td>
-                                                                      <% elsif batch.quality_control != nil %>
-                                                                        <td> En Evaluacion </td>
-                                                                      <% else %>
-                                                                        <td><%= batch.state %></ td>
-                                                                      <%end%>
+                                                                        <td><%= batch.state %></td>
                                                                     <% end %>
                                                                 <% end %>
                                                             <% end %>    
@@ -487,13 +391,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                                <td> Evaluado </td>
-                                                              <% elsif batch.quality_control != nil %>
-                                                                <td> En Evaluacion </td>
-                                                              <% else %>
-                                                                <td><%= batch.state %></ td>
-                                                              <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% else %>
                                                                 <% if batch.certificatetype == params[:certificate].to_i %>
                                                                     <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -504,13 +402,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                    <td> Evaluado </td>
-                                                                  <% elsif batch.quality_control != nil %>
-                                                                    <td> En Evaluacion </td>
-                                                                  <% else %>
-                                                                    <td><%= batch.state %></ td>
-                                                                  <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% end %>
                                                             <% end %>
                                                         <% else %>
@@ -524,13 +416,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% else %>
                                                                     <% if batch.certificatetype == params[:certificate].to_i %>
                                                                         <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -541,13 +427,7 @@
                                                                         <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                         <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                         <td><%= batch.entry_control.organization.name %></td>
-                                                                        <% if batch.sensory_analysis != nil%>
-                                                                        <td> Evaluado </td>
-                                                                      <% elsif batch.quality_control != nil %>
-                                                                        <td> En Evaluacion </td>
-                                                                      <% else %>
-                                                                        <td><%= batch.state %></ td>
-                                                                      <%end%>
+                                                                        <td><%= batch.state %></td>
                                                                     <% end %>
                                                                 <% end %>
                                                             <% end %>    
@@ -564,13 +444,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                    <td> Evaluado </td>
-                                                                  <% elsif batch.quality_control != nil %>
-                                                                    <td> En Evaluacion </td>
-                                                                  <% else %>
-                                                                    <td><%= batch.state %></ td>
-                                                                  <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% else %>
                                                                     <% if batch.certificatetype == params[:certificate].to_i %>
                                                                         <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -581,13 +455,7 @@
                                                                         <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                         <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                         <td><%= batch.entry_control.organization.name %></td>
-                                                                        <% if batch.sensory_analysis != nil%>
-                                                                        <td> Evaluado </td>
-                                                                      <% elsif batch.quality_control != nil %>
-                                                                        <td> En Evaluacion </td>
-                                                                      <% else %>
-                                                                        <td><%= batch.state %></ td>
-                                                                      <%end%>
+                                                                        <td><%= batch.state %></td>
                                                                     <% end %>
                                                                 <% end %>
                                                             <% else %>
@@ -601,13 +469,7 @@
                                                                         <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                         <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                         <td><%= batch.entry_control.organization.name %></td>
-                                                                        <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                        <td><%= batch.state %></td>
                                                                     <% else %>
                                                                         <% if batch.certificatetype == params[:certificate].to_i %>
                                                                             <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -618,13 +480,7 @@
                                                                             <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                             <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                             <td><%= batch.entry_control.organization.name %></td>
-                                                                            <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                            <td><%= batch.state %></td>
                                                                         <% end %>
                                                                     <% end %>
                                                                 <% end %>    
@@ -648,13 +504,7 @@
                                                             <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                             <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                             <td><%= batch.entry_control.organization.name %></td>
-                                                            <% if batch.sensory_analysis != nil%>
-                                                              <td> Evaluado </td>
-                                                            <% elsif batch.quality_control != nil %>
-                                                              <td> En Evaluacion </td>
-                                                            <% else %>
-                                                              <td><%= batch.state %></ td>
-                                                            <%end%>
+                                                            <td><%= batch.state %></td>
                                                         <% else %>
                                                             <% if batch.certificatetype == params[:certificate].to_i %>
                                                                 <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -665,13 +515,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                              <td> Evaluado </td>
-                                                            <% elsif batch.quality_control != nil %>
-                                                              <td> En Evaluacion </td>
-                                                            <% else %>
-                                                              <td><%= batch.state %></ td>
-                                                            <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% end %>
                                                         <% end %>
                                                     <% else %>
@@ -685,13 +529,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% else %>
                                                                 <% if batch.certificatetype == params[:certificate].to_i %>
                                                                     <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -702,13 +540,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                      <td> Evaluado </td>
-                                                                    <% elsif batch.quality_control != nil %>
-                                                                      <td> En Evaluacion </td>
-                                                                    <% else %>
-                                                                      <td><%= batch.state %></ td>
-                                                                    <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% end %>
                                                             <% end %>
                                                         <% end %>    
@@ -725,13 +557,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% else %>
                                                                 <% if batch.certificatetype == params[:certificate].to_i %>
                                                                     <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -742,13 +568,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% end %>
                                                             <% end %>
                                                         <% else %>
@@ -762,13 +582,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% else %>
                                                                     <% if batch.certificatetype == params[:certificate].to_i %>
                                                                         <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -779,13 +593,7 @@
                                                                         <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                         <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                         <td><%= batch.entry_control.organization.name %></td>
-                                                                        <% if batch.sensory_analysis != nil%>
-                                                                        <td> Evaluado </td>
-                                                                      <% elsif batch.quality_control != nil %>
-                                                                        <td> En Evaluacion </td>
-                                                                      <% else %>
-                                                                        <td><%= batch.state %></ td>
-                                                                      <%end%>
+                                                                        <td><%= batch.state %></td>
                                                                     <% end %>
                                                                 <% end %>
                                                             <% end %>    
@@ -805,13 +613,7 @@
                                                             <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                             <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                             <td><%= batch.entry_control.organization.name %></td>
-                                                            <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                            <td><%= batch.state %></td>
                                                         <% else %>
                                                             <% if batch.certificatetype == params[:certificate].to_i %>
                                                                 <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -822,13 +624,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% end %>
                                                         <% end %>
                                                     <% else %>
@@ -842,13 +638,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% else %>
                                                                 <% if batch.certificatetype == params[:certificate].to_i %>
                                                                     <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -859,13 +649,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% end %>
                                                             <% end %>
                                                         <% end %>    
@@ -882,13 +666,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% else %>
                                                                 <% if batch.certificatetype == params[:certificate].to_i %>
                                                                     <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -899,13 +677,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                    <td> Evaluado </td>
-                                                                  <% elsif batch.quality_control != nil %>
-                                                                    <td> En Evaluacion </td>
-                                                                  <% else %>
-                                                                    <td><%= batch.state %></ td>
-                                                                  <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% end %>
                                                             <% end %>
                                                         <% else %>
@@ -919,13 +691,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                    <td> Evaluado </td>
-                                                                  <% elsif batch.quality_control != nil %>
-                                                                    <td> En Evaluacion </td>
-                                                                  <% else %>
-                                                                    <td><%= batch.state %></ td>
-                                                                  <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% else %>
                                                                     <% if batch.certificatetype == params[:certificate].to_i %>
                                                                         <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -936,13 +702,7 @@
                                                                         <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                         <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                         <td><%= batch.entry_control.organization.name %></td>
-                                                                        <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                        <td><%= batch.state %></td>
                                                                     <% end %>
                                                                 <% end %>
                                                             <% end %>    
@@ -963,13 +723,7 @@
                                                             <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                             <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                             <td><%= batch.entry_control.organization.name %></td>
-                                                            <% if batch.sensory_analysis != nil%>
-                                                            <td> Evaluado </td>
-                                                          <% elsif batch.quality_control != nil %>
-                                                            <td> En Evaluacion </td>
-                                                          <% else %>
-                                                            <td><%= batch.state %></ td>
-                                                          <%end%>
+                                                            <td><%= batch.state %></td>
                                                         <% else %>
                                                             <% if batch.certificatetype == params[:certificate].to_i %>
                                                                 <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -980,13 +734,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                                  <td> Evaluado </td>
-                                                                <% elsif batch.quality_control != nil %>
-                                                                  <td> En Evaluacion </td>
-                                                                <% else %>
-                                                                  <td><%= batch.state %></ td>
-                                                                <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% end %>
                                                         <% end %>
                                                     <% else %>
@@ -1000,13 +748,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                                <td> Evaluado </td>
-                                                              <% elsif batch.quality_control != nil %>
-                                                                <td> En Evaluacion </td>
-                                                              <% else %>
-                                                                <td><%= batch.state %></ td>
-                                                              <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% else %>
                                                                 <% if batch.certificatetype == params[:certificate].to_i %>
                                                                     <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -1017,13 +759,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                    <td> Evaluado </td>
-                                                                  <% elsif batch.quality_control != nil %>
-                                                                    <td> En Evaluacion </td>
-                                                                  <% else %>
-                                                                    <td><%= batch.state %></ td>
-                                                                  <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% end %>
                                                             <% end %>
                                                         <% end %>    
@@ -1040,13 +776,7 @@
                                                                 <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                 <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                 <td><%= batch.entry_control.organization.name %></td>
-                                                                <% if batch.sensory_analysis != nil%>
-                                                                <td> Evaluado </td>
-                                                              <% elsif batch.quality_control != nil %>
-                                                                <td> En Evaluacion </td>
-                                                              <% else %>
-                                                                <td><%= batch.state %></ td>
-                                                              <%end%>
+                                                                <td><%= batch.state %></td>
                                                             <% else %>
                                                                 <% if batch.certificatetype == params[:certificate].to_i %>
                                                                     <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -1057,13 +787,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                    <td> Evaluado </td>
-                                                                  <% elsif batch.quality_control != nil %>
-                                                                    <td> En Evaluacion </td>
-                                                                  <% else %>
-                                                                    <td><%= batch.state %></ td>
-                                                                  <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% end %>
                                                             <% end %>
                                                         <% else %>
@@ -1077,13 +801,7 @@
                                                                     <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                     <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                     <td><%= batch.entry_control.organization.name %></td>
-                                                                    <% if batch.sensory_analysis != nil%>
-                                                                    <td> Evaluado </td>
-                                                                  <% elsif batch.quality_control != nil %>
-                                                                    <td> En Evaluacion </td>
-                                                                  <% else %>
-                                                                    <td><%= batch.state %></ td>
-                                                                  <%end%>
+                                                                    <td><%= batch.state %></td>
                                                                 <% else %>
                                                                     <% if batch.certificatetype == params[:certificate].to_i %>
                                                                         <td><%= EntryControl.find(batch.id).entry_number %></td>
@@ -1094,13 +812,7 @@
                                                                         <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
                                                                         <td><%= CertificateType.find(batch.certificatetype).name %></td>
                                                                         <td><%= batch.entry_control.organization.name %></td>
-                                                                        <% if batch.sensory_analysis != nil%>
-                                                                        <td> Evaluado </td>
-                                                                      <% elsif batch.quality_control != nil %>
-                                                                        <td> En Evaluacion </td>
-                                                                      <% else %>
-                                                                        <td><%= batch.state %></ td>
-                                                                      <%end%>
+                                                                        <td><%= batch.state %></td>
                                                                     <% end %>
                                                                 <% end %>
                                                             <% end %>    
