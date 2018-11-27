@@ -27,6 +27,7 @@ class QualityControlsController < ApplicationController
           batch.save
         end
         puts "*******RESULTADO: " + batch.defineResult()
+        batch.updateState()
         redirect_to entry
     else
         redirect_to "/batches/"+batch.id.to_s+"/quality_controls/new"

@@ -23,6 +23,7 @@ class SensoryAnalysesController < ApplicationController
                 batch.save
             end
             puts "*******RESULTADO: " + batch.defineResultSens()
+            batch.updateState()
             redirect_to entry
         else
             redirect_to "/batches/"+batch.id.to_s+"/sensory_analyses/new"
