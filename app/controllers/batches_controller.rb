@@ -34,7 +34,7 @@ class BatchesController < ApplicationController
     
     batch=Batch.find(params[:id])
     if batch.update(batches_params)
-      redirect_to batch.entry_control
+      redirect_to "/batches/"+batch.id.to_s+"/sensory_analyses/new"
     else
       render 'edit'
     end

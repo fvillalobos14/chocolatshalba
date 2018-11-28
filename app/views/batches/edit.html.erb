@@ -8,49 +8,59 @@
             </div>
             <%= form_for [@batch] do |f| %>
             <% if current_user.warehouse_role || current_user.admin_role  %>
-            <div class="input-field">
-                <%= f.label :sackAmount, "Cantidad de sacos" %>
-                <%= f.number_field :sackAmount, min: 0 , :required => true %>
-             </div>
+                <div class="input-field">
+                    <%= f.label :sackAmount, "Cantidad de sacos" %>
+                    <%= f.number_field :sackAmount, min: 0 , :required => true %>
+                </div>
 
-            <div class="input-field">
-                <%= f.label :weight, "Peso en libras" %>
-                <%= f.number_field :weight, step: :any, min: 0 , :required => true %>
-            </div>
-            
-            <p>
-                <%= f.label :cocoaType, "Tipo de cacao" %>
-                <%= f.collection_select :cocoaType, CocoaType.all, :id, :name, class:"dropdown-button btn" %>
-            </p>
+                <div class="input-field">
+                    <%= f.label :weight, "Peso en libras" %>
+                    <%= f.number_field :weight, step: :any, min: 0 , :required => true %>
+                </div>
+                
+                <p>
+                    <%= f.label :cocoaType, "Tipo de cacao" %>
+                    <%= f.collection_select :cocoaType, CocoaType.all, :id, :name, class:"dropdown-button btn" %>
+                </p>
 
-            <p>
-                <%= f.label :geneticMaterial, "Material genético" %>
-                <%= f.collection_select :geneticMaterial, GeneticMaterial.all, :id, :name, class:"dropdown-button btn" %>
-            </p>
+                <p>
+                    <%= f.label :geneticMaterial, "Material genético" %>
+                    <%= f.collection_select :geneticMaterial, GeneticMaterial.all, :id, :name, class:"dropdown-button btn" %>
+                </p>
 
-            <div class="input-field">
-                <%= f.check_box :ft %>
-                <%= f.label 'ft', "Comercio justo" %>
-            </div>
+                <div class="input-field">
+                    <%= f.check_box :ft %>
+                    <%= f.label 'ft', "Comercio justo" %>
+                </div>
+                <br>
+                <p>
+                    <%= link_to "Regresar", @batch.entry_control , class: "btn btn-primary"%>
+                    <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
+                </p>
             <% else %>
                 <% if QualityControl.where(batch_id: @batch.id).blank? %>
                     <div class="input-field">
                         <%= f.label :beans, "Número de Granos de Prueba de Corte" %>
                         <%= f.number_field :beans, step: :any, min: 0 %>
-                    </div> 
+                    </div>
+                    <br>
+                    <p>
+                        <%= link_to "Regresar", @batch.entry_control , class: "btn btn-primary"%>
+                        <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
+                    </p> 
                 <% else %>
                     <div class="input-field">
                         <%= f.label :samples, "Número de Catadores" %>
                         <%= f.number_field :samples, step: :any, min: 0 %>
                     </div>
+                    <br>
+                    <p>
+                        <%= link_to "Regresar", new_batch_sensory_analysis_path(@batch), class: "btn btn-primary"%>
+                        <%= f.submit "Siguiente", class:"btn btn-default btn-lg" %>
+                    </p> 
                 <%end%>
             <% end %>
 
-            <br>
-            <p>
-                <%= link_to "Regresar", @batch.entry_control , class: "btn btn-primary"%>
-                <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
-            </p>
             <% end %>
         </div>
         </div>
