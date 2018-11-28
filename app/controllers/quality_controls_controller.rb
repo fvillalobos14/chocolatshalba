@@ -17,17 +17,23 @@ class QualityControlsController < ApplicationController
         params["results"].each do |result|
           Result.create(:batch_id => batch.id, :parameter_id => result["parameter_id"], :run => result["run"], :score => result["score"])
         end
-
+        calidad = batch.defineResult()
+        if calidad != "A"
+          notification = Notification.where(kind: 1, read: false).first
+          notification.update(read: true)
+          notification.save
+        end
         if not batch.sensory_analysis.nil?
           notification = Notification.where(kind: 1, read: false).first
           notification.update(read: true)
           notification.save
-          createNotification(batch)
+          if calidad == "A"
+            createNotification(batch)
+          end
           batch.review=1
           batch.save
         end
-        puts "*******RESULTADO: " + batch.defineResult()
-        batch.updateState()
+        
         redirect_to entry
     else
         redirect_to "/batches/"+batch.id.to_s+"/quality_controls/new"
