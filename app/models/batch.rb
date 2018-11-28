@@ -193,7 +193,7 @@ class Batch < ApplicationRecord
   def updateState()
     batch = Batch.find(self.id)
     if batch.sensory_analysis == nil && batch.quality_control == nil
-      batch.state = "Rec. Ingesado"
+      batch.state = "Rec. Ingresado"
     elsif batch.sensory_analysis != nil || (batch.cocoaType != 1 && batch.quality_control != nil)
       batch.state = "Evaluado"
     elsif batch.quality_control != nil

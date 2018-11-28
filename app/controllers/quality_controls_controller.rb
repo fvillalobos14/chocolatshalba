@@ -27,13 +27,10 @@ class QualityControlsController < ApplicationController
           notification = Notification.where(kind: 1, read: false).first
           notification.update(read: true)
           notification.save
-          if calidad == "A"
-            createNotification(batch)
-          end
           batch.review=1
           batch.save
         end
-        
+        batch.updateState()
         redirect_to entry
     else
         redirect_to "/batches/"+batch.id.to_s+"/quality_controls/new"
