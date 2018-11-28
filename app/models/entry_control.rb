@@ -46,4 +46,14 @@ class EntryControl < ApplicationRecord
 
   end
 
+  def validateBatches
+    valid = false;
+    self.batches.each do |batch|
+      if batch.state == "Rec. Ingresado" || batch.state == "En Evaluacion"
+        valid = true;
+      end
+    end
+    return valid
+  end
+
 end
