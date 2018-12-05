@@ -30,6 +30,8 @@
                             
                             <p>Comercio justo: <%= select_tag :ft,  options_for_select([["SI", true], ["NO", false]], params[:ft]), id: "different_option_value_html4" ,:include_blank => 'TODOS'%></p>
 
+                            <p>Estado: <%= select_tag :state,  options_for_select([["Rec. Ingresado", "Rec. Ingresado"], ["En Evaluacion", "En Evaluacion"], ["Evaluado","Evaluado"]], params[:state]), id: "different_option_value_html5" ,:include_blank => 'CUALQUIERA'%></p>
+
                             <div class = "row"  >
                                 
                                 <div class = "col m6" >
@@ -77,12 +79,23 @@
 
                         <p>Variedad:
                         <%	if params[:variety]=="" %>    
-                                TODAS
+                                CUALQUIERA
                             <%else%>
                                 <%	if params[:variety]==nil    %>
                                         
                                 <%else%>
                                     <%= GeneticMaterial.find(params[:variety]).name%> 
+                                <%end%> 
+                            <%end%>
+                        </p> 
+                        <p>Estado:
+                        <%	if params[:state]=="" %>    
+                                CUALQUIERA
+                            <%else%>
+                                <%	if params[:state]==nil    %>
+                                        
+                                <%else%>
+                                    <%= params[:state]%>
                                 <%end%> 
                             <%end%>
                         </p> 
