@@ -55,7 +55,7 @@
                     </div>
                     <br>
                     <p>
-                        <%= link_to "Regresar", new_batch_sensory_analysis_path(@batch), class: "btn btn-primary"%>
+                        <%= link_to "Regresar", @batch.entry_control, class: "btn btn-primary"%>
                         <%= f.submit "Siguiente", class:"btn btn-default btn-lg" %>
                     </p> 
                 <%end%>
