@@ -43,6 +43,7 @@ class Batch < ApplicationRecord
     self.enterCode=code
   end
 
+
   def defineResult()
     batch=Batch.find(self.id)
     contador = 0;
