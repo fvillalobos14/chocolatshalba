@@ -34,7 +34,13 @@ class BatchesController < ApplicationController
     
     batch=Batch.find(params[:id])
     if batch.update(batches_params)
-      redirect_to "/batches/"+batch.id.to_s+"/sensory_analyses/new"
+      if batch.quality_control.nil?
+        # session[:return_to] ||= request.referer.referer
+        # redirect_to (:back)
+        redirect_to "/entry_controls/"+batch.entry_control.id.to_s
+      else
+        redirect_to "/batches/"+batch.id.to_s+"/sensory_analyses/new"
+      end
     else
       render 'edit'
     end
