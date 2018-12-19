@@ -18,7 +18,7 @@ class BatchesController < ApplicationController
     batch.enterCode= "k"
     batch.state = "Rec. Ingresado"
     if batch.save
-        createNotification
+        createNotification#soy genial
         redirect_to entryControl
     else
         redirect_to "/entry_controls/"+entryControl.id.to_s+"/batches/new"

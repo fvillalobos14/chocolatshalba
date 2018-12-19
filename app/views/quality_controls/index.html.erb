@@ -17,7 +17,7 @@
               </thead>
               <tbody>
                 <% @entries.each do |entry| %>
-                  <% if QualityControl.where(batch_id: entry.batches.ids).count(:id) < entry.batches.count(:id) or SensoryAnalysis.where(batch_id: entry.batches.ids).count(:id) < entry.batches.count(:id)%>
+                  <% if entry.validateBatches %>
                     <tr>
                       <td><%= entry.organization.name %></td>
                       <td><%= entry.entryDate %></td>
@@ -33,3 +33,4 @@
     </div>
   </div>
 </div>
+

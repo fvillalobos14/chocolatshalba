@@ -43,6 +43,7 @@ class Batch < ApplicationRecord
     self.enterCode=code
   end
 
+
   def defineResult()
     batch=Batch.find(self.id)
     contador = 0;
@@ -190,5 +191,17 @@ class Batch < ApplicationRecord
     return current_quality
   end
   
+  def updateState()
+    batch = Batch.find(self.id)
+    if batch.sensory_analysis == nil && batch.quality_control == nil
+      batch.state = "Rec. Ingresado"
+    elsif batch.sensory_analysis != nil || (batch.cocoaType != 1 && batch.quality_control != nil)
+      batch.state = "Evaluado"
+    elsif batch.quality_control != nil
+      batch.state = "En Evaluacion"
+    end
+
+    batch.save
+  end
   
 end

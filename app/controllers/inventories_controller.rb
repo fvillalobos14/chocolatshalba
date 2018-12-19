@@ -2,6 +2,8 @@ class InventoriesController < ApplicationController
   before_action :authenticate_user!
   def index
     @entries = EntryControl.search(params[:searchbox].to_s, params[:from].to_s,params[:to].to_s)
+    @batchesFilters = []
+    searchBatches(params[:quality].to_i,params[:certificate].to_i,params[:variety].to_i,params[:ft].to_s,params[:state].to_s,params[:purchase].to_i)
     @batchesEAHT = Batch.where(cocoaType: 1)
     @batchesEBHT = Batch.where(cocoaType: 2)
     @batchesECHT = Batch.where(cocoaType: 3)
@@ -23,6 +25,46 @@ class InventoriesController < ApplicationController
       end
       
     end
+  end
+  
+  def searchBatches(cocoaType,certificateType,geneticMaterial,ft,state,buy)
+    @entries.each do |entry|
+      entry.batches.each do |batch|
+        if cocoaType != 0 
+          if batch.cocoaType != cocoaType
+            next
+          end
+        end
+        if certificateType != 0
+          if batch.certificatetype != certificateType
+            next
+          end
+        end
+        if geneticMaterial != 0
+          if batch.geneticMaterial != geneticMaterial
+            next
+          end
+        end 
+        if ft != ""
+          chec = ft == "true"?true:false
+          if batch.ft != chec
+            next
+          end
+        end
+        if state != "" 
+          if batch.state != state
+            next
+          end
+        end
+        if buy != 0
+          if batch.buy != buy
+            next
+          end
+        end
+        @batchesFilters.push(batch)
+      end
+    end
+
   end
 
 end
