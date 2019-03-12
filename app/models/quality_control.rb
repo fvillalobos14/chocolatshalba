@@ -11,7 +11,7 @@ class QualityControl < ApplicationRecord
   before_save  :update_sequence
 
   def remove_results_revision
-    Result.where(quality_control_id: id).destroy_all
+    Result.where(batch_id: batch.id).destroy_all
     Revision.where(quality_control_id: id).destroy_all
   end
 

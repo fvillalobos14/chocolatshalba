@@ -67,6 +67,11 @@ class BatchesController < ApplicationController
   def destroy
     batch=Batch.find(params[:id])
     ec_id = batch.entry_control.id.to_s
+    if QualityControl.where(batch_id: batch.id).blank? || SensoryAnalysis.where(batch_id: batch.id).blank?
+      notification = Notification.where(read: false).first
+      notification.update(read: true)
+      notification.save
+    end
     batch.destroy
     redirect_to "/entry_controls/"+batch.entry_control.id.to_s
   end
