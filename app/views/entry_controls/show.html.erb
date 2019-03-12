@@ -59,8 +59,7 @@
                         </td>
                         <% if current_user.warehouse_role || current_user.admin_role %>
                           <td>
-                            <%= link_to 'Eliminar', batch_path(batch), method: :delete, 
-                         data: { confirm: 'Are you sure?' }%>
+                            <%= link_to 'Eliminar', batch_path(batch), method: :delete, data: { confirm: 'Esta seguro(a) que desea eliminar el lote?' }%>
                           </td>
                           <td>
                             <%= link_to 'Editar', edit_batch_path(batch) %>
