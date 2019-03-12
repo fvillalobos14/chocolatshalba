@@ -58,7 +58,13 @@
                           <%= GeneticMaterial.find(batch.geneticMaterial).name %>
                         </td>
                         <% if current_user.warehouse_role || current_user.admin_role %>
-                          <td><%= link_to 'Editar', edit_batch_path(batch) %></td>
+                          <td>
+                            <%= link_to 'Eliminar', batch_path(batch), method: :delete, 
+                         data: { confirm: 'Are you sure?' }%>
+                          </td>
+                          <td>
+                            <%= link_to 'Editar', edit_batch_path(batch) %>
+                          </td>
                         <% end %>
 
                         <% if current_user.quality_role && ((SensoryAnalysis.where(batch_id: batch.id).present? && QualityControl.where(batch_id: batch.id).present?)) || (QualityControl.where(batch_id: batch.id).present? && SensoryAnalysis.where(batch_id: batch.id).blank? && !@qc_results.nil? && !@qc_results[batch.id].eql?("A"))%>
@@ -77,6 +83,7 @@
                           <td></td>
                         <% end %>
                         <% if current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank? && QualityControl.where(batch_id: batch.id).present? && !@qc_results.nil? && @qc_results[batch.id].eql?("A")%>
+                          
                           <td>
                             <%= link_to "Análisis sensorial", edit_batch_path(batch)%>
                           </td>
@@ -95,7 +102,7 @@
                     <% end %>
                   </tbody>
                 </table>
-                <% if current_user.warehouse_role %>
+                <% if current_user.warehouse_role %>  
                   <br>  
                   <%= link_to 'Agregar lote', new_entry_control_batch_path(@entry), class:"waves-effect waves-light btn"%>
                 <% end %>

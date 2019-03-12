@@ -64,6 +64,13 @@ class BatchesController < ApplicationController
     @batch = Batch.find(params[:id])
   end
 
+  def destroy
+    batch=Batch.find(params[:id])
+    ec_id = batch.entry_control.id.to_s
+    batch.destroy
+    redirect_to "/entry_controls/"+batch.entry_control.id.to_s
+  end
+
   private
   def batches_params
     params.require(:batch).permit(:sackAmount, :weight, :enterCode, :certificatetype, :postharvestCenter, :cocoaType,

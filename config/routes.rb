@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   get 'sequence', to: 'sequences#create'
 
+
   resources :sensory_analyses
   resources :quality_controls
   resources :revisions
