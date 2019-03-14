@@ -24,6 +24,11 @@
                 </p>
 
                 <p>
+                    <%= f.label :certificateType, "Certificado" %>
+                    <%= f.collection_select :certificatetype, CertificateType.all, :id, :name, class:"dropdown-button btn" %>
+                </p>
+
+                <p>
                     <%= f.label :geneticMaterial, "Material genético" %>
                     <%= f.collection_select :geneticMaterial, GeneticMaterial.all, :id, :name, class:"dropdown-button btn" %>
                 </p>
@@ -32,6 +37,7 @@
                     <%= f.check_box :ft %>
                     <%= f.label 'ft', "Comercio justo" %>
                 </div>
+                
                 <br>
                 <p>
                     <%= link_to "Regresar", @batch.entry_control , class: "btn btn-primary"%>

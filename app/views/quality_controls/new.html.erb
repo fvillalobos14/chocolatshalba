@@ -39,7 +39,7 @@
                 <div class="collapsible-body white">
                   <div class="input-field">
                     <%= f.label :code, "Número de hoja" %>
-                    <%= f.text_field :code , :required => true, :readonly => true,  value: Time.now.year.to_s + Time.now.month.to_s.rjust(2, '0')+Time.now.day.to_s.rjust(2, '0')+(Sequence.find_by(year: Time.now.year, day: Time.now.day)).number.to_s.rjust(2, '0'), rating: 4 %>
+                    <%= f.text_field :code , :required => true, :readonly => true,  value: Time.now.day.to_s.rjust(2, '0')+ Time.now.month.to_s.rjust(2, '0') + Time.now.year.to_s + (Sequence.find_by(year: Time.now.year, day: Time.now.day)).number.to_s.rjust(2, '0'), rating: 4 %>
                   </div>
                   <div class="input-field">
                     <%= f.label :made_by, "Persona responsable" %>
