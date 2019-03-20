@@ -14,7 +14,6 @@ class SensoryAnalysesController < ApplicationController
             params["results"].each do |result|
               Result.create(:batch_id => batch.id, :parameter_id => result["parameter_id"], :run => result["run"], :score => result["score"])
             end
-
             if not batch.quality_control.nil?
                 notification = Notification.where(kind: 1, read: false).first
                 notification.update(read:true)
@@ -23,6 +22,8 @@ class SensoryAnalysesController < ApplicationController
                 batch.review=1
                 batch.save
             end
+            puts "*******RESULTADO: " + batch.defineResultSens()
+            batch.updateState()
             redirect_to entry
         else
             redirect_to "/batches/"+batch.id.to_s+"/sensory_analyses/new"

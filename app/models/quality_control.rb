@@ -11,20 +11,17 @@ class QualityControl < ApplicationRecord
   before_save  :update_sequence
 
   def remove_results_revision
-    Result.where(quality_control_id: id).destroy_all
+    Result.where(batch_id: batch.id).destroy_all
     Revision.where(quality_control_id: id).destroy_all
   end
 
   def update_sequence
-    @sequence=(Sequence.find_by(year: Time.current.year, day: Time.current.day))
-    puts @sequence
+    @sequence=(Sequence.find_by(year: Time.now.year, day: Time.now.day))
     if @sequence != nil
       Sequence.update(@sequence.id, :number => @sequence.number+1)
     else
-      seq = Sequence.new(:year => Time.current.year, :day => Time.current.day)
-      puts @seq
-      Seq.save
-      @sequence = Seq
+      seq = Sequence.new(:year => Time.now.year, :day => Time.now.day)
+      seq.save
 
     end
   end

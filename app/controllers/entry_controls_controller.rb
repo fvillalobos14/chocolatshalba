@@ -1,5 +1,8 @@
+require 'def_result'
 class EntryControlsController < ApplicationController
   before_action :authenticate_user!
+  include DefineResult
+
   def new
     @organization = Organization.find(params[:searchbox])
     @entryControl = @organization.entry_controls.build
@@ -21,7 +24,14 @@ class EntryControlsController < ApplicationController
   def show
     @entry = EntryControl.find(params[:id])
     @batches = @entry.batches
-    
+    if current_user.quality_role
+      @qc_results = {}
+      @batches.each do |batch|
+        if not QualityControl.where(batch_id: batch.id).blank?
+          @qc_results[batch.id] = CocoaType.where("id = ?",batch.cocoaType).first.name
+        end
+      end  
+    end
   end
 
   def index

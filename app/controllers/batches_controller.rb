@@ -8,14 +8,17 @@ class BatchesController < ApplicationController
     @batch=@entryControl.batches.build
   end
   
-
+  def batch
+    @batches = Batch.all
+  end
 
   def create
     entryControl = EntryControl.find(params[:entry_control_id])
     batch=entryControl.batches.build(batches_params)
     batch.enterCode= "k"
+    batch.state = "Rec. Ingresado"
     if batch.save
-        createNotification
+        createNotification#soy genial
         redirect_to entryControl
     else
         redirect_to "/entry_controls/"+entryControl.id.to_s+"/batches/new"
@@ -31,7 +34,13 @@ class BatchesController < ApplicationController
     
     batch=Batch.find(params[:id])
     if batch.update(batches_params)
-      redirect_to batch.entry_control
+      if batch.quality_control.nil?
+        # session[:return_to] ||= request.referer.referer
+        # redirect_to (:back)
+        redirect_to "/entry_controls/"+batch.entry_control.id.to_s
+      else
+        redirect_to "/batches/"+batch.id.to_s+"/sensory_analyses/new"
+      end
     else
       render 'edit'
     end
@@ -55,9 +64,22 @@ class BatchesController < ApplicationController
     @batch = Batch.find(params[:id])
   end
 
+  def destroy
+    batch=Batch.find(params[:id])
+    ec_id = batch.entry_control.id.to_s
+    if QualityControl.where(batch_id: batch.id).blank? || SensoryAnalysis.where(batch_id: batch.id).blank?
+      notification = Notification.where(read: false).first
+      notification.update(read: true)
+      notification.save
+    end
+    batch.destroy
+    redirect_to "/entry_controls/"+batch.entry_control.id.to_s
+  end
+
   private
   def batches_params
-    params.require(:batch).permit(:sackAmount, :weight, :enterCode, :certificatetype, :postharvestCenter, :cocoaType, :geneticMaterial, :ft, :samples, :beans)
+    params.require(:batch).permit(:sackAmount, :weight, :enterCode, :certificatetype, :postharvestCenter, :cocoaType,
+                                  :geneticMaterial, :ft, :samples, :beans, :state)
   end
 
   def createNotification

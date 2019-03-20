@@ -42,6 +42,166 @@ class Batch < ApplicationRecord
     end
     self.enterCode=code
   end
+
+
+  def defineResult()
+    batch=Batch.find(self.id)
+    contador = 0;
+    current_quality = "A"
+    Category.all.order(:place).each do |category|
+      break if category.place == 4
+      category.parameters.order(:place).each do |parameter|
+        contador++
+        value = -1
+        div = batch.beans / 100
+        if parameter.acceptance != nil
+          if category.runs > 1
+            value = Result.where(parameter_id: parameter.id, batch_id: batch.id).sum(:score)/(batch.beans/100)
+          else
+            value = Result.where(parameter_id: parameter.id, batch_id: batch.id, run: 1).first.score
+          end
+          puts "Debugging: #{contador.to_s} #{parameter.name} => #{value.to_s} entro en: " 
+          #------------------------
+          if current_quality == "A"
+              if parameter.acceptance.min_qualityA == -1
+                if parameter.acceptance.max_qualityA < value
+                  current_quality = "B"
+                  puts "A -> B"
+                end
+              elsif parameter.acceptance.max_qualityA == -1
+                if parameter.acceptance.min_qualityA > value
+                  current_quality = "B"
+                  puts "A -> B"
+                end
+              end
+          end
+          #-------------------------
+          if current_quality == "B"
+              if parameter.acceptance.min_qualityB == -1
+                if parameter.acceptance.max_qualityB < value
+                  current_quality = "C"
+                  puts "B -> C"
+                end
+              elsif parameter.acceptance.max_qualityB == -1
+                if parameter.acceptance.min_qualityB > value
+                  current_quality = "C"
+                  puts "B -> C"
+                end
+              end
+          end
+          #---------------------------
+          if current_quality == "C"
+              if parameter.acceptance.min_qualityC == -1
+                if parameter.acceptance.max_qualityC < value
+                  current_quality = "C"
+                  puts "C"
+                  break
+                end
+              elsif parameter.acceptance.max_qualityC == -1
+                if parameter.acceptance.min_qualityC > value
+                  current_quality = "C"
+                  puts "C"
+                  break
+                end
+              end
+          end
+        end
+      end
+      if current_quality == "C"
+        break
+      end
+    end
+    batch.cocoaType = CocoaType.where("name = ?",current_quality).first.id
+    if batch.ft && (current_quality == "C" || current_quality == "B")
+      batch.ft=false;
+    end
+    batch.generateCode()
+    batch.save
+    return current_quality
+  end
+
+  def defineResultSens()
+    batch=Batch.find(self.id)
+    contador = 0;
+    current_quality = "A"
+    category = Category.where("id = ?",4).first
+      category.parameters.order(:place).each do |parameter|
+        contador++
+        value = -1
+        div = batch.beans / 100
+        if parameter.acceptance != nil
+          if category.runs > 1
+            value = Result.where(parameter_id: parameter.id, batch_id: batch.id).sum(:score)/(batch.beans/100)
+          else
+            value = Result.where(parameter_id: parameter.id, batch_id: batch.id, run: 1).first.score
+          end
+          puts "Debugging: #{contador.to_s} #{parameter.name} => #{value.to_s} entro en: " 
+          #------------------------
+          if current_quality == "A"
+              if parameter.acceptance.min_qualityA == -1
+                if parameter.acceptance.max_qualityA < value
+                  current_quality = "B"
+                  puts "A -> B"
+                end
+              elsif parameter.acceptance.max_qualityA == -1
+                if parameter.acceptance.min_qualityA > value
+                  current_quality = "B"
+                  puts "A -> B"
+                end
+              end
+          end
+          #-------------------------
+          if current_quality == "B"
+              if parameter.acceptance.min_qualityB == -1
+                if parameter.acceptance.max_qualityB < value
+                  current_quality = "C"
+                  puts "B -> C"
+                end
+              elsif parameter.acceptance.max_qualityB == -1
+                if parameter.acceptance.min_qualityB > value
+                  current_quality = "C"
+                  puts "B -> C"
+                end
+              end
+          end
+          #---------------------------
+          if current_quality == "C"
+              if parameter.acceptance.min_qualityC == -1
+                if parameter.acceptance.max_qualityC < value
+                  current_quality = "C"
+                  puts "C"
+                  break
+                end
+              elsif parameter.acceptance.max_qualityC == -1
+                if parameter.acceptance.min_qualityC > value
+                  current_quality = "C"
+                  puts "C"
+                  break
+                end
+              end
+          end
+        end
+      end
+    batch.cocoaType = CocoaType.where("name = ?",current_quality).first.id
+    if batch.ft && (current_quality == "C" || current_quality == "B")
+      batch.ft=false;
+    end
+    batch.generateCode()
+    batch.save
+    return current_quality
+  end
   
+  def updateState()
+    batch = Batch.find(self.id)
+    if batch.sensory_analysis == nil && batch.quality_control == nil
+      batch.state = "Rec. Ingresado"
+    elsif batch.sensory_analysis != nil || (batch.cocoaType != 1 && batch.quality_control != nil)
+      batch.state = "Evaluado"
+    elsif batch.quality_control != nil
+      batch.state = "En Evaluacion"
+    end
+
+    batch.save
+  end
   
 end

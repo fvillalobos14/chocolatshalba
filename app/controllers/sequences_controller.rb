@@ -5,10 +5,10 @@ class SequencesController < ApplicationController
 def create
 
     @sequence = Sequence.new
-    @sequence.year=Time.current.year
-    @sequence.day=Time.current.day
+    @sequence.year=Time.now.year
+    @sequence.day=Time.now.day
     @sequence.number=1
-    if !Sequence.exists?(year: Time.current.year, day: Time.current.day) 
+    if !Sequence.exists?(year: Time.now.year, day: Time.now.day) 
         Sequence.delete_all
         if !@sequence.save 
             raise "error"

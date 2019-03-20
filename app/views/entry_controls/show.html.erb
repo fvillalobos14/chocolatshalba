@@ -58,17 +58,20 @@
                           <%= GeneticMaterial.find(batch.geneticMaterial).name %>
                         </td>
                         <% if current_user.warehouse_role || current_user.admin_role %>
-                          <td><%= link_to 'Editar', edit_batch_path(batch) %></td>
+                          <td>
+                            <%= link_to 'Eliminar', batch_path(batch), method: :delete, data: { confirm: 'Esta seguro(a) que desea eliminar el lote?' }%>
+                          </td>
+                          <td>
+                            <%= link_to 'Editar', edit_batch_path(batch) %>
+                          </td>
                         <% end %>
 
-                        <% if current_user.quality_role && (SensoryAnalysis.where(batch_id: batch.id).present? && QualityControl.where(batch_id: batch.id).present?)%>
+                        <% if current_user.quality_role && ((SensoryAnalysis.where(batch_id: batch.id).present? && QualityControl.where(batch_id: batch.id).present?)) || (QualityControl.where(batch_id: batch.id).present? && SensoryAnalysis.where(batch_id: batch.id).blank? && !@qc_results.nil? && !@qc_results[batch.id].eql?("A"))%>
                           <td><%= link_to "Ver análisis", batch.quality_control %></td>
                         <% end %>
 
                         <% if current_user.quality_role && QualityControl.where(batch_id: batch.id).blank? %>
                           <td><%= link_to 'Ingresar número de granos', edit_batch_path(batch) %></td>
-                        <% elsif current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank?%>
-                          <td><%= link_to 'Ingresar número de catadores', edit_batch_path(batch) %></td>
                         <%end%>
 
                         <% if current_user.quality_role && QualityControl.where(batch_id: batch.id).blank? %>
@@ -78,9 +81,10 @@
                         <% else %>
                           <td></td>
                         <% end %>
-                        <% if current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank? %>
+                        <% if current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank? && QualityControl.where(batch_id: batch.id).present? && !@qc_results.nil? && @qc_results[batch.id].eql?("A")%>
+                          
                           <td>
-                            <%= link_to "Análisis sensorial", new_batch_sensory_analysis_path(batch)%>
+                            <%= link_to "Análisis sensorial", edit_batch_path(batch)%>
                           </td>
                         <% else %>
                           <td></td>
@@ -97,7 +101,7 @@
                     <% end %>
                   </tbody>
                 </table>
-                <% if current_user.warehouse_role %>
+                <% if current_user.warehouse_role %>  
                   <br>  
                   <%= link_to 'Agregar lote', new_entry_control_batch_path(@entry), class:"waves-effect waves-light btn"%>
                 <% end %>
