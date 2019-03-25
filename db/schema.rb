@@ -218,7 +218,7 @@ ActiveRecord::Schema.define(version: 20181106230947) do
   end
 
   create_table "quality_controls", force: :cascade do |t|
-    t.integer "code"
+    t.string "code"
     t.string "final_code"
     t.date "cut_at"
     t.boolean "f_harvest"
