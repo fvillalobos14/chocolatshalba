@@ -34,11 +34,11 @@ class BatchesController < ApplicationController
     
     batch=Batch.find(params[:id])
     if batch.update(batches_params)
-      if batch.quality_control.nil?
+      if current_user.warehouse_role || current_user.admin_role
         # session[:return_to] ||= request.referer.referer
         # redirect_to (:back)
         redirect_to "/entry_controls/"+batch.entry_control.id.to_s
-      else
+      elsif current_user.quality_role
         redirect_to "/batches/"+batch.id.to_s+"/sensory_analyses/new"
       end
     else
