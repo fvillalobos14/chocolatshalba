@@ -14,7 +14,7 @@ class BarcodesController < ApplicationController
             end
           end
         /puts Rails.application.assets.paths[1]/
-        File.open('barcode.png', 'wb'){ |f| f.write @bcimage}
+        #File.open('barcode.png', 'wb'){ |f| f.write @bcimage}
     end
 
     # def show
