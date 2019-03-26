@@ -1,7 +1,7 @@
 class CreateQualityControls < ActiveRecord::Migration[5.1]
   def change
     create_table :quality_controls do |t|
-      t.string :code
+      t.integer :code
       t.string :final_code
       t.date :cut_at
       t.boolean :f_harvest

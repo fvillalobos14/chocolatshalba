@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181106230947) do
+ActiveRecord::Schema.define(version: 20190326162610) do
 
   create_table "acceptances", force: :cascade do |t|
     t.decimal "max_qualityA"
@@ -218,7 +218,7 @@ ActiveRecord::Schema.define(version: 20181106230947) do
   end
 
   create_table "quality_controls", force: :cascade do |t|
-    t.string "code"
+    t.integer "code", limit: 8
     t.string "final_code"
     t.date "cut_at"
     t.boolean "f_harvest"
