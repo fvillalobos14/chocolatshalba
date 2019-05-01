@@ -20,6 +20,10 @@ Install gems
 ```
 bundle install --without production
 ```
+Setup Database
+```
+rails db:setup
+```
 Migrate database
 ```
 rails db:migrate
