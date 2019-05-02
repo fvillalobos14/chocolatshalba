@@ -10,12 +10,18 @@
             <table class="striped bordered">
               <thead>
                 <tr>
+                  <th>Codigo de lote</th>
                   <th>Proveedor</th>
                   <th>Fecha de ingreso</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
+                <% @batches do |batch| %>
+                  <tr>
+                    <td><%= batch.enterCode %></td>
+                  </tr>
+                <% end %>
                 <% @entries.each do |entry| %>
                   <% if entry.validateBatches %>
                     <tr>
