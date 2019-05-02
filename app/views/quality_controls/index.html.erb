@@ -17,7 +17,7 @@
                 </tr>
               </thead>
               <tbody>
-                <% @batches do |batch| %>
+                <% @batches.each do |batch| %>
                   <tr>
                     <td><%= batch.enterCode %></td>
                   </tr>
