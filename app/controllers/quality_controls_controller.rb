@@ -2,11 +2,10 @@ class QualityControlsController < ApplicationController
   before_action :authenticate_user!
   def index
     @entries = EntryControl.all
-    @batches = Batch.all
   end
 
   def new
-    @batch = Batch.find(params[:batch_id])
+  	@batch = Batch.find(params[:batch_id])
     @qualityControl = @batch.build_quality_control
   end
 

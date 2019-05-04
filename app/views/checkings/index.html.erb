@@ -12,15 +12,17 @@
                 <th>Código de lote</th>
                 <th>Proveedor</th>
                 <th>Fecha de ingreso</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
             <% @batches.each do |batch| %>
               <% if batch.certificate_checks.first == nil && batch.ft %>
                 <tr>
-                  <td><%= link_to batch.enterCode, batch %></td>
+                  <td><%= batch.enterCode %></td>
                   <td><%=	batch.entry_control.organization.name %></td>
                   <td><%=	batch.entry_control.entryDate %></td>
+                  <td><%=	link_to "Revisar", batch %></td>
                 </tr>
               <% end %>
             <% end %>
