@@ -10,18 +10,18 @@
             <table class="striped bordered">
               <thead>
                 <tr>
+                  <th>Codigo de lote</th>
                   <th>Proveedor</th>
                   <th>Fecha de ingreso</th>
-                  <th></th>
                 </tr>
               </thead>
-              <tbody>
-                <% @entries.each do |entry| %>
-                  <% if entry.validateBatches %>
+              <tbody>   
+                <% @batches.each do |batch| %>
+                  <% if batch.entry_control.validateBatches %>
                     <tr>
-                      <td><%= entry.organization.name %></td>
-                      <td><%= entry.entryDate %></td>
-                      <td><%= link_to "Lotes", entry %></td>
+                      <td><%= link_to batch.enterCode, batch.entry_control %></td>
+                      <td><%= batch.entry_control.organization.name %></td>
+                      <td><%= batch.entry_control.entryDate %></td>
                     </tr>
                   <% end %>
                 <% end %>
@@ -33,4 +33,3 @@
     </div>
   </div>
 </div>
-
