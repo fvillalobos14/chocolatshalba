@@ -78,20 +78,20 @@
                                 <% if parameter.id == 1 || parameter.id == 2 || parameter.id == 3 %> 
                                   <% if parameter.name.start_with?("Peso de 300 granos")%>
                                       <td width="3%">
-                                      <%= r.text_field :score, step: :any, :value => 0, min: 0 ,:required => true, :class=>"nontest", :id => "grainWeight"%>
+                                      <%= r.text_field :score, :tabindex=> i, step: :any, :value => 0, min: 0 ,:required => true, :class=>"nontest", :id => "grainWeight"%>
                                       </td>
                                   <% elsif !parameter.name.start_with?("Peso de 300 granos") && !parameter.name.start_with?("Humedad")%>
                                       <td width="3%">
-                                      <%= r.text_field :score, step: :any,:value => 0, :required => true, :readonly=>true, :class=>"nontest", :id => "averageWeight"%>
+                                      <%= r.text_field :score, :tabindex=> i, step: :any,:value => 0, :required => true, :readonly=>true, :class=>"nontest", :id => "averageWeight"%>
                                       </td>
                                     <%else%>                                  
                                       <td width="3%">
-                                      <%= r.number_field :score, step: :any, :value => 0, min: 0 , :required => true, :class=>"nontest"%>
+                                      <%= r.number_field :score, :tabindex=> i, step: :any, :value => 0, min: 0 , :required => true, :class=>"nontest"%>
                                       </td>
                                     <%end%>
                                 <%else%>
                                   <td width="3%">
-                                  <%= r.number_field :score, step: :any, :value => 0, min: 0 , :required => true, :class=>"phys"%>
+                                  <%= r.number_field :score, :tabindex=> i, step: :any, :value => 0, min: 0 , :required => true, :class=>"phys"%>
                                   </td>
 
                                 <% end %>
@@ -104,7 +104,7 @@
                         <% end %>
                      </table>
                    <% end %>
-                    <button name="button" type="button" onclick="alert_phys_test()" class= "btn btn-primary">Verificar cantidad de granos</button>
+                    <button name="button" tabindex="7" type="button" onclick="alert_phys_test()" class= "btn btn-primary">Verificar cantidad de granos</button>
                  </div>
                </li>
                <li>
@@ -113,7 +113,7 @@
             </ul>
             <p>
               <%= link_to "Regresar", @batch.entry_control , class: "btn btn-primary"%>
-              <%= f.submit "Aceptar", class:"btn btn-default btn-lg", id: "btn-submit", disabled: true%>
+              <%= f.submit "Aceptar", :tabindex=> 8, class:"btn btn-default btn-lg", id: "btn-submit", disabled: true%>
             </p>
           </div>
         </div>
