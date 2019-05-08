@@ -1,0 +1,153 @@
+<div class="container">
+  <div class="row">
+    <div class="col m12">
+      <%= form_for [@batch, @qualityControl] do |f| %>
+        <%= f.hidden_field :cut_at, :value => Date.today %>
+        <div class="card">
+          <div class="card-content">
+            <div class="page-header">
+              <h1>Análisis de calidad</h1>
+            </div>
+            <p>
+              Cooperativa/Proveedor:
+              <%= @batch.entry_control.organization.name %>
+            </p>
+
+            <p>
+              Fecha de ingreso:
+              <%= @batch.entry_control.entryDate %>
+            </p>
+
+            <p>
+              Código de muestra:
+              <%= @batch.enterCode %>
+            </p>
+
+            <p>
+              Peso final:
+              <%= number_with_precision(@batch.weight, precision: 2) %>
+              lb
+            </p>
+            
+            <br>
+            <ul class="collapsible" data-collapsible="accordion">
+              <li>
+                <div class="collapsible-header section-color white-text text">
+                  <i class="material-icons">chrome_reader_mode</i>
+                  <b>DATOS GENERALES</b>
+                </div>
+                <div class="collapsible-body white">
+                  <div class="input-field">
+                    <%= f.label :code, "Número de hoja" %>
+                    <%= f.text_field :code , :required => true, :readonly => true,  value: Time.now.day.to_s.rjust(2, '0')+ Time.now.month.to_s.rjust(2, '0') + Time.now.year.to_s + (Sequence.find_by(year: Time.now.year, day: Time.now.day)).number.to_s.rjust(2, '0'), rating: 4 %>
+                  </div>
+                  <div class="input-field">
+                    <%= f.label :made_by, "Persona responsable" %>
+                    <%= f.text_field :made_by , :required => true%>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header section-color white-text">
+                  <i class="material-icons">insert_chart</i>
+                  <b>DATOS DE ANALISIS</b>
+                </div>
+                <div class="collapsible-body white">
+                  <% Category.where(sensory: false).order(:place).each do |category| %>
+                    <table class="highlight bordered">
+                      <tr>
+                        <th>
+                          <%= category.name %>
+                        </th>
+                        <% (1..category.runs).each do |i| %>
+                          <th align="right">
+                            <%= i %>
+                          </th>
+                        <% end %>
+                        <th></th>
+                      </tr>
+                      <% category.parameters.order(:place).each do |parameter| %>
+                        <tr>
+                          <td width="7%">
+                            <%= parameter.name %>
+                          </td>
+                          <%= fields_for 'results[]', Result.new do |r| %>
+                            <% (1..category.runs).each do |i| %>
+                              <%= r.hidden_field :parameter_id, :value => parameter.id %>
+                                <%= r.hidden_field :run, :value => i %>
+                                <% if parameter.id == 1 || parameter.id == 2 || parameter.id == 3 %> 
+                                  <% if parameter.name.start_with?("Peso de 300 granos")%>
+                                      <td width="3%">
+                                      <%= r.text_field :score, :tabindex => i, step: :any, :value => 0, min: 0 ,:required => true, :class=>"nontest", :id => "grainWeight"%>
+                                      </td>
+                                  <% elsif !parameter.name.start_with?("Peso de 300 granos") && !parameter.name.start_with?("Humedad")%>
+                                      <td width="3%">
+                                      <%= r.text_field :score, :tabindex => i, step: :any,:value => 0, :required => true, :readonly=>true, :class=>"nontest", :id => "averageWeight"%>
+                                      </td>
+                                    <%else%>                                  
+                                      <td width="3%">
+                                      <%= r.number_field :score, :tabindex => i, step: :any, :value => 0, min: 0 , :required => true, :class=>"nontest"%>
+                                      </td>
+                                    <%end%>
+                                <%else%>
+                                  <td width="3%">
+                                  <%= r.number_field :score, :tabindex => i, step: :any, :value => 0, min: 0 , :required => true, :class=>"phys"%>
+                                  </td>
+
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                            <td width="1%">
+                              <%= parameter.unit %>
+                            </td>
+                          </tr>
+                        <% end %>
+                     </table>
+                   <% end %>
+                    <button name="button" type="button" onclick="alert_phys_test()" class= "btn btn-primary">Verificar cantidad de granos</button>
+                 </div>
+               </li>
+               <li>
+                 <%= f.hidden_field :observation, :value => "Ninguna" %>
+               </li>
+            </ul>
+            <p>
+              <%= link_to "Regresar", @batch.entry_control , class: "btn btn-primary"%>
+              <%= f.submit "Aceptar", class:"btn btn-default btn-lg", id: "btn-submit", disabled: true%>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  function alert_phys_test()
+  { 
+    var beans = <%=@batch.beans%>;
+    var sum = 0;
+    $("input[class *= 'phys']").each(function(){
+        sum += +$(this).val();
+    });
+    if(sum < beans && sum >= 0){
+      $('#btn-submit').attr('disabled', true); 
+      Materialize.toast('La cantidad total de granos en el análisis físico no es de ' + beans + '. Es de ' + sum + ' grano(s).', 4000);
+    }else if(sum >beans){
+      $('#btn-submit').attr('disabled', true); 
+      Materialize.toast('La cantidad total de granos en el análisis físico no es de '+ beans +'. Es de ' + sum +  ' grano(s).', 4000);
+    }else{
+      $('#btn-submit').attr('disabled', false); 
+      Materialize.toast('La cantidad total de granos en el análisis físico es de ' + beans +'.', 4000);
+    }
+  }
+
+  document.getElementById("grainWeight").addEventListener("keyup", average_weight_per_grain); 
+  document.getElementById("averageWeight").style.color = "black";
+  
+  function average_weight_per_grain(){
+    var beans = <%=@batch.beans%>;
+    var weight = document.getElementById("grainWeight").value;
+    document.getElementById("averageWeight").value = (weight/beans).toFixed(2); 
+  }
+</script>
