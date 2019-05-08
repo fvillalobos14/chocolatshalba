@@ -26,15 +26,8 @@
                                 <%= f.check_box :collectionCleaningControl %>
                                 <%= f.label 'collectionCleaningControl', "Control de limpieza de áreas del centro de acopio" %>
                             </div>
-                            <div class="input-field">
-                                <%= f.check_box :warehouseEntrySheet %>
-                                <%= f.label 'warehouseEntrySheet', "Hoja de ingreso a bodega" %>
-                            </div>
-                            <div class="input-field">
-                                <%= f.check_box :billCopy %>
-                                <%= f.label 'billCopy', "Copia de factura" %>
-                            </div>
-                            <br>        
+
+                            <br>
                             <div>
                             <% if current_user.certification_role | current_user.purchase_role %>
                                 <%= link_to "Regresar",  :back , class: "btn btn-primary"%>
@@ -44,10 +37,10 @@
                                 <%= f.submit "Guardar", class:"btn btn-default btn-lg" %>
                             <% end %>
                             </div>
-                        <% end %>             
+                        <% end %>
                     </div>
                 </div>
             </div>
         </div>
-    </div>      
+    </div>
 </div>
