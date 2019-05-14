@@ -49,10 +49,9 @@
                 </tr>
               </thead>
               <tbody>
-                <% @batches.each do |batch| %>
-                  <tr>
-
-                    <td>
+                <!-- <% @batches.each do |batch| %>
+                  <tr>   
+                     <td>
                       <%= number_with_precision(batch.weight, precision: 2) %> lb
                     </td>
                     
@@ -107,9 +106,9 @@
                     <% end %>
                     <td>
                         <%= link_to "Código de Barra", new_batch_barcode_path(batch) %>
-                    </td>
+                    </td> 
                   </tr>
-                <% end %>
+                <% end %> -->
               </tbody>
             </table>
             <% if current_user.warehouse_role %>  
