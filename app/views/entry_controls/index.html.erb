@@ -1,21 +1,15 @@
-
 <div class="container">
   <div class="row">
     <div class="col m12">
       <div class="card">
         <div class="card-content">
-        
-          <div class="page-header">
-            <h1>Control de ingreso</h1>
-          </div>
+          <div class="page-header"> <h1>Control de ingreso</h1> </div>
         
           <%= form_for [@organization, @entryControl] do |f| %>
-           
-              <p>
-                <%= f.label :organization_id, "Proveedor" %>
-                <%= f.collection_select :organization_id, @organization, :id, :name, class:"dropdown-button btn" %>
-              </p>
-            
+            <p>
+              <%= f.label :organization_id, "Proveedor" %>
+              <%# <%= f.collection_select :organization_id, Organization.all, :id, :name, prompt: true %> %>
+            </p>
             <p>
               <%= link_to "Regresar", organizations_path , class: "btn btn-primary"%>
               <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
