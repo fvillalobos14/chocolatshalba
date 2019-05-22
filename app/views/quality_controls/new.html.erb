@@ -28,26 +28,28 @@
               <%= number_with_precision(@batch.weight, precision: 2) %>
               lb
             </p>
-            <a class="waves-effect waves-light btn" data-target="modal1">Determinar</a>
+            <a class="waves-effect waves-light btn" data-target="modal1">Cambiar el numero de grano</a>
 
-
+            <%
+=begin%>
+ <%- Pop Up Box que cambia el numero de grano %> 
+<%
+=end%>
             <div id="modal1" class="modal">
-              <%= form_for ([@batch, @batch.certificate_checks.build]) do |f| %>
                 <div class="modal-content">
                   <center>
-                    <h5>Ingrese el nuevo numero de grano</h5>
+                    <h5>Ingrese el Númeroo de Granos de Prueba de Corte: </h5>
                     
                     <div class="input-field">
-                      <%= f.label :description, "Número de Granos de Prueba de Corte" %>
-                      <%= f.text_field :description, :value => @batch.beans, class:"materialize-textarea", :required => true%>
+                      <%= f.number_field :code, class:"materialize-textarea", :required => true%>
                     </div>
                     <%= f.submit 'Aceptar',class:"modal-action modal-close waves-effect waves-light btn" %>
                     <a class="modal-action modal-close waves-effect waves-light red darken-1 btn">Cancelar</a>
                   </center>
                 </div>
-              <% end %>
             </div>
-            
+            <% puts @batch.inspect%>
+            <% puts @qualityControl.inspect%>
 
             <br>
             <ul class="collapsible" data-collapsible="accordion">
