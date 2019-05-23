@@ -8,19 +8,29 @@
               <h1>Controles de ingreso</h1>
             </div>
             <table class="striped bordered">
+
+              <h3>Filtrar por </h3>
+              <h5>Proveedor: </h5>
+              <h5>Hoja De Ingreso: </h5>
               <thead>
                 <tr>
                   <th>Codigo de lote</th>
                   <th>Proveedor</th>
+                  <th>Hoja de Ingreso</th>
                   <th>Fecha de ingreso</th>
                 </tr>
               </thead>
-              <tbody>   
+              <tbody>  
+
+            <% puts @entries.inspect%>
+            <% puts @batches.inspect%>
+
                 <% @batches.each do |batch| %>
                   <% if batch.entry_control.validateBatches %>
                     <tr>
                       <td><%= link_to batch.enterCode, batch.entry_control %></td>
                       <td><%= batch.entry_control.organization.name %></td>
+                      <td><%= batch.entry_control.entry_number %></td>
                       <td><%= batch.entry_control.entryDate %></td>
                     </tr>
                   <% end %>

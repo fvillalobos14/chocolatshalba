@@ -1,130 +1,143 @@
 <div class="container">
   <div class="row">
     <div class="col m12">
+      
+      <div class = "card">
+        <div class = "card-content">
+            <div class="page-header"> <h1>Control de hoja de ingreso</h1> </div>
+            <div class="row">
+              <table class="striped bordered">
+              <thead>
+                <tr>
+                  <th>Proveedor</th>
+                  <th>Entregado por</th>
+                  <th>Recibido por</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <%= Organization.find(@entry.organization_id).name%>
+                  </td>
+                  <td>
+                    <%= @entry.receivedBy %>
+                  <td>
+                    <%= @entry.deliveredBy %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>      
+      
       <div class="card">
         <div class="card-content">
           <div class="page-header">
-            <h1>Control de ingreso</h1>
+            <h1> <i class="material-icons">view_list</i> LOTES</h1>
           </div>
-          <p>
-            Proveedor:
-            <%= Organization.find(@entry.organization_id).name%>
-            
-          </p>
-          <p>
-            Recibido por:
-            <%= @entry.receivedBy %>
-          </p>
-          <p>
-            Entregado por:
-            <%= @entry.deliveredBy %>
-          </p>
-          
-          <br>
-          <ul class="collapsible" data-collapsible="accordion">
-            <li>
-              <div class="collapsible-header section-color white-text text">
-                <i class="material-icons">assignment</i>
-                <b>LOTES</b>
-              </div>
-              <div class="collapsible-body white">
-                <table class="striped bordered">
-                  <thead>
-                    <tr>
-                      <th>Numero de hoja de ingreso</th>
-                      <th>Peso en Libras</th>
-                      <th>Peso en Kilogramos</th>
-                      <th>Código de identificación</th>
-                      <th>Tipo de cacao</th>
-                      <th>Material genético</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @batches.each do |batch| %>
-                      <tr>
-                        <td>
-                          <%= EntryControl.find(batch.entry_control_id).entry_number %>
-                        </td>
-                        <td>
-                          <%= number_with_precision(batch.weight, precision: 2) %> lb</td>
-                          <td><%= number_with_precision(batch.weight/2.204623, precision: 2)  %> kg</td> 
-                        <td>
-                          <%= batch.enterCode %>
-                        </td>
-                        <td>
-                          <%= CocoaType.find(batch.cocoaType).name %>
-                        </td>
-                        <td>
-                          <%= GeneticMaterial.find(batch.geneticMaterial).name %>
-                        </td>
-                        <% if current_user.warehouse_role || current_user.admin_role %>
-                          <td>
-                            <%= link_to 'Eliminar', batch_path(batch), method: :delete, data: { confirm: 'Esta seguro(a) que desea eliminar el lote?' }%>
-                          </td>
-                          <td>
-                            <%= link_to 'Editar', edit_batch_path(batch) %>
-                          </td>
-                        <% end %>
-
-                        <% if current_user.quality_role && ((SensoryAnalysis.where(batch_id: batch.id).present? && QualityControl.where(batch_id: batch.id).present?)) || (QualityControl.where(batch_id: batch.id).present? && SensoryAnalysis.where(batch_id: batch.id).blank? && !@qc_results.nil? && !@qc_results[batch.id].eql?("A"))%>
-                          <td><%= link_to "Ver análisis", batch.quality_control %></td>
-                        <% end %>
-
-                        <% if current_user.quality_role && QualityControl.where(batch_id: batch.id).blank? %>
-                          <td><%= link_to 'Ingresar número de granos', edit_batch_path(batch) %></td>
-                        <%end%>
-
-                        <% if current_user.quality_role && QualityControl.where(batch_id: batch.id).blank? %>
-                          <td>
-                            <%= link_to "Análisis físico", new_batch_quality_control_path(batch)%>
-                          </td>
-                        <% else %>
-                          <td></td>
-                        <% end %>
-                        <% if current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank? && QualityControl.where(batch_id: batch.id).present? && !@qc_results.nil? && @qc_results[batch.id].eql?("A")%>
-                          
-                          <td>
-                            <%= link_to "Análisis sensorial", edit_batch_path(batch)%>
-                          </td>
-                        <% else %>
-                          <td></td>
-                        <% end %>
-                        <% if current_user.admin_role and not batch.quality_control.nil? %>
-                          <td>
-                            <%= link_to "Editar análisis físico", edit_quality_control_path(batch.quality_control.id) %>
-                          </td>
-                        <% end %>
-                        <td>
-                            <%= link_to "Código de Barra", new_batch_barcode_path(batch) %>
-                        </td>
-                      </tr>
+          <div>
+            <table class="striped bordered">
+              <thead>
+                <tr>
+                  <th>Peso en Libras</th>
+                  <th>Código de proveedor</th>
+                  <th>Sello</th>
+                  <th>Calidad</th>
+                  <th>Variedad</th>
+                  <th>Fair Trade</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @batches.each do |batch| %>
+                  <tr>   
+                     <td>
+                      <%= number_with_precision(batch.weight, precision: 2) %> lb
+                    </td>
+                    
+                    <td>
+                      <%= batch.enterCode %>
+                    </td>
+                    
+                    <td>
+                      <%= CocoaType.find(batch.cocoaType).name %>
+                    </td>
+                    
+                    <td>
+                      <%= GeneticMaterial.find(batch.geneticMaterial).name %>
+                    </td>
+                    
+                    <% if current_user.warehouse_role || current_user.admin_role %>
+                      <td>
+                        <%= link_to 'Eliminar', batch_path(batch), method: :delete, data: { confirm: 'Esta seguro(a) que desea eliminar el lote?' }%>
+                      </td>
+                      <td>
+                        <%= link_to 'Editar', edit_batch_path(batch) %>
+                      </td>
                     <% end %>
-                  </tbody>
-                </table>
-                <% if current_user.warehouse_role %>  
-                  <br>  
-                  <%= link_to 'Agregar lote', new_entry_control_batch_path(@entry), class:"waves-effect waves-light btn"%>
+
+                    <% if current_user.quality_role && ((SensoryAnalysis.where(batch_id: batch.id).present? && QualityControl.where(batch_id: batch.id).present?)) || (QualityControl.where(batch_id: batch.id).present? && SensoryAnalysis.where(batch_id: batch.id).blank? && !@qc_results.nil? && !@qc_results[batch.id].eql?("A"))%>
+                      <td><%= link_to "Ver análisis", batch.quality_control %></td>
+                    <% end %>
+
+                    <% if current_user.quality_role && QualityControl.where(batch_id: batch.id).blank? %>
+                      <td><%= link_to 'Ingresar número de granos', edit_batch_path(batch) %></td>
+                    <%end%>
+
+                    <% if current_user.quality_role && QualityControl.where(batch_id: batch.id).blank? %>
+                      <td>
+                        <%= link_to "Análisis físico", new_batch_quality_control_path(batch)%>
+                      </td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
+                    <% if current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank? && QualityControl.where(batch_id: batch.id).present? && !@qc_results.nil? && @qc_results[batch.id].eql?("A")%>
+
+                      <td>
+                        <%= link_to "Análisis sensorial", edit_batch_path(batch)%>
+                      </td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
+                    <% if current_user.admin_role and not batch.quality_control.nil? %>
+                      <td>
+                        <%= link_to "Editar análisis físico", edit_quality_control_path(batch.quality_control.id) %>
+                      </td>
+                    <% end %>
+                    <td>
+                        <%= link_to "Código de Barra", new_batch_barcode_path(batch) %>
+                    </td> 
+                  </tr>
                 <% end %>
-              </div>
-            <% if current_user.warehouse_role || current_user.admin_role %>
-              <li>
-                <div class="collapsible-header section-color white-text text">
-                  <i class="material-icons">file_upload</i>
-                  <b>DOCUMENTOS</b>
-                </div>
-                <div class="collapsible-body white">
-                  
+              </tbody>
+            </table>
+            <% if current_user.warehouse_role %>
+              <br>  
+              <%= link_to 'Agregar lote', new_entry_control_batch_path(@entry), class:"waves-effect waves-light btn"%>
+            <% end %>
+          </div><br>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-content">
+          <div class="row">
+                <% if current_user.warehouse_role || current_user.admin_role %>
+                  <div class="page-header">
+                    <h1> <i class="material-icons">description</i> DOCUMENTOS</h1>
+                  </div>
+                  <div class="col s3">
                     <% if @entry.filechecklists.empty? %>
                       <%= link_to "Verificar documentos", new_entry_control_filechecklist_path(@entry), class:"waves-effect waves-light btn" %>
                     <% else %>
                       <%= link_to "Verificar documentos", edit_filechecklist_path(@entry.filechecklists.first), class:"waves-effect waves-light btn" %>
                     <% end %>
-                  
-                </div>
-              </li>
-            <% end %>
-          </ul>
-          <%= link_to "Regresar", quality_controls_path , class: "btn btn-primary"%>
+                  </div>
+                <% end %>
+                <div class="col s3">
+                  <%= link_to "Regresar", quality_controls_path , class: "btn btn-primary"%>
+            </div>
+          </div>
         </div>
       </div>
     </div>

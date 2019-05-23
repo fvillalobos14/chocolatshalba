@@ -28,7 +28,29 @@
               <%= number_with_precision(@batch.weight, precision: 2) %>
               lb
             </p>
-            
+            <a class="waves-effect waves-light btn" data-target="modal1">Cambiar el numero de grano</a>
+
+            <%
+=begin%>
+ <%- Pop Up Box que cambia el numero de grano %> 
+<%
+=end%>
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                  <center>
+                    <h5>Ingrese el Númeroo de Granos de Prueba de Corte: </h5>
+                    
+                    <div class="input-field">
+                      <%= f.number_field :code, class:"materialize-textarea", :required => true%>
+                    </div>
+                    <%= f.submit 'Aceptar',class:"modal-action modal-close waves-effect waves-light btn" %>
+                    <a class="modal-action modal-close waves-effect waves-light red darken-1 btn">Cancelar</a>
+                  </center>
+                </div>
+            </div>
+            <% puts @batch.inspect%>
+            <% puts @qualityControl.inspect%>
+
             <br>
             <ul class="collapsible" data-collapsible="accordion">
               <li>
@@ -150,4 +172,18 @@
     var weight = document.getElementById("grainWeight").value;
     document.getElementById("averageWeight").value = (weight/beans).toFixed(2); 
   }
+</script>
+
+<script>
+  $(document).ready(function () {
+    $('.modal').modal();
+  });
+  $('#modal1').modal('open');
+  $('#modal1').modal('close');
+</script>
+
+<script>
+  $(document).on('turbolinks:load', function () {
+    $('select').material_select();
+  })
 </script>

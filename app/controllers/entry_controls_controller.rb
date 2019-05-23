@@ -8,8 +8,6 @@ class EntryControlsController < ApplicationController
     @entryControl = @organization.entry_controls.build
   end
 
-  
-
   def create
     organization = Organization.find(params[:organization_id])
     entryControl = organization.entry_controls.build(entryControl_params)
@@ -35,7 +33,9 @@ class EntryControlsController < ApplicationController
   end
 
   def index
-    @organization = Organization.all
+    @organization = Organization.find(params[:searchbox])
+    @entryControl = @organization.entry_controls.build
+
   end
 
 

@@ -7,50 +7,40 @@
             <h1>Lote</h1>
           </div>
           <%= form_for [@entryControl, @batch] do |f| %>
-            <div class="input-field">
-              <%= f.label :sackAmount, "Cantidad de sacos" %>
-              <%= f.number_field :sackAmount, min: 0 , :required => true %>
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Peso en libras</th>
+                    <th>Centro de poscosecha</th>
+                    <th>Sello</th>
+                    <th>Calidad</th>
+                    <th>Variedad</th>
+                    <th>Comercio justo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th><%= f.number_field :weight, step: :any, min: 0 , :required => true %></th>
+                    <th><%= f.text_field :postharvestCenter , :required => true %></th>
+                    <th><%= f.collection_select :certificatetype, @certificate, :id, :name, class:"dropdown-button btn" %></th>
+                    <th><%= f.collection_select :cocoaType, @cocoa, :id, :name, class:"dropdown-button btn" %></th>
+                    <th><%= f.collection_select :geneticMaterial, @genetic, :id, :name, class:"dropdown-button btn" %></th>
+                    <th class="center"><%= f.check_box :ft, class:"input-field", type:"checkbox" %>
+                      <%= f.label ' ' %>
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
+
+              <%= f.hidden_field :samples, step: :any, :value => 1, :required => true %>
+              <%= f.hidden_field :beans, step: :any, :value => 300, :required => true %>
+
+              <p>
+                <%= link_to "Regresar", @entryControl , class: "btn btn-primary"%>
+                <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
+              </p>
             </div>
-
-            <div class="input-field">
-              <%= f.label :weight, "Peso en libras" %>
-              <%= f.number_field :weight, step: :any, min: 0 , :required => true %>
-            </div> 
-            
-            <%= f.hidden_field :samples, step: :any, :value => 1, :required => true %>
-
-            <%= f.hidden_field :beans, step: :any, :value => 300, :required => true %>
-
-            <div class="input-field">
-              <%= f.label :postharvestCenter, "Centro de poscosecha" %>
-              <%= f.text_field :postharvestCenter , :required => true %>
-            </div>
-
-            <p>
-              <%= f.label :cocoaType, "Calidad" %>
-              <%= f.collection_select :cocoaType, @cocoa, :id, :name, class:"dropdown-button btn" %>
-            </p>
-
-            <p>
-              <%= f.label :certificatetype, "Certificado" %>
-              <%= f.collection_select :certificatetype, @certificate, :id, :name, class:"dropdown-button btn" %>
-            </p>
-
-            <p>
-              <%= f.label :geneticMaterial, "Variedad" %>
-              <%= f.collection_select :geneticMaterial, @genetic, :id, :name, class:"dropdown-button btn" %>
-            </p>
-
-            <div class="input-field">
-              <%= f.check_box :ft %>
-              <%= f.label 'ft', "Comercio justo" %>
-            </div>
-
-            <br>
-            <p>
-              <%= link_to "Regresar", @entryControl , class: "btn btn-primary"%>
-              <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
-            </p>
           <% end %>
         </div>
       </div>
@@ -59,7 +49,7 @@
 </div>
 
 <script>
-  $(document).on('turbolinks:load', function () {
-    $('select').material_select();
-  })
+    $(document).on('turbolinks:load', function () {
+        $('select').material_select();
+    })
 </script>

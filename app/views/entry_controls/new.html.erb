@@ -1,35 +1,41 @@
 <div class = "container">
   <div class = "row">
     <div class = "col m12">
+      
       <div class = "card">
         <div class = "card-content">
           <%= form_for [@organization, @entryControl] do |f| %>
             <%= f.hidden_field :entryDate, :value => Date.today %>
             <%= f.hidden_field :exchangeRate, :value => 23.50 %>
-            <div class="page-header">
-              <h1>Control de ingreso</h1>
-            </div>
+            <div class="page-header"> <h1>Control de hoja de ingreso</h1> </div>
+            <div class="row">
+              <div class="col s4">
+                <div class = "input-field">
+                  <%= f.label :entry_number, "Número de hoja de ingreso" %>
+                  <%= f.number_field :entry_number, min: 0, :required => true %>
+                </div>
+              </div>
 
-            <div class = "input-field">
-              <%= f.label :entry_number, "Número de hoja de ingreso" %>
-              <%= f.number_field :entry_number, min: 0, :required => true %>
-            </div>
+              <div class="col s4">
+                <div class = "input-field">
+                  <%= f.label :receivedBy, "Recibido por" %>
+                  <%= f.text_field :receivedBy, :required => true %>
+                </div>
+              </div>
 
-            <div class = "input-field">
-              <%= f.label :receivedBy, "Recibido por" %>
-              <%= f.text_field :receivedBy, :required => true %>
+              <div class="col s4">
+                <div class = "input-field">
+                  <%= f.label :deliveredBy, "Entregado por" %>
+                  <%= f.text_field :deliveredBy, :required => true %>
+                </div>
+              </div>
             </div>
-
-            <div class = "input-field">
-              <%= f.label :deliveredBy, "Entregado por" %>
-              <%= f.text_field :deliveredBy, :required => true %>
+            <div class="row">
+              <div class="col s4">                
+                <%= link_to "Regresar", organizations_path , class: "btn btn-primary"%>
+                <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
+              </div>
             </div>
-
-            <br>
-            <p>
-              <%= link_to "Regresar", organizations_path , class: "btn btn-primary"%>
-              <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
-            </p>
           <% end %>
         </div>
       </div>
