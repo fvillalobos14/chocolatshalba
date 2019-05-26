@@ -1,8 +1,13 @@
 class QualityControlsController < ApplicationController
   before_action :authenticate_user!
   def index
-    @entries = EntryControl.all
+    #@entries = EntryControl.all
+    @organizations = Organization.all
     @batches = Batch.all
+    @entries = EntryControl.search(params[:searchbox].to_s, params[:from].to_s,params[:to].to_s)
+    @batchesFilters = []
+    searchBatches()
+
   end
 
   def new
@@ -124,4 +129,15 @@ class QualityControlsController < ApplicationController
     }
     return data
   end
+
+  def searchBatches()
+    @entries.each do |entry|
+      entry.batches.each do |batch|
+        
+        @batchesFilters.push(batch)
+      end
+    end
+
+  end
+
 end
