@@ -2,11 +2,12 @@ class QualityControlsController < ApplicationController
   before_action :authenticate_user!
   def index
     #@entries = EntryControl.all
+    @sorted = false
     @organizations = Organization.all
     @batches = Batch.all
-    @entries = EntryControl.search(params[:searchbox].to_s, params[:from].to_s,params[:to].to_s)
+    @entries = EntryControl.search(params[:searchbox].to_s, "", "")  
     @batchesFilters = []
-    searchBatches()
+    searchBatches(params[:purchase].to_s)
 
   end
 
@@ -130,12 +131,19 @@ class QualityControlsController < ApplicationController
     return data
   end
 
-  def searchBatches()
+  def searchBatches(sortedIsCheck)
     @entries.each do |entry|
       entry.batches.each do |batch|
         
         @batchesFilters.push(batch)
-      end
+
+       end
+    end
+
+    if(sortedIsCheck == "on")
+     order_array = @batchesFilters.sort_by { |batch| batch.entry_control.entry_number}
+     @batchesFilters = order_array
+     @sorted = true
     end
 
   end
