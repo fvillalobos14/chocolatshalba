@@ -9,7 +9,16 @@
 
             <h3>Filtrar por </h3>              
                 <%= form_tag({:controller => "quality_controls", :action => "index"}, :method => :get) do %>
-                  <p>Proveedor: <%=select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name), :include_blank => 'TODOS'%></p>
+                  <p>Proveedor: <%=select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name), :include_blank => 'TODOS' %></p>
+                    <br>
+                    <div class = "row"  >
+                      <div class = "col m6" >
+                          <p>
+                            <%= check_box_tag(:purchase, params[:purchase]) %>
+                            <%= label_tag(:purchase, "Ordenar por numero de hoja de ingreso") %> <!-- Purchase no tiene nada que ver con hacer el filtro pero solo asi se logra pasar si quiere hacer el filtro en el url-->
+                          </p>
+                      </div>
+                    </div>
                     <br>
                   <%= submit_tag "Aplicar Filtro", :name => nil, class:"btn btn-default btn-lg" %>
                   <%= button_tag "Deshacer Filtro", :name => nil, class:"btn btn-default btn-lg", id:"reset" %>
@@ -26,10 +35,14 @@
               </thead>
               <tbody>  
 
-            <% puts @entries.inspect%>
+            <%
+=begin%>
+ <% puts @entries.inspect%>
             <% puts @batches.inspect%>
             <% puts "HOLA" %>
-            <% puts @organizations.inspect%>
+            <% puts @organizations.inspect%> 
+<%
+=end%>
 
                 <% @batchesFilters.each do |batch| %>
                   <% if batch.entry_control.validateBatches %>
