@@ -25,9 +25,9 @@ nav {
     position: fixed;
 }
 
-nav .brand-logo { 
+nav .brand-logo {
     font-size: 1.6rem;
-    margin-left: 22px; 
+    margin-left: 22px;
 }
 
 .side-nav{
@@ -35,6 +35,26 @@ nav .brand-logo {
   margin-top:51px;
   background-color:#282F37;
 }
+.waves-effect.waves-light_red {
+   /* The alpha value allows the text and background color
+   of the button to still show through. */
+    background-color: rgba(217, 30, 24, 1);
+  }
+  .waves-effect.waves-light_blue {
+     /* The alpha value allows the text and background color
+     of the button to still show through. */
+      background-color: rgba(51, 110, 123, 1);
+    }
+    .waves-effect.waves-light_green{
+       /* The alpha value allows the text and background color
+       of the button to still show through. */
+        background-color: rgba(46, 204, 113, 1);
+      }
+      .waves-effect.waves-light_orange{
+         /* The alpha value allows the text and background color
+         of the button to still show through. */
+          background-color: rgba(243, 156, 18, 1);
+        }
 
 .section-color{
   background-color: rgba(50, 189, 158, 1);
@@ -42,7 +62,7 @@ nav .brand-logo {
 }
 
 .btn{
-  background-color:#0ABE8F; 
+  background-color:#0ABE8F;
 }
 
 .li-back{
@@ -143,4 +163,4 @@ $src:
     src:  $src;
     font-weight: normal;
     font-style: normal;
-} 
+}

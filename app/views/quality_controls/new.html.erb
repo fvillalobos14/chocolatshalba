@@ -32,14 +32,14 @@
 
             <%
 =begin%>
- <%- Pop Up Box que cambia el numero de grano %> 
+ <%- Pop Up Box que cambia el numero de grano %>
 <%
 =end%>
             <div id="modal1" class="modal">
                 <div class="modal-content">
                   <center>
                     <h5>Ingrese el Númeroo de Granos de Prueba de Corte: </h5>
-                    
+
                     <div class="input-field">
                       <%= f.number_field :code, class:"materialize-textarea", :required => true%>
                     </div>
@@ -51,14 +51,17 @@
             <% puts @batch.inspect%>
             <% puts @qualityControl.inspect%>
 
+<!--Card de Datos Generales  -->
             <br>
-            <ul class="collapsible" data-collapsible="accordion">
+            <ul >
               <li>
-                <div class="collapsible-header section-color white-text text">
+                <div class="card">
+                <div  class="collapsible-header section-color white-text text">
                   <i class="material-icons">chrome_reader_mode</i>
                   <b>DATOS GENERALES</b>
                 </div>
-                <div class="collapsible-body white">
+                  <div class="card-content">
+                <div >
                   <div class="input-field">
                     <%= f.label :code, "Número de hoja" %>
                     <%= f.text_field :code , :required => true, :readonly => true,  value: Time.now.day.to_s.rjust(2, '0')+ Time.now.month.to_s.rjust(2, '0') + Time.now.year.to_s + (Sequence.find_by(year: Time.now.year, day: Time.now.day)).number.to_s.rjust(2, '0'), rating: 4 %>
@@ -68,15 +71,25 @@
                     <%= f.text_field :made_by , :required => true%>
                   </div>
                 </div>
+                </div>
+                </div>
               </li>
+
+<!--Card de Datos de analisis  -->
               <li>
+                <div class="card">
                 <div class="collapsible-header section-color white-text">
                   <i class="material-icons">insert_chart</i>
                   <b>DATOS DE ANALISIS</b>
                 </div>
-                <div class="collapsible-body white">
+                <div class="card-content">
+                <div >
+
                   <% Category.where(sensory: false).order(:place).each do |category| %>
+                    <div class="card">
+
                     <table class="highlight bordered">
+
                       <tr>
                         <th>
                           <%= category.name %>
@@ -97,7 +110,7 @@
                             <% (1..category.runs).each do |i| %>
                               <%= r.hidden_field :parameter_id, :value => parameter.id %>
                                 <%= r.hidden_field :run, :value => i %>
-                                <% if parameter.id == 1 || parameter.id == 2 || parameter.id == 3 %> 
+                                <% if parameter.id == 1 || parameter.id == 2 || parameter.id == 3 %>
                                   <% if parameter.name.start_with?("Peso de 300 granos")%>
                                       <td width="3%">
                                       <%= r.text_field :score, :tabindex=> i, step: :any, :value => 0, min: 0 ,:required => true, :class=>"nontest", :id => "grainWeight"%>
@@ -106,7 +119,7 @@
                                       <td width="3%">
                                       <%= r.text_field :score, :tabindex=> i, step: :any,:value => 0, :required => true, :readonly=>true, :class=>"nontest", :id => "averageWeight"%>
                                       </td>
-                                    <%else%>                                  
+                                    <%else%>
                                       <td width="3%">
                                       <%= r.number_field :score, :tabindex=> i, step: :any, :value => 0, min: 0 , :required => true, :class=>"nontest"%>
                                       </td>
@@ -124,9 +137,14 @@
                             </td>
                           </tr>
                         <% end %>
+
+
                      </table>
+  </div>
                    <% end %>
-                    <button name="button" tabindex="7" type="button" onclick="alert_phys_test()" class= "btn btn-primary">Verificar cantidad de granos</button>
+                    <button name="button" tabindex="7" type="button" onclick="alert_phys_test()" class= "waves-effect waves-light_blue btn">Verificar cantidad de granos</button>
+                 </div>
+                 </div>
                  </div>
                </li>
                <li>
@@ -146,31 +164,31 @@
 
 <script>
   function alert_phys_test()
-  { 
+  {
     var beans = <%=@batch.beans%>;
     var sum = 0;
     $("input[class *= 'phys']").each(function(){
         sum += +$(this).val();
     });
     if(sum < beans && sum >= 0){
-      $('#btn-submit').attr('disabled', true); 
+      $('#btn-submit').attr('disabled', true);
       Materialize.toast('La cantidad total de granos en el análisis físico no es de ' + beans + '. Es de ' + sum + ' grano(s).', 4000);
     }else if(sum >beans){
-      $('#btn-submit').attr('disabled', true); 
+      $('#btn-submit').attr('disabled', true);
       Materialize.toast('La cantidad total de granos en el análisis físico no es de '+ beans +'. Es de ' + sum +  ' grano(s).', 4000);
     }else{
-      $('#btn-submit').attr('disabled', false); 
+      $('#btn-submit').attr('disabled', false);
       Materialize.toast('La cantidad total de granos en el análisis físico es de ' + beans +'.', 4000);
     }
   }
 
-  document.getElementById("grainWeight").addEventListener("keyup", average_weight_per_grain); 
+  document.getElementById("grainWeight").addEventListener("keyup", average_weight_per_grain);
   document.getElementById("averageWeight").style.color = "black";
-  
+
   function average_weight_per_grain(){
     var beans = <%=@batch.beans%>;
     var weight = document.getElementById("grainWeight").value;
-    document.getElementById("averageWeight").value = (weight/beans).toFixed(2); 
+    document.getElementById("averageWeight").value = (weight/beans).toFixed(2);
   }
 </script>
 

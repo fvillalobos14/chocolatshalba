@@ -7,24 +7,32 @@
               <h1>Controles de ingreso</h1>
             </div>
 
-            <h3>Filtrar por </h3>              
+
                 <%= form_tag({:controller => "quality_controls", :action => "index"}, :method => :get) do %>
-                  <p>Proveedor: <%=select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name), :include_blank => 'TODOS' %></p>
+                <div class="row">
+                  <p class= "col s3">Proveedor: <%=select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name), :include_blank => 'TODOS' %></p>
                     <br>
-                    <div class = "row"  >
-                      <div class = "col m6" >
-                          <p>
+                    <br>
+                      <div class = "col s4" >
+
                             <%= check_box_tag(:purchase, params[:purchase]) %>
                             <%= label_tag(:purchase, "Ordenar por numero de hoja de ingreso") %> <!-- Purchase no tiene nada que ver con hacer el filtro pero solo asi se logra pasar si quiere hacer el filtro en el url-->
-                          </p>
+
                       </div>
-                    </div>
-                    <br>
-                  <%= submit_tag "Aplicar Filtro", :name => nil, class:"btn btn-default btn-lg" %>
-                  <%= button_tag "Deshacer Filtro", :name => nil, class:"btn btn-default btn-lg", id:"reset" %>
-                <% end %>  
-            
-            <table class="striped bordered">   
+                          </div>
+
+                  <%= submit_tag "Aplicar Filtro", :name => nil, class:"waves-effect waves-light_blue btn" %>
+                  <%= button_tag "Deshacer Filtro", :name => nil, class:"waves-effect waves-light_red btn", id:"reset" %>
+
+                <% end %>
+
+
+                  </div>
+
+<div class="card-content">
+                            <div class="card">
+
+            <table class="striped bordered">
               <thead>
                 <tr>
                   <th>Codigo de lote</th>
@@ -33,42 +41,46 @@
                   <th>Fecha de ingreso</th>
                 </tr>
               </thead>
-              <tbody>  
+              <tbody>
 
             <%
 =begin%>
  <% puts @entries.inspect%>
             <% puts @batches.inspect%>
             <% puts "HOLA" %>
-            <% puts @organizations.inspect%> 
+            <% puts @organizations.inspect%>
 <%
 =end%>
 
                 <% @batchesFilters.each do |batch| %>
                   <% if batch.entry_control.validateBatches %>
                     <tr>
-                      <td><%= link_to batch.enterCode, batch.entry_control %></td>
+                      <td><%= batch.enterCode %></td>
                       <td><%= batch.entry_control.organization.name %></td>
                       <td><%= batch.entry_control.entry_number %></td>
                       <td><%= batch.entry_control.entryDate %></td>
+                      <td><%= link_to "Ver mas",batch.entry_control, class:"waves-effect waves-light_green btn" %>
                     </tr>
                   <% end %>
                 <% end %>
               </tbody>
             </table>
-          </div>
+
+                </div>
+                </div>
+
         </div>
       </div>
     </div>
 </div>
 
-<script type="text/javascript">    
-            var rowCount = $("#tblCustomers td").closest("tr").length;        
+<script type="text/javascript">
+            var rowCount = $("#tblCustomers td").closest("tr").length;
             var message =  "Cantidad de resultados: " + (rowCount-1) ;
             document.getElementById("output").innerHTML=message;
 </script>
 
-<script type="text/javascript">    
+<script type="text/javascript">
     $("#reset").on("click", function() {
         $("#different_option_value_html").val("");
         $("#different_option_value_html2").val("");
@@ -96,7 +108,7 @@
     $(document).ready(function(){
         var sum = 0;
         $(".PesoLB").each(function() {
-            var value = $(this).text();            
+            var value = $(this).text();
             if(!isNaN(value) && value.length != 0) {
                 sum += parseFloat(value);
             }
@@ -109,7 +121,7 @@
     $(document).ready(function(){
         var sum = 0.00;
         $(".total-pesoLB").each(function() {
-            var value = $(this).text();            
+            var value = $(this).text();
             if(!isNaN(value) && value.length != 0) {
                 sum += parseFloat(value);
             }

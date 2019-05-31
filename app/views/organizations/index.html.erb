@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-content">
           <div class="page-header"> <h1>Seleccione un proveedor</h1> </div>
-          
+
           <%= form_tag({:controller => "entry_controls", :action => "new"}, :method => :get) do %>
             <div class="row">
               <div class="col s4">
@@ -16,7 +16,7 @@
               </div>
             </div>
           <% end %>
-          
+
         </div>
       </div>
     </div>
@@ -60,14 +60,14 @@
         $('select').material_select();
     })
 </script>
-<script type="text/javascript">    
+<script type="text/javascript">
     $("#reset").on("click", function() {
         $("#recibidopor").val("");
         $("#entregadopor").val("");
         $("#numerohoja").val("");
     });
 </script>
-<script type="text/javascript">    
+<script type="text/javascript">
     var rowCount = $("#or").value;
     var message =  "Cantidad de resultados: " + rowCount;
     document.getElementById("output").innerHTML=message;
