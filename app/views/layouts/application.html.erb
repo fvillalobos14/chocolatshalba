@@ -26,8 +26,9 @@
       </div>
       <ul class="side-nav" id="mobile-demo">
         <% if not current_user.admin_role %>
+            
             <% if current_user.warehouse_role  %>
-                <li><a class="white-text"><i class="material-icons white-text">archive</i>Bodega</a><li>
+                <li><a id="pagename" class="white-text"><i class="material-icons white-text">archive</i>Bodega</a><li>
                 <li><%= link_to 'Inventario', inventories_path , class:"white-text li-back"%></li>
                 <li><%= link_to 'Control de ingreso', organizations_path, class:"white-text li-back"%></li>
                 <% if  Notification.where(kind: 3, read: false).count == 1 %>
@@ -39,8 +40,9 @@
                 <li><%= link_to 'Mover lotes', batches_moveBatches_path,class:"white-text li-back"%></li>
                 
             <% end %>
+            
             <% if current_user.quality_manager_role  %>
-                <li><a class="white-text"><i class="material-icons white-text">assignment_ind</i>Jefe de calidad</a><li>
+                <li><a id="pagename" class="white-text"><i class="material-icons white-text">assignment_ind</i>Jefe de calidad</a><li>
               <% if  Notification.where(kind: 2, read: false).count == 1 %>
                 <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 2, read: false).count %></span>
               <% elsif  Notification.where(kind: 2, read: false).count > 1 %>
@@ -48,8 +50,9 @@
               <% end %>
               <li><%= link_to 'Revisiones', revisions_path, class:"white-text li-back"%></li>
             <% end %>
+            
             <% if current_user.quality_role  %>
-                <li><a class="white-text"><i class="material-icons white-text">assessment</i>Calidad</a><li>
+                <li><a id="pagename" class="white-text"><i class="material-icons white-text">assessment</i>Calidad</a><li>
               <% if  Notification.where(kind: 1, read: false).count == 1 %>
                 <span class="new badge" data-badge-caption="nuevo"><%= Notification.where(kind: 1, read: false).count %></span>
               <% elsif  Notification.where(kind: 1, read: false).count > 1 %>
@@ -58,8 +61,9 @@
               <li><%= link_to 'Análisis', '/sequence', class:"white-text li-back"%></li>
               <li><%= link_to 'Unir lotes', export_batches_join_path, class:"white-text li-back"%></li>
             <% end %>
+            
             <% if current_user.certification_role  %>
-                <li><a class="white-text"><i class="material-icons white-text">beenhere</i>Certificación</a><li>
+                <li><a id="pagename" class="white-text"><i class="material-icons white-text">beenhere</i>Certificación</a><li>
                 <% if  Notification.where(kind: 4, read: false).count == 1 %>
                     <span class="new badge" data-badge-caption="nuevo"><%=	Notification.where(kind: 4, read: false).count  %></span>
                 <% elsif  Notification.where(kind: 4, read: false).count > 1 %>
@@ -67,8 +71,9 @@
                 <% end %>
                 <li><%= link_to 'Revisión de lotes', checkings_path, class:"white-text li-back"%></li>
             <% end %>
+            
             <% if current_user.purchase_role  %>
-                <li><a class="white-text"><i class="material-icons white-text">shopping_cart</i>Compras</a><li>
+                <li><a id="pagename" class="white-text"><i class="material-icons white-text">shopping_cart</i>Compras</a><li>
                 <% if  Notification.where(kind: 5, read: false).count == 1 %>
                     <span class="new badge" data-badge-caption="nuevo"><%=	Notification.where(kind: 5, read: false).count  %></span>
                 <% elsif  Notification.where(kind: 5, read: false).count > 1 %>
@@ -82,8 +87,9 @@
                 <% end %>
                 <li><%= link_to 'Facturas', invoices_path, class:"white-text li-back"%></li>
             <% end %>
+            
             <% if current_user.administration_role  %>
-                <li><a class="white-text"><i class="material-icons white-text">assignment</i>Administración</a></li>
+                <li><a id="pagename" class="white-text"><i class="material-icons white-text">assignment</i>Administración</a></li>
                 <li><%= link_to 'Etapas' , static_pages_stages_path,class:"white-text li-back"%></li>
                 <li><%= link_to 'Lotes de exportación', export_batches_path , class:"white-text li-back"%></li>
                 <li><%= link_to 'Reportes', reports_path , class:"white-text li-back"%></li>
@@ -256,7 +262,7 @@
             <div>
             <li>
               <ul class="collapsible collapsible-accordion">
-                <li><a class="collapsible-header white-text"><i class="material-icons white-text">dashboard</i>Admin</a>
+                <li><a  id="pagename" class="collapsible-header white-text"><i class="material-icons white-text">dashboard</i>Admin</a>
                   <div class="collapsible-body">
                     <ul>
                       <li class="selection"><%= link_to 'Administración', rails_admin_path, class:"white-text li-back"%></li>

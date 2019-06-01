@@ -5,7 +5,8 @@ class BatchesController < ApplicationController
     @certificate = CertificateType.all
     @genetic = GeneticMaterial.all
   	@entryControl = EntryControl.find(params[:entry_control_id])
-    @batch=@entryControl.batches.build
+    @batch= @entryControl.batches.build
+    @batchess= @entryControl.batches
   end
   
   def batch
@@ -19,7 +20,7 @@ class BatchesController < ApplicationController
     batch.state = "Rec. Ingresado"
     if batch.save
         createNotification#soy genial
-        redirect_to entryControl
+        redirect_to "/entry_controls/"+entryControl.id.to_s+"/batches/new"
     else
         redirect_to "/entry_controls/"+entryControl.id.to_s+"/batches/new"
     end
