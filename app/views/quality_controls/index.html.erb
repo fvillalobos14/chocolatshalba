@@ -11,7 +11,7 @@
               <%= form_tag({:controller => "quality_controls", :action => "index"}, :method => :get) do  |f|%>
                 <div class="row">
                   <p class= "col s3">Proveedor: <%=select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name), :include_blank => params[:searchbox], id: 'select' %></p>
-                  <p class= "col s3"># de hoja: <%=select_tag 'hoja', options_from_collection_for_select(@entries, 'entry_number', 'entry_number', params[:searchbox]), id: 'selectHoja' %></p>
+                  <p class= "col s3"># de hoja: <%=select_tag 'hoja', options_from_collection_for_select(@entries, 'entry_number', 'entry_number', params[:searchbox]), :include_blank => params[:hoja], id: 'selectHoja' %></p>
                     <br>
                     <br>
                     <div class = "col s4" >
@@ -23,7 +23,7 @@
                 </div>
 
                   <%= submit_tag "Aplicar Filtro", :name => nil, class:"waves-effect waves-light_blue btn" %>
-                  <%= button_tag "Deshacer Filtro", :name => nil, class:"waves-effect waves-light_red btn", id:"reset" %>
+                  <%= button_tag "Deshacer Filtro", :name => nil, :hoja => nil, class:"waves-effect waves-light_red btn", id:"reset" %>
 
               <% end %>
 
@@ -97,6 +97,7 @@
     $('select').on('change', function() {
       if(this.name == 'searchbox'){ //Si el combobox que cambio es del searchbox usar un query para actualizar el combobox de las hojas
         //alert( this.name );
+        console.log(this.value);
       }
 });
 </script>
