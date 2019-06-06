@@ -21,19 +21,22 @@
               Código de muestra:
               <%= @batch.enterCode %>
             </p>
+            <div class="card">
+            <div class="card-content">
             <div class="input-field">
               <%= f.label :made_by, "Persona responsable" %>
               <%= f.text_field :made_by, :required => true%>
             </div>
+            </div>
+            </div>
 
-
-            <ul class="collapsible" data-collapsible="accordion">
+            <ul class="card">
               <li>
                 <div class="collapsible-header section-color white-text">
                   <i class="material-icons">insert_chart</i>
                   <b>DATOS DE ANALISIS</b>
                 </div>
-                <div class="collapsible-body white">
+                <div class="card-content">
                   <% Category.where(sensory: true).order(:place).each do |category| %>
                     <table class="highlight bordered">
                       <tr>
