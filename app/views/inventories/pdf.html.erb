@@ -43,7 +43,6 @@
                     <th>Calidad</th>
                     <th>Cantidad (Kg)</th>
                     <th>Cantidad (Lb)</th>
-                    <th>Numero de sacos</th>
                 </tr> 
             </thead>
             <tbody>
@@ -51,19 +50,16 @@
                     <td>A</td>
                     <td><%= number_with_precision(@batchesEAHT.sum(&:weight)/2.204623, precision: 2)%></td> 
                     <td><%= number_with_precision(@batchesEAHT.sum(&:weight), precision: 2)%></td> 
-                    <td><%= @batchesEAHT.sum(&:sackAmount)%></td> 
                 </tr> 
                 <tr> 
                     <td>B</td>
                     <td><%= number_with_precision(@batchesEBHT.sum(&:weight)/2.204623, precision: 2)%></td> 
                     <td><%= number_with_precision(@batchesEBHT.sum(&:weight), precision: 2)%></td> 
-                    <td><%= @batchesEBHT.sum(&:sackAmount)%></td> 
                 </tr> 
                 <tr> 
                     <td>C</td>
                     <td><%= number_with_precision(@batchesECHT.sum(&:weight)/2.204623, precision: 2)%></td> 
                     <td><%= number_with_precision(@batchesECHT.sum(&:weight), precision: 2)%></td> 
-                    <td><%= @batchesECHT.sum(&:sackAmount)%></td> 
                 </tr> 
             </tbody>
         </table>
@@ -76,7 +72,6 @@
                     <th>Certificado</th>
                     <th>Cantidad (Kg)</th>
                     <th>Cantidad (Lb)</th>
-                    <th>Numero de sacos</th>
                 </tr> 
             </thead>
             <tbody>
@@ -84,19 +79,16 @@
                     <td>E</td>
                     <td><%= number_with_precision(@batchesCE.sum(&:weight)/2.204623, precision: 2)%></td> 
                     <td><%= number_with_precision(@batchesCE.sum(&:weight), precision: 2)%></td> 
-                    <td><%= @batchesCE.sum(&:sackAmount)%></td> 
                 </tr> 
                 <tr> 
                     <td>T</td>
                     <td><%= number_with_precision(@batchesCT.sum(&:weight)/2.204623, precision: 2)%></td> 
                     <td><%= number_with_precision(@batchesCT.sum(&:weight), precision: 2)%></td> 
-                    <td><%= @batchesCT.sum(&:sackAmount)%></td> 
                 </tr> 
                 <tr> 
                     <td>C</td>
                     <td><%= number_with_precision(@batchesCC.sum(&:weight)/2.204623, precision: 2)%></td> 
                     <td><%= number_with_precision(@batchesCC.sum(&:weight), precision: 2)%></td> 
-                    <td><%= @batchesCC.sum(&:sackAmount)%></td> 
                 </tr> 
             </tbody>
         </table>
@@ -111,7 +103,6 @@
                     <th>Variedad</th>
                     <th>Cantidad (Kg)</th>
                     <th>Cantidad (Lb)</th>
-                    <th>Numero de sacos</th>
                 </tr> 
             </thead>
             <tbody>
@@ -119,13 +110,11 @@
                     <td>HT</td>
                     <td><%= number_with_precision(@batchesHT.sum(&:weight)/2.204623, precision: 2)%></td> 
                     <td><%= number_with_precision(@batchesHT.sum(&:weight), precision: 2)%></td> 
-                    <td><%= @batchesHT.sum(&:sackAmount)%></td> 
                 </tr> 
                 <tr> 
                     <td>IA</td>
                     <td><%= number_with_precision(@batchesIA.sum(&:weight)/2.204623, precision: 2)%></td> 
                     <td><%= number_with_precision(@batchesIA.sum(&:weight), precision: 2)%></td> 
-                    <td><%= @batchesIA.sum(&:sackAmount)%></td> 
                 </tr> 
             </tbody>
         </table>
