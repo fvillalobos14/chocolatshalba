@@ -6,6 +6,7 @@
           <div class="page-header">
             <h1>Análisis de calidad</h1>
           </div>
+  
           <p>
             Cooperativa/Proveedor:
             <%= @batch.entry_control.organization.name %>
@@ -26,14 +27,16 @@
             <%= number_with_precision(@batch.weight, precision: 2) %>
             lb
           </p>
+   
           <br>
-          <ul class="collapsible" data-collapsible="accordion">
+          <ul >
             <li>
+            <div class="card">
               <div class="collapsible-header section-color white-text text">
                 <i class="material-icons">description</i>
                 <b>CORTE</b>
               </div>
-              <div class="collapsible-body white">
+              <div class="card-content">
                 <p>
                   Número de hoja:
                   <%= @qualityControl.code %>
@@ -77,13 +80,14 @@
 
               
               </div>
+              </div>
             </li>
-            <li>
+            <li class="card">
               <div class="collapsible-header section-color white-text text">
                 <i class="material-icons">dashboard</i>
                 <b>ANÁLISIS FÍSICO</b>
               </div>
-              <div class="collapsible-body white">
+              <div class="card-content">
                 <% Category.where(sensory: false).order(:place).each do |category| %>
                   <table class="highlight bordered">
                     <tr>
@@ -132,12 +136,12 @@
                 <% end %>
               </div>
             </li>
-            <li>
+            <li class="card">
               <div class="collapsible-header section-color white-text text">
                 <i class="material-icons">pie_chart</i>
                 <b>ANÁLISIS SENSORIAL</b>
               </div>
-              <div class="collapsible-body white">
+              <div class="card-content">
                 <% Category.where(sensory: true).order(:place).each do |category| %>
                   <table class="highlight bordered">
                     <tr>
@@ -190,12 +194,12 @@
               </div>
             </li>
 
-            <li>
+            <li class="card">
               <div class="collapsible-header section-color white-text text">
                 <i class="material-icons">short_text</i>
                 <b>OBSERVACIÓN</b>
               </div>
-              <div class="collapsible-body white">
+              <div class="card-content">
                 <% if current_user.quality_role %>
                   <% if @qualityControl.observation == "Ninguna" %>
                     <%= form_for ([@qualityControl]) do |f| %> 

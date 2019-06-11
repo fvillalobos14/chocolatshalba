@@ -7,7 +7,7 @@ class QualityControlsController < ApplicationController
     @batches = Batch.all
     @entries = EntryControl.search(params[:searchbox].to_s, "", "")  
     @batchesFilters = []
-    searchBatches(params[:purchase].to_s)
+    searchBatches(params[:purchase].to_s, params[:hoja].to_s)
 
   end
 
@@ -131,11 +131,14 @@ class QualityControlsController < ApplicationController
     return data
   end
 
-  def searchBatches(sortedIsCheck)
+  def searchBatches(sortedIsCheck, entryNumber)
     @entries.each do |entry|
       entry.batches.each do |batch|
         
-        @batchesFilters.push(batch)
+        puts entryNumber.inspect
+        if(entry.entry_number.to_i == entryNumber.to_i || entryNumber.to_i == 0)
+          @batchesFilters.push(batch)
+        end
 
        end
     end
