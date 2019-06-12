@@ -108,7 +108,7 @@
                     <% if current_user.quality_role && SensoryAnalysis.where(batch_id: batch.id).blank? && QualityControl.where(batch_id: batch.id).present? && !@qc_results.nil? && @qc_results[batch.id].eql?("A")%>
 
                       <td>
-                        <%= link_to "Análisis sensorial", edit_batch_path(batch),class: "waves-effect waves-light btn"%>
+                        <%= link_to "Análisis sensorial", edit_batch_path(batch),class: "fa fa-sellsy changeiconD"%>
                       </td>
                     <% else %>
                       <td></td>
