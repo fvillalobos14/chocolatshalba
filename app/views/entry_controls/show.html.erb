@@ -77,30 +77,30 @@
                     </td>
 
                     <td >
-                        <%= link_to "Código de Barra", new_batch_barcode_path(batch),class: "waves-effect waves-light_blue btn" %>
+                        <%= link_to "", new_batch_barcode_path(batch),class:"fa fa-barcode fa-1x changeiconC" %>
                     </td>
 
                     <% if current_user.warehouse_role || current_user.admin_role %>
                     <td >
-                      <%= link_to 'Editar', edit_batch_path(batch), class: "waves-effect waves-light btn" %>
+                      <%= link_to '', edit_batch_path(batch), class: "fa fa-pencil-square-o fa-1x changeiconE" %>
                     </td>
                       <td>
-                        <%= link_to 'Eliminar', batch_path(batch), method: :delete, data: { confirm: 'Esta seguro(a) que desea eliminar el lote?' }, class: "waves-effect waves-light_red btn" %>
+                        <%= link_to '', batch_path(batch), method: :delete, data: { confirm: 'Esta seguro(a) que desea eliminar el lote?' }, class: "fa fa-trash fa-1x changeiconD" %>
                       </td>
 
                     <% end %>
 
                     <% if current_user.quality_role && ((SensoryAnalysis.where(batch_id: batch.id).present? && QualityControl.where(batch_id: batch.id).present?)) || (QualityControl.where(batch_id: batch.id).present? && SensoryAnalysis.where(batch_id: batch.id).blank? && !@qc_results.nil? && !@qc_results[batch.id].eql?("A"))%>
-                      <td><%= link_to "Ver análisis", batch.quality_control, class: "waves-effect waves-light btn" %></td>
+                      <td><%= link_to "", batch.quality_control, class: "fa fa-bar-chart fa-1x changeiconE" %></td>
                     <% end %>
 
                     <% if current_user.quality_role && QualityControl.where(batch_id: batch.id).blank? %>
-                      <td ><%= link_to 'Número de granos', edit_batch_path(batch), class: "waves-effect waves-light btn" %></td>
+                      <td ><%= link_to '', edit_batch_path(batch), class: "fa fa-hashtag fa-1x changeiconE" %></td>
                     <%end%>
 
                     <% if current_user.quality_role && QualityControl.where(batch_id: batch.id).blank? %>
                       <td >
-                        <%= link_to "Análisis físico", new_batch_quality_control_path(batch), class: "waves-effect waves-light_orange btn"%>
+                        <%= link_to "", new_batch_quality_control_path(batch), class: "fa fa-pie-chart fa-1x changeiconD"%>
                       </td>
                     <% else %>
                       <td></td>
