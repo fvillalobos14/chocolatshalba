@@ -95,7 +95,7 @@
                     <% end %>
 
                     <% if current_user.quality_role && QualityControl.where(batch_id: batch.id).blank? %>
-                      <td ><%= link_to '', edit_batch_path(batch), class: "fa fa-hashtag fa-1x changeiconE" %></td>
+                      <td ><%= link_to '', edit_batch_path(batch), class: "fa fa-area-chart fa-1x changeiconE" %></td>
                     <%end%>
 
                     <% if current_user.quality_role && QualityControl.where(batch_id: batch.id).blank? %>
