@@ -1,5 +1,6 @@
 @import "materialize";
-
+@import "font-awesome-sprockets";
+@import "font-awesome";
 .btn{
   text-align: center;
 }
@@ -12,6 +13,18 @@ card{
   float: none;
 }
 
+.changeiconD {
+  color: red;
+  font-size: 1.5em;
+}
+.changeiconE {
+  color:green;
+  font-size: 1.5em;
+}
+.changeiconC{
+  color:blue;
+  font-size: 1.5em;
+}
 .form-login {
   max-width: 400px;
   padding: 15px;
