@@ -95,18 +95,34 @@ class QualityControlsController < ApplicationController
   def dataValues(batch)
     batch=Batch.find(batch)
     data = []
-    Category.all.order(:place).each do |category|
-      category.parameters.order(:place).each do |parameter|
-        if parameter.acceptance == nil
-          if parameter.category.place = 4
+    puts "Arriba de categoryaaaaaaaaaaaaaa"
+    Category.all.order(:place).each do |category| #La categoria del analisis fidsico Ex: ("Contenido de agua")
+    #  puts"cat"
+     # puts category.inspect
+      category.parameters.order(:place).each do |parameter| #Los parametros de la categoria Ex: ("Humedad del grano")
+       # puts "par"
+       # puts parameter.inspect
+       puts "Acceptance"
+       puts parameter.acceptance.inspect
+        #if parameter.acceptance == nil
+          puts "Place"
+          puts parameter.category.place.inspect
+          if parameter.category.place == 4  #--Si no esta bien fermentado
+            puts "category Run"
+            puts category.runs
             if category.runs >= 1
               value = Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)/3
+              puts "VALUEEEEEEEEEEEEEE"
+              puts value
               data.append(value)
             end
           end
-        end
+        #end
       end
     end
+    puts "analisaaaaaaaaar dataaaaaaaaaaaaaa"
+    puts data.inspect
+    puts" terminooooooooooooooooooooo"
     return data
   end
 
