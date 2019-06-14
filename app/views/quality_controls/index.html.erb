@@ -29,17 +29,15 @@
               <table class="striped">
                 <thead>
                   <tr>
-                    <th>Codigo de lote</th>
                     <th>Proveedor</th>
                     <th>Hoja de Ingreso</th>
                     <th>Fecha de ingreso</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <% @batchesFilters.each do |batch| %>
+                  <% @filteredBatches.each do |batch| %>
                     <% if batch.entry_control.validateBatches %>
                       <tr>
-                        <td><%= batch.enterCode %></td>
                         <td><%= batch.entry_control.organization.name %></td>
                         <td><%= batch.entry_control.entry_number %></td>
                         <td><%= batch.entry_control.entryDate %></td>

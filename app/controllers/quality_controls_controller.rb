@@ -7,8 +7,10 @@ class QualityControlsController < ApplicationController
     @batches = Batch.all
     @entries = EntryControl.search(params[:searchbox].to_s, "", "")  
     @batchesFilters = []
+    @allBatches = []
+    @filteredBatches= []
     searchBatches(params[:purchase].to_s, params[:hoja].to_s)
-
+    find_dups()
   end
 
   def new
@@ -136,11 +138,11 @@ class QualityControlsController < ApplicationController
       entry.batches.each do |batch|
         
         puts entryNumber.inspect
-        if(entry.entry_number.to_i == entryNumber.to_i || entryNumber.to_i == 0)
+        
           @batchesFilters.push(batch)
-        end
+        
 
-       end
+        end
     end
 
     if(sortedIsCheck == "on")
@@ -151,4 +153,36 @@ class QualityControlsController < ApplicationController
 
   end
 
+  def find_dups()
+    contador=0   
+    verify=false
+      @batches.each do |batch|           
+           @allBatches.push(batch)
+             if (contador==0)
+               @filteredBatches.push(batch)
+                end
+       contador=1
+       end     
+       array=@filteredBatches
+       puts @allBatches   
+        @allBatches.each do |batch|
+        @filteredBatches.each do |fbatch|         
+          if (batch.entry_control.organization.name == fbatch.entry_control.organization.name && batch.entry_control.entry_number == fbatch.entry_control.entry_number)                              
+          verify=true
+          break;       
+          end
+       end
+       if(verify==false)
+       array.push(batch) 
+       else
+        verify=false
+       end
+      end
+      @filteredBatches=array  
+     
+ end
+
+
+  
 end
+

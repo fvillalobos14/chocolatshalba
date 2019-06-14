@@ -29,7 +29,7 @@
                     <th><%= f.collection_select :geneticMaterial, @genetic, :id, :name, class:"dropdown-button btn" %></th>
                     <th class="chb">
                         <%= f.check_box :ft %>
-                        <%= f.label 'ft', "d" %></div>
+                        <%= f.label 'ft', "*" %></div>
                     </th>
                     <%= f.hidden_field :samples, step: :any, :value => 1, :required => true %>
                     <%= f.hidden_field :beans, step: :any, :value => 300, :required => true %>
