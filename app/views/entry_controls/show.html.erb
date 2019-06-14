@@ -115,7 +115,12 @@
             </div>
           <% end %>
           <div>
-            <%= link_to "Regresar", quality_controls_path , class: "btn btn-primary"%>
+          <% if URI(request.referer).path== '/entry_controls/new' %>
+            <%= link_to "Regresar", request.referer , class: "btn btn-primary"%>
+            <%else%>
+             <%= link_to "Regresar", quality_controls_path , class: "btn btn-primary"%>
+            <%end%>
+            
           </div>
         </div>
       </div>
