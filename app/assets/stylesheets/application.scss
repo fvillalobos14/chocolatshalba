@@ -25,6 +25,7 @@ card{
   color:blue;
   font-size: 1.5em;
 }
+
 .form-login {
   max-width: 400px;
   padding: 15px;
@@ -101,7 +102,6 @@ h1 {
   font-size: 20px;
 }
 
-
 .page-header h1 {
   background: #37BC9B;
   padding: 10px 15px;
@@ -123,7 +123,6 @@ p{
   font-size: 1.1em;
   line-height: 1.7em;
 }
-
 
 .container {
   text-align: left;
@@ -182,3 +181,17 @@ $src:
   text-align: center;
   padding-bottom: 50px;
 }
+
+.total-pesoLB, .total-pesoKG, .total {
+  font-weight: bold;
+}
+
+.analisis, .analisistr {
+  border: 1px solid black;
+  border-bottom: 1px solid #000;
+}
+
+// .analisisB {
+//   height: 90px;
+//   display: block;
+// }

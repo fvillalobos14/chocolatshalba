@@ -136,63 +136,51 @@
                 <h1><i class="material-icons">pie_chart</i>ANÁLISIS SENSORIAL</h1>
               </div>
               <% Category.where(sensory: true).order(:place).each do |category| %>
-                <div class="row">
-                  <div class="col s3">
-                    <table class="analisis">
-                      <tr class="analisistr">
-                        <th class="analisistr">
-                          <%= category.name %>
-                        </th>
+                <table class="bordered">
+                  <tr>
+                    <th>
+                      <%= category.name %>
+                    </th>
+                    <% (1..@batch.samples.to_i).each do |i| %>
+                      <th align="right">
+                        <%= i %>
+                      </th>
+                    <% end %>
+                    <% if @batch.samples.to_i > 1 %>
+                      <th>Resultado promedio</th>
+                    <% end %>
+                  </tr>
+                  <% category.parameters.order(:place).each do |parameter| %>
+                    <tr>
+                      <td width="7%">
+                        <%= parameter.name %>
+                      </td>
+                      <% if @batch.samples.to_i > 1 %>
                         <% (1..@batch.samples.to_i).each do |i| %>
-                          <th align="right">
-                            <%= i %>
-                          </th>
-                        <% end %>
-                        <% if @batch.samples.to_i > 1 %>
-                          <th>Resultado promedio</th>
-                        <% end %>
-                      </tr>
-                      <% category.parameters.order(:place).each do |parameter| %>
-                        <tr class="analisistr">
-                          <td width="7%" class="analisistr">
-                            <%= parameter.name %>
+                          <td width="7%">
+                            <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: i).first.score,precision: 0) %>
                           </td>
-                          <% if @batch.samples.to_i > 1 %>
-                            <% (1..@batch.samples.to_i).each do |i| %>
-                              <td width="7%">
-                                <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: i).first.score,precision: 0) %>
-                              </td>
-                            <% end %>
-                          <% else %>
-                            <%if Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: 1).present?%>
-                              <td width="7%">
-                                <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: 1).first.score, precision: 2) %>
-                                <%= parameter.unit %>
-                              </td>
-                            <% else %>
-                              <td width="7%">
-                                <%= "0" %>
-                                <%= parameter.unit %>
-                              </td>
-                            <% end %>
-                          <% end %>
-                          <% if @batch.samples.to_i > 1 %>
-                            <td width="7%">
-                            <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)/3, precision: 2) %>%</td>
-                          <% end %>
-                        </tr>
+                        <% end %>
+                      <% else %>
+                        <%if Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: 1).present?%>
+                          <td width="7%">
+                            <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id, run: 1).first.score, precision: 2) %>
+                            <%= parameter.unit %>
+                          </td>
+                        <% else %>
+                          <td width="7%">
+                            <%= "0" %>
+                            <%= parameter.unit %>
+                          </td>
+                        <% end %>
                       <% end %>
-                    </table>
-                  </div>
-                  <div class="col s9">
-                    <div class="card-panel">
-                      <center>
-                        <h5>Análisis sensorial</h5>
-                      </center>
-                      <%= radar_chart  @data, :height => 250 %>
-                    </div>
-                  </div>
-                </div>
+                      <% if @batch.samples.to_i > 1 %>
+                        <td width="7%">
+                        <%= number_with_precision(Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)/3, precision: 2) %>%</td>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                </table>
               <% end %>
               <br>
               <a class="waves-effect waves-light btn" data-target="modal2">Ver gráfico</a>
@@ -263,6 +251,19 @@
       </center>
     </div>
   <% end %>
+</div>
+
+<div id="modal2" class="modal" style="max-height: 100% !important ; overflow-y: hidden !important ;">
+  <div class="modal-content">
+    <div class="col m6">
+      <div class="card-panel">
+        <center>
+          <h5>Análisis sensorial</h5>
+        </center>
+        <%= radar_chart  @data, :height => 250 %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>

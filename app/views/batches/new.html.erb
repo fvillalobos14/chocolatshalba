@@ -27,9 +27,9 @@
                     <th><%= f.collection_select :certificatetype, @certificate, :id, :name, class:"dropdown-button btn" %></th>
                     <th><%= f.collection_select :cocoaType, @cocoa, :id, :name, class:"dropdown-button btn" %></th>
                     <th><%= f.collection_select :geneticMaterial, @genetic, :id, :name, class:"dropdown-button btn" %></th>
-                    <th class="chb"><div class="input-field">
+                    <th class="chb">
                         <%= f.check_box :ft %>
-                        <%= f.label 'ft', style:"color:white;paddingTop:10px;" %></div>
+                        <%= f.label 'ft', "d" %></div>
                     </th>
                     <%= f.hidden_field :samples, step: :any, :value => 1, :required => true %>
                     <%= f.hidden_field :beans, step: :any, :value => 300, :required => true %>
@@ -54,3 +54,4 @@
         $('select').material_select();
     })
 </script>
+
