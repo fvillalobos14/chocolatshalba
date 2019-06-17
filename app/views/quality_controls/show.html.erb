@@ -191,14 +191,13 @@
                       </center>
                       <%puts "HOaaaaaaaaaaaaaaaaaaaLAAAAAAAAAAAAAAAA"%>
                       <%puts @data%>
+                      <%puts @options%>
                       <%puts "termin"%>
-                      <%= radar_chart  @data, :height => 250 %>
+                      <%= radar_chart @data, height: 270, beginAtZero: true, min: 0, max: 10, stepSize: 1 %>
                     </div>
                   </div>
                 </div>
               <% end %>
-              <br>
-              <a class="waves-effect waves-light btn" data-target="modal2">Ver gráfico</a>
             </div>
           </div>
 

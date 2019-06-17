@@ -111,7 +111,7 @@ class QualityControlsController < ApplicationController
             puts "category Run"
             puts category.runs
             if category.runs >= 1
-              value = Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)/3
+              value = Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)
               puts "VALUEEEEEEEEEEEEEE"
               puts value
               data.append(value)
@@ -136,15 +136,15 @@ class QualityControlsController < ApplicationController
     end
     datavalues = dataValues(batch)
     data = {
-        labels: dataname,
-        datasets: [
-            {
-                label: "Sensorial",
-                borderColor: "rgba(50, 189, 158, 1)",
-                backgroundColor: "rgba(50, 189, 158, 0.5)",
-                data: datavalues
-            }
-        ]
+      labels: dataname,
+      datasets: [
+        {
+          label: "Sensorial",
+          borderColor: "rgba(50, 189, 158, 1)",
+          backgroundColor: "rgba(50, 189, 158, 0.5)",
+          data: datavalues
+        }
+      ]
     }
     return data
   end
