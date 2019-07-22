@@ -7,8 +7,10 @@ class QualityControlsController < ApplicationController
     @batches = Batch.all
     @entries = EntryControl.search(params[:searchbox].to_s, "", "")  
     @batchesFilters = []
-    searchBatches(params[:purchase].to_s)
-
+    @allBatches = []
+    @filteredBatches= []
+    searchBatches(params[:purchase].to_s, params[:hoja].to_s)
+    find_dups()
   end
 
   def new
@@ -93,18 +95,34 @@ class QualityControlsController < ApplicationController
   def dataValues(batch)
     batch=Batch.find(batch)
     data = []
-    Category.all.order(:place).each do |category|
-      category.parameters.order(:place).each do |parameter|
-        if parameter.acceptance == nil
-          if parameter.category.place = 4
+    puts "Arriba de categoryaaaaaaaaaaaaaa"
+    Category.all.order(:place).each do |category| #La categoria del analisis fidsico Ex: ("Contenido de agua")
+    #  puts"cat"
+     # puts category.inspect
+      category.parameters.order(:place).each do |parameter| #Los parametros de la categoria Ex: ("Humedad del grano")
+       # puts "par"
+       # puts parameter.inspect
+       puts "Acceptance"
+       puts parameter.acceptance.inspect
+        #if parameter.acceptance == nil
+          puts "Place"
+          puts parameter.category.place.inspect
+          if parameter.category.place == 4  #--Si no esta bien fermentado
+            puts "category Run"
+            puts category.runs
             if category.runs >= 1
-              value = Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)/3
+              value = Result.where(parameter_id: parameter.id, batch_id: @batch.id).sum(:score)
+              puts "VALUEEEEEEEEEEEEEE"
+              puts value
               data.append(value)
             end
           end
-        end
+        #end
       end
     end
+    puts "analisaaaaaaaaar dataaaaaaaaaaaaaa"
+    puts data.inspect
+    puts" terminooooooooooooooooooooo"
     return data
   end
 
@@ -118,26 +136,29 @@ class QualityControlsController < ApplicationController
     end
     datavalues = dataValues(batch)
     data = {
-        labels: dataname,
-        datasets: [
-            {
-                label: "Sensorial",
-                borderColor: "rgba(50, 189, 158, 1)",
-                backgroundColor: "rgba(50, 189, 158, 0.5)",
-                data: datavalues
-            }
-        ]
+      labels: dataname,
+      datasets: [
+        {
+          label: "Sensorial",
+          borderColor: "rgba(50, 189, 158, 1)",
+          backgroundColor: "rgba(50, 189, 158, 0.5)",
+          data: datavalues
+        }
+      ]
     }
     return data
   end
 
-  def searchBatches(sortedIsCheck)
+  def searchBatches(sortedIsCheck, entryNumber)
     @entries.each do |entry|
       entry.batches.each do |batch|
         
-        @batchesFilters.push(batch)
+        puts entryNumber.inspect
+        
+          @batchesFilters.push(batch)
+        
 
-       end
+        end
     end
 
     if(sortedIsCheck == "on")
@@ -148,4 +169,36 @@ class QualityControlsController < ApplicationController
 
   end
 
+  def find_dups()
+    contador=0   
+    verify=false
+      @batches.each do |batch|           
+           @allBatches.push(batch)
+             if (contador==0)
+               @filteredBatches.push(batch)
+                end
+       contador=1
+       end     
+       array=@filteredBatches
+       puts @allBatches   
+        @allBatches.each do |batch|
+        @filteredBatches.each do |fbatch|         
+          if (batch.entry_control.organization.name == fbatch.entry_control.organization.name && batch.entry_control.entry_number == fbatch.entry_control.entry_number)                              
+          verify=true
+          break;       
+          end
+       end
+       if(verify==false)
+       array.push(batch) 
+       else
+        verify=false
+       end
+      end
+      @filteredBatches=array  
+     
+ end
+
+
+  
 end
+

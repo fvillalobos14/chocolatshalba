@@ -7,6 +7,7 @@
             <h1>Lote</h1>
           </div>
 
+          <%= form_for [@entryControl, @batch] do |f| %>
             <div>
               <table>
                 <thead>
@@ -20,32 +21,22 @@
                   </tr>
                 </thead>
                 <tbody>
-                <% @batchess.each do |batch| %>
                   <tr>
-                    <th><%= @batch.weight %></th>
-                    <th><%= @batch.postharvestCenter %></th>
-                    <th><%= @batch.certificatetype %></th>
-                    <th><%= CocoaType.find(batch.cocoaType).name %></th>
-                    <th><% @batch.geneticMaterial %></th>
-                    <th><% @batch.ft %></th>
-                  </tr>
-                <% end %>
-                  <tr>
-                    <%= form_for [@entryControl, @batch] do |f| %>
-                      <th><%= f.number_field :weight, step: :any, min: 0 , :required => true %></th>
-                      <th><%= f.text_field :postharvestCenter , :required => true %></th>
-                      <th><%= f.collection_select :certificatetype, @certificate, :id, :name, class:"dropdown-button btn" %></th>
-                      <th><%= f.collection_select :cocoaType, @cocoa, :id, :name, class:"dropdown-button btn" %></th>
-                      <th><%= f.collection_select :geneticMaterial, @genetic, :id, :name, class:"dropdown-button btn" %></th>
-                      <th class="center"><%= f.check_box :ft, class:"input-field", type:"checkbox" %>
-                        <%= f.label ' ' %>
-                      </th>
-                      <%= f.hidden_field :samples, step: :any, :value => 1, :required => true %>
-                      <%= f.hidden_field :beans, step: :any, :value => 300, :required => true %>
+                    <th><%= f.number_field :weight, step: :any, min: 0 , :required => true %></th>
+                    <th><%= f.text_field :postharvestCenter , :required => true %></th>
+                    <th><%= f.collection_select :certificatetype, @certificate, :id, :name, class:"dropdown-button btn" %></th>
+                    <th><%= f.collection_select :cocoaType, @cocoa, :id, :name, class:"dropdown-button btn" %></th>
+                    <th><%= f.collection_select :geneticMaterial, @genetic, :id, :name, class:"dropdown-button btn" %></th>
+                    <th class="chb">
+                        <%= f.check_box :ft %>
+                        <%= f.label 'ft', "*" %></div>
+                    </th>
+                    <%= f.hidden_field :samples, step: :any, :value => 1, :required => true %>
+                    <%= f.hidden_field :beans, step: :any, :value => 300, :required => true %>
                   </tr>
                 </tbody>
               </table>
-
+              
               <p>
                 <%= link_to "Regresar", @entryControl , class: "btn btn-primary"%>
                 <%= f.submit "Aceptar", class:"btn btn-default btn-lg" %>
@@ -63,3 +54,4 @@
         $('select').material_select();
     })
 </script>
+
