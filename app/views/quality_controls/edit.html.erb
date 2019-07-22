@@ -28,7 +28,7 @@
             <%= number_with_precision(@batch.weight, precision: 2) %>
             lb
           </p>
-          
+
           <br>
           <ul class="collapsible" data-collapsible="accordion">
             <li>
@@ -68,7 +68,7 @@
                         <%= f.label 'trinitary', "Trinitario" %>
                       </td>
                     </tc>
-                      
+
                     <tc>
                       <td>
                         <%= f.check_box :outsider, :class=>"variety" %>
@@ -153,10 +153,10 @@
 
 <script>
 $('input.harvest').on('change', function() {
-  $('input.harvest').not(this).prop('checked', false);  
+  $('input.harvest').not(this).prop('checked', false);
 });
 
 $('input.variety').on('change', function() {
-  $('input.variety').not(this).prop('checked', false);  
+  $('input.variety').not(this).prop('checked', false);
 });
 </script>

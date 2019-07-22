@@ -72,3 +72,5 @@ end
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'barby'
   gem 'chunky_png'
+  gem 'font-awesome-sass','~> 4.4.0'
+  gem 'font-awesome-rails'
