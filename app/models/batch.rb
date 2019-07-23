@@ -8,7 +8,7 @@ class Batch < ApplicationRecord
 	has_one :invoice
 	has_many :results
 
-	validates :sackAmount, presence: true
+	validates :sackAmount, presence: false
 	validates :weight, presence: true
 	validates :enterCode, presence: true
 	validates :cocoaType, presence: true

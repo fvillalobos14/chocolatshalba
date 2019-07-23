@@ -5,7 +5,7 @@ class BatchesController < ApplicationController
     @certificate = CertificateType.all
     @genetic = GeneticMaterial.all
   	@entryControl = EntryControl.find(params[:entry_control_id])
-    @batch=@entryControl.batches.build
+    @batch= @entryControl.batches.build
   end
   
   def batch
@@ -27,7 +27,6 @@ class BatchesController < ApplicationController
 
   def edit
     @batch=Batch.find(params[:id])
-    
   end
 
   def update

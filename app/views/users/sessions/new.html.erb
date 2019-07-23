@@ -27,18 +27,18 @@
               <% end %>
 
               <div class="input-field">
-                <%= f.text_field :email, autofocus: true %>
+                <%= f.text_field :email, autofocus: true, id: "username" %>
                 <%= f.label :Usuario, "Usuario" %><br />
               </div>
 
               <div class="input-field">
-                <%= f.password_field :password, autocomplete: "off" %>
+                <%= f.password_field :password, autocomplete: "off", id: "pw" %>
                 <%= f.label :Contraseña, "Contraseña" %><br />
               </div>
 
               <br>
               <div class="actions">
-                <%= f.submit "Iniciar sesión" ,class: "waves-effect waves-light btn" %>
+                <%= f.submit "Iniciar sesión" ,class: "waves-effect waves-light btn", id: "login" %>
               </div>
             </div>
           </div>

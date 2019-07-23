@@ -1,202 +1,207 @@
 <div class = "container">
   <div class = "row">
     <div class = "col m12">
+
+			<div class="card">
+				<div class="card-content">
+					<div class="page-header">
+            <h1><i class="material-icons">chrome_reader_mode</i> FILTROS</h1>
+					</div>
+					<div>
+						<%= form_tag({:controller => "inventories", :action => "index"}, :method => :get) do %>
+							<div class="row">
+								<div class="col s3"> 
+									Proveedor: <%=	select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name), :include_blank => 'TODOS' %>
+								</div>
+								<div class="col s3"> 
+									Desde: <%= text_field_tag "from", params[:from], type:"date", class:"datepicker" %>
+								</div>
+								<div class="col s3">
+									Hasta: <%= text_field_tag "to", params[:to], type:"date", class:"datepicker" %>
+								</div>
+								<div class="col s3">
+									Calidad: <%= select_tag :quality,  options_for_select([["A", 1], ["B", 2] , ["C", 3]], params[:quality]), id: "different_option_value_html" ,:include_blank => 'TODOS'%>
+								</div>
+						</div>
+						<div class="row">
+							<div class="col s3">
+								<p>Certificado: <%= select_tag :certificate,  options_for_select([["E", 1], ["T", 2] , ["C", 3]], params[:certificate]), id: "different_option_value_html2" ,:include_blank => 'TODOS'%></p>
+							</div>                
+							<div class="col s3">
+								<p>Variedad: <%= select_tag :variety,  options_for_select([["HT", 1], ["IA", 2]], params[:variety]), id: "different_option_value_html3" ,:include_blank => 'TODOS'%></p>
+							</div>                
+							<div class="col s3">
+								<p>Comercio justo: <%= select_tag :ft,  options_for_select([["SI", true], ["NO", false]], params[:ft]), id: "different_option_value_html4" ,:include_blank => 'TODOS'%></p>
+							</div>
+							<div class="col s3">
+								<p>Estado: <%= select_tag :state,  options_for_select([["Rec. Ingresado", "Rec. Ingresado"], ["En Evaluacion", "En Evaluacion"], ["Evaluado","Evaluado"]], params[:state]), id: "different_option_value_html5" ,:include_blank => 'CUALQUIERA'%></p>
+							</div>
+						</div>
+							<div class="row">
+								<div class = "col m6" >
+									<p>
+										<%= check_box_tag(:purchase, params[:purchase]) %>
+										<%= label_tag(:purchase, "Comprado") %>
+									</p>
+								</div>
+							</div>
+							<br>
+
+							<%= submit_tag "Aplicar filtros", :name => nil, class:"btn btn-default btn-lg" %>
+							<%= button_tag "Limpiar", :name => nil, class:"btn btn-default btn-lg", id:"reset" %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+
+
       <div class = "card">
         <div class = "card-content">
-            <div class = "page-header">
-                <h1>Inventario</h1>
-            </div>
-          
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header section-color white-text text">
-                    <i class="material-icons">chrome_reader_mode</i>
-                    <b>FILTROS</b>
-                    </div>
-                    <div class="collapsible-body white">
-                        <%= form_tag({:controller => "inventories", :action => "index"}, :method => :get) do %>
+					<div class = "page-header">
+						<h1>Inventario</h1>
+					</div>
+					
+					<div class = "row"  >
+						<div class = "col m6" style="border-right: 1px solid grey">
+							<center>
+								<p>Calidad: 
+									<% if params[:quality]==""%>    
+										TODAS
+									<%else%>
+										<% if params[:quality]==nil %>
+										<%else%>
+											<%= CocoaType.find(params[:quality]).name %>
+										<%end%> 
+									<%end%>
+								</p>  
 
-                            <p>Proveedor: <%=	 select_tag "searchbox", options_from_collection_for_select(Organization.all, :name, :name), :include_blank => 'TODOS' %></p>
+								<p>Certificado:
+									<% if params[:certificate]=="" %>    
+										TODOS
+									<%else%>
+										<% if params[:certificate]==nil %>	
+										<%else%>
+											<%= CertificateType.find(params[:certificate]).name%>
+										<%end%>  
+									<%end%>
+								</p>  
 
-                            <p>Desde: <%= text_field_tag "from", params[:from], type:"date", class:"datepicker" %></p>
+								<p>Variedad:
+									<% if params[:variety]=="" %>    
+										CUALQUIERA
+									<%else%>
+										<%	if params[:variety]==nil %>
+										<%else%>
+											<%= GeneticMaterial.find(params[:variety]).name%> 
+										<%end%> 
+									<%end%>
+								</p> 
+								<p>Estado:
+									<%	if params[:state]=="" %>    
+										CUALQUIERA
+									<%else%>
+										<%	if params[:state]==nil    %>				
+										<%else%>
+											<%= params[:state]%>
+										<%end%> 
+									<%end%>
+								</p> 
+							</center>
+						</div>
+						<div class = "col m6">
+							<center>
+								<p>Proveedor:
+								<%	if params[:searchbox]==""  %>    
+												TODAS
+										<%else%>
+												<%	if params[:searchbox]==nil     %>
+																		
+												<%else%>
+														<%= params[:searchbox].to_s%> 
+												<%end%>
+										<%end%>
+								</p>
 
-                            <p>Hasta: <%= text_field_tag "to", params[:to], type:"date", class:"datepicker" %></p>
+								<p>Comercio justo: 
+								<%	if params[:ft]==""  %>    
+												TODOS
+								<%else%>
+										<%	if params[:ft] == "false" %>    
+												No
+										<%elsif params[:ft] == "true" %>  
+												Si
+										<%else %>
+												
+										<%end%>
+								<%end%>
+								</p> 
 
-                            <p>Calidad: <%= select_tag :quality,  options_for_select([["A", 1], ["B", 2] , ["C", 3]], params[:quality]), id: "different_option_value_html" ,:include_blank => 'TODOS'%></p>
-                            
-                            <p>Certificado: <%= select_tag :certificate,  options_for_select([["E", 1], ["T", 2] , ["C", 3]], params[:certificate]), id: "different_option_value_html2" ,:include_blank => 'TODOS'%></p>
-                
-                            <p>Variedad: <%= select_tag :variety,  options_for_select([["HT", 1], ["IA", 2]], params[:variety]), id: "different_option_value_html3" ,:include_blank => 'TODOS'%></p>
-                            
-                            <p>Comercio justo: <%= select_tag :ft,  options_for_select([["SI", true], ["NO", false]], params[:ft]), id: "different_option_value_html4" ,:include_blank => 'TODOS'%></p>
-
-                            <p>Estado: <%= select_tag :state,  options_for_select([["Rec. Ingresado", "Rec. Ingresado"], ["En Evaluacion", "En Evaluacion"], ["Evaluado","Evaluado"]], params[:state]), id: "different_option_value_html5" ,:include_blank => 'CUALQUIERA'%></p>
-
-                            <div class = "row"  >
-                                
-                                <div class = "col m6" >
-                                    <p>
-                                        <%= check_box_tag(:purchase, params[:purchase]) %>
-                                        <%= label_tag(:purchase, "Comprado") %>
-                                    </p>
-                                </div>
-                            </div>
-                            <br>
-                            
-                            <%= submit_tag "Generar", :name => nil, class:"btn btn-default btn-lg" %>
-                            <%= button_tag "Limpiar", :name => nil, class:"btn btn-default btn-lg", id:"reset" %>
-                        <% end %>
-                    </div>
-                </li>
-            </ul>
-           
-            <div class = "row"  >
-                <div class = "col m6" style="border-right: 1px solid grey">
-                    <center>
-                        <p>Calidad: 
-                            <%	if params[:quality]==""   %>    
-                                TODAS
-                            <%else%>
-                                <%	if params[:quality]==nil  %>
-                                    
-                                <%else%>
-                                    <%= CocoaType.find(params[:quality]).name%>
-                                <%end%> 
-                            <%end%>
-                        </p>  
-
-                        <p>Certificado:
-                        <%	if params[:certificate]=="" %>    
-                                TODOS
-                            <%else%>
-                                <%	if params[:certificate]==nil   %>
-                                    
-                                <%else%>
-                                    <%= CertificateType.find(params[:certificate]).name%>
-                                <%end%>  
-                            <%end%>
-                        </p>  
-
-                        <p>Variedad:
-                        <%	if params[:variety]=="" %>    
-                                CUALQUIERA
-                            <%else%>
-                                <%	if params[:variety]==nil    %>
-                                        
-                                <%else%>
-                                    <%= GeneticMaterial.find(params[:variety]).name%> 
-                                <%end%> 
-                            <%end%>
-                        </p> 
-                        <p>Estado:
-                        <%	if params[:state]=="" %>    
-                                CUALQUIERA
-                            <%else%>
-                                <%	if params[:state]==nil    %>
-                                        
-                                <%else%>
-                                    <%= params[:state]%>
-                                <%end%> 
-                            <%end%>
-                        </p> 
-                    </center>
-                </div>
-                <div class = "col m6">
-                    <center>
-
-                        <p>Proveedor:
-                        <%	if params[:searchbox]==""  %>    
-                                TODAS
-                            <%else%>
-                                <%	if params[:searchbox]==nil     %>
-                                            
-                                <%else%>
-                                    <%= params[:searchbox].to_s%> 
-                                <%end%>
-                            <%end%>
-                        </p>
-
-                        <p>Comercio justo: 
-                        <%	if params[:ft]==""  %>    
-                                TODOS
-                        <%else%>
-                            <%	if params[:ft] == "false" %>    
-                                No
-                            <%elsif params[:ft] == "true" %>  
-                                Si
-                            <%else %>
-                                
-                            <%end%>
-                        <%end%>
-                        </p> 
-
-                        <p>Comprado: 
-                            <%	if params[:purchase].to_s != "on" %>    
-                                No
-                            <%else%>
-                                Si
-                            <%end%>
-                        </p> 
-                    </center>
-                </div>
-            </div>
-            <div class="row" style="border-top: 1px solid grey">
-                <br>
-                <center>
-                    <p>
-                        Cantidad de lotes en bodega:
-                        <%= Batch.all.count %>
-                    </p>
-                    <p id="output"></p>
-                    
-                    <%= link_to "Generar Estadisticas", @new_url.to_s ,class:"btn btn-default btn-lg",target: :_blank %>
-                </center>
-            </div>
-       
-            <table class = "striped bordered" id="tblCustomers">
-                <thead>
-                    <tr>
-                        <th>Hoja de ingreso</th>
-                        <th>Peso LB</th>
-                        <th>Peso KG</th>
-                        <th>Código de lote</th>
-                        <th>Tipo de cacao</th>
-                        <th>Variedad</th>
-                        <th>Certificado</th>
-                        <th>Proveedor</th>
-                        <th>Estado</th>
-                    </tr> 
-                </thead>
-                <tbody>
-                        <% @batchesFilters.each do |batch| %>
-                            <% puts batch.id%>
-                            <tr>  
-                                <td><%= EntryControl.find(batch.entry_control_id).entry_number %></td>
-                                <td class="PesoLB"><%= number_with_precision(batch.weight, precision: 2) %></td>
-                                <td class="PesoKG"><%= number_with_precision(batch.weight/2.204623, precision: 2)  %></td>
-                                <td><%= batch.enterCode %></td>
-                                <td><%= CocoaType.find(batch.cocoaType).name %></td>
-                                <td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
-                                <td><%= CertificateType.find(batch.certificatetype).name %></td>
-                                <td><%= batch.entry_control.organization.name %></td>
-                                <td><%= batch.state %></td>
-                                   
-                            </tr>
-                        <% end %>
-                    <tr>  
-                    <td>Total</td>
-                    <td class="total-pesoLB"></td>
-                    <td class="total-pesoKG"></td> 
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>        
+								<p>Comprado: 
+										<%	if params[:purchase].to_s != "on" %>    
+												No
+										<%else%>
+												Si
+										<%end%>
+								</p> 
+							</center>
+						</div>
+					</div>
+					<div class="row" style="border-top: 1px solid grey">
+						<br>
+						<center>
+							<p>
+								Cantidad de lotes en bodega:
+								<%= Batch.all.count %>
+							</p>
+							<p id="output"></p>
+							
+							<%= link_to "Generar reporte", @new_url.to_s ,class:"btn btn-default btn-lg",target: :_blank %>
+						</center>
+					</div>
+			
+					<table class = "striped bordered" id="tblCustomers">
+						<thead>
+								<tr>
+									<th>Hoja de ingreso</th>
+									<th>Peso LB</th>
+									<th>Peso KG</th>
+									<th>Código de lote</th>
+									<th>Tipo de cacao</th>
+									<th>Variedad</th>
+									<th>Certificado</th>
+									<th>Proveedor</th>
+									<th>Estado</th>
+								</tr> 
+						</thead>
+						<tbody>
+							<% @batchesFilters.each do |batch| %>
+								<% puts batch.id%>
+								<tr>  
+									<td><%= EntryControl.find(batch.entry_control_id).entry_number %></td>
+									<td class="PesoLB"><%= number_with_precision(batch.weight, precision: 2) %></td>
+									<td class="PesoKG"><%= number_with_precision(batch.weight/2.204623, precision: 2)  %></td>
+									<td><%= batch.enterCode %></td>
+									<td><%= CocoaType.find(batch.cocoaType).name %></td>
+									<td><%= GeneticMaterial.find(batch.geneticMaterial).name %></td>
+									<td><%= CertificateType.find(batch.certificatetype).name %></td>
+									<td><%= batch.entry_control.organization.name %></td>
+									<td><%= batch.state %></td>	
+								</tr>
+							<% end %>
+							<tr>  
+								<td class="total">Total</td>
+								<td class="total-pesoLB"><strong></strong></td>
+								<td class="total-pesoKG"><strong></strong></td> 
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+					<br>        
         </div>
       </div>
     </div>
