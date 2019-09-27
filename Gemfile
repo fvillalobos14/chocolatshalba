@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.4.0'
+ruby '2.4.7'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -74,3 +74,4 @@ end
   gem 'chunky_png'
   gem 'font-awesome-sass','~> 4.4.0'
   gem 'font-awesome-rails'
+  gem 'aws-sdk'
